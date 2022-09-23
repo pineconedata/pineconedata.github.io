@@ -21,7 +21,7 @@ author: Pinecone Data, LLC
 
 navbar-links:
   About: "about"
-  Services: "services"
+#   Services: "services"
   Contact: "workwithme"
 
 ################
