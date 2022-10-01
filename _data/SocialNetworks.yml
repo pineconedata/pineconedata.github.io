@@ -73,7 +73,7 @@ telephone:
   
 privacy-policy:
   name: "Privacy Policy"
-  baseURL: "https://www.strangepy.com/"
+  baseURL: "https://www.pineconedata.com/"
   icon: "fa-file-text"
 
 rss:
