@@ -10,21 +10,21 @@
 ############################
 
 # Name of website
-title: My Website
+title: Pinecone Data
 
 # Your name to show in the footer
-author: Some Person
+author: Pinecone Data, LLC
 
 ###############################################
 # --- List of links in the navigation bar --- #
 ###############################################
 
 navbar-links:
-  About Me: "aboutme"
-  Resources:
-    - Beautiful Jekyll: "https://beautifuljekyll.com"
-    - Learn markdown: "https://www.markdowntutorial.com/"
-  Author's home: "https://deanattali.com"
+  About: "about"
+  # Resources:
+  #   - Beautiful Jekyll: "https://beautifuljekyll.com"
+  #   - Learn markdown: "https://www.markdowntutorial.com/"
+  Contact: "workwithme"
 
 ################
 # --- Logo --- #
