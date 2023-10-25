@@ -21,6 +21,7 @@ author: Pinecone Data, LLC
 
 navbar-links:
   About: "about"
+  Topics: "tags"
   # Resources:
   #   - Beautiful Jekyll: "https://beautifuljekyll.com"
   #   - Learn markdown: "https://www.markdowntutorial.com/"
