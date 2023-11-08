@@ -11,8 +11,6 @@ tags: [Python, Selenium, RSS, web scraping, automation]
 thumbnail-img: /assets/img/rss-icon-96.png
 ---
 
-# Automate Your News Feed: How Web Scraping Powers a Python-Generated RSS Feed
-
 RSS feeds are a fantstic tool for reading the latest content from your favourite websites without cluttering up your email inbox or manually visiting each website. However, not every website owner publishes an official RSS feed anymore, making it difficult to access up-to-date content in one place. That's why today we'll be digging into how to generate your own personalized RSS feed using Python and web scraping. 
 
 ## What is an RSS feed?
@@ -240,11 +238,7 @@ Once the feed object is created, we can begin populating it with the details of 
 
 ```
 
-    RSS feed generated and saved as "NASASpaceStationBlog.xml".
-
-
 After iterating through all of the posts, we can pretty-print and return the final RSS feed, as well as close the webdriver.
-
 
 ```python
     # Generate the RSS feed and return it as a string
