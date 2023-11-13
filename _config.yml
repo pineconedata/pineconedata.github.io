@@ -52,11 +52,11 @@ round-avatar: true
 # Uncomment the links you want to show and add your information to each one.
 social-network-links:
   email: "emily@pineconedata.com"
+  # facebook: yourname
   rss: true  # remove this line if you don't want to show an RSS link at the bottom
   github: pineconedata
-  instagram: pineconedata
   privacy-policy: privacy-policy
- # facebook: yourname
+  instagram: pineconedata
  # twitter: yourname
  # patreon: yourname
  # youtube: c/yourname
