@@ -168,7 +168,7 @@ footer-hover-col: "#615EEA"
 #gtag: "G-XXXXXXXXXX"
 
 # Fill in your Cloudflare Analytics beacon token to track your website using Cloudflare Analytics
-#cloudflare_analytics: ""
+cloudflare_analytics: "f636fb4c418d488795874da69069f992"
 
 # Google Tag Manager ID
 #gtm: ""
