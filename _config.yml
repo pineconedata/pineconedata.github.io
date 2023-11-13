@@ -53,34 +53,34 @@ round-avatar: true
 social-network-links:
   email: "emily@pineconedata.com"
   rss: true  # remove this line if you don't want to show an RSS link at the bottom
-  # facebook: yourname
   github: pineconedata
+  instagram: pineconedata
   privacy-policy: privacy-policy
-  # twitter: yourname
-  # patreon: yourname
-  # youtube: c/yourname
-#  medium: yourname
-#  reddit: yourname
-#  linkedin: daattali
-#  xing: yourname
-#  stackoverflow: "3943160/daattali"
-#  snapchat: deanat78
- # instagram: pineconedata
-#  spotify: yourname
-#  telephone: +14159998888
-#  steam: deanat78
-#  twitch: yourname
-#  yelp: yourname
-#  telegram: yourname
-#  calendly: yourname
-#  mastodon: instance.url/@username
-#  bluesky: yourname
-#  ORCID: your ORCID ID
-#  google-scholar: your google scholar
-#  discord: "invite_code" or "users/userid" or "invite/invite_code" 
-#  kaggle: yourname
-#  hackerrank: yourname
-#  gitlab: yourname
+ # facebook: yourname
+ # twitter: yourname
+ # patreon: yourname
+ # youtube: c/yourname
+ # medium: yourname
+ # reddit: yourname
+ # linkedin: daattali
+ # xing: yourname
+ # stackoverflow: "3943160/daattali"
+ # snapchat: deanat78
+ # spotify: yourname
+ # telephone: +14159998888
+ # steam: deanat78
+ # twitch: yourname
+ # yelp: yourname
+ # telegram: yourname
+ # calendly: yourname
+ # mastodon: instance.url/@username
+ # bluesky: yourname
+ # ORCID: your ORCID ID
+ # google-scholar: your google scholar
+ # discord: "invite_code" or "users/userid" or "invite/invite_code" 
+ # kaggle: yourname
+ # hackerrank: yourname
+ # gitlab: yourname
 
 # If you want your website to generate an RSS feed, provide a description
 # The URL for the feed will be https://<your_website>/feed.xml
