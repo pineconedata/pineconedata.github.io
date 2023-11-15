@@ -16,7 +16,7 @@ Today we'll be covering how to self-host JupyterLab on a Linux machine for a sin
 
 **Please note: this method of hosting only works for a single user. Here is additional detail that their documentation provided at time of writing, but please check the most up-to-date documentation and ensure this works for your use-case before proceeding.**
 
-![warning about hosting for a single user only](single_user_warning.png "warning about hosting for a single user only")
+![warning about hosting for a single user only](/assets/img/posts/2023-11-14_jupyterlab_single_user_warning.png "warning about hosting for a single user only")
 
 ## Getting Started
 
@@ -39,35 +39,44 @@ If this is your first time using the terminal, it might be helpful to review the
 
 ### Dependencies 
 JupyterLab depends on [Python](https://www.python.org), which is probably already installed on your computer if you're using Ubuntu or Pop!OS. You can verify if Python is installed and which version is currently being used by running:
+```bash
 scraps@pop-os:~$ python3 --version
 Python 3.10.6
+```
 If you get a response that says `command not found` instead of a version  number, then Python is not installed. In that case, you can follow [Python's official installation instructions](https://www.python.org/downloads/). You can also try running `python --version` to see if you have Python 2 installed instead of Python 3, but ultimately you should install Python 3 for this project. 
 
 You'll also need a package manager to install JupyterLab. I've used `pip`, but this works with any package manager. You can check if `pip` is installed by running: 
+```bash
 scraps@pop-os:~$ pip --version
 pip 22.0.2 from /usr/lib/python3/dist-packages/pip (python 3.10)
+```
 Similar to the command for Python, if you get a response that says `command not found` instead of a version number, then `pip` might not be installed on your device. You should follow the [official instructions](https://pip.pypa.io/en/stable/installation/) to install `pip` before proceeding.
 
 ## Installing JupyterLab
 Now we're ready to start installing JupyterLab. Project Jupyter publishes [instructions on how to install JupyterLab](https://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html) through a variety of package managers and methods. Since I'm using `pip`, the command is:
+```bash
 scraps@pop-os:~$ pip install jupyterlab
+```
 The terminal output will be quite detailed and is usually about a hundred lines long. The output might pause with a message about the amount of disk space that will be used for the install, which you can confirm by typing `y` and pressing `enter`. 
 
 **Please note: this installation modifies your `PATH` variable, so you should logout and back in before before moving on to the next step.**
 
-To verify the install worked, you can test out the `jupyter lab` command by listing all of the currently running servers with `jupyter lab list`.
-
-If you get a `command not found` response like shown below, then you should restart the machine and double check your `PATH` variable. 
+To verify the install worked, you can test out the `jupyter lab` command by listing all of the currently running servers with `jupyter lab list`. If you get a `command not found` response like shown below, then you should restart the machine and double check your `PATH` variable. 
+```bash
 scraps@pop-os:~$ jupyter lab list
 jupyter-lab: command not found`
+```
 If the output is similar to what is shown below, then you know the installation worked! 
+```bash
 scraps@pop-os:~/Code/jupyterlab$ jupyter lab list
 Currently running servers:
 scraps@pop-os:~/Code/jupyterlab$ 
+```
 There aren't any currently running servers listed because JupyterLab hasn't been started up yet. 
 
 ### Starting the Server
 We'll be modifying JupyterLab's configuration in the next section, but for now we can start the JupyterLab server with all of the default settings: 
+```bash
 scraps@pop-os:~$ jupyter lab
 [I 2022-12-04 20:30:42.533 ServerApp] jupyterlab | extension was successfully linked.
 [I 2022-12-04 20:30:42.541 ServerApp] nbclassic | extension was successfully linked.
@@ -94,11 +103,14 @@ scraps@pop-os:~$ jupyter lab
 ^C[I 2022-12-04 20:31:51.227 ServerApp] interrupted
 Serving notebooks from local directory: /home/scraps
 0 active kernels
+```
 Now that JupyterLab is running, you might notice that this terminal window is linked to that process and you can no longer run new terminal commands in this window. If you want to see the output of `jupyter lab list` now, you can open a new terminal and run that command again to see the location of the current instance: 
+```bash
 scraps@pop-os:~/Code/jupyterlab$ jupyter lab list
 Currently running servers:
 http://localhost:8888/ :: /home/scraps/Code/jupyterlab
 scraps@pop-os:~/Code/jupyterlab$ 
+```
 You can open a web browser and check out the new install now by visiting the URL listed in the terminal (which is `http://localhost:8888/` in the example above). The basic installation of JupyterLab is now complete! 
 
 ### Stopping the Server
@@ -106,19 +118,23 @@ Your JupyterLab server will now continue running until it's told to stop or is f
 1. Enter `CTRL+C` in the terminal window where you initially ran the `jupyter lab` command. You should see a message like this: `Shutdown this Jupyter server (y/[n])?` If you type `y` and press `enter` to confirm, then the server will shut down. Note that the server will wait 5 seconds by default for the confirmation before it times out and requires a new `CTRL+C` input in order to shut down. 
 2. Press `CTRL+C` twice in rapid succession in the terminal window where you initially ran the `jupyter lab` command to bypass the confirmation prompt and shutdown the server immediately. 
 3. In any terminal window, run the command `jupyter lab stop <port number>` where the `<port number>` is replaced by the port number listed in the output of the `jupyter lab list` command (in the example above, the port is `8888`, so the full command would be `jupyter lab stop 8888`). This command is useful if you no longer have the original terminal window up or if you started the server in the background. Here is a full example of that:
+```bash
 scraps@pop-os:~$ jupyter-lab list
 Currently running servers:
 https://localhost:9999/ :: /home/scraps/Code/jupyterlab
 scraps@pop-os:~$ jupyter-lab stop 9999
 Shutting down server on 9999...
+```
 4. You can use the Jupyter Lab GUI in the web browser (at `http://localhost:8888/ http://localhost:8888/ ` for example) by clicking File > Shut Down to shut down the server. This is also useful if you no longer have the original terminal window open or if you started the server as a background process.
 
 **Note: if you want to end your session but leave the server running (perhaps to take a break or switch computers), then you can also use the GUI to save your open notebooks, close all tabs, and then log out. If you leave too many tabs open for too long, then the server might shut itself down.**
 
 Regardless of which method of shutting down the server you choose, you should confirm the server shut down properly. For the terminal commands, you'll know the server shut down successfully when the terminal outputs messages like this: 
+```bash
 [C 2022-12-04 20:31:55.830 ServerApp] Shutdown confirmed
 [I 2022-12-04 20:31:55.830 ServerApp] Shutting down 3 extensions
 [I 2022-12-04 20:31:55.831 ServerApp] Shutting down 0 terminals
+```
 For shut downs via the web browser interface, you'll know the server shut down successfully when the web page (at `http://localhost:8888/` for example) no longer shows Jupyter Lab and instead says "Unable to Connect". If you already had that web page open, you might have to refresh it in order to confirm that the server has shut down. 
 
 It's not recommended to run the server without configuring some basic settings (such as a passord and HTTPS), so we'll start customizing our JupyterLab installation in the next section. If you haven't done so already, be sure to shut down your JupyterLab server before proceeding. 
@@ -126,6 +142,7 @@ It's not recommended to run the server without configuring some basic settings (
 ## Configuring JupyterLab
 JupyterLab's configuration is primarily stored in the `jupyter_lab_config.py` file under the `.jupyter` folder in your home directory, so we'll start by navigating to that folder. If you're using the terminal, then navigate back to your home directory and then into the `.jupyter` folder with `cd .jupyter`. Note that folders beginning with `.` are hidden by default, so you might want to run `ls -a` instead of just `ls` to make sure you can see the folder. If you are navigating folders via the UI, then you might want to check "Show hidden files" in the file browser. The rest of the commands in this section should be executed from inside the `.jupyter` folder, unless otherwise noted. 
 **If you don't see the `.jupyter folder`, then run the `jupyter lab --generate-config` command first.**
+```bash
 scraps@pop-os:~/Code/jupyterlab$ cd ~
 scraps@pop-os:~$ cd .jupyter
 -bash: cd: .jupyter: No such file or directory
@@ -133,20 +150,25 @@ scraps@pop-os:~$ jupyter lab --generate-config
 scraps@pop-os:~$ cd .jupyter
 scraps@pop-os:~/.jupyter$ ls -a
 .  ..  jupyter_lab_config.py
+```
 Now we're ready to start customizing our JupyterLab install! Before making any edits to the configuration file, we can start by setting a password and configuring HTTPS (instead of the default HTTP).
 
 ### Setting a Password
 You can configure a password for JupyterLab using the following command:  
+```bash
 scraps@pop-os:~/.jupyter$ jupyter lab password
 Enter password:
 Verify password:
 [JupyterPasswordApp] Wrote hashed password to /home/scraps/.jupyter/jupyter_server_config.json
+```
 You'll be prompted to enter the password twice, and then it will save a hash of that password to a newly created JSON file. We'll need to get a copy of the hashed password from the JSON file for later. To do that, you can use any text editor to open the JSON file (the example below is using `nano` since I SSH'd into this machine): 
+```bash
 scraps@pop-os:~/.jupyter$ ls -a
 .  ..  jupyter_lab_config.py  jupyter_server_config.json
 scraps@pop-os:~/.jupyter$ nano jupyter_server_config.json
-When you open that JSON file, it should look something like this: 
 ```
+When you open that JSON file, it should look something like this: 
+```json
 {
   "ServerApp": {
     "password": ""
@@ -173,6 +195,7 @@ req: Use -help for summary.
 ```
 
 However, that command did not work for me. After a bit of research, I found that adding the `-newkey` parameter worked, like this:
+```bash
 scraps@pop-os:~/.jupyter$ openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout jupyterkey.key -out jupytercert.pem
 -----
 You are about to be asked to enter information that will be incorporated
@@ -189,19 +212,21 @@ Organization Name (eg, company) [Internet Widgits Pty Ltd]:
 Organizational Unit Name (eg, section) []:
 Common Name (e.g. server FQDN or YOUR name) []:
 Email Address []:
-scraps@pop-os:~/.jupyter$ 
+scraps@pop-os:~/.jupyter$
+```
 After running this command, you will be prompted to populate some fields or leave them at their defauult values. Once you finish entering the details, you can run `ls -a` again to see that there are two new files, with the filenames specified in the previous command. 
+```bash
 scraps@pop-os:~/.jupyter$ ls -a
 .  ..  jupytercert.pem  jupyterkey.key  jupyter_lab_config.py  jupyter_server_config.json
+```
 ### Updating the Configuration File
 Now that we have the password and SSL certificate, we need to update JupyterLab's configuration file to actually use these parameters. The configuration file is located within the `.jupyter` folder and is named `jupyter_lab_config.py`. You can use any text editor to modify this file, but the examples below are shown using `nano`:  
 scraps@pop-os:~/.jupyter$ nano jupyter_lab_config.py
 Once you open the file, you should see some commented out lines with configuration parameters: 
 
-![example of editing jupyter_lab_config.py file using nano](nano_jupyter_lab_config.png "example of editing jupyter_lab_config.py file using nano")
+![example of editing jupyter_lab_config.py file using nano](/assets/img/posts/2023-11-14_nano_jupyterlab_config.png "example of editing jupyter_lab_config.py file using nano")
 
 Jupyter Notebook's documentation recommends setting the parameters for `keyfile`, `certfile`, `ip`, `port`, `password`, and `open_browser`, so we're going to set the same parameters within JupyterLab. For reference, here is the example configuration for Jupyter Notebook: 
-
 
 ```python
 # Set options for certfile, ip, password, and toggle off
@@ -220,7 +245,6 @@ c.NotebookApp.port = 9999
 Since we're installing JupyterLab instead of Jupyter Notebook, the configuration parameters will be a bit different. Most notably, the parameters will begin with `c.ServerApp` rather than `c.NotebookApp`. I found it quickest to search for the parameter names (using `CTRL+W` in `nano`, but syntax may differ depending on your text editor) and then uncommenting out those lines and setting the values. 
 
 Here are snippets from my `jupyter_server_config.py` file after the edits were made: 
-
 
 ```python
 ## The full path to an SSL/TLS certificate file.
@@ -267,6 +291,7 @@ Once you make these edits, you'll want to save the file and close the text edito
 Now that we have finished the basic configuration items, we can start up the server to verify the changes. We can immediately notice two changes: 
 1. The port number in the URL is now `9999` (or whichever port number you entered in the configuration file) instead of `8888`
 2. The URL should start with `https` instead of `http`
+```bash
 scraps@pop-os:~/.jupyter$ jupyter lab
 [I 2022-12-04 22:00:45.667 ServerApp] jupyterlab | extension was successfully linked.
 [I 2022-12-04 22:00:45.676 ServerApp] nbclassic | extension was successfully linked.
@@ -285,21 +310,20 @@ scraps@pop-os:~/.jupyter$ jupyter lab
 [W 2022-12-04 22:04:14.883 ServerApp] SSL Error on 9 ('::1', 42334, 0, 0): [SSL: SSLV3_ALERT_CERTIFICATE_UNKNOWN] sslv3 alert certificate unknown (_ssl.c:997)
 [I 2022-12-04 22:04:14.896 ServerApp] 302 GET / (::1) 0.58ms
 [I 2022-12-04 22:04:14.951 LabApp] 302 GET /lab? (::1) 0.87ms
-This means that the modifications we made to the port and configuring HTTPS both worked! 
+```
+This means that the modifications we made to the port and configuring HTTPS both worked! If you open the URL in the console output (which is `https://localhost:9999/lab` or `https://127.0.0.1:9999/lab` in the example above), then you should see a page like this:
 
-If you open the URL in the console output (which is `https://localhost:9999/lab` or `https://127.0.0.1:9999/lab` in the example above), then you should see a page like this:
-
-![jupyter lab's login page](jupyterlab_login_page.png "jupyter lab's login page")
+![jupyter lab's login page](/assets/img/posts/2023-11-14_jupyterlab_login_page.png "jupyter lab's login page")
 
 **Note for remotely connected users: opening the URL listed in the console output will only work on the computer that is running the JupyterLab server.** If you are SSH'd into the host computer like I am (or if you want to access your JupyterLab instance from another computer on the same network), then you instead need to enter the IP address of the host computer between the protocol and the port number. You can try running `hostname -I` in the terminal to get the computer's private IP address or look up instructions online for your particular Linux distribution. 
 
-**Note: Depending on your browser and whether you used `openssl` or `lets-encrypt`, you might receive a prompt to accept the self-signed HTTP certificatee first. Since we trust this web page, it is okay to click "Advanced" and then "Proceed".**
+**Note: Depending on your browser and whether you used `openssl` or `lets-encrypt`, you might receive a prompt to accept the self-signed HTTP certificate first. Since we trust this web page, it is okay to click "Advanced" and then "Proceed".**
 
 Since this web page is prompting for a password, it means the password configuration also worked!
 
 Once you login, you should see the full JupyterLab interface: 
 
-![jupyter lab's landing page](jupyterlab_landing_page.png "jupyter lab's landing page")
+![jupyter lab's landing page](/assets/img/posts/2023-11-14_jupyterlab_landing_page.png "jupyter lab's landing page")
 
 Congratulations, your JupyterLab server is up and running! Check out the next section for recommended customization and next steps. 
 
@@ -314,28 +338,28 @@ By default, your JupyterLab workspace and all of the associated files will be st
 
 If you always want JupyterLab to use the same directory, it might be better to instead change the default startup directory of JupyterLab. This can be set in the same configuration file (`jupyter_server_config.pyjupyter_server_config.py`) that we were editing earlier. The documentation online recommends editing the `notebook_dir` parameter:
 
-
 ```python
 ## DEPRECATED, use root_dir.
 #  Default: ''
 # c.ServerApp.notebook_dir = ''
 ```
-
 There is a note about how `notebook_dir` has been deprecated in JupyterLab and that `root_dir` should be used instead, so that's what we'll use instead. This configuration file is a Python file, so we can even use libraries to build the folder path if desired: 
-
 
 ```python
 import os
 c.ServerApp.root_dir = os.path.expanduser('~/Code/jupyterlab/')
 ```
-
 Once you save and exit the configuration file as usual, the workspace files will now be saved in whatever directory you specified above.
 
 ### Running in the Background 
-It might be useful to start up and run the JupyterLab server as a background process in the terminal by adding `&` to the end of the command. 
- scraps@pop-os:~$ jupyter-lab &
+It might be useful to start up and run the JupyterLab server as a background process in the terminal by adding `&` to the end of the command.
+```bash
+scraps@pop-os:~$ jupyter-lab &
+```
 By running this as a background process, the output of the server will no longer be printed in the terminal. In that case, it might be helpful to redirect the server output (`stdout`) to a logfile by running this startup command instead:
- scraps@pop-os:~$ jupyter-lab &>> ~/Code/jupyterlab/_logs/2022-12-06_jupterlab.log
+```bash
+scraps@pop-os:~$ jupyter-lab &>> ~/Code/jupyterlab/_logs/2022-12-06_jupterlab.log
+```
 This will redirect all of the server messages to the specified logfile (which is a file named `2022-12-06_jupyterlab.log` in the `~/Code/jupyterlab/_logs/` directory in the example above). In summary, the `&` directs the terminal to run that process in the background while the `>>` redirects the output to another location (which is a logfile in this case). 
 
 As a quick reminder, the best way to shut down the server might be slightly different when starting the JupyterLab server in the background. You can review the [Stopping the Server](#stopping-the-server) section above to find your preferred way of shutting down the server. One difference to note is that if you press `CTRL+C` once while the terminal output is being redirected to a logfile, the terminal won't show the prompt to confirm shutting down the server. However, your input will still get passed to JupyterLab, so you can type `y` or `yes` and press `enter` to confirm the shut down. It's not generally recommended to send inputs when you cannot see the outputs, but it is technically possible.
