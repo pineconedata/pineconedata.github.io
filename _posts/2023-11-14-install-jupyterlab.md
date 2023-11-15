@@ -6,10 +6,10 @@ gh-badge: [star, fork, follow]
 title: Jumpstart Your Data Science Journey with JupyterLab
 subtitle: "A Comprehensive Guide on Debian Linux"
 share-title: "Jumpstart Your Data Science Journey with JupyterLab: A Comprehensive Guide for Debian Linux"
-share-img: /assets/img/posts/2023-11-14-install-jupyterlab-social.png
-share-description: Want to subscribe to updates from your favourite website but they don’t publish an RSS feed? Learn how to automatically generate an RSS feed with Python, Selenium, and FeedGen. 
-tags: [Python, Selenium, RSS, web scraping, automation]
-thumbnail-img: /assets/img/rss-icon-96.png
+share-img: /assets/img/posts/2023-11-14-installing-jupyterlab-social.png
+share-description: Interested in self-hosting JupyterLab on Debian Linux? Discover the power of JupyterLab and Jupyter Notebooks in this comprehensive guide that is perfect for data scientists and Python enthusiasts.
+tags: [Python, Jupyter, Linux, data science, server, self-host]
+thumbnail-img: /assets/img/jupyterlab_icon.jpeg
 ---
 
 Today we'll be covering how to self-host JupyterLab on a Linux machine for a single user. If you're not familiar with [Project Jupyter](http://jupyter.org/), I highly recommend that you check it out, especially if you work in data science or with Python. Project Jupyter is migrating the classic [Jupyter Notebooks](https://jupyterlab.readthedocs.io/en/stable/user/notebook.html#notebook) into the new [JupyterLab](https://jupyterlab.readthedocs.io/en/stable/getting_started/overview.html), so we'll be installing and hosting JupyterLab today. JupyterLab includes Jupyter Notebooks, terminals, text editors, as well as customizable extensions and overall is a fantastic tool. 
@@ -125,7 +125,7 @@ https://localhost:9999/ :: /home/scraps/Code/jupyterlab
 scraps@pop-os:~$ jupyter-lab stop 9999
 Shutting down server on 9999...
 ```
-4. You can use the Jupyter Lab GUI in the web browser (at `http://localhost:8888/ http://localhost:8888/ ` for example) by clicking File > Shut Down to shut down the server. This is also useful if you no longer have the original terminal window open or if you started the server as a background process.
+4. You can use the JupyterLab GUI in the web browser (at `http://localhost:8888/ http://localhost:8888/ ` for example) by clicking File > Shut Down to shut down the server. This is also useful if you no longer have the original terminal window open or if you started the server as a background process.
 
 **Note: if you want to end your session but leave the server running (perhaps to take a break or switch computers), then you can also use the GUI to save your open notebooks, close all tabs, and then log out. If you leave too many tabs open for too long, then the server might shut itself down.**
 
@@ -135,7 +135,7 @@ Regardless of which method of shutting down the server you choose, you should co
 [I 2022-12-04 20:31:55.830 ServerApp] Shutting down 3 extensions
 [I 2022-12-04 20:31:55.831 ServerApp] Shutting down 0 terminals
 ```
-For shut downs via the web browser interface, you'll know the server shut down successfully when the web page (at `http://localhost:8888/` for example) no longer shows Jupyter Lab and instead says "Unable to Connect". If you already had that web page open, you might have to refresh it in order to confirm that the server has shut down. 
+For shut downs via the web browser interface, you'll know the server shut down successfully when the web page (at `http://localhost:8888/` for example) no longer shows JupyterLab and instead says "Unable to Connect". If you already had that web page open, you might have to refresh it in order to confirm that the server has shut down. 
 
 It's not recommended to run the server without configuring some basic settings (such as a passord and HTTPS), so we'll start customizing our JupyterLab installation in the next section. If you haven't done so already, be sure to shut down your JupyterLab server before proceeding. 
 
