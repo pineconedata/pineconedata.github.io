@@ -3,9 +3,9 @@ layout: post
 readtime: true
 gh-repo: pineconedata
 gh-badge: [star, fork, follow]
-title: Jumpstart Your Data Science Journey with JupyterLab
+title: Jump into Data Science with JupyterLab
 subtitle: "A Comprehensive Guide on Debian Linux"
-share-title: "Jumpstart Your Data Science Journey with JupyterLab: A Comprehensive Guide for Debian Linux"
+share-title: "Jump into Data Science with JupyterLab: A Comprehensive Guide for Debian Linux"
 share-img: /assets/img/posts/2023-11-14-installing-jupyterlab-social.png
 share-description: Interested in self-hosting JupyterLab on Debian Linux? Discover the power of JupyterLab and Jupyter Notebooks in this comprehensive guide that is perfect for data scientists and Python enthusiasts.
 tags: [Python, Jupyter, Linux, data science, server, self-host]
