@@ -12,7 +12,7 @@ tags: [Python, Selenium, RSS, web scraping, automation]
 thumbnail-img: /assets/img/rss-icon-96.png
 ---
 
-RSS feeds are a fantstic tool for reading the latest content from your favourite websites without cluttering up your email inbox or manually visiting each website. However, not every website owner publishes an official RSS feed anymore, making it difficult to access up-to-date content in one place. That's why today we'll be digging into how to generate your own personalized RSS feed using Python and web scraping. 
+RSS feeds are a fantastic tool for reading the latest content from your favorite websites without cluttering up your email inbox or manually visiting each website. However, not every website owner publishes an official RSS feed anymore, making it difficult to access up-to-date content in one place. That's why today we'll be digging into how to generate your own personalized RSS feed using Python and web scraping. 
 
 ## What is an RSS feed?
 First off, an RSS (Really Simple Syndication) feed is a type of web feed that allows you to access updates to websites in a standardized, computer-readable format. Typically, a website owner will publish one RSS feed per website (or, for larger websites, one per category) that is updated regularly with new information. You can subscribe to multiple RSS feeds within an RSS feed reader (aka aggregator) - all you need to subscribe is the URL of the RSS feed. The RSS feed reader then displays an overview of the latest stories and information from all of your subscribed sites in one consolidated location. 
@@ -21,12 +21,12 @@ First off, an RSS (Really Simple Syndication) feed is a type of web feed that al
 If you haven't used an RSS feed reader before, you might not be familiar with the benefits they can offer over visiting a website directly or using a third-party news service. 
 - Personalization - An RSS feed reader lets you personalize your news feed by subscribing only to the sources, topics, and categories that interest you. 
 - Organization - You can easily organize your subscriptions in an RSS feed reader by creating folders, tagging articles, and prioritizing sources. 
-- Improved Privacy - By using an RSS feed reader instead of visiting websites directly, you can protect your browsing data from being tracked by third-parties. 
+- Improved Privacy - By using an RSS feed reader instead of visiting websites directly, you can protect your browsing data from being tracked by third parties. 
 - Fewer Distractions - Similar to the previous benefit, you can often bypass advertisements and intrusive popups that you might otherwise see on the original website. 
 - Offline Accessibility - Many RSS feed readers offer the ability to save content for offline reading, allowing you to catch up on news or updates during periods of limited connectivity. 
 
 ## How do we get started? 
-Now that we've covered the basics of RSS feeds and feed readers, let's dive in to how to generate an RSS feed for a website. In today's project, we'll use a website that does already publish an official RSS feed, but that will be useful for santiy-checking the end result. 
+Now that we've covered the basics of RSS feeds and feed readers, let's dive into how to generate an RSS feed for a website. In today's project, we'll use a website that does already publish an official RSS feed, but that will be useful for sanity-checking the result. 
 
 To get started, you'll need to have the following software installed on your system: 
 
@@ -43,10 +43,10 @@ Additional details about dependencies and version numbers can be found in the [`
 *Note*: If you want to skip straight to implementation, you can follow the instructions in the [GitHub repo](https://github.com/pineconedata/automated-feed-generator) for this project. Otherwise, keep reading for step-by-step instructions and a breakdown of the code. 
 
 ## How will this process work?
-At a high level, this process will work by regularly running a Python script that will visit the desired website, scrapte the latest content, and export that content to an RSS feed file. For convenience, the configuration options have been separated from the Python script itself (so that it's easy to execute the same script for multiple websites), but you could easily combine these two files if you want. You can either run the Python script on your own computer (self-host) or use a third-party service (like AWS, GCP, Azure, etc.). This post will briefly cover configuring this script to run locally, so you won't need any accounts with any third-parties to run this process.
+At a high level, this process will work by regularly running a Python script that will visit the desired website, scrape the latest content, and export that content to an RSS feed file. For convenience, the configuration options have been separated from the Python script itself (so that it's easy to execute the same script for multiple websites), but you could easily combine these two files if you want. You can either run the Python script on your own computer (self-host) or use a third-party service (like AWS, GCP, Azure, etc.). This post will briefly cover configuring this script to run locally, so you won't need any accounts with any third parties to run this process.
 
 # Configuration File
-Since the configuration options are stored in a separate file (in JSON format) from the Python script, let's take a look at the required configuration parameters first. In order to scrape a website to generate an RSS feed, we'll need to set basic parameters like the website URL and title, as well as more detailed parameters like how to identify the details for each individual item in the generated RSS feed. For example, if we look at a blog, these details would include the post title, post URL, post image, etc.
+Since the configuration options are stored in a separate file (in JSON format) from the Python script, let's take a look at the required configuration parameters first. In order to scrape a website to generate an RSS feed, we'll need to set basic parameters like the website URL and title, as well as more detailed parameters like how to identify the details for each item in the generated RSS feed. For example, if we look at a blog, these details would include the post title, post URL, post image, etc.
 
 In summary, the minimum parameters we need to specify are: 
 
@@ -66,7 +66,7 @@ Here's an example of what those required configuration parameters would look lik
   "title_selector": "h2.entry-title",
   "link_selector": "h2.entry-title > a"
 }
-If we run the Python process with only these parameters, then we will get a bare-bones RSS feed that only populates the title and URL of each blog post from the website. However, you might want to generate a more robust RSS feed that includes the date, thumbnail image, and description of each blog post as well. To that end, there are several optional parameters that can be set in the configuration file: 
+If we run the Python process with only these parameters, then we will get a bare-bones RSS feed that only populates the title and URL of each blog post from the website. However, you might want to generate a more robust RSS feed that includes the date, thumbnail image, and description of each blog post as well. To that end, several optional parameters can be set in the configuration file: 
 
 - `image_selector`: *Optional*, CSS selector for the image of each element.
 - `description_selector`: *Optional*, CSS selector for the description of each element.
@@ -93,7 +93,7 @@ Here's an example of what the entire configuration JSON file would look like for
 
 Once the script has opened the proper website URL, it will identify the list of posts to include in the RSS feed by using `posts_list_selector` (where `document.querySelectorAll(posts_list_selector)` should return the same number of HTML elements as the number of posts that should be included in your output RSS feed's content). Using the `document.querySelectorAll()` method is one of the quickest ways to identify your desired `posts_list_selector` value. MDN has additional details on the [`document.querySelectorAll()` method](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) if you are not familiar with it.
 
-Then, the script will scrape the details of each post using the other selectors (`title_selector`, `link_selector`, `image_selector`, `description_selector`, and `date_selector`. The selectors for the post details (`title_selector`, `link_selector`, etc.) are sub-selectors of the `posts_list_selector`. For example, this sub-selector logic for the `title_selector` would be implemented in JavaScript as `document.querySelectorAll(posts_list_selector)...querySelector(title_selector)` (this script uses Python and Selenium, but the JS logic can be helpful for identifying the proper value of `title_selector`, etc. more quickly). MDN has additional details on the [`document.querySelector()` method](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector) as well if you are not familiar with it.
+Then, the script will scrape the details of each post using the other selectors (`title_selector`, `link_selector`, `image_selector`, `description_selector`, and `date_selector`. The selectors for the post details (`title_selector`, `link_selector`, etc.) are sub-selectors of the `posts_list_selector`. For example, this sub-selector logic for the `title_selector` would be implemented in JavaScript as `document.querySelectorAll(posts_list_selector)...querySelector(title_selector)` (this script uses Python and Selenium, but the JS logic can help you identify the proper value of `title_selector`, etc. more quickly). MDN has additional details on the [`document.querySelector()` method](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector) as well if you are not familiar with it.
 
 Writing precise, reliable CSS selectors can be challenging, but you can always start by right-clicking "Inspect Element" and then right-clicking "Copy > CSS Selector" on the desired HTML element. 
 
@@ -126,7 +126,7 @@ if __name__ == "__main__":
     # Create an argument parser for command-line options
     parser = argparse.ArgumentParser(description="Scrape a website and generate an RSS feed.")
 
-    # Add and parse a  command-line argument for specifying the path to the configuration file 
+    # Add and parse the command-line argument for specifying the path to the configuration file 
     parser.add_argument('--config_file', required=True, help="Path to the configuration file")
     args = parser.parse_args()
 
@@ -259,10 +259,10 @@ After iterating through all of the posts, we can pretty-print and return the fin
     return rss_feed
 ```
 
-That's the entire Python script! It's a fairly simple process, and in the next section we'll go over how to run this script from the command line. 
+That's the entire Python script! It's a fairly simple process, and we'll go over how to run this script from the command line in the next section.
 
 # Running the Process
-In order to run the process, there should be a particular folder structure for the files (illustrated below). 
+To run the process, there should be a particular folder structure for the files (illustrated below). 
 -[parent folder]
 --automated_feed_generator.py (the Python script)
 --[config] (a sub-folder that holds the configuration files)
@@ -321,7 +321,7 @@ Then, you can add this script as a single cron job that will update all of the f
 @daily ~/path/to/dir/automated_feed_generator.sh
 ```
 
-Now each `config_file.json` in the `config` directory will be passed to the `automated_feed_gneerator.py` script and will output a resulting file in the `feeds` directory. All that's left is to host your `feeds` directory somewhere that a RSS feed reader can pull from. For the most up-to-date version of `automated_feed_generator.py`, be sure to check in the [GitHub repo](https://github.com/pineconedata/automated-feed-generator).
+Now each `config_file.json` in the `config` directory will be passed to the `automated_feed_gneerator.py` script and will output a resulting file in the `feeds` directory. All that's left is to host your `feeds` directory somewhere that a RSS feed reader can pull from. For the most up-to-date version of `automated_feed_generator.py`, be sure to check the [GitHub repo](https://github.com/pineconedata/automated-feed-generator).
 
 # Limitations
 
@@ -331,7 +331,7 @@ Before we wrap up, there are a few limitations to this Python process. There are
     - However, there could be ways around this limitation, depending on the site structure and iframe details. A first step might be to fork this repo and modify the `posts_list = driver.find_elements(By.CSS_SELECTOR, posts_list_selector)` logic to something like `posts_list = driver.find_element(By.CSS_SELECTOR, iframe_selector).find_elements(By.CSS_SELECTOR, posts_list_selector)`. Note that this example logic is untested and might not work in all scenarios. 
 - **Shadow DOMs**: This script does not out-of-the-box support selectors that are within [shadow DOMs](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM).
     - Similar to iframes, there could be ways around this limitation. One possible solution might involve selecting the shadow DOM element and then selecting the posts_list (in JavaScript, this would look something like `document.querySelector(shadow_dom_selector).shadowRoot.querySelectorAll(posts_list_selector)`). 
-- **Blocking**: This script is meant to be run at a low-volume (once per day) from a personal machine that has access to the website that you are scraping. This is not intended to be used for any malicious purposes, and, as such, no steps have been taken to ensure that the website owner does not block or tarpit your traffic.
+- **Blocking**: This script is meant to be run at a low volume (once per day) from a personal machine that has access to the website that you are scraping. This is not intended to be used for any malicious purposes, and, as such, no steps have been taken to ensure that the website owner does not block or tarpit your traffic.
     - Your traffic typically will not get blocked from running this script once per day. However, website owners have different policies and some might be more aggressive about blocking traffic (such as blocking all Linux+Firefox traffic). If you are concerned about getting blocked, then there is plenty of additional logic that could be added to this script to mitigate those risks.
 
 # Wrap up
