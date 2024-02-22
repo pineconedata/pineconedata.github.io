@@ -151,7 +151,7 @@ scraps@pop-os:~$ cd .jupyter
 scraps@pop-os:~/.jupyter$ ls -a
 .  ..  jupyter_lab_config.py
 ```
-Now we're ready to start customizing our JupyterLab install! Before making any edits to the configuration file, we can start by setting a password and configuring HTTPS (instead of the default HTTP).
+Now we're ready to start customizing our JupyterLab install! Before making any edits to the configuration file, we can start by creating a password and configuring HTTPS (instead of the default HTTP). [This article](https://web.dev/articles/when-to-use-local-https) lists the benefits of enabling HTTPS for projects that are only intended to run locally.
 
 ### Setting a Password
 You can configure a password for JupyterLab using the following command:  
@@ -180,7 +180,7 @@ Copy and paste the value of the `password` field somewhere else so you can refer
 **Please note: if your password is stored in plain text (if you can read out exactly what you entered in the previous step), then you should follow the instructions in [this StackOverflow thread](https://stackoverflow.com/questions/64299457/jupyter-password-not-hashed) to ensure your password is hashed.** You can also use those instructions to change the hashing algorithm (from `argon2` to `sha1`, for example).
 
 ### Creating an SSL Certificate
-To enable HTTPS on the JupyterLab server, we first need to create an SSL certificate. You can use either [`lets-encrypt`](https://letsencrypt.org/) or [`openssl`](https://www.openssl.org/docs/man1.0.2/man1/openssl-req.html) to create the certificate, but we'll be using `openssl` for this project.
+To enable HTTPS on the JupyterLab server, we first need to create an SSL certificate. You can use either [`lets-encrypt`](https://letsencrypt.org/) or [`openssl`](https://www.openssl.org/docs/man1.0.2/man1/openssl-req.html) to create the certificate, but we'll be using `openssl` for this project. For simplicity, we'll be creating a [self-signed certificate](https://en.wikipedia.org/wiki/Self-signed_certificate) today, but it's generally recommended to use a certificate issued by a [certificate authority](https://en.wikipedia.org/wiki/Certificate_authority) instead. 
 
 **Please note: you should run the certificate creation commands from the directory that you want the certificate files to be stored in. For simplicity, today's example will show creating the certificate files in the `.jupyter` folder, but you can change directories to the desired location before creating the certificate.**
 
