@@ -1,1 +1,4 @@
-<pre>Sitemap: {{ site.url }}/sitemap.xml</pre>
+User-agent: *
+Disallow: /assets/
+
+Sitemap: https://www.pineconedata.com/sitemap.xml
