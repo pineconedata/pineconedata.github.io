@@ -1,0 +1,1 @@
+<pre>Sitemap: {{ site.url }}/sitemap.xml</pre>
