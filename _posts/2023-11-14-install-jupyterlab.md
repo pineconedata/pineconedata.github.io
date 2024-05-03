@@ -373,5 +373,6 @@ Congratulations! Your new JupyterLab server is ready to go and you are now self-
   - Show the system's and server's current resource usage (CPU, RAM, etc.) 
 - Cover the basics of using JupyterLab's included debugging tool
 - How to streamline your workflow with Jupyter's magic commands
-- And more! 
+- And more!
+
 If you found this guide helpful, please give it a like, share, and subscribe to be notified of new articles. If you have any questions or suggestions, feel free to [contact me](/workwithme) directly!
