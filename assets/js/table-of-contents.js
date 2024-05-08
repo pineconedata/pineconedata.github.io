@@ -1,5 +1,5 @@
 // Generate Table of Contents if headings exists
-document.addEventListener("DOMContentLoaded", function() {
+window.onload = function() {
   var tocContainer = document.getElementById('toc');
   var headings = document.querySelectorAll('article h2[id], article h3[id]');
 
@@ -27,4 +27,4 @@ document.addEventListener("DOMContentLoaded", function() {
       tocList.appendChild(listItem);
     });
   }
-});
+};
