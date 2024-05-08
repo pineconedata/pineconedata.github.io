@@ -12,7 +12,6 @@ gh-repo: pineconedata/pineconedata.github.io
 gh-badge: [star, fork, follow]
 after-content: post-subscribe.html
 js: /assets/js/table-of-contents.js
-published: false
 ---
 
 In this guide, we'll walk through the process of acquiring, preprocessing, and cleaning a data set. These steps are essential for any data analysis project to make sure the dataset is ready for analysis and visualization. The dataset we'll be using today contains basketball player statistics for the 2023-2024 NCAA women's basketball season. We'll use Python along with the popular pandas and requests libraries to accomplish these tasks efficiently. By the end of this tutorial, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, and eliminate any inconsistencies and errors.
