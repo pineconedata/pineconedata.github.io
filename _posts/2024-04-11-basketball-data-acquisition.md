@@ -1,11 +1,12 @@
 ---
 layout: post
-title: "A Full Guide to Data Science Projects using Basketball [Part 1]"
-subtitle: Project Setup and Data Acquisition
+title: "A Full Guide to Data Science Projects using Basketball"
+subtitle: "Part 1 - Project Setup and Data Acquisition"
 tags:  [Python, data science, pandas, API]
-thumbnail-img: /assets/img/avatar-icon.png
-share-title: "A Full Guide to Data Science Projects using Basketball [Part 1]: Project Setup and Data Acquisition" 
+thumbnail-img: /assets/img/posts/2024-04-11-basketball-data-acquisition/ncaa.jpg
+share-title: "A Full Guide to Data Science Projects using Basketball: Part 1 - Project Setup and Data Acquisition" 
 share-description: Interested in starting a new data science project? Learn the initial steps to start your project and acquire your datasets in this comprehensive guide that is perfect for beginner data scientists and Python enthusiasts.
+share-img: /assets/img/posts/2024-04-11-basketball-data-acquisition/acquisition-social.png
 readtime: true
 gh-repo: pineconedata/pineconedata.github.io
 gh-badge: [star, fork, follow]
@@ -87,19 +88,19 @@ Once we have those two datasets, the next step will be to merge them to have one
 ## Acquiring Player Information Data
 As described above, the player information data can be obtained from the [NCAA website's basketball statistics section](https://web1.ncaa.org/stats/StatsSrv/rankings?doWhat=archive&sportCode=WBB). You can write a small web scraper in Python to scrape this data automatically, but today we'll walk through how to manually download the data. Starting on the NCAA's website, the page should look like this: 
 
-![NCAA basketball statistics website](./data_images/ncaa_wbb_player_info_step1.png "NCAA basketball statistics website")
+![NCAA basketball statistics website](/assets/img/posts/2024-04-11-basketball-data-acquisition/ncaa_wbb_player_info_step1.png "NCAA basketball statistics website")
 
 From this page, we'll select the desired season, which is the most recent 2023-2024 season: 
 
-![select the proper season](./data_images/ncaa_wbb_player_info_step2.png "select the proper season")
+![select the proper season](/assets/img/posts/2024-04-11-basketball-data-acquisition//ncaa_wbb_player_info_step2.png "select the proper season")
 
 Once you click "view", it should open a new tab with a page that looks like this: 
 
-![select division and statistics](./data_images/ncaa_wbb_player_info_step3.png "select division and statistics")
+![select division and statistics](/assets/img/posts/2024-04-11-basketball-data-acquisition/ncaa_wbb_player_info_step3.png "select division and statistics")
 
 We can now select the division (which will be Division 1), the reporting week (which will be the final week of the season), and the statistics (which will be all individual player statistics). With those selections made, we can click "Show Report (CSV - Spreadsheet)" to get the data in CSV format.
 
-![download csv results](./data_images/ncaa_wbb_player_info_step4.png "download csv results")
+![download csv results](/assets/img/posts/2024-04-11-basketball-data-acquisition/ncaa_wbb_player_info_step4.png "download csv results")
 
 With the CSV downloaded, the only step left is to import the data (after removing all blank and duplicate rows). 
 
@@ -206,10 +207,10 @@ As mentioned before, the player statistics data can be obtained by making API re
 
 ### Explore the API Endpoint
 You can view this data in a table format on Yahoo's website, which can help identify particular columns (such as "G" stands for "Games Played"). 
-![Yahoo Sports basketball statistics webpage](./data_images/ncaa_wbb_player_stats_page.png "Yahoo Sports basketball statistics webpage")
+![Yahoo Sports basketball statistics webpage](/assets/img/posts/2024-04-11-basketball-data-acquisition/ncaa_wbb_player_stats_page.png "Yahoo Sports basketball statistics webpage")
 
 Tools such as [Postman](https://www.postman.com/) can be extremely helpful for fine-tuning the API request and viewing the response data. The "View Code" button allows you to view the API request as Python code directly (in this case, by using the `requests` library specifically) in the right sidebar.
-![Postman API request with code sidebar](./data_images/ncaa_wbb_player_stats_postman.PNG "Postman API request with code sidebar")
+![Postman API request with code sidebar](/assets/img/posts/2024-04-11-basketball-data-acquisition/ncaa_wbb_player_stats_postman.PNG "Postman API request with code sidebar")
 
 ### Write a Function to Request Data
 Here's an example of making an API request to the Yahoo Sports data using the Python `requests` library (copied from Postman). 
