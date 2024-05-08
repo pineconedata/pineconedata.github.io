@@ -214,6 +214,8 @@ Tools such as [Postman](https://www.postman.com/) can be extremely helpful for f
 
 ### Write a Function to Request Data
 Here's an example of making an API request to the Yahoo Sports data using the Python `requests` library (copied from Postman). 
+
+```python
 import requests
 
 url = "https://graphite-secure.sports.yahoo.com/v1/query/shangrila/seasonStatsBasketballTotal?lang=en-US&region=US&tz=America/New_York&ysp_redesign=1&ysp_platform=desktop&season=2023&league=ncaaw&leagueStructure=ncaaw.struct.div.1&count=200&sortStatId=FREE_THROWS_MADE&positionIds=&qualified=TRUE"
@@ -224,6 +226,8 @@ headers = {}
 response = requests.request("GET", url, headers=headers, data=payload)
 
 print(response.text)
+```
+
 Depending on your use case, you might not need to make any modifications to this code. However, for this project, we'll want to request data for multiple statistics, so we will make a few changes to improve usability. First, we'll separate all of the query string parameters into a dictionary to be passed into the `requests.get()` function. Then, we'll put the request into a convenience function with basic error handling. 
 
 
@@ -310,7 +314,7 @@ example_response['data']['leagues'][0]['leaders'][0]
 
 
 
-
+```json
     {'player': {'displayName': 'Caitlin Clark',
       'playerId': 'ncaaw.p.64550',
       'team': {'displayName': 'Iowa',
@@ -340,7 +344,7 @@ example_response['data']['leagues'][0]['leaders'][0]
       {'statId': 'BLOCKS', 'value': '17'},
       {'statId': 'FOULS', 'value': '61'},
       {'statId': 'POINTS', 'value': '1020'}]}
-
+```
 
 
 ### Write a Function to Format Data
