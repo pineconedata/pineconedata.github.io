@@ -25,6 +25,8 @@ This process will involve four major steps:
 
 Steps 2 and 3 specifically will help mitigate the pitfalls of the "garbage in, garbage out" saying for data analysis - where the quality of your analysis is only as good as the data you start with. 
 
+<div id="toc"></div>
+
 # Getting Started
 ## Requirements
 Before we get started, you should have: 
