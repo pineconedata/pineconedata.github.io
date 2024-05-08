@@ -11,6 +11,7 @@ share-description: Want to subscribe to updates from your favourite website but 
 tags: [Python, Selenium, RSS, web scraping, automation]
 thumbnail-img: /assets/img/rss-icon-96.png
 after-content: post-subscribe.html
+js: table-of-contents.js
 ---
 
 RSS feeds are a fantastic tool for reading the latest content from your favorite websites without cluttering up your email inbox or manually visiting each website. However, not every website owner publishes an official RSS feed anymore, making it difficult to access up-to-date content in one place. That's why today we'll be digging into how to generate your own personalized RSS feed using Python and web scraping. 
@@ -342,20 +343,3 @@ Before we wrap up, there are a few limitations to this Python process. There are
 
 # Wrap up
 We've finished thoroughly going over how to write, run, and schedule a Python script that will scrape a website and generate an RSS feed. If you found this information helpful, please give it a like, share, or fork the [GitHub repo](https://github.com/pineconedata/automated-feed-generator). If you have any questions or suggestions, feel free to [contact me](/workwithme) or open a pull request! 
-
-<script>
-  // Generate Table of Contents
-  document.addEventListener("DOMContentLoaded", function() {
-    var tocList = document.getElementById('toc-list');
-    var headings = document.querySelectorAll('article h2, article h3');
-    
-    headings.forEach(function(heading) {
-      var listItem = document.createElement('li');
-      var link = document.createElement('a');
-      link.textContent = heading.textContent;
-      link.href = '#' + heading.id;
-      listItem.appendChild(link);
-      tocList.appendChild(listItem);
-    });
-  });
-</script>
