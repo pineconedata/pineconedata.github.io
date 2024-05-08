@@ -197,11 +197,12 @@ player_info.shape
 
 
 This dataset contains 1,009 rows and 5 columns. Here's a quick description of each column: 
-    PLAYER_NAME: The name of the basketball player.
-    Team: The name of the basketball team the player is associated with, including the conference they belong to.
-    Class: The classification or academic year of the player (e.g., freshman, sophomore, junior, senior).
-    Height: The height of the player in a standardized format (e.g., feet-inches or centimeters).
-    Position: The playing position of the player on the basketball court (e.g., point guard, shooting guard, small forward, power forward, center).
+  - PLAYER_NAME: The name of the basketball player.
+  - Team: The name of the basketball team the player is associated with, including the conference they belong to.
+  - Class: The classification or academic year of the player (e.g., freshman, sophomore, junior, senior).
+  - Height: The height of the player in a standardized format (e.g., feet-inches or centimeters).
+  - Position: The playing position of the player on the basketball court (e.g., point guard, shooting guard, small forward, power forward, center).
+
 ## Acquiring Player Statistics Data
 As mentioned before, the player statistics data can be obtained by making API requests to the [Yahoo Sports API](https://sports.yahoo.com/ncaaw/stats/individual/?selectedTable=0&leagueStructure=ncaaw.struct.div.1&sortStatId=FREE_THROWS_MADE). There are a variety of API endpoints available for sports data, but today we'll be using the Yahoo Sports API since it is free and contains all of the player statistics in one convenient result. 
 
@@ -210,7 +211,8 @@ You can view this data in a table format on Yahoo's website, which can help iden
 ![Yahoo Sports basketball statistics webpage](/assets/img/posts/2024-04-11-basketball-data-acquisition/ncaa_wbb_player_stats_page.png "Yahoo Sports basketball statistics webpage")
 
 Tools such as [Postman](https://www.postman.com/) can be extremely helpful for fine-tuning the API request and viewing the response data. The "View Code" button allows you to view the API request as Python code directly (in this case, by using the `requests` library specifically) in the right sidebar.
-![Postman API request with code sidebar](/assets/img/posts/2024-04-11-basketball-data-acquisition/ncaa_wbb_player_stats_postman.PNG "Postman API request with code sidebar")
+
+![Postman API request with code sidebar](/assets/img/posts/2024-04-11-basketball-data-acquisition/ncaa_wbb_player_stats_postman.png "Postman API request with code sidebar")
 
 ### Write a Function to Request Data
 Here's an example of making an API request to the Yahoo Sports data using the Python `requests` library (copied from Postman). 
@@ -314,7 +316,7 @@ example_response['data']['leagues'][0]['leaders'][0]
 
 
 
-```json
+```
     {'player': {'displayName': 'Caitlin Clark',
       'playerId': 'ncaaw.p.64550',
       'team': {'displayName': 'Iowa',
@@ -858,29 +860,29 @@ player_stats.shape
 
 
 This dataset contains 1,392 rows and 23 columns (approximately 300 more rows than the previous dataset and nearly 20 additional columns). Here's a short description of each column: 
-    PLAYER_NAME: The name of the basketball player.
-    PLAYER_ID: The unique identifier for each basketball player.
-    TEAM_NAME: The name of the basketball team the player is associated with.
-    GAMES: The number of games the player has played in. This does not include attending a game but not playing, such as when a player is injured.
-    MINUTES_PLAYED: The total number of minutes the player has been on the court. This is measured in the time on the game clock, not in real-time. There are typically 40 minutes of game-time, comprised of four 10-minute quarters. Overtime would be considered extra time. 
-    FIELD_GOALS_MADE: The number of successful field goals made by the player. This includes both two-point and three-point field goals and does not include free throws. 
-    FIELD_GOAL_ATTEMPTS: The total number of field goal attempts by the player.
-    FIELD_GOAL_PERCENTAGE: The percentage of successful field goals made by the player.
-    THREE_POINTS_MADE: The number of successful three-point baskets made by the player.
-    THREE_POINT_ATTEMPTS: The total number of three-point basket attempts by the player.
-    THREE_POINT_PERCENTAGE: The percentage of successful three-point baskets made by the player.
-    FREE_THROWS_MADE: The number of successful free throws made by the player.
-    FREE_THROW_ATTEMPTS: The total number of free throw attempts by the player.
-    FREE_THROW_PERCENTAGE: The percentage of successful free throws made by the player.
-    OFFENSIVE_REBOUNDS: The number of offensive rebounds grabbed by the player.
-    DEFENSIVE_REBOUNDS: The number of defensive rebounds grabbed by the player.
-    TOTAL_REBOUNDS: The total number of rebounds grabbed by the player.
-    ASSISTS: The number of assists made by the player.
-    TURNOVERS: The number of turnovers committed by the player.
-    STEALS: The number of steals made by the player.
-    BLOCKS: The number of baskets blocked by the player.
-    FOULS: The number of fouls committed by the player.
-    POINTS: The total number of points scored by the player.
+   - PLAYER_NAME: The name of the basketball player.
+   - PLAYER_ID: The unique identifier for each basketball player.
+   - TEAM_NAME: The name of the basketball team the player is associated with.
+   - GAMES: The number of games the player has played in. This does not include attending a game but not playing, such as when a player is injured.
+   - MINUTES_PLAYED: The total number of minutes the player has been on the court. This is measured in the time on the game clock, not in real-time. There are typically 40 minutes of game-time, comprised of four 10-minute quarters. Overtime would be considered extra time. 
+   - FIELD_GOALS_MADE: The number of successful field goals made by the player. This includes both two-point and three-point field goals and does not include free throws. 
+   - FIELD_GOAL_ATTEMPTS: The total number of field goal attempts by the player.
+   - FIELD_GOAL_PERCENTAGE: The percentage of successful field goals made by the player.
+   - THREE_POINTS_MADE: The number of successful three-point baskets made by the player.
+   - THREE_POINT_ATTEMPTS: The total number of three-point basket attempts by the player.
+   - THREE_POINT_PERCENTAGE: The percentage of successful three-point baskets made by the player.
+   - FREE_THROWS_MADE: The number of successful free throws made by the player.
+   - FREE_THROW_ATTEMPTS: The total number of free throw attempts by the player.
+   - FREE_THROW_PERCENTAGE: The percentage of successful free throws made by the player.
+   - OFFENSIVE_REBOUNDS: The number of offensive rebounds grabbed by the player.
+   - DEFENSIVE_REBOUNDS: The number of defensive rebounds grabbed by the player.
+   - TOTAL_REBOUNDS: The total number of rebounds grabbed by the player.
+   - ASSISTS: The number of assists made by the player.
+   - TURNOVERS: The number of turnovers committed by the player.
+   - STEALS: The number of steals made by the player.
+   - BLOCKS: The number of baskets blocked by the player.
+   - FOULS: The number of fouls committed by the player.
+   - POINTS: The total number of points scored by the player.
 
 
 ```python
