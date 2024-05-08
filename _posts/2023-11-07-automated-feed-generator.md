@@ -11,7 +11,7 @@ share-description: Want to subscribe to updates from your favourite website but 
 tags: [Python, Selenium, RSS, web scraping, automation]
 thumbnail-img: /assets/img/rss-icon-96.png
 after-content: post-subscribe.html
-js: table-of-contents.js
+js: /assets/js/table-of-contents.js
 ---
 
 RSS feeds are a fantastic tool for reading the latest content from your favorite websites without cluttering up your email inbox or manually visiting each website. However, not every website owner publishes an official RSS feed anymore, making it difficult to access up-to-date content in one place. That's why today we'll be digging into how to generate your own personalized RSS feed using Python and web scraping. 
