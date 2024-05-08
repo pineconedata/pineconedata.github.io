@@ -6,7 +6,7 @@ gh-badge: [star, fork, follow]
 title: Automate Your News Feed
 subtitle: "How Web Scraping Powers a Python-Generated RSS Feed"
 share-title: "Automate Your News Feed: How Web Scraping Powers a Python-Generated RSS Feed"
-share-img: /assets/img/posts/2023-11-07-automated-feed-generator-social.png
+share-img: /assets/img/posts/2023-11-07-automated-feed-generator/social.png
 share-description: Want to subscribe to updates from your favourite website but they don’t publish an RSS feed? Learn how to automatically generate an RSS feed with Python, Selenium, and FeedGen. 
 tags: [Python, Selenium, RSS, web scraping, automation]
 thumbnail-img: /assets/img/rss-icon-96.png
