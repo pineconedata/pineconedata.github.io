@@ -6,7 +6,7 @@ gh-badge: [star, fork, follow]
 title: Jump into Data Science with JupyterLab
 subtitle: "A Comprehensive Guide on Debian Linux"
 share-title: "Jump into Data Science with JupyterLab: A Comprehensive Guide for Debian Linux"
-share-img: /assets/img/posts/2023-11-14-installing-jupyterlab-social.png
+share-img: /assets/img/posts/2023-11-14-installing-jupyterlab/installing-jupyterlab-social.png
 share-description: Interested in self-hosting JupyterLab on Debian Linux? Discover the power of JupyterLab and Jupyter Notebooks in this comprehensive guide that is perfect for data scientists and Python enthusiasts.
 tags: [Python, Jupyter, Linux, data science, server, self-host]
 thumbnail-img: /assets/img/jupyterlab_icon.jpeg
@@ -18,7 +18,7 @@ Today we'll be covering how to self-host JupyterLab on a Linux machine for a sin
 
 **Please note: this method of hosting only works for a single user. Here is additional information that JupyterLab's documentation provided at the time of writing, but please check the most up-to-date documentation and ensure this works for your use case before proceeding.**
 
-![warning about hosting for a single user only](/assets/img/posts/2023-11-14_jupyterlab_single_user_warning.png "warning about hosting for a single user only")
+![warning about hosting for a single user only](/assets/img/posts/2023-11-14-installing-jupyterlab/jupyterlab_single_user_warning.png "warning about hosting for a single user only")
 
 <div id="toc"></div>
 
@@ -228,7 +228,7 @@ Now that we have the password and SSL certificate, we need to update JupyterLab'
 scraps@pop-os:~/.jupyter$ nano jupyter_lab_config.py
 Once you open the file, you should see some commented-out lines with configuration parameters: 
 
-![example of editing jupyter_lab_config.py file using nano](/assets/img/posts/2023-11-14_nano_jupyterlab_config.png "example of editing jupyter_lab_config.py file using nano")
+![example of editing jupyter_lab_config.py file using nano](/assets/img/posts/2023-11-14-installing-jupyterlab/nano_jupyterlab_config.png "example of editing jupyter_lab_config.py file using nano")
 
 Jupyter Notebook's documentation recommends setting the parameters for `keyfile`, `certfile`, `ip`, `port`, `password`, and `open_browser`, so we're going to set the same parameters within JupyterLab. For reference, here is the example configuration for Jupyter Notebook: 
 
@@ -317,7 +317,7 @@ scraps@pop-os:~/.jupyter$ jupyter lab
 ```
 This means that the modifications we made to the port and configuring HTTPS both worked! If you open the URL in the console output (which is `https://localhost:9999/lab` or `https://127.0.0.1:9999/lab` in the example above), then you should see a page like this:
 
-![jupyter lab's login page](/assets/img/posts/2023-11-14_jupyterlab_login_page.png "jupyter lab's login page")
+![jupyter lab's login page](/assets/img/posts/2023-11-14-installing-jupyterlab/jupyterlab_login_page.png "jupyter lab's login page")
 
 **Note for remotely connected users: opening the URL listed in the console output will only work on the computer that is running the JupyterLab server.** If you are SSH'd into the host computer like I am (or if you want to access your JupyterLab instance from another computer on the same network), then you instead need to enter the IP address of the host computer between the protocol and the port number. You can try running `hostname -I` in the terminal to get the computer's private IP address or look up instructions online for your particular Linux distribution. 
 
@@ -327,7 +327,7 @@ Since this web page is prompting for a password, it means the password configura
 
 Once you log in, you should see the full JupyterLab interface: 
 
-![jupyter lab's landing page](/assets/img/posts/2023-11-14_jupyterlab_landing_page.png "jupyter lab's landing page")
+![jupyter lab's landing page](/assets/img/posts/2023-11-14-installing-jupyterlab/jupyterlab_landing_page.png "jupyter lab's landing page")
 
 Congratulations, your JupyterLab server is up and running! Check out the next section for recommended customization and next steps. 
 
@@ -378,5 +378,3 @@ Congratulations! Your new JupyterLab server is ready to go and you are now self-
 - Cover the basics of using JupyterLab's included debugging tool
 - How to streamline your workflow with Jupyter's magic commands
 - And more!
-
-If you found this guide helpful, please give it a like, share, and subscribe to be notified of new articles. If you have any questions or suggestions, feel free to [contact me](/workwithme) directly!
