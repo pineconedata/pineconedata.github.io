@@ -35,7 +35,7 @@ Before we get started, you should have:
 - A computer with the appropriate access level to install and remove programs.
   - This guide uses a Linux distribution (specifically Ubuntu), but this code can work on any major OS with a few minor changes.
 - A reliable internet connection to download the necessary software and make API requests. 
-- A text editor or [IDE](https://en.wikipedia.org/wiki/Integrated_development_environmenthttps://en.wikipedia.org/wiki/Integrated_development_environment) to create and edit program files.
+- A text editor or [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) to create and edit program files.
 - Basic programming knowledge is a plus. If you've never used Python before, then going through the [beginner's guide](https://wiki.python.org/moin/BeginnersGuide) first might be helpful.
 
 ## Dependencies
