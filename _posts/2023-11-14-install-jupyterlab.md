@@ -13,7 +13,7 @@ thumbnail-img: /assets/img/jupyterlab_icon.jpeg
 after-content: post-subscribe.html
 ---
 
-Today we'll be covering how to self-host JupyterLab on a Linux machine for a single user. If you're not familiar with [Project Jupyter](http://jupyter.org/), I highly recommend that you check it out, especially if you work in data science or with Python. Project Jupyter is migrating the classic [Jupyter Notebooks](https://jupyterlab.readthedocs.io/en/stable/user/notebook.html#notebook) into the new [JupyterLab](https://jupyterlab.readthedocs.io/en/stable/getting_started/overview.html), so we'll be installing and hosting JupyterLab today. JupyterLab is a fantastic tool that includes Jupyter Notebooks, terminals, and text editors, as well as a library of extensions to customize your experience. 
+Today we'll be covering how to self-host JupyterLab on a Linux machine for a single user. If you're not familiar with [Project Jupyter](https://jupyter.org/), I highly recommend that you check it out, especially if you work in data science or with Python. Project Jupyter is migrating the classic [Jupyter Notebooks](https://jupyterlab.readthedocs.io/en/stable/user/notebook.html#notebook) into the new [JupyterLab](https://jupyterlab.readthedocs.io/en/stable/getting_started/overview.html), so we'll be installing and hosting JupyterLab today. JupyterLab is a fantastic tool that includes Jupyter Notebooks, terminals, and text editors, as well as a library of extensions to customize your experience. 
 
 **Please note: this method of hosting only works for a single user. Here is additional information that JupyterLab's documentation provided at the time of writing, but please check the most up-to-date documentation and ensure this works for your use case before proceeding.**
 
