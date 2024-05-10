@@ -11,7 +11,6 @@ share-description: Interested in self-hosting JupyterLab on Debian Linux? Discov
 tags: [Python, Jupyter, Linux, data science, server, self-host]
 thumbnail-img: /assets/img/jupyterlab_icon.jpeg
 after-content: post-subscribe.html
-js: /assets/js/table-of-contents.js
 ---
 
 Today we'll be covering how to self-host JupyterLab on a Linux machine for a single user. If you're not familiar with [Project Jupyter](http://jupyter.org/), I highly recommend that you check it out, especially if you work in data science or with Python. Project Jupyter is migrating the classic [Jupyter Notebooks](https://jupyterlab.readthedocs.io/en/stable/user/notebook.html#notebook) into the new [JupyterLab](https://jupyterlab.readthedocs.io/en/stable/getting_started/overview.html), so we'll be installing and hosting JupyterLab today. JupyterLab is a fantastic tool that includes Jupyter Notebooks, terminals, and text editors, as well as a library of extensions to customize your experience. 
