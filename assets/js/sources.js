@@ -1,5 +1,5 @@
 // Generate a list of external sources
-window.onload = function(){
+addToOnload(function(){
     var sourceContainer = document.getElementById('sources');
     var currentDomain = window.location.hostname;
     var sourceLinks = Array.from(document.querySelector('article.blog-post').querySelectorAll('a'));
@@ -40,4 +40,4 @@ window.onload = function(){
           sourceList.appendChild(listItem);
         });
     }
-};
+});
