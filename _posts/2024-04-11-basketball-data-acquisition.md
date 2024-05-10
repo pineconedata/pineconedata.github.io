@@ -14,19 +14,22 @@ after-content: post-subscribe.html
 js: /assets/js/table-of-contents.js
 ---
 
-In this guide, we'll walk through the process of acquiring, preprocessing, and cleaning a data set. These steps are essential for any data analysis project to make sure the dataset is ready for analysis and visualization. The dataset we'll be using today contains basketball player statistics for the 2023-2024 NCAA women's basketball season. We'll use Python along with the popular pandas and requests libraries to accomplish these tasks efficiently. By the end of this tutorial, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, and eliminate any inconsistencies and errors.
+In this guide, we'll walk through the entire process of a data science project. This includes initial steps like data acquisition, preprocessing, and cleaning, as well as more advanced steps like feature engineering, creating visualizations, and machine learning. The dataset we'll be using in this project contains basketball player statistics for the 2023-2024 NCAA women's basketball season. Here's a brief description of each major step that we'll go through: 
 
-This process will involve four major steps: 
 1. Data Acquisition - This initial step involves obtaining data from two sources: (1) exporting the NCAA's online individual player statistics report and (2) making API requests to the Yahoo Sports endpoint. 
 2. Data Cleaning - This step focuses on identifying and correcting any errors within the dataset. This includes removing duplicates, correcting inaccuracies, and handling missing data. 
 3. Data Preprocessing - This step ensures the data is suitable for analysis by converting datatypes, standardizing units, and replacing abbreviations.
 4. Feature Engineering - This step involves selecting and expanding upon the dataset's features (or columns). This includes calculating additional metrics from existing columns.
+5. Creating Visualizations - This step involves identifying the relationships between various parameters (such as height and blocked shots) and generating meaningful visualizations (such as bar charts, scatterplots, and candlestick charts).
+6. Machine Learning - This step focuses on training a machine learning model to identify the combination of individual player statistics that correlates with optimal performance. 
 
-Steps 2 and 3 specifically will help mitigate the pitfalls of the "garbage in, garbage out" saying for data analysis - where the quality of your analysis is only as good as the data you start with. 
+We'll use Python along with the popular pandas and requests libraries to accomplish these tasks efficiently. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, create meaningful visualizations, and train a basic machine learning model. Due to the size of this project, we'll start today with just the first step: data acqusition. 
 
 <div id="toc"></div>
 
 # Getting Started
+First, let's cover what you'll need if you want to follow along with this guide. If you already have a Python environment up and running and are familiar with how to install packages, then feel free to skip to the next section. 
+
 ## Requirements
 Before we get started, you should have: 
 - A computer with the appropriate access level to install and remove programs.
@@ -47,7 +50,7 @@ Python 3.10.12
 If you get a response that says `command not found` instead of a version number, then Python is not installed. In that case, you can follow [Python's official installation instructions](https://www.python.org/downloads/). You can also try running `python --version` to see if you have Python 2 installed instead of Python 3, but ultimately you should install Python 3 for this project. 
 
 ### Package Manager (pip)
-You'll also need a package manager to install dependencies. I've used `pip`, but this works with any package manager. You can check if `pip` is installed by running: 
+You'll also need a package manager to install dependencies. I've used [`pip`](https://pypi.org/project/pip/), but this works with any package manager. You can check if `pip` is installed by running: 
 ```bash
 $ pip --version
 pip 24.0 from /home/scoops/.local/lib/python3.10/site-packages/pip (python 3.10)
@@ -56,11 +59,11 @@ Similar to the command for Python, if you get a response that says `command not 
 
 ### Specific Packages
 You should install the following required packages: 
-- *pandas* - a powerful data manipulation library, essential for handling structured data. If you're using `pip`, then you can install pandas by running `pip install pandas`. 
-- *requests* - a library used for making HTTP requests, which will be useful for fetching data from online sources.
-- *json* - a library for encoding and decoding JSON data, facilitating the interchange of data between a Python program and external systems or files.
-- *os* - a library providing a portable way of interacting with the operating system, enabling functionalities such as file management, directory manipulation, and environment variables handling.
-- *numpy* - a fundamental package for scientific computing in Python, providing support for large, multi-dimensional arrays and matrices, along with a collection of mathematical functions to operate on these arrays efficiently. 
+- [*pandas*](https://pandas.pydata.org/docs/) - a powerful data manipulation library, essential for handling structured data. If you're using `pip`, then you can install pandas by running `pip install pandas`. 
+- [*requests*](https://requests.readthedocs.io/en/latest/) - a library used for making HTTP requests, which will be useful for fetching data from online sources.
+- [*json*](https://docs.python.org/3/library/json.html) - a module for encoding and decoding JSON data, facilitating the interchange of data between a Python program and external systems or files.
+- [*os*](https://docs.python.org/3/library/os.html) - a module providing a portable way of interacting with the operating system, enabling functionalities such as file management, directory manipulation, and environment variables handling.
+- [*numpy*](https://numpy.org/doc/) - a fundamental package for scientific computing in Python, providing support for large, multi-dimensional arrays and matrices, along with a collection of mathematical functions to operate on these arrays efficiently. 
 
 Once those required packages have been installed, we can start writing the program by importing the packages. 
 
@@ -73,8 +76,10 @@ import os
 import numpy as np
 ```
 
+Now that we've ensured the necessary dependencies are installed, it's time to acquire the data. 
+
 # Data Acquisition
-Now that we've ensured the necessary dependencies are installed, it's time to acquire the data. Before diving into the process of gathering basketball player statistics for the 2023-2024 NCAA women's basketball season, let's briefly look at the two data sets we'll be acquiring and a rough overview of the process to get each one:
+Before diving into the process of gathering basketball player statistics for the 2023-2024 NCAA women's basketball season, let's briefly look at the two data sets we'll be acquiring and a rough overview of the process to get each one:
 
 1. Player Information Dataset
    - This dataset will include player information such as name, height, position, team name, and class. 
@@ -103,7 +108,7 @@ We can now select the division (which will be Division 1), the reporting week (w
 
 ![download csv results](/assets/img/posts/2024-04-11-basketball-data-acquisition/ncaa_wbb_player_info_step4.png "download csv results")
 
-With the CSV downloaded, the only step left is to import the data (after removing all blank and duplicate rows). 
+With the CSV downloaded, the only step left is to import the data (after deleting all blank and duplicate rows). 
 
 
 ```python
@@ -184,25 +189,22 @@ player_info.head()
 </table>
 </div>
 
-
+We can see how many rows and columns are in this dataset using the [`.shape()` method](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.shape.html). 
 
 
 ```python
 player_info.shape
 ```
 
-
-
-
     (1009, 5)
 
 
 This dataset contains 1,009 rows and 5 columns. Here's a quick description of each column: 
-  - PLAYER_NAME: The name of the basketball player.
-  - Team: The name of the basketball team the player is associated with, including the conference they belong to.
-  - Class: The classification or academic year of the player (e.g., freshman, sophomore, junior, senior).
-  - Height: The height of the player in a standardized format (e.g., feet-inches or centimeters).
-  - Position: The playing position of the player on the basketball court (e.g., point guard, shooting guard, small forward, power forward, center).
+  - *Player* - The name of the basketball player.
+  - *Team* - The name of the basketball team the player is associated with, including the conference they belong to.
+  - *Class* - The academic year of the player (freshman, sophomore, junior, senior).
+  - *Height* - The height of the player in feet-inches.
+  - *Position* - The playing position of the player on the basketball court (guard, forward, center). 
 
 ## Acquiring Player Statistics Data
 As mentioned before, the player statistics data can be obtained by making API requests to the [Yahoo Sports API](https://sports.yahoo.com/ncaaw/stats/individual/?selectedTable=0&leagueStructure=ncaaw.struct.div.1&sortStatId=FREE_THROWS_MADE). There are a variety of API endpoints available for sports data, but today we'll be using the Yahoo Sports API since it is free and contains all of the player statistics in one convenient result. 
@@ -348,10 +350,10 @@ example_response['data']['leagues'][0]['leaders'][0]
       {'statId': 'FOULS', 'value': '61'},
       {'statId': 'POINTS', 'value': '1020'}]}
 ```
-
+This is correctly showing Caitlin Clark as the top-scoring player of the 2023-2024 season, so we're ready to move on to the next step. 
 
 ### Write a Function to Format Data
-Now that the API request function is working, let's define another convenience function. This one will extract the relevant data and load it into a dataframe. 
+Now that the API request function is working, let's define another function. This one will extract the relevant data and load it into a dataframe. 
 
 
 ```python
@@ -409,15 +411,13 @@ This `format_response_data()` function extracts the player statistics from the Y
 
 By using this function in conjunction with the `get_data_for_stat()` function, we can efficiently retrieve, process, and format player statistics from the Yahoo Sports API into a structured DataFrame. 
 
-We can test out this function using the example_response from the previous step. 
+We can test out this function using the `example_response` from the previous step. 
 
 
 ```python
 example_dataframe = format_response_data(example_response)
 example_dataframe.head()
 ```
-
-
 
 
 <div>
@@ -588,16 +588,12 @@ example_dataframe.head()
 </div>
 
 
-
-We can see all of the columns in this dataframe as well:
+The middle of the dataframe is cut off, so let's print the full list of columns in this dataframe as well:
 
 
 ```python
 example_dataframe.columns
 ```
-
-
-
 
     Index(['PLAYER_NAME', 'PLAYER_ID', 'TEAM_NAME', 'GAMES', 'MINUTES_PLAYED',
            'FIELD_GOALS_MADE', 'FIELD_GOAL_ATTEMPTS', 'FIELD_GOAL_PERCENTAGE',
@@ -607,25 +603,43 @@ example_dataframe.columns
            'TURNOVERS', 'STEALS', 'BLOCKS', 'FOULS', 'POINTS'],
           dtype='object')
 
+Here's a short description of each column: 
+   - PLAYER_NAME: The name of the basketball player.
+   - PLAYER_ID: The unique identifier for each basketball player.
+   - TEAM_NAME: The name of the player's basketball team.
+   - GAMES: The number of games the player has played in. This does not include attending a game but not playing (such as when a player is injured).
+   - MINUTES_PLAYED: The total number of minutes the player has been on the court. This is measured in the time on the game clock, not in real-time. There are typically 40 minutes of game-time, comprised of four 10-minute quarters. Overtime would be considered extra time. 
+   - FIELD_GOALS_MADE: The number of successful field goals made by the player. This includes both two-point and three-point field goals and does not include free throws. 
+   - FIELD_GOAL_ATTEMPTS: The total number of field goal attempts by the player.
+   - FIELD_GOAL_PERCENTAGE: The percentage of successful field goals made by the player.
+   - THREE_POINTS_MADE: The number of successful three-point baskets made by the player.
+   - THREE_POINT_ATTEMPTS: The total number of three-point basket attempts by the player.
+   - THREE_POINT_PERCENTAGE: The percentage of successful three-point baskets made by the player.
+   - FREE_THROWS_MADE: The number of successful free throws made by the player.
+   - FREE_THROW_ATTEMPTS: The total number of free throw attempts by the player.
+   - FREE_THROW_PERCENTAGE: The percentage of successful free throws made by the player.
+   - OFFENSIVE_REBOUNDS: The number of offensive rebounds grabbed by the player.
+   - DEFENSIVE_REBOUNDS: The number of defensive rebounds grabbed by the player.
+   - TOTAL_REBOUNDS: The total number of rebounds grabbed by the player.
+   - ASSISTS: The number of assists made by the player.
+   - TURNOVERS: The number of turnovers committed by the player.
+   - STEALS: The number of steals made by the player.
+   - BLOCKS: The number of baskets blocked by the player.
+   - FOULS: The number of fouls committed by the player.
+   - POINTS: The total number of points scored by the player.
 
-
-Let's quickly verify that the dataframe has the proper number of rows using the `shape()` method. Since we set the `count` to `500` in the API request, there should be
-500 rows in this dataframe. 
-
+Let's quickly verify that the dataframe has the proper number of rows using the `shape()` method. Since we set the `count` to `500` in the API request, there should be 500 rows in this dataframe. 
 
 ```python
 example_dataframe.shape
 ```
 
-
-
-
     (500, 23)
 
-
+This is correct, so we can move on to the next step.
 
 ### Write a Function to Format and Request Data
-We could stop here and use those two functions to make our API requests, but let's define one more convenient function that will request and format the data in one step.
+We could stop here and use those two functions to make our API requests, but let's define one more function that will request and format the data in one step.
 
 
 ```python
@@ -648,7 +662,7 @@ def get_and_format_data_for_stat(stat_name, season='2023', league='ncaaw'):
     return format_response_data(response_data)
 ```
 
-This function combines the other two function calls and passes through the same parameters. In summary, it retrieves player statistics for a specified statistical category (stat_name) for a given season and league using the get_data_for_stat function and then formats the data into a pandas DataFrame using the format_response_data function. Since we'll be sending multiple requests to the API, this function streamlines the entire API request into one function and simplifies the process of generating the player statistics dataset. 
+This function combines the other two function calls and passes through the same parameters. In summary, it retrieves player statistics for a specified statistical category (`stat_name`) for a given season and league using the `get_data_for_stat()` function and then formats the data into a pandas DataFrame using the `format_response_data()` function. Since we'll be sending multiple requests to the API, this function streamlines the entire API request and formatting into one command and simplifies the process of generating the player statistics dataset. 
 
 ### Request the Data for each Statistic
 Now we're ready to request data for each statistic. For this project, we'll pull the list of top players by five statistics: points, assists, rebounds, blocks, and steals. Here's what that looks like: 
@@ -663,6 +677,8 @@ blocks_top_players = get_and_format_data_for_stat('BLOCKS')
 steals_top_players = get_and_format_data_for_stat('STEALS')
 ```
 
+We now have five dataframes and each one contains the 500 players who scored the best in the given statistic. 
+
 ### Combine each statistic into one dataset
 Since these dataframes contain the same columns with different data rows, we'll combine all five into one single dataframe. The same player could show up in each dataframe (such as Caitlin Clark being a top player in both points and assists), so we'll drop any duplicate rows and reset the index in this step as well. 
 
@@ -673,8 +689,6 @@ player_stats = pd.concat([points_top_players, assists_top_players, rebounds_top_
                          blocks_top_players, steals_top_players], ignore_index=True).drop_duplicates()
 player_stats.head()
 ```
-
-
 
 
 <div>
@@ -844,66 +858,16 @@ player_stats.head()
 <p>5 rows × 23 columns</p>
 </div>
 
-
-
-We can see that this combined dataframe has the same number of columns as the individual dataframes, but we ended up with a dataset of 1392 unique players.
+We can see that this combined dataframe has the same number of columns as the individual dataframes, but will likely have fewer rows. 
 
 
 ```python
 player_stats.shape
 ```
 
-
-
-
     (1392, 23)
 
-
-
-This dataset contains 1,392 rows and 23 columns (approximately 300 more rows than the previous dataset and nearly 20 additional columns). Here's a short description of each column: 
-   - PLAYER_NAME: The name of the basketball player.
-   - PLAYER_ID: The unique identifier for each basketball player.
-   - TEAM_NAME: The name of the basketball team the player is associated with.
-   - GAMES: The number of games the player has played in. This does not include attending a game but not playing, such as when a player is injured.
-   - MINUTES_PLAYED: The total number of minutes the player has been on the court. This is measured in the time on the game clock, not in real-time. There are typically 40 minutes of game-time, comprised of four 10-minute quarters. Overtime would be considered extra time. 
-   - FIELD_GOALS_MADE: The number of successful field goals made by the player. This includes both two-point and three-point field goals and does not include free throws. 
-   - FIELD_GOAL_ATTEMPTS: The total number of field goal attempts by the player.
-   - FIELD_GOAL_PERCENTAGE: The percentage of successful field goals made by the player.
-   - THREE_POINTS_MADE: The number of successful three-point baskets made by the player.
-   - THREE_POINT_ATTEMPTS: The total number of three-point basket attempts by the player.
-   - THREE_POINT_PERCENTAGE: The percentage of successful three-point baskets made by the player.
-   - FREE_THROWS_MADE: The number of successful free throws made by the player.
-   - FREE_THROW_ATTEMPTS: The total number of free throw attempts by the player.
-   - FREE_THROW_PERCENTAGE: The percentage of successful free throws made by the player.
-   - OFFENSIVE_REBOUNDS: The number of offensive rebounds grabbed by the player.
-   - DEFENSIVE_REBOUNDS: The number of defensive rebounds grabbed by the player.
-   - TOTAL_REBOUNDS: The total number of rebounds grabbed by the player.
-   - ASSISTS: The number of assists made by the player.
-   - TURNOVERS: The number of turnovers committed by the player.
-   - STEALS: The number of steals made by the player.
-   - BLOCKS: The number of baskets blocked by the player.
-   - FOULS: The number of fouls committed by the player.
-   - POINTS: The total number of points scored by the player.
-
-
-```python
-player_stats.columns
-```
-
-
-
-
-    Index(['PLAYER_NAME', 'PLAYER_ID', 'TEAM_NAME', 'GAMES', 'MINUTES_PLAYED',
-           'FIELD_GOALS_MADE', 'FIELD_GOAL_ATTEMPTS', 'FIELD_GOAL_PERCENTAGE',
-           'THREE_POINTS_MADE', 'THREE_POINT_ATTEMPTS', 'THREE_POINT_PERCENTAGE',
-           'FREE_THROWS_MADE', 'FREE_THROW_ATTEMPTS', 'FREE_THROW_PERCENTAGE',
-           'OFFENSIVE_REBOUNDS', 'DEFENSIVE_REBOUNDS', 'TOTAL_REBOUNDS', 'ASSISTS',
-           'TURNOVERS', 'STEALS', 'BLOCKS', 'FOULS', 'POINTS'],
-          dtype='object')
-
-
-
-With that, we've finished acquiring both of the datasets needed for this project and can combine them into one combined dataset that includes both the player information and player statistics.
+The final player statistics dataset does have fewer rows, since we combined any duplicate rows. With that, we've finished acquiring both of the datasets needed for this project and can combine them into one final dataset that includes both the player information and player statistics.
 
 ## Combine Player Information and Statistics Datasets
 Combining datasets can be easy or difficult, depending on what columns are shared by the two datasets. In this case, the `Player` column in the `player_info` dataframe closely matches the `PLAYER_NAME` column in the `player_stats` dataframe, so we'll start by renaming one of those columns to match the other.
@@ -913,8 +877,6 @@ Combining datasets can be easy or difficult, depending on what columns are share
 player_info.rename(columns={"Player": "PLAYER_NAME"}, inplace=True)
 player_info.head()
 ```
-
-
 
 
 <div>
@@ -989,7 +951,7 @@ player_info.head()
 
 
 
-Next, we'll want to use the pandas `merge()` method to merge the two dataframes on the player's name. This final `player_data` dataframe includes columns for the player's information (height, position, class, etc.) as well as their statistics for the season (points, rebounds, blocks, assists, etc.)
+Next, we'll use the pandas [`merge()`](https://pandas.pydata.org/docs/reference/api/pandas.merge.html) method to merge the two dataframes on the player's name. This final `player_data` dataframe includes columns for the player's information (height, position, class, etc.) as well as their statistics for the season (points, rebounds, blocks, assists, etc.)
 
 
 ```python
@@ -1177,13 +1139,10 @@ player_data.shape
 ```
 
 
-
-
     (900, 27)
 
 
-
-This is enough data for our purposes today, so we're ready to move on to the cleaning and preprocessing steps.
+So our final dataset has 900 rows and 27 columns. This is enough data for our project, so we're ready to move on to the cleaning and preprocessing steps.
 
 # Wrap up 
-In this guide, we built a new dataset by acquiring and then combining the NCAA women's basketball player information dataset with the Yahoo Sports player statistics dataset. In the next part, we'll lay the groundwork for data analysis by cleaning and preprocessing the combined player data, and then expanding upon it by engineering a few new features.
+In this guide, we built a new dataset by acquiring and then combining the NCAA women's basketball player information dataset with the Yahoo Sports player statistics dataset. In the next part, we'll lay the groundwork for data analysis by cleaning and preprocessing the combined player data. In future articles, we'll expand upon this dataset by engineering a few new features, create meaningful visualizations, and train a machine learning model.
