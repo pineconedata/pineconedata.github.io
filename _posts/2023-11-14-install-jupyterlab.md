@@ -21,11 +21,11 @@ Today we'll be covering how to self-host JupyterLab on a Linux machine for a sin
 
 <div id="toc"></div>
 
-## Getting Started
+# Getting Started
 
 Official documentation for running a JupyterLab server has not been published yet (as of November 2023), so I primarily followed the documentation on creating a [Jupyter Notebook server](https://jupyter-notebook.readthedocs.io/en/stable/public_server.html). Modifications between Jupyter Notebook and JupyterLab are mentioned throughout this article, but I recommend that you check JupyterLab's documentation for recent updates. 
 
-### Requirements
+## Requirements
 Before we get started, you should have: 
 1. A Linux server, preferably running a Debian-based distribution. At its simplest, this Linux server could be a computer that is left on all the time and has Ubuntu Desktop installed. 
    - The instructions here should work for any Debian-based distribution, including [Ubuntu](https://ubuntu.com/), but I am using [Pop!\_OS](https://pop.system76.com/) specifically.
@@ -33,14 +33,14 @@ Before we get started, you should have:
 3. A basic familiarity with the terminal, such as [Ubuntu's introductory guide to the terminal](https://ubuntu.com/tutorials/command-line-for-beginners#1-overview).
 4. The ability to edit files using a text editor. I completed this entire installation and configuration via SSH, so I edited files directly in the terminal using `nano`. Linux Hint provides an [introductory guide to nano](https://linuxhint.com/nano-editor-beginner-guide/) and full documentation can be found on [nano's website](https://www.nano-editor.org/dist/v2.2/nano.html).
 
-### Conventions
+## Conventions
 If this is your first time using the terminal, it might be helpful to review the conventions before proceeding. 
 - This article includes example screenshots of my terminal for certain commands. Terminal input lines start with `scraps@pop-os:~$` since the computer used for this article is named `scraps` and is running on `pop-os`. Your terminal lines will start with a different string, but the inputs should otherwise be the same. Everything after the `$` is the terminal input; the examples will show commands like `scraps@pop-os:~$ python3 --version`, so you would input just `python3 --version` into your terminal. 
 - This article uses the `+` sign between two keys (such as `CTRL+C` to indicate when you should hold-press those keys together.
 - This article uses the `>` sign between two commands (such as `File` and `Log Out`) to indicate when you should click one menu item and then another.
 - As a quick reminder, if you want to copy/paste from the terminal, you should typically right-click and select copy/paste instead of using the `CTRL+C` or `CTRL+V` shortcuts. Those shortcuts are often mapped to different behavior in the terminal (for example, once the server is up and running, then `CTRL+C` is a shortcut to shutdown the server), so it's recommended to avoid using the copy/paste shortcuts entirely when using the terminal. 
 
-### Dependencies 
+## Dependencies 
 JupyterLab depends on [Python](https://www.python.org), which is probably already installed on your computer if you're using Ubuntu or Pop!OS. You can verify if Python is installed and which version is currently being used by running:
 ```bash
 scraps@pop-os:~$ python3 --version
@@ -55,7 +55,7 @@ pip 22.0.2 from /usr/lib/python3/dist-packages/pip (python 3.10)
 ```
 Similar to the command for Python, if you get a response that says `command not found` instead of a version number, then `pip` might not be installed on your device. You should follow the [official instructions](https://pip.pypa.io/en/stable/installation/) to install `pip` before proceeding.
 
-## Installing JupyterLab
+# Installing JupyterLab
 Now we're ready to start installing JupyterLab. Project Jupyter publishes [instructions on how to install JupyterLab](https://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html) through a variety of package managers and methods. Since I'm using `pip`, the command is:
 ```bash
 scraps@pop-os:~$ pip install jupyterlab
@@ -77,7 +77,7 @@ scraps@pop-os:~/Code/jupyterlab$
 ```
 There aren't any currently running servers listed because JupyterLab hasn't been started up yet. 
 
-### Starting the Server
+## Starting the Server
 We'll be modifying JupyterLab's configuration in the next section, but we can start the JupyterLab server with all of the default settings for now: 
 ```bash
 scraps@pop-os:~$ jupyter lab
@@ -116,7 +116,7 @@ scraps@pop-os:~/Code/jupyterlab$
 ```
 You can open a web browser and check out the new install now by visiting the URL listed in the terminal (which is `http://localhost:8888/` in the example above). The basic installation of JupyterLab is now complete! 
 
-### Stopping the Server
+## Stopping the Server
 Your JupyterLab server will now continue running until it's told to stop or is forcibly shut down (if the desktop suddenly loses power, for example). There are a few common ways to stop a JupyterLab server that is already running. 
 1. Enter `CTRL+C` in the terminal window where you initially ran the `jupyter lab` command. You should see a message like this: `Shutdown this Jupyter server (y/[n])?` If you type `y` and press `enter` to confirm, then the server will shut down. Note that the server will wait 5 seconds by default for the confirmation before it times out and requires a new `CTRL+C` input to shut down. 
 2. Press `CTRL+C` twice in rapid succession in the terminal window where you initially ran the `jupyter lab` command to bypass the confirmation prompt and shut down the server immediately. 
@@ -142,7 +142,7 @@ For the web browser interface, you'll know the server shut down successfully whe
 
 It's not recommended to run the server without configuring some basic settings (such as a password and HTTPS), so we'll start customizing our JupyterLab installation in the next section. If you haven't done so already, be sure to shut down your JupyterLab server before proceeding. 
 
-## Configuring JupyterLab
+# Configuring JupyterLab
 JupyterLab's configuration is primarily stored in the `jupyter_lab_config.py` file under the `.jupyter` folder in your home directory, so we'll start by navigating to that folder. If you're using the terminal, then navigate back to your home directory and then into the `.jupyter` folder with `cd .jupyter`. Note that folders beginning with `.` are hidden by default, so you might want to run `ls -a` instead of just `ls` to make sure you can see the folder. If you are navigating folders via the UI, then you might want to check "Show hidden files" in the file browser. The rest of the commands in this section should be executed from inside the `.jupyter` folder unless otherwise noted. 
 **If you don't see the `.jupyter folder`, then run the `jupyter lab --generate-config` command first.**
 ```bash
@@ -156,7 +156,7 @@ scraps@pop-os:~/.jupyter$ ls -a
 ```
 Now we're ready to start customizing our JupyterLab install! Before making any edits to the configuration file, we can start by creating a password and configuring HTTPS (instead of the default HTTP). [This article](https://web.dev/articles/when-to-use-local-https) lists the benefits of enabling HTTPS for projects that are only intended to run locally.
 
-### Setting a Password
+## Setting a Password
 You can configure a password for JupyterLab using the following command:  
 ```bash
 scraps@pop-os:~/.jupyter$ jupyter lab password
@@ -182,7 +182,7 @@ Copy and paste the value of the `password` field somewhere else so you can refer
 
 **Please note: if your password is stored in plain text (if you can read out exactly what you entered in the previous step), then you should follow the instructions in [this StackOverflow thread](https://stackoverflow.com/questions/64299457/jupyter-password-not-hashed) to ensure your password is hashed.** You can also use those instructions to change the hashing algorithm (from `argon2` to `sha1`, for example).
 
-### Creating an SSL Certificate
+## Creating an SSL Certificate
 To enable HTTPS on the JupyterLab server, we first need to create an SSL certificate. You can use either [`lets-encrypt`](https://letsencrypt.org/) or [`openssl`](https://www.openssl.org/docs/man1.0.2/man1/openssl-req.html) to create the certificate, but we'll be using `openssl` for this project. For simplicity, we'll be creating a [self-signed certificate](https://en.wikipedia.org/wiki/Self-signed_certificate) today, but it's generally recommended to use a certificate issued by a [certificate authority](https://en.wikipedia.org/wiki/Certificate_authority) instead. 
 
 **Please note: you should run the certificate creation commands from the directory that you want the certificate files to be stored in. For simplicity, today's example will show creating the certificate files in the `.jupyter` folder, but you can change directories to the desired location before creating the certificate.**
@@ -222,7 +222,7 @@ After running this command, you will be prompted to populate some fields or leav
 scraps@pop-os:~/.jupyter$ ls -a
 .  ..  jupytercert.pem  jupyterkey.key  jupyter_lab_config.py  jupyter_server_config.json
 ```
-### Updating the Configuration File
+## Updating the Configuration File
 Now that we have the password and SSL certificate, we need to update JupyterLab's configuration file to use these parameters. The configuration file is located within the `.jupyter` folder and is named `jupyter_lab_config.py`. You can use any text editor to modify this file, but the examples below are shown using `nano`:  
 scraps@pop-os:~/.jupyter$ nano jupyter_lab_config.py
 Once you open the file, you should see some commented-out lines with configuration parameters: 
@@ -290,7 +290,7 @@ c.ServerApp.password = 'argon2:                                          '
 
 Once you make these edits, you'll want to save the file and close the text editor. In `nano`, that means pressing `CTRL+O` to save, `enter` to confirm the filename, and then `CTRL+X` to close the text editor.
 
-### Verifying the Configuration
+## Verifying the Configuration
 Now that we have finished the basic configuration items, we can start up the server to verify the changes. We can immediately notice two changes: 
 1. The port number in the URL is now `9999` (or whichever port number you entered in the configuration file) instead of `8888`
 2. The URL should start with `https` instead of `http`
@@ -330,13 +330,13 @@ Once you log in, you should see the full JupyterLab interface:
 
 Congratulations, your JupyterLab server is up and running! Check out the next section for recommended customization and next steps. 
 
-## Customizing JupyterLab
+# Customizing JupyterLab
 That's all you need to do to start using JupyterLab! In general, it's a good idea to go back into the configuration file and review it for any other parameters that might be relevant to your particular installation and use case, but this section goes over a few bonus parameters and configuration options that are recommended.
 
-### Changing the Theme
+## Changing the Theme
 This first item is pretty minor but super easy. If you prefer to work in dark mode (like I do), then you can easily swap the theme in the JupyterLab GUI by clicking on Settings > Theme > JupyterLab Dark. You can also modify the font size of the code, content, or overall UI from this theme sub-menu. 
 
-### Changing the Startup Directory 
+## Changing the Startup Directory 
 By default, your JupyterLab workspace and all of the associated files will be stored in the directory where you ran the `jupyter lab` startup command (which could be the home directory, the `.jupyter` directory, or any other directory on your machine). [JupyterLab's documentation](https://jupyterlab.readthedocs.io/en/stable/getting_started/starting.html) mentions that you can specify a different directory by using the `--preferred-dir` parameter in the startup command.
 
 If you always want JupyterLab to use the same directory, it might be better to instead change the default startup directory of JupyterLab. This can be set in the same configuration file (`jupyter_server_config.pyjupyter_server_config.py`) that we were editing earlier. The documentation online recommends editing the `notebook_dir` parameter:
@@ -354,7 +354,7 @@ c.ServerApp.root_dir = os.path.expanduser('~/Code/jupyterlab/')
 ```
 Once you save and exit the configuration file as usual, the workspace files will now be saved in whatever directory you specified above.
 
-### Running in the Background 
+## Running in the Background 
 It might be useful to start up and run the JupyterLab server as a background process in the terminal by adding `&` to the end of the command.
 ```bash
 scraps@pop-os:~$ jupyter-lab &
@@ -367,7 +367,7 @@ This will redirect all of the server messages to the specified log file (which i
 
 As a quick reminder, the best way to shut down the server might be slightly different when starting the JupyterLab server in the background. You can review the [Stopping the Server](#stopping-the-server) section above to find your preferred way of shutting down the server. One difference to note is that if you press `CTRL+C` once while the terminal output is being redirected to a logfile, the terminal won't show the prompt to confirm shutting down the server. However, your input will still get passed to JupyterLab, so you can type `y` or `yes` and press `enter` to confirm the shut down. It's not generally recommended to send inputs when you cannot see the outputs, but it is technically possible.
 
-## Wrap Up
+# Wrap Up
 Congratulations! Your new JupyterLab server is ready to go and you are now self-hosting your Jupyter Notebooks! That's not all though - subscribe to be notified when part two of this project is released. Here is a preview of items we'll cover in part two: 
 - Adding helpful JupyterLab extensions, including ones that:
   - Incorporate an AI model right into your JupyterLab interface (OpenAI's ChatGPT is supported)

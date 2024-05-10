@@ -17,6 +17,8 @@ RSS feeds are a fantastic tool for reading the latest content from your favorite
 
 <div id="toc"></div>
 
+# Getting Started
+
 ## What is an RSS feed?
 First off, an RSS (Really Simple Syndication) feed is a type of web feed that allows you to access updates to websites in a standardized, computer-readable format. Typically, a website owner will publish one RSS feed per website (or, for larger websites, one per category) that is updated regularly with new information. You can subscribe to multiple RSS feeds within an RSS feed reader (aka aggregator) - all you need to subscribe is the URL of the RSS feed. The RSS feed reader then displays an overview of the latest stories and information from all of your subscribed sites in one consolidated location. 
 
