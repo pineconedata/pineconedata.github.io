@@ -1,5 +1,5 @@
 // Generate Table of Contents if headings exists
-window.onload = function() {
+addToOnload(function() {
   var tocContainer = document.getElementById('toc');
   var headings = document.querySelectorAll('article h1[id]');
 
@@ -27,4 +27,4 @@ window.onload = function() {
       tocList.appendChild(listItem);
     });
   }
-};
+});
