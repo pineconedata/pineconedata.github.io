@@ -1,7 +1,7 @@
 // Generate Table of Contents if headings exists
 window.onload = function() {
   var tocContainer = document.getElementById('toc');
-  var headings = document.querySelectorAll('article h2[id], article h3[id]');
+  var headings = document.querySelectorAll('article h1[id]');
 
   // Check if TOC container and headings exist before generating TOC
   if (tocContainer && headings.length > 1) {
