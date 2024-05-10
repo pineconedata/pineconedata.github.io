@@ -78,7 +78,7 @@ import numpy as np
 
 Now that we've ensured the necessary dependencies are installed, it's time to acquire the data. 
 
-# Data Acquisition
+# Identifying Datasets
 Before diving into the process of gathering basketball player statistics for the 2023-2024 NCAA women's basketball season, let's briefly look at the two data sets we'll be acquiring and a rough overview of the process to get each one:
 
 1. Player Information Dataset
@@ -91,7 +91,7 @@ Before diving into the process of gathering basketball player statistics for the
 
 Once we have those two datasets, the next step will be to merge them to have one comprehensive dataset that includes player information (such as height, position, class, etc.) as well as the player's total statistics (such as total points scored, blocks made, steals made, etc.). The final dataset can then be used for analysis and to generate visualizations. 
 
-## Acquiring Player Information Data
+# Acquiring Player Information Data
 As described above, the player information data can be obtained from the [NCAA website's basketball statistics section](https://web1.ncaa.org/stats/StatsSrv/rankings?doWhat=archive&sportCode=WBB). You can write a small web scraper in Python to scrape this data automatically, but today we'll walk through how to manually download the data. Starting on the NCAA's website, the page should look like this: 
 
 ![NCAA basketball statistics website](/assets/img/posts/2024-04-11-basketball-data-acquisition/ncaa_wbb_player_info_step1.png "NCAA basketball statistics website")
@@ -206,7 +206,7 @@ This dataset contains 1,009 rows and 5 columns. Here's a quick description of ea
   - *Height* - The height of the player in feet-inches.
   - *Position* - The playing position of the player on the basketball court (guard, forward, center). 
 
-## Acquiring Player Statistics Data
+# Acquiring Player Statistics Data
 As mentioned before, the player statistics data can be obtained by making API requests to the [Yahoo Sports API](https://sports.yahoo.com/ncaaw/stats/individual/?selectedTable=0&leagueStructure=ncaaw.struct.div.1&sortStatId=FREE_THROWS_MADE). There are a variety of API endpoints available for sports data, but today we'll be using the Yahoo Sports API since it is free and contains all of the player statistics in one convenient result. 
 
 ### Explore the API Endpoint
@@ -869,7 +869,7 @@ player_stats.shape
 
 The final player statistics dataset does have fewer rows, since we combined any duplicate rows. With that, we've finished acquiring both of the datasets needed for this project and can combine them into one final dataset that includes both the player information and player statistics.
 
-## Combine Player Information and Statistics Datasets
+# Combine Player Information and Statistics Datasets
 Combining datasets can be easy or difficult, depending on what columns are shared by the two datasets. In this case, the `Player` column in the `player_info` dataframe closely matches the `PLAYER_NAME` column in the `player_stats` dataframe, so we'll start by renaming one of those columns to match the other.
 
 
