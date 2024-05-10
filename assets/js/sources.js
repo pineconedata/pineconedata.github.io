@@ -19,7 +19,7 @@ addToOnload(function(){
     if (sourceContainer && extractedLinks.length > 1) {
         // Create the source header 
         var sourceTitle = document.createElement('strong');
-        sourceTitle.content = 'Sources';
+        sourceTitle.textContent = 'Sources';
 
         // Create the source list 
         var sourceList = document.createElement('ul');
