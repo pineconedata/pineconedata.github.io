@@ -18,7 +18,7 @@ addToOnload(function(){
     // Check if the container exists and if there are unique links before generating the list
     if (sourceContainer && extractedLinks.length > 1) {
         // Create the source header 
-        var sourceTitle = document.createElement('strong');
+        var sourceTitle = document.createElement('h3');
         sourceTitle.textContent = 'Sources';
 
         // Create the source list 
