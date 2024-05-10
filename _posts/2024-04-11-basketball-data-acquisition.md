@@ -11,7 +11,7 @@ readtime: true
 gh-repo: pineconedata/pineconedata.github.io
 gh-badge: [star, fork, follow]
 after-content: post-subscribe.html
-js: /assets/js/table-of-contents.js
+js: [/assets/js/table-of-contents.js, sources.js]
 ---
 
 In this guide, we'll walk through the entire process of a data science project. This includes initial steps like data acquisition, preprocessing, and cleaning, as well as more advanced steps like feature engineering, creating visualizations, and machine learning. The dataset we'll be using in this project contains basketball player statistics for the 2023-2024 NCAA women's basketball season. Here's a brief description of each major step that we'll go through: 
@@ -1146,3 +1146,5 @@ So our final dataset has 900 rows and 27 columns. This is enough data for our pr
 
 # Wrap up 
 In this guide, we built a new dataset by acquiring and then combining the NCAA women's basketball player information dataset with the Yahoo Sports player statistics dataset. In the next part, we'll lay the groundwork for data analysis by cleaning and preprocessing the combined player data. In future articles, we'll expand upon this dataset by engineering a few new features, create meaningful visualizations, and train a machine learning model.
+
+<div id="sources"></div>
