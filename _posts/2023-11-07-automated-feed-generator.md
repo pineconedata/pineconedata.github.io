@@ -339,3 +339,5 @@ Before we wrap up, there are a few limitations to this Python process. There are
 
 # Wrap up
 We've finished thoroughly going over how to write, run, and schedule a Python script that will scrape a website and generate an RSS feed. If you found this information helpful, please give it a like, share, or fork the [GitHub repo](https://github.com/pineconedata/automated-feed-generator). If you have any questions or suggestions, feel free to [contact me](/workwithme) or open a pull request! 
+
+<div id="sources"></div>

@@ -377,3 +377,5 @@ Congratulations! Your new JupyterLab server is ready to go and you are now self-
 - Cover the basics of using JupyterLab's included debugging tool
 - How to streamline your workflow with Jupyter's magic commands
 - And more!
+
+<div id="sources"></div>
