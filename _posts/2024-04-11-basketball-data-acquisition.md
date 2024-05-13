@@ -5,7 +5,7 @@ subtitle: "Part 1 - Project Setup and Data Acquisition"
 tags:  [Python, data science, pandas, API]
 thumbnail-img: /assets/img/posts/2024-04-11-basketball-data-acquisition/ncaa.jpg
 share-title: "Outlier or Caitlin Clark? A Data Science Project: Part 1 - Project Setup and Data Acquisition" 
-share-description: Interested in starting a new data science project? Learn the initial steps to start your project and acquire your datasets in this comprehensive guide that is perfect for beginner data scientists and Python enthusiasts.
+share-description: Interested in starting a new data science project? Learn the initial steps to start any data science project and how to acquire your datasets in this guide that is perfect for beginner data scientists and Python enthusiasts.
 share-img: /assets/img/posts/2024-04-11-basketball-data-acquisition/acquisition-social.png
 readtime: true
 gh-repo: pineconedata/pineconedata.github.io
@@ -13,14 +13,16 @@ gh-badge: [star, fork, follow]
 after-content: post-subscribe.html
 ---
 
-In this guide, we'll walk through the entire process of a data science project. This includes initial steps like data acquisition, preprocessing, and cleaning, as well as more advanced steps like feature engineering, creating visualizations, and machine learning. The dataset we'll be using in this project contains basketball player statistics for the 2023-2024 NCAA women's basketball season. Here's a brief description of each major step that we'll go through: 
+Today we'll go over how to start a new data science project by acquiring the data (using APIs and a CSV export). This is the first part of a series that will walk through the entire process of a data science project - from initial steps like data acquisition, preprocessing, and cleaning to more advanced steps like feature engineering, machine learning, and creating visualizations. 
+
+The dataset we'll be using in this project contains individual basketball player statistics (such as total points scored and blocks made) for the 2023-2024 NCAA women's basketball season. Here's a brief description of each major step that we'll go through for this project: 
 
 1. Data Acquisition - This initial step involves obtaining data from two sources: (1) exporting the NCAA's online individual player statistics report and (2) making API requests to the Yahoo Sports endpoint. 
 2. Data Cleaning - This step focuses on identifying and correcting any errors within the dataset. This includes removing duplicates, correcting inaccuracies, and handling missing data. 
 3. Data Preprocessing - This step ensures the data is suitable for analysis by converting datatypes, standardizing units, and replacing abbreviations.
 4. Feature Engineering - This step involves selecting and expanding upon the dataset's features (or columns). This includes calculating additional metrics from existing columns.
-5. Creating Visualizations - This step involves identifying the relationships between various parameters (such as height and blocked shots) and generating meaningful visualizations (such as bar charts, scatterplots, and candlestick charts).
-6. Machine Learning - This step focuses on training a machine learning model to identify the combination of individual player statistics that correlates with optimal performance. 
+5. Machine Learning - This step focuses on training a machine learning model to identify the combination of individual player statistics that correlates with optimal performance. 
+6. Creating Visualizations - This step involves identifying the relationships between various parameters (such as height and blocked shots) and generating meaningful visualizations (such as bar charts, scatterplots, and candlestick charts).
 
 We'll use Python along with the popular pandas and requests libraries to accomplish these tasks efficiently. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, create meaningful visualizations, and train a basic machine learning model. Due to the size of this project, we'll start today with just the first step: data acqusition. 
 
