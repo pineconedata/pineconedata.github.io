@@ -5,7 +5,7 @@ subtitle: "Part 2 - Data Cleaning and Preprocessing"
 tags:  [Python, data science, pandas, API]
 thumbnail-img: /assets/img/posts/2024-04-11-basketball-data-acquisition/ncaa.jpg
 share-title: "Outlier or Caitlin Clark? A Data Science Project: Part 1 - Project Setup and Data Acquisition" 
-share-description: Interested in starting a new data science project? Learn the initial steps to start your project and acquire your datasets in this comprehensive guide that is perfect for beginner data scientists and Python enthusiasts.
+share-description: Interested in the fundamental steps of any data science project? Learn how to thoroughly clean and preprocess your datasets in this comprehensive guide that is perfect for beginner data scientists and Python enthusiasts.
 share-img: /assets/img/posts/2024-04-11-basketball-data-acquisition/acquisition-social.png
 readtime: true
 gh-repo: pineconedata/pineconedata.github.io
@@ -15,38 +15,47 @@ js: /assets/js/table-of-contents.js
 published: false
 ---
 
-In this guide, we'll walk through the entire process of a data science project. This includes initial steps like data acquisition, preprocessing, and cleaning, as well as more advanced steps like feature engineering, creating visualizations, and machine learning. The dataset we'll be using in this project contains basketball player statistics for the 2023-2024 NCAA women's basketball season. Here's a brief description of each major step that we'll go through: 
+Today we'll walk through how to clean and preprocess a dataset to ensure it is ready for analysis. This is the second part of a series that walks through the entire process of a data science project - from initial steps like data acquisition, preprocessing, and cleaning to more advanced steps like feature engineering, machine learning, and creating visualizations. 
 
-1. Data Acquisition - This initial step involves obtaining data from two sources: (1) exporting the NCAA's online individual player statistics report and (2) making API requests to the Yahoo Sports endpoint. 
-2. Data Cleaning - This step focuses on identifying and correcting any errors within the dataset. This includes removing duplicates, correcting inaccuracies, and handling missing data. 
-3. Data Preprocessing - This step ensures the data is suitable for analysis by converting datatypes, standardizing units, and replacing abbreviations.
-4. Feature Engineering - This step involves selecting and expanding upon the dataset's features (or columns). This includes calculating additional metrics from existing columns.
-5. Creating Visualizations - This step involves identifying the relationships between various parameters (such as height and blocked shots) and generating meaningful visualizations (such as bar charts, scatterplots, and candlestick charts).
-6. Machine Learning - This step focuses on training a machine learning model to identify the combination of individual player statistics that correlates with optimal performance. 
+As a reminder, the dataset we'll be using in this project contains individual basketball player statistics (such as total points scored and blocks made) for the 2023-2024 NCAA women's basketball season. Here's a brief description of each major step that we'll go through for this project: 
 
-We'll use Python along with the popular pandas and requests libraries to accomplish these tasks efficiently. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, create meaningful visualizations, and train a basic machine learning model. Due to the size of this project, we'll start today with just the first step: data acqusition. 
+![the steps for this data science project](/assets/img/posts/2024-04-11-basketball-data-acquisition/ncaa_wbb_project_steps.png "the steps for this data science project")
+
+1. **Data Acquisition** - This initial step involves obtaining data from two sources: (1) exporting the NCAA's online individual player statistics report and (2) making API requests to the Yahoo Sports endpoint. 
+2. **Data Cleaning** - This step focuses on identifying and correcting any errors within the dataset. This includes removing duplicates, correcting inaccuracies, and handling missing data. 
+3. **Data Preprocessing** - This step ensures the data is suitable for analysis by converting datatypes, standardizing units, and replacing abbreviations.
+4. **Feature Engineering** - This step involves selecting and expanding upon the dataset's features (or columns). This includes calculating additional metrics from existing columns.
+5. **Machine Learning** - This step focuses on training a machine learning model to identify the combination of individual player statistics that correlates with optimal performance. 
+6. **Creating Visualizations** - This step involves identifying the relationships between various parameters (such as height and blocked shots) and generating meaningful visualizations (such as bar charts, scatterplots, and candlestick charts).
+
+We'll use Python along with the popular [pandas](https://pandas.pydata.org/docs/) and [requests](https://requests.readthedocs.io/en/latest/) libraries to accomplish these tasks efficiently. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, create meaningful visualizations, and train a basic machine learning model. Since we already gathered the raw data from online sources in the last part, let's move on to the data cleaning and preprocessing steps. 
 
 <div id="toc"></div>
 
 # Getting Started
-First, let's cover what you'll need if you want to follow along with this guide. If you already have a Python environment up and running and are familiar with how to install packages, then feel free to skip to the next section. 
-
+Since this is the second installment in the series, you likely already have your environment setup and can skip to the next section. If you're not already set up and you want to follow along on your own machine, it's recommended to read the [previous post](/2024-04-11-basketball-data-acquisition/) or at least review the [Getting Started](2024-04-11-basketball-data-acquisition/#getting-started) section of that post before continuing. In summary, you'll want to have [Python](https://www.python.org/) installed with the following packages: 
+  - [pandas](https://pandas.pydata.org/docs/)
+  - [requests](https://requests.readthedocs.io/en/latest/)
+  - [json](https://docs.python.org/3/library/json.html)
+  - [os](https://docs.python.org/3/library/os.html)
+  - [numpy](https://numpy.org/doc/)
+  
+In [Part 1](/2024-04-11-basketball-data-acquisition/) of this series, we acquired two datasets and combined them into one final dataset, stored in a dataframe named `player_stats`. If you want to follow along with the code examples in this article, it's recommended to import the `player_stats` dataframe before proceeding. 
 
 # Data Cleaning
-Before we can analyze the dataset, we need to ensure it is clean and reliable. In this section, we'll address issues like missing values, incorrect entries, and inconsistencies.
+Before we can analyze the dataset, we need to ensure it is clean and reliable. In this section, we'll address issues like missing values, incorrect entries, and inconsistencies. This saves you the headache of training a model with unintended values or creating graphs without the full dataset.
 
 ## Handle Missing Values
-Missing values (such as `None` and `NaN`) can significantly impact the accuracy and validity of statistical analyses and visualizations, so we want to identify and handle (remove, impute, accept) each instance of missing and empty values in the dataset. There are several ways to handle missing values; the most common methods include imputation, deletion, and estimation.
+Missing values (such as `None` and `NaN`) can significantly impact the accuracy and validity of statistical analyses and visualizations, so we want to identify and handle (remove, impute, accept) each instance of missing and empty values in the dataset. There are several ways to handle missing values, but let's take a look at the most common methods:
    - Correction - In limited circumstances, the missing values may be due to an import error or available in an alternate data source that can supplement your original dataset. This allows you to make corrections to the original dataset and eliminate missing values.
    - Imputation - Imputation involves replacing missing values with estimated or predicted values based on other available information in the dataset. Common imputation techniques include mean, median, mode imputation, or more advanced methods such as regression imputation or k-nearest neighbors (KNN) imputation.
    - Deletion - Deleting rows or columns with missing values is a straightforward approach, but it should be used carefully as it can lead to the loss of valuable information. Row deletion (also known as listwise deletion) removes entire observations with missing values, while column deletion (variable-wise deletion) removes entire variables with missing values.
-   - Prediction Models - In cases where missing values are dependent on other variables, predictive models can be used to estimate missing values based on the observed data. This approach involves training a model on the non-missing values and then using it to predict the missing values.
    - Advanced Techniques - Advanced techniques such as multiple imputation, which generates multiple imputed datasets and combines the results, or sophisticated machine learning algorithms designed to handle missing data directly, offer more robust solutions for handling missing values in complex datasets.
 
-The choice of method depends on factors such as the nature of the missing data, the distribution of missing values, the analysis objectives, and the specific requirements of the dataset and analytical task. 
+How you handle missing values will depend on a variety of factors (the nature of the missing data, the requirements and objectives of your project, etc.) and should be evaluated on a case-by-case basis. For today, we'll go through each row with missing values and determine the best way to handle them one at a time. 
 
 ### Identify Missing Values
-Let's begin by looking at any rows that contain at least one missing value (represented as `None` and `NaN` in Python). We'll use the [pandas `isna()` method](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.isna.htmlhttps://pandas.pydata.org/docs/reference/api/pandas.DataFrame.isna.html) for this.
+Let's begin by looking at any rows that contain at least one missing value (represented as `None` and `NaN` in Python). We'll use the [pandas `isna()` method](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.isna.html) for this.
 
 
 ```python
@@ -1079,7 +1088,7 @@ player_data[player_data['THREE_POINT_PERCENTAGE'].isna()][['PLAYER_NAME', 'Team'
 
 
 
-We can see that for all of the rows where THREE_POINT_PERCENTAGE is `None`, the three-point baskets made and attempted values are zero. If we manually calculated the three-point percentage for these rows, we would get `NaN` results instead of `None` due to the division by zero. `NaN` and `None` are different values, but we've confirmed that there is no issue with the underlying data. The `None` values will automatically be replaced with `NaN`s later in this process, so we'll leave these values at `None` for now and move on to the `Position` field.
+We can see that for all of the rows where THREE_POINT_PERCENTAGE is `None`, the three-point baskets made and attempted values are zero. If we manually calculated the three-point percentage for these rows, we would get `NaN` results instead of `None` due to the [division by zero](https://en.wikipedia.org/wiki/Division_by_zero). `NaN` and `None` are different values, but we've confirmed that there is no issue with the underlying data. The `None` values will automatically be replaced with `NaN`s later in this process, so we'll leave these values at `None` for now and move on to the `Position` field.
 
 ### Handle Missing Positions
 Let's see how many rows are missing a Position value. 
@@ -1146,9 +1155,11 @@ player_data[player_data['Position'].isna()][['PLAYER_NAME', 'Team', 'Position']]
 
 
 
-It can be helpful to evaluate whether or not each column with missing values can have a missing or null value. In this case, it doesn't make sense for a basketball player to be missing a position (guard, forward, center), since every player will be assigned a position on their team. Knowing that, we can assume that our current dataset is missing these values in error, and the entries should be updated. 
+It can be helpful to evaluate whether or not each column with missing values should have a missing or null value. In this case, it doesn't make much sense for a basketball player to be missing a position (guard, forward, center), since every player is assigned a standard position on their team. Knowing that, we can assume that our current dataset is missing these values in error, and the entries should be updated. 
 
-We'll be using an external data source to look up the correct positions for each of these players. If there were more rows with a missing Position value, then we might acquire another dataset and combine it with the current one. However, there are only four rows here, so we'll look up the values manually. You can use several external data sources, but here's an example using ESPN's website. Search for the player's name and school to pull up their page (for example, [Ally Becki at Ball St.](https://www.espn.com/womens-college-basketball/player/_/id/4900609/ally-becki)). On this page, you can see the player's team, class, height, jersey number, as well as a `G` (for Guard). 
+We'll be using an external data source to look up the correct positions for each of these players. If there were more rows with a missing Position value, then we might acquire another dataset and combine it with the current one. However, there are only four rows here, so we'll look up the values manually. 
+
+You can use several external data sources, but here's an example using [ESPN's website](https://www.espn.com/womens-college-basketball/). Search for the player's name and school to pull up the player's individual page (for example, [Ally Becki at Ball St.](https://www.espn.com/womens-college-basketball/player/_/id/4900609/ally-becki)). On this page, you can see the player's team, class, height, jersey number, as well as a `F`, `C`, or `G` for the position (in this example, the position is listed as `G` for Guard). 
 
 ![Manually look up a player's position](./data_images/ncaa_wbb_player_data_missing_position.png "Manually look up a player's position")
 
@@ -1399,7 +1410,7 @@ player_data[player_data.eq('0-0').any(axis=1)]
 
 
 ### Handle Incorrect Classes
-We can apply the same process used for Height to the Class field.
+We can apply the same process used for Height to the Class field. Since there's only one player with an incorrect class, this is a quick update.
 
 
 ```python
@@ -1419,7 +1430,7 @@ player_data['Class'].unique()
 Now that we've handled all of the empty and incorrect values, we're ready to move on to other data preprocessing steps. 
 
 # Data Preprocessing 
-The goal of this step is to make sure our dataset is consistent and suitable for analysis. For this project, we'll be setting column datatypes, converting units, and substituting abbreviated values. For machine learning projects, data preprocessing often includes additional steps like feature scaling, normalizing certain features, and encoding categorical values. 
+The goal of this step is to make sure our dataset is consistent and suitable for analysis. This stepp will change quite a bit depending on the exact project. For this project, we'll be setting column datatypes, converting units, and substituting abbreviated values. For advanced machine learning projects, data preprocessing often includes additional steps like feature scaling, normalizing certain features, and encoding categorical values. 
 
 ## Data Type Conversion
 Data type conversion is a fundamental step in preparing a dataset for analysis. Specifically, we often encounter situations where numbers are stored as strings or objects instead of their native numerical formats (e.g., integers or floats). In this step, let's take a closer look at the initial data type of each column and identify opportunities to convert these values into more suitable datatypes.
@@ -1521,8 +1532,9 @@ player_data.dtypes
 
 
 
-All of the defined numeric columns were properly converted to either integers or floats. The percentage fields are now stored as floats, while the rest of them are integers. We can also see that the `to_numeric` method handled the `None` values in the three-point percentage column and converted them to `NaN`s as well. 
+All of the defined numeric columns were properly converted to either integers or floats. The percentage fields are now stored as floats, while the rest of them are integers.
 
+We can also revisit the `None` values in the THREE_POINT_PERCENTAGE column to see if they were impacted by the datatype conversion. 
 
 ```python
 player_data[player_data['THREE_POINT_PERCENTAGE'].isna()][['PLAYER_NAME', 'Team', 'Position', 'THREE_POINTS_MADE', 'THREE_POINT_ATTEMPTS', 'THREE_POINT_PERCENTAGE']].head()
@@ -1608,13 +1620,12 @@ player_data[player_data['THREE_POINT_PERCENTAGE'].isna()][['PLAYER_NAME', 'Team'
 </div>
 
 
-
-With our numeric columns converted, we can look at the columns that should contain only text. 
+So the `to_numeric()` method automatically handled the `None` values in the three-point percentage column and converted them to `NaN`s. With the numeric columns converted, we can move on to the columns that should contain only text. 
 
 ### Convert Text-only Columns
 In pandas, both the object and string data types can be used to represent text. However, there is a slight difference between them:
    - object dtype - This is the default dtype and is a catch-all for any non-numeric data. It can hold any Python object, including strings, lists, dictionaries, etc. When a column contains multiple data types or when pandas cannot guess the data type, it defaults to the object dtype. While this is more flexible, operations on columns with object dtype may be slower compared to columns with the string data type. The [pandas documentation](https://pandas.pydata.org/pandas-docs/stable/user_guide/text.html) outlines reasons why it's better to use the string dtype for storing text-only data. 
-   - string dtype - This dtype specifically represents strings. Columns with this dtype contain only string data (not a mixture of string and other dtypes), which improves readability and allows for better dtype-specific operations like the `select_dtypes()` method. Additionally, with str dtype, you can use string-specific methods and functions directly on the column without the need for explicit type conversions. 
+   - string dtype - This dtype specifically represents strings. Columns with this dtype contain only string data (not a mixture of string and other dtypes), which improves readability and allows for better dtype-specific operations like the `select_dtypes()` method. Additionally, with the str dtype, you can use some string-specific methods and functions directly on the column without the need for explicit type conversions. 
 
 Let's start by identifying which columns should contain only string data. 
 
@@ -1623,7 +1634,7 @@ Let's start by identifying which columns should contain only string data.
 string_columns = ['PLAYER_NAME', 'Team', 'Class', 'Height', 'Position', 'PLAYER_ID', 'TEAM_NAME']
 ```
 
-We can use the [pandas `astype()` method]() to convert object columns to string columns. However, you should watch out for values with other data types when performing this conversion. For example, any missing values (such as `NaN`) will be converted to the string "NaN". We've already replaced all of the missing values in these columns, so this is no longer a concern. However, we do not want other non-string values (numbers, arrays, dictionaries, etc.) to be converted either, so it's best to check for those before performing the conversion. For this dataset, we do not expect these columns to have any non-string values, but we can look at a sample of the data in each column just to be safe. 
+We can use the [pandas `astype()` method]() to convert object columns to string columns. However, you should watch out for values with other data types when performing this conversion. For example, any missing values (such as `NaN`) will be converted to the string `"NaN"`. We've already replaced all of the missing values in these columns, so this is no longer a concern. However, we do not want other non-string values (numbers, arrays, dictionaries, etc.) to be converted either, so it's best to check for those before performing the conversion. For this dataset, we do not expect these columns to have any non-string values, but it's a good idea to look at a sample of the data in each column just to be safe. 
 
 
 ```python
@@ -1868,7 +1879,7 @@ player_data['Class'].unique()
 There are more substitutions that we could make (such as replacing "St." with "State" in the team name), but those are the only ones we'll make today. Next, let's look at unit conversions.
 
 ## Unit Conversion
-The only unit conversion we'll be doing today is to convert the feet-inches notation in the `Height` column to the total number of inches. We can define a function that will break the values in the `Height` column on the hyphen and store the number of feet and inches in separate variables. The function then multiplies the number of feet by 12 (the number of inches per foot) and adds the number of inches to get the total height of the player in inches. 
+The only unit conversion we'll be doing today is to convert the feet-inches notation in the `Height` column to the total number of inches. This means that a height of five feet, three inches tall is currently stored as `5-3`, but will be converted to the total number of inches, `63`. We can define a function to convert the individual Height values:
 
 
 ```python
@@ -1876,6 +1887,8 @@ def height_to_inches(height):
     feet, inches = map(int, height.split('-'))
     return feet * 12 + inches
 ```
+
+This function breaks the values in the `Height` column on the hyphen and store the number of feet and inches in separate variables. It then multiplies the number of feet by 12 (the number of inches per foot) and adds the number of inches to get the total height of the player in inches. 
 
 Now that we have this function, we can apply it to the `Height` column and verify it worked by checking the unique values. 
 
@@ -1893,7 +1906,9 @@ player_data['Height'].unique()
 
 
 
-That wraps up everything needed for data preprocessing. We could stop here and begin analyzing and creating visualizations for this dataset, but we'll do a bit of feature engineering first. 
+That wraps up everything needed for data preprocessing and we're ready to move on to the next step. 
 
 # Wrap up
 In today's guide, we laid the groundwork for data analysis by cleaning and preprocessing the combined player data. In the next article, we'll expand upon this dataset by engineering a few new features and training a machine learning model. In the final installment of this series, we'll identify relationships between various parameters and create meaningful visualizations. 
+
+<div id="sources"></div>
