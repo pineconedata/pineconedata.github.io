@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "A Full Guide to Data Science Projects using Basketball"
+title: "Outlier or Caitlin Clark? A Data Science Project"
 subtitle: "Part 2 - Data Cleaning and Preprocessing"
 tags:  [Python, data science, pandas, API]
 thumbnail-img: /assets/img/posts/2024-04-11-basketball-data-acquisition/ncaa.jpg
-share-title: "A Full Guide to Data Science Projects using Basketball: Part 1 - Project Setup and Data Acquisition" 
+share-title: "Outlier or Caitlin Clark? A Data Science Project: Part 1 - Project Setup and Data Acquisition" 
 share-description: Interested in starting a new data science project? Learn the initial steps to start your project and acquire your datasets in this comprehensive guide that is perfect for beginner data scientists and Python enthusiasts.
 share-img: /assets/img/posts/2024-04-11-basketball-data-acquisition/acquisition-social.png
 readtime: true
