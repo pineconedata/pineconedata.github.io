@@ -11,7 +11,6 @@ readtime: true
 gh-repo: pineconedata/pineconedata.github.io
 gh-badge: [star, fork, follow]
 after-content: post-subscribe.html
-js: /assets/js/table-of-contents.js
 ---
 
 Today we'll walk through how to clean and preprocess a dataset to ensure it is ready for analysis. This is the second part of a series that walks through the entire process of a data science project - from initial steps like data acquisition, preprocessing, and cleaning to more advanced steps like feature engineering, machine learning, and creating visualizations. 
@@ -32,7 +31,7 @@ We'll use Python along with the popular [pandas](https://pandas.pydata.org/docs/
 <div id="toc"></div>
 
 # Getting Started
-Since this is the second installment in the series, you likely already have your environment setup and can skip to the next section. If you're not already set up and you want to follow along on your own machine, it's recommended to read the [previous post](/2024-04-11-basketball-data-acquisition/) or at least review the [Getting Started](2024-04-11-basketball-data-acquisition/#getting-started) section of that post before continuing. In summary, you'll want to have [Python](https://www.python.org/) installed with the following packages: 
+Since this is the second installment in the series, you likely already have your environment setup and can skip to the next section. If you're not already set up and you want to follow along on your own machine, it's recommended to read the [previous post](/2024-04-11-basketball-data-acquisition/) or at least review the [Getting Started](/2024-04-11-basketball-data-acquisition/#getting-started) section of that post before continuing. In summary, you'll want to have [Python](https://www.python.org/) installed with the following packages: 
   - [pandas](https://pandas.pydata.org/docs/)
   - [requests](https://requests.readthedocs.io/en/latest/)
   - [json](https://docs.python.org/3/library/json.html)
@@ -46,10 +45,10 @@ Before we can analyze the dataset, we need to ensure it is clean and reliable. I
 
 ## Handle Missing Values
 Missing values (such as `None` and `NaN`) can significantly impact the accuracy and validity of statistical analyses and visualizations, so we want to identify and handle (remove, impute, accept) each instance of missing and empty values in the dataset. There are several ways to handle missing values, but let's take a look at the most common methods:
-   - Correction - In limited circumstances, the missing values may be due to an import error or available in an alternate data source that can supplement your original dataset. This allows you to make corrections to the original dataset and eliminate missing values.
-   - Imputation - Imputation involves replacing missing values with estimated or predicted values based on other available information in the dataset. Common imputation techniques include mean, median, mode imputation, or more advanced methods such as regression imputation or k-nearest neighbors (KNN) imputation.
-   - Deletion - Deleting rows or columns with missing values is a straightforward approach, but it should be used carefully as it can lead to the loss of valuable information. Row deletion (also known as listwise deletion) removes entire observations with missing values, while column deletion (variable-wise deletion) removes entire variables with missing values.
-   - Advanced Techniques - Advanced techniques such as multiple imputation, which generates multiple imputed datasets and combines the results, or sophisticated machine learning algorithms designed to handle missing data directly, offer more robust solutions for handling missing values in complex datasets.
+   - **Correction** - In limited circumstances, the missing values may be due to an import error or available in an alternate data source that can supplement your original dataset. This allows you to make corrections to the original dataset and eliminate missing values.
+   - **Imputation** - Imputation involves replacing missing values with estimated or predicted values based on other available information in the dataset. Common imputation techniques include mean, median, mode imputation, or more advanced methods such as regression imputation or k-nearest neighbors (KNN) imputation.
+   - **Deletion** - Deleting rows or columns with missing values is a straightforward approach, but it should be used carefully as it can lead to the loss of valuable information. Row deletion (also known as listwise deletion) removes entire observations with missing values, while column deletion (variable-wise deletion) removes entire variables with missing values.
+   - **Advanced Techniques** - Advanced techniques such as multiple imputation, which generates multiple imputed datasets and combines the results, or sophisticated machine learning algorithms designed to handle missing data directly, offer more robust solutions for handling missing values in complex datasets.
 
 How you handle missing values will depend on a variety of factors (the nature of the missing data, the requirements and objectives of your project, etc.) and should be evaluated on a case-by-case basis. For today, we'll go through each row with missing values and determine the best way to handle them one at a time. 
 
