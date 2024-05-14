@@ -9,4 +9,15 @@ function addToOnload(functionToAdd) {
             functionToAdd();
         };
     }
-}
+};
+
+// Function to modify blog post links to open in a new tab 
+function modifyPostLinks() {
+    var linksWithoutTarget = document.querySelector('article.blog-post').querySelectorAll('a');
+    linksWithoutTarget.forEach(function(link) {
+        if (!link.hasAttribute('target')) {
+            link.setAttribute('target', '_blank');
+        }
+    })
+};
+addToOnload(modifyPostLinks);
