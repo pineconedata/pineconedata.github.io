@@ -6,13 +6,12 @@ tags:  [Python, data science, pandas, API]
 thumbnail-img: /assets/img/posts/2024-04-11-basketball-data-acquisition/ncaa.jpg
 share-title: "Outlier or Caitlin Clark? A Data Science Project: Part 1 - Project Setup and Data Acquisition" 
 share-description: Interested in the fundamental steps of any data science project? Learn how to thoroughly clean and preprocess your datasets in this comprehensive guide that is perfect for beginner data scientists and Python enthusiasts.
-share-img: /assets/img/posts/2024-04-11-basketball-data-acquisition/acquisition-social.png
+share-img: /assets/img/posts/2024-05-02-basketball-data-cleaning/data-cleaning-social.png
 readtime: true
 gh-repo: pineconedata/pineconedata.github.io
 gh-badge: [star, fork, follow]
 after-content: post-subscribe.html
 js: /assets/js/table-of-contents.js
-published: false
 ---
 
 Today we'll walk through how to clean and preprocess a dataset to ensure it is ready for analysis. This is the second part of a series that walks through the entire process of a data science project - from initial steps like data acquisition, preprocessing, and cleaning to more advanced steps like feature engineering, machine learning, and creating visualizations. 
