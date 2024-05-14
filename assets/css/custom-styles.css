@@ -1,5 +1,6 @@
-table {
+.blog-post table {
   width: 100%; /* Ensure the table fills its container's width */
   overflow-x: auto; /* Enable horizontal scrolling */
   border-collapse: collapse; /* Merge border spacing */
+  display: block; 
 }
