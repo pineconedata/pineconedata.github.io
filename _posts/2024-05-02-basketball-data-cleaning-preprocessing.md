@@ -4,7 +4,7 @@ title: "Outlier or Caitlin Clark? A Data Science Project"
 subtitle: "Part 2 - Data Cleaning and Preprocessing"
 tags:  [Python, data science, pandas, API]
 thumbnail-img: /assets/img/posts/2024-04-11-basketball-data-acquisition/ncaa.jpg
-share-title: "Outlier or Caitlin Clark? A Data Science Project: Part 1 - Project Setup and Data Acquisition" 
+share-title: "Outlier or Caitlin Clark? A Data Science Project: Part 2 - Data Cleaning and Preprocessing" 
 share-description: Interested in the fundamental steps of any data science project? Learn how to thoroughly clean and preprocess your datasets in this comprehensive guide that is perfect for beginner data scientists and Python enthusiasts.
 share-img: /assets/img/posts/2024-05-02-basketball-data-cleaning/data-cleaning-social.png
 readtime: true
@@ -38,7 +38,7 @@ Since this is the second installment in the series, you likely already have your
   - [os](https://docs.python.org/3/library/os.html)
   - [numpy](https://numpy.org/doc/)
   
-In [Part 1](/2024-04-11-basketball-data-acquisition/) of this series, we acquired two datasets and combined them into one final dataset, stored in a dataframe named `player_stats`. If you want to follow along with the code examples in this article, it's recommended to import the `player_stats` dataframe before proceeding. 
+In [Part 1](/2024-04-11-basketball-data-acquisition/) of this series, we acquired two datasets and combined them into one final dataset, stored in a dataframe named `player_data`. If you want to follow along with the code examples in this article, it's recommended to import the `player_data` dataframe before proceeding. 
 
 # Data Cleaning
 Before we can analyze the dataset, we need to ensure it is clean and reliable. In this section, we'll address issues like missing values, incorrect entries, and inconsistencies. This saves you the headache of training a model with unintended values or creating graphs without the full dataset.
