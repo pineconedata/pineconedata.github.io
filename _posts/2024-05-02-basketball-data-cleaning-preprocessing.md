@@ -4,7 +4,7 @@ title: "Outlier or Caitlin Clark? A Data Science Project"
 subtitle: "Part 2 - Data Cleaning and Preprocessing"
 tags:  [Python, data science, pandas, API]
 thumbnail-img: /assets/img/posts/2024-04-11-basketball-data-acquisition/ncaa.jpg
-share-title: "Outlier or Caitlin Clark? A Data Science Project: Part 2 - Data Cleaning and Preprocessing" 
+share-title: "Outlier or Caitlin Clark? A Data Science Project: Part 1 - Project Setup and Data Acquisition" 
 share-description: Interested in the fundamental steps of any data science project? Learn how to thoroughly clean and preprocess your datasets in this comprehensive guide that is perfect for beginner data scientists and Python enthusiasts.
 share-img: /assets/img/posts/2024-05-02-basketball-data-cleaning/data-cleaning-social.png
 readtime: true
@@ -37,8 +37,13 @@ Since this is the second installment in the series, you likely already have your
   - [json](https://docs.python.org/3/library/json.html)
   - [os](https://docs.python.org/3/library/os.html)
   - [numpy](https://numpy.org/doc/)
+  - [openpyxl](https://openpyxl.readthedocs.io/en/stable/)
   
 In [Part 1](/2024-04-11-basketball-data-acquisition/) of this series, we acquired two datasets and combined them into one final dataset, stored in a dataframe named `player_data`. If you want to follow along with the code examples in this article, it's recommended to import the `player_data` dataframe before proceeding. 
+
+```python
+player_data = pd.read_excel('player_data_raw.xlsx')
+```
 
 # Data Cleaning
 Before we can analyze the dataset, we need to ensure it is clean and reliable. In this section, we'll address issues like missing values, incorrect entries, and inconsistencies. This saves you the headache of training a model with unintended values or creating graphs without the full dataset.
@@ -1904,7 +1909,13 @@ player_data['Height'].unique()
 
 
 
-That wraps up everything needed for data preprocessing and we're ready to move on to the next step. 
+That wraps up everything needed for data preprocessing and our dataset is ready for feature engineering and machine learning. 
+
+If you're going to use a new Jupyter notebook / Python script for the next part of this series, then it's a good idea to export this dataset. As a reminder, you can use the `to_csv()` method instead of `.to_excel()` if you prefer. 
+
+```python
+player_data.to_excel('player_data_clean.xlsx', index=False)
+```
 
 # Wrap up
 In today's guide, we laid the groundwork for data analysis by cleaning and preprocessing the combined player data. In the next article, we'll expand upon this dataset by engineering a few new features and training a machine learning model. In the final installment of this series, we'll identify relationships between various parameters and create meaningful visualizations. 
