@@ -67,6 +67,7 @@ You should install the following required packages:
 - [*json*](https://docs.python.org/3/library/json.html) - a module for encoding and decoding JSON data, facilitating the interchange of data between a Python program and external systems or files.
 - [*os*](https://docs.python.org/3/library/os.html) - a module providing a portable way of interacting with the operating system, enabling functionalities such as file management, directory manipulation, and environment variables handling.
 - [*numpy*](https://numpy.org/doc/) - a fundamental package for scientific computing in Python, providing support for large, multi-dimensional arrays and matrices, along with a collection of mathematical functions to operate on these arrays efficiently. 
+- [*openpyxl*](https://openpyxl.readthedocs.io/en/stable/) - a useful library for reading from, writing to, and modifying Excel files. This library is optional for today's project - you can write the dataframes to `.csv` files  (using [`.to_csv()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_csv.html)) instead of `.xlsx`  (using [`.to_excel()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_excel.html)) files to skip this requirement. 
 
 Once those required packages have been installed, we can start writing the program by importing the packages. 
 
@@ -77,6 +78,7 @@ import requests
 import json
 import os
 import numpy as np
+import openpyxl 
 ```
 
 Now that we've ensured the necessary dependencies are installed, it's time to acquire the data. 
@@ -208,6 +210,12 @@ This dataset contains 1,009 rows and 5 columns. Here's a quick description of ea
   - *Class* - The academic year of the player (freshman, sophomore, junior, senior).
   - *Height* - The height of the player in feet-inches.
   - *Position* - The playing position of the player on the basketball court (guard, forward, center). 
+  
+Now that we're done with this dataset, let's save a copy of it. As a reminder, you can use the `to_csv()` method instead of `.to_excel()` if you prefer. 
+
+```python
+player_info.to_excel('player_info.xlsx', index=False)
+```
 
 # Acquiring Player Statistics Data
 As mentioned before, the player statistics data can be obtained by making API requests to the [Yahoo Sports API](https://sports.yahoo.com/ncaaw/stats/individual/?selectedTable=0&leagueStructure=ncaaw.struct.div.1&sortStatId=FREE_THROWS_MADE). There are a variety of API endpoints available for sports data, but today we'll be using the Yahoo Sports API since it is free and contains all of the player statistics in one convenient result. 
@@ -713,7 +721,13 @@ player_stats.shape
 
     (1392, 23)
 
-The final player statistics dataset does have fewer rows, since we combined any duplicate rows. With that, we've finished acquiring both of the datasets needed for this project and can combine them into one final dataset that includes both the player information and player statistics.
+The final player statistics dataset does have fewer rows, since we combined any duplicate rows. Now that we're done with this dataset, let's save it. As a reminder, you can use the `to_csv()` method instead of `.to_excel()` if you prefer. 
+
+```python
+player_stats.to_excel('player_stats.xlsx', index=False)
+```
+
+With that, we've finished acquiring both of the datasets needed for this project and can combine them into one final dataset that includes both the player information and player statistics.
 
 # Combine Player Information and Statistics Datasets
 Combining datasets can be easy or difficult, depending on what columns are shared by the two datasets. In this case, the `Player` column in the `player_info` dataframe closely matches the `PLAYER_NAME` column in the `player_stats` dataframe, so we'll start by renaming one of those columns to match the other.
@@ -989,6 +1003,12 @@ player_data.shape
 
 
 So our final dataset has 900 rows and 27 columns. This is enough data for our project, so we're ready to move on to the cleaning and preprocessing steps.
+
+If you're going to use a new Jupyter notebook / Python script for the next part of this series, then it's a good idea to export this dataset. As a reminder, you can use the `to_csv()` method instead of `.to_excel()` if you prefer. 
+
+```python
+player_data.to_excel('player_data_raw.xlsx', index=False)
+```
 
 # Wrap up 
 In this guide, we built a new dataset by acquiring and then combining the NCAA women's basketball player information dataset with the Yahoo Sports player statistics dataset. In the next part, we'll lay the groundwork for data analysis by cleaning and preprocessing the combined player data. In future articles, we'll expand upon this dataset by engineering a few new features, create meaningful visualizations, and train a machine learning model.
