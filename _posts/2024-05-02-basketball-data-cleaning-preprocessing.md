@@ -1164,7 +1164,7 @@ We'll be using an external data source to look up the correct positions for each
 
 You can use several external data sources, but here's an example using [ESPN's website](https://www.espn.com/womens-college-basketball/). Search for the player's name and school to pull up the player's individual page (for example, [Ally Becki at Ball St.](https://www.espn.com/womens-college-basketball/player/_/id/4900609/ally-becki)). On this page, you can see the player's team, class, height, jersey number, as well as a `F`, `C`, or `G` for the position (in this example, the position is listed as `G` for Guard). 
 
-![Manually look up a player's position](./data_images/ncaa_wbb_player_data_missing_position.png "Manually look up a player's position")
+![Manually look up a player's position](/assets/img/posts/2024-05-02-basketball-data-cleaning/ncaa_wbb_player_data_missing_position.png "Manually look up a player's position")
 
 With that, we can locate and set the correct value of the Position field for each of the four players. 
 
@@ -1810,7 +1810,7 @@ Value substitution (or value mapping) refers to replacing one value with another
 
 The first value substitution we'll make is swapping the abbreviated position names with the full values. The [Position](https://en.wikipedia.org/wiki/Basketball_positions) field in this dataset refers to where the player typically plays on the court. Here's a diagram of the positions: 
 
-!["Diagram of basketball positions"](https://upload.wikimedia.org/wikipedia/commons/a/ac/Basketball_Positions.png Diagram of basketball positions)
+![Diagram of basketball positions](https://upload.wikimedia.org/wikipedia/commons/a/ac/Basketball_Positions.png "Diagram of basketball positions")
 
 Let's see what Position values are currently in our dataset.
 
