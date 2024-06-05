@@ -8,7 +8,7 @@ share-title: "Outlier or Caitlin Clark? A Data Science Project: Part 1 - Project
 share-description: Interested in the fundamental steps of any data science project? Learn how to thoroughly clean and preprocess your datasets in this comprehensive guide that is perfect for beginner data scientists and Python enthusiasts.
 share-img: /assets/img/posts/2024-05-02-basketball-data-cleaning/data-cleaning-social.png
 readtime: true
-gh-repo: pineconedata/pineconedata.github.io
+gh-repo: pineconedata/ncaa-basketball-stats
 gh-badge: [star, fork, follow]
 after-content: post-subscribe.html
 ---
