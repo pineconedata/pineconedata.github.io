@@ -8,7 +8,7 @@ share-title: "Outlier or Caitlin Clark? A Data Science Project: Part 1 - Project
 share-description: Interested in starting a new data science project? Learn the initial steps to start any data science project and how to acquire your datasets in this guide that is perfect for beginner data scientists and Python enthusiasts.
 share-img: /assets/img/posts/2024-04-11-basketball-data-acquisition/acquisition-social.png
 readtime: true
-gh-repo: pineconedata/pineconedata.github.io
+gh-repo: pineconedata/ncaa-basketball-stats
 gh-badge: [star, fork, follow]
 after-content: post-subscribe.html
 ---
