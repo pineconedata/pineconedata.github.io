@@ -3,7 +3,7 @@ layout: post
 title: "Outlier or Caitlin Clark? A Data Science Project"
 subtitle: "Part 4 - Data Visualization"
 tags:  [Python, data science, pandas, machine learning, scikit-learn, data visualization]
-thumbnail-img: /assets/img/posts/2024-07-29-basketball-visualizations/heatmap.png
+thumbnail-img: /assets/img/posts/2024-07-29-basketball-visualizations/heatmap.JPG
 share-title: "Outlier or Caitlin Clark? A Data Science Project: Part 4 - Data Visualization" 
 share-description: Interested in creating charts and graphs for your data? Learn how to determine the relationship between metrics, select meaningful charts, and generate helpful graphs in the latest installment of this data science series that is perfect for beginner data scientists and Python enthusiasts.
 share-img: /assets/img/posts/2024-07-29-basketball-visualizations/social.png
@@ -45,7 +45,7 @@ You'll want to have the latest version of [Python](https://www.python.org/) inst
   - [plotly](https://plotly.com/)
   - [scipy](https://scipy.org/https://scipy.org/)
   
-For this data visualization part specifically, we'll want to import a few of these libraries: 
+For today's visualizations specifically, we'll want to import most of these libraries: 
 
 
 ```python
@@ -295,14 +295,7 @@ fig.show()
 ```
 
 
-<iframe
-    scrolling="no"
-    width="100%"
-    height="545px"
-    src="iframe_figures/figure_7.html"
-    frameborder="0"
-    allowfullscreen
-></iframe>
+![png](/assets/img/posts/2024-07-29-basketball-visualizations/output_plotly.PNG)
 
 
 
