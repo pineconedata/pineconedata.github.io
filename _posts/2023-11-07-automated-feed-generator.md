@@ -24,11 +24,11 @@ First off, an RSS (Really Simple Syndication) feed is a type of web feed that al
 
 ## Why use an RSS feed reader? 
 If you haven't used an RSS feed reader before, you might not be familiar with the benefits they can offer over visiting a website directly or using a third-party news service. 
-- Personalization - An RSS feed reader lets you personalize your news feed by subscribing only to the sources, topics, and categories that interest you. 
-- Organization - You can easily organize your subscriptions in an RSS feed reader by creating folders, tagging articles, and prioritizing sources. 
-- Improved Privacy - By using an RSS feed reader instead of visiting websites directly, you can protect your browsing data from being tracked by third parties. 
-- Fewer Distractions - Similar to the previous benefit, you can often bypass advertisements and intrusive popups that you might otherwise see on the original website. 
-- Offline Accessibility - Many RSS feed readers offer the ability to save content for offline reading, allowing you to catch up on news or updates during periods of limited connectivity. 
+- **Personalization** - An RSS feed reader lets you personalize your news feed by subscribing only to the sources, topics, and categories that interest you. 
+- **Organization** - You can easily organize your subscriptions in an RSS feed reader by creating folders, tagging articles, and prioritizing sources. 
+- **Improved Privacy** - By using an RSS feed reader instead of visiting websites directly, you can protect your browsing data from being tracked by third parties. 
+- **Fewer Distractions** - Similar to the previous benefit, you can often bypass advertisements and intrusive popups that you might otherwise see on the original website. 
+- **Offline Accessibility** - Many RSS feed readers offer the ability to save content for offline reading, allowing you to catch up on news or updates during periods of limited connectivity. 
 
 ## How do we get started? 
 Now that we've covered the basics of RSS feeds and feed readers, let's dive into how to generate an RSS feed for a website. In today's project, we'll use a website that does already publish an official RSS feed, but that will be useful for sanity-checking the result. 
@@ -36,16 +36,13 @@ Now that we've covered the basics of RSS feeds and feed readers, let's dive into
 To get started, you'll need to have the following software installed on your system: 
 
 - [Python](https://www.python.org/downloads/) (version 3.6 or higher)
-
 - [Selenium](https://pypi.org/project/selenium/) (Python library for web scraping)
-
 - [Firefox WebDriver](https://github.com/mozilla/geckodriver) (the browser we'll use for web scraping)
-
 - [feedgen](https://pypi.org/project/feedgen/) (Python library for RSS feed generation)
 
 Additional details about dependencies and version numbers can be found in the [`requirements.txt`](https://github.com/pineconedata/automated-feed-generator/blob/main/requirements.txt) file. 
 
-*Note*: If you want to skip straight to implementation, you can follow the instructions in the [GitHub repo](https://github.com/pineconedata/automated-feed-generator) for this project. Otherwise, keep reading for step-by-step instructions and a breakdown of the code. 
+**Note**: If you want to skip straight to implementation, you can follow the instructions in the [GitHub repo](https://github.com/pineconedata/automated-feed-generator) for this project. Otherwise, keep reading for step-by-step instructions and a breakdown of the code. 
 
 ## How will this process work?
 At a high level, this process will work by regularly running a Python script that will visit the desired website, scrape the latest content, and export that content to an RSS feed file. For convenience, the configuration options have been separated from the Python script itself (so that it's easy to execute the same script for multiple websites), but you could easily combine these two files if you want. You can either run the Python script on your own computer (self-host) or use a third-party service (like AWS, GCP, Azure, etc.). This post will briefly cover configuring this script to run locally, so you won't need any accounts with any third parties to run this process.
@@ -63,6 +60,8 @@ In summary, the minimum parameters we need to specify are:
 - `link_selector`: *Required*, CSS selector for the link of each element.
 
 Here's an example of what those required configuration parameters would look like for NASA's Space Station blog: 
+
+```json
 {
   "website_url": "https://blogs.nasa.gov/spacestation/",
   "website_title": "NASA Space Station Blog",
@@ -71,6 +70,8 @@ Here's an example of what those required configuration parameters would look lik
   "title_selector": "h2.entry-title",
   "link_selector": "h2.entry-title > a"
 }
+```
+
 If we run the Python process with only these parameters, then we will get a bare-bones RSS feed that only populates the title and URL of each blog post from the website. However, you might want to generate a more robust RSS feed that includes the date, thumbnail image, and description of each blog post as well. To that end, several optional parameters can be set in the configuration file: 
 
 - `image_selector`: *Optional*, CSS selector for the image of each element.
@@ -81,6 +82,7 @@ If we run the Python process with only these parameters, then we will get a bare
 - `file_name`: *Optional*, Name of the output feed file. If not specified, the alphanumeric characters of `website_title` will be used instead.
 
 Here's an example of what the entire configuration JSON file would look like for NASA's Space Station blog: 
+```json
 {
   "website_url": "https://blogs.nasa.gov/spacestation/",
   "website_title": "NASA Space Station Blog",
@@ -94,9 +96,11 @@ Here's an example of what the entire configuration JSON file would look like for
   "date_selector": "footer.entry-footer > span.posted-on > a > time",
   "date_format": "%B %d, %Y"
 }
+```
+
 ## CSS Selectors
 
-Once the script has opened the proper website URL, it will identify the list of posts to include in the RSS feed by using `posts_list_selector` (where `document.querySelectorAll(posts_list_selector)` should return the same number of HTML elements as the number of posts that should be included in your output RSS feed's content). Using the `document.querySelectorAll()` method is one of the quickest ways to identify your desired `posts_list_selector` value. MDN has additional details on the [`document.querySelectorAll()` method](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) if you are not familiar with it.
+Once the script has opened the proper website URL, it will identify the list of posts to include in the RSS feed by using `posts_list_selector` (where `document.querySelectorAll(posts_list_selector)` should return the same number of HTML elements as the number of posts that should be included in your output RSS feed's content). Using the `document.querySelectorAll()` method is one of the quickest ways to identify your desired `posts_list_selector` value. [MDN](https://developer.mozilla.org/en-US/) has additional details on the [`document.querySelectorAll()` method](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) if you are not familiar with it.
 
 Then, the script will scrape the details of each post using the other selectors (`title_selector`, `link_selector`, `image_selector`, `description_selector`, and `date_selector`. The selectors for the post details (`title_selector`, `link_selector`, etc.) are sub-selectors of the `posts_list_selector`. For example, this sub-selector logic for the `title_selector` would be implemented in JavaScript as `document.querySelectorAll(posts_list_selector)...querySelector(title_selector)` (this script uses Python and Selenium, but the JS logic can help you identify the proper value of `title_selector`, etc. more quickly). MDN has additional details on the [`document.querySelector()` method](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector) as well if you are not familiar with it.
 
@@ -268,12 +272,15 @@ That's the entire Python script! It's a fairly simple process, and we'll go over
 
 # Running the Process
 To run the process, there should be a particular folder structure for the files (illustrated below). 
+```
 -[parent folder]
 --automated_feed_generator.py (the Python script)
 --[config] (a sub-folder that holds the configuration files)
 ---NASASpaceStationBlog.json (the configuration file)
 --[feeds] (a sub-folder that holds the RSS feed files, once generated)
 ---NASASpaceStationBlog.xml
+```
+
 Once you have this folder structure setup (although the `feeds` directory will be empty right now), you can run the script from the same folder as the `automated_feed_generator.py` file with the configuration file as a command-line argument. Here's an example: 
 
 ```shell
@@ -288,14 +295,11 @@ The entire process up to this point will only generate the RSS feed once. To kee
 1. Open your crontab configuration by running `crontab -e` as usual. 
 
 2. Add a cron job entry to schedule the script at your [desired frequency](https://crontab.guru). For example, to run the script every day at 2:00 AM, you can add the following line:
-
 ```bash
 0 2 * * * python3 ~/path/to/dir/automated-feed-generator/automated_feed_generator.py --config_file 'NASASpaceStationBlog.json'
 ```
-
-- Make sure to replace `~/path/to/dir/automated-feed-generator/` with the actual directory where your Python script (`automated_feed_generator.py`) is located. 
-
-- Add a separate line to your crontab file for each job that you want to schedule (typically one per configuration file).
+   - Make sure to replace `~/path/to/dir/automated-feed-generator/` with the actual directory where your Python script (`automated_feed_generator.py`) is located. 
+   - Add a separate line to your crontab file for each job that you want to schedule (typically one per configuration file).
 
 3. Alternatively, you might want to run this Python script for all of the configuration files in the `config` directory at once and add only one line to your crontab configuration. In that case, you can move the Python script into a Shell script, like this: 
 
@@ -318,7 +322,7 @@ for config_file in "$configs_dir"/*.json; do
 done
 ```
 
-- Just like above, make sure to replace `~/path/to/dir/automated-feed-generator` with the actual directory where your Python script (`automated_feed_generator.py`) is located. 
+   - Just like above, make sure to replace `~/path/to/dir/automated-feed-generator` with the actual directory where your Python script (`automated_feed_generator.py`) is located. 
 
 Then, you can add this script as a single cron job that will update all of the feeds at once. Here's an example of scheduling this script to run daily: 
 
