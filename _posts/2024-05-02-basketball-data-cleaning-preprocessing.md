@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Outlier or Caitlin Clark? A Data Science Project"
-subtitle: "Part 2 - Data Cleaning and Preprocessing"
+title: "Data Cleaning and Preprocessing"
+subtitle: "Outlier or Caitlin Clark? [Part 2]"
 tags:  [Python, data science, pandas, API]
 thumbnail-img: /assets/img/posts/2024-05-02-basketball-data-cleaning/clean.jpg
 share-title: "Outlier or Caitlin Clark? A Data Science Project: Part 1 - Project Setup and Data Acquisition" 

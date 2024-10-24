@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Outlier or Caitlin Clark? A Data Science Project"
-subtitle: "Part 1 - Project Setup and Data Acquisition"
+title: "Project Setup & Data Acquisition"
+subtitle: "Outlier or Caitlin Clark? [Part 1]"
 tags:  [Python, data science, pandas, API]
 thumbnail-img: /assets/img/posts/2024-04-11-basketball-data-acquisition/basketball.jpg
 share-title: "Outlier or Caitlin Clark? A Data Science Project: Part 1 - Project Setup and Data Acquisition" 
