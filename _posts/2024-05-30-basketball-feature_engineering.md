@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "Outlier or Caitlin Clark? A Data Science Project"
-subtitle: "Part 3 - Feature Engineering"
+title: "Feature Engineering"
+subtitle: "Outlier or Caitlin Clark? [Part 3]"
 tags:  [Python, data science, pandas, machine learning, scikit-learn, scipy]
 thumbnail-img: /assets/img/posts/2024-05-30-basketball-feature-engineering/engineer.jpg
-share-title: "Outlier or Caitlin Clark? A Data Science Project: Part 3 - Feature Engineering" 
+share-title: "Feature Engineering: Outlier or Caitlin Clark? [Part 3]" 
 share-description: Interested in engineering new features for your dataset? Learn how to derive new features, calculate additional metrics, and extract textual data in the latest installment of this data science series that is perfect for beginner data scientists and Python enthusiasts.
 share-img: /assets/img/posts/2024-05-30-basketball-feature-engineering/social.png
 readtime: true
@@ -13,7 +13,7 @@ gh-badge: [star, fork, follow]
 after-content: post-subscribe.html
 ---
 
-Today we'll walk through how to derive new features from existing columns by calculating additional metrics and extracting textual data. This is the third part of a series that walks through the entire process of a data science project - from initial steps like data acquisition, preprocessing, and cleaning to more advanced steps like feature engineering, machine learning, and creating visualizations. 
+Today we'll explore how to derive new features from existing columns by calculating additional metrics and extracting textual data. This is the third part of a series that walks through the entire process of a data science project - from initial steps like data acquisition, preprocessing, and cleaning to more advanced steps like feature engineering, machine learning, and creating visualizations. 
 
 As a reminder, the dataset we'll be using in this project contains individual basketball player statistics (such as total points scored and blocks made) for the 2023-2024 NCAA women's basketball season. Here's a brief description of each major step that we'll go through for this project: 
 
