@@ -142,6 +142,8 @@ For the web browser interface, you'll know the server shut down successfully whe
 
 It's not recommended to run the server without configuring some basic settings (such as a password and HTTPS), so we'll start customizing our JupyterLab installation in the next section. If you haven't done so already, be sure to shut down your JupyterLab server before proceeding. 
 
+<div id="mid-post-subscribe"></div>
+
 # Configuring JupyterLab
 JupyterLab's configuration is primarily stored in the `jupyter_lab_config.py` file under the `.jupyter` folder in your home directory, so we'll start by navigating to that folder. If you're using the terminal, then navigate back to your home directory and then into the `.jupyter` folder with `cd .jupyter`. Note that folders beginning with `.` are hidden by default, so you might want to run `ls -a` instead of just `ls` to make sure you can see the folder. If you are navigating folders via the UI, then you might want to check "Show hidden files" in the file browser. The rest of the commands in this section should be executed from inside the `.jupyter` folder unless otherwise noted. 
 **If you don't see the `.jupyter folder`, then run the `jupyter lab --generate-config` command first.**
