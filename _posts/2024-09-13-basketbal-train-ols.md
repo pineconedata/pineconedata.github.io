@@ -51,13 +51,10 @@ For today's machine learning sgement specifically, we'll want to import a few of
 
 ```python
 import pandas as pd
-import numpy as np
 import seaborn as sns
 from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split, cross_val_score
-from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
+from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
-from statsmodels.api import OLS
 ```
 
 ## Import Data
