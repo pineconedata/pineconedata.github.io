@@ -394,10 +394,10 @@ $$
 
 Where:
 
-- $y$ is the predicted value of the target variable
-- $x_1, x_2, ..., x_n$ are the input features 
-- $b_0$ is the y-intercept (the value of $y$ when all $x$ are zero)
-- $b_1, b_2, ..., b_n$ are the coefficients that represent the change in $y$ for a one-unit change in the corresponding $x$, holding all other $x$ constant
+- \\(y\\) is the predicted value of the target variable
+- \\(x_1, x_2, ..., x_n\\) are the input features 
+- \\(b_0\\) is the y-intercept (the value of \\(y\\) when all \\(x\\) are zero)
+- \\(b_1, b_2, ..., b_n\\) are the coefficients that represent the change in \\(y\\) for a one-unit change in the corresponding \\(x\\), holding all other \\(x\\) constant
 
 We can also rewrite this equation for today's project as: 
 
@@ -405,7 +405,7 @@ $$
 FantasyPoints = \beta_0 + \beta_1Height + \beta_2MinutesPlayed + ... + \beta_nPoints
 $$
 
-The goal of linear regression is to find the values of $b_0$ and $b_1, b_2, ..., b_n$ that minimize the difference between the predicted $FantasyPoints$ values and the actual $FantasyPoints$ values in our dataset.
+The goal of linear regression is to find the values of \\(b_0\\) and \\(b_1, b_2, ..., b_n\\) that minimize the difference between the predicted \\(FantasyPoints\\) values and the actual \\(FantasyPoints\\) values in our dataset.
 
 *Note: This is a slightly simplified explanation of the underlying mathematics. I highly recommend reading the [Wikipedia page](https://en.wikipedia.org/wiki/Linear_regression#Formulation), or other suitable sources, for a more nuanced understanding of the process.*
 
@@ -1878,7 +1878,7 @@ The model estimated some of the coefficients to be the same values as the known 
 | Estimated Coefficient | 1.6 | 1.3 | 0.3 | 
 | Original Coefficient | *Does Not Exist* | 3 | 2 |
 
-*Note: the fractions were rounded to one-tenth for readability but the values are actually $1 \frac{2}{3}$ instead of 1.6, $1 \frac{1}{3}$ instead of 1.3, $\frac{1}{3}$ instead of 0.3, etc.*
+*Note: the fractions were rounded to one-tenth for readability but the values are actually \\(1 \frac{2}{3}\\) instead of 1.6, \\(1 \frac{1}{3}\\) instead of 1.3, \\(\frac{1}{3}\\) instead of 0.3, etc.*
 
 This already seems pretty close, but we can take it a step further by revisiting the [definition of field goals](https://en.wikipedia.org/wiki/Field_goal_(basketball)). The `FIELD_GOALS_MADE` variable is actually the sum of `TWO_POINTS_MADE` and `THREE_POINTS_MADE` (but not `FREE_THROWS_MADE`). We can sanity check this in our dataset as well: 
 
