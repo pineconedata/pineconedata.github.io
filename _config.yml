@@ -23,9 +23,6 @@ navbar-links:
   Home: "/"
   About: "about"
   Topics: "tags"
-  # Resources:
-  #   - Beautiful Jekyll: "https://beautifuljekyll.com"
-  #   - Learn markdown: "https://www.markdowntutorial.com/"
   Contact: "workwithme"
 
 ################
@@ -158,7 +155,8 @@ site-css:
  - "/assets/css/custom-styles.css"
 
 # If you have common JavaScript files that should be included in every page, list them here
-#site-js:
+site-js:
+ - "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 #  - "/assets/js/custom-script.js"
 
 #################################
