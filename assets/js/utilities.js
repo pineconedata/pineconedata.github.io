@@ -29,7 +29,7 @@ function addMidPostSubscribe() {
   // Check if container exists, then define and append form
   if (midSubscribeContainer) {
     const formHTML = `
-            <form action="https://formspree.io/f/xayrvgjj" method="POST" class="form" id="mid-post-subscribe" style="padding: 1.25rem; background-color: #f9f9f9; border: 0.0625rem solid #ddd; border-radius: 0.5rem; box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1); margin: 1.25rem 0;">
+            <form action="https://formspree.io/f/xayrvgjj" method="POST" class="form" id="mid-post-subscribe-form" style="padding: 1.25rem; background-color: #f9f9f9; border: 0.0625rem solid #ddd; border-radius: 0.5rem; box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1); margin: 1.25rem 0;">
                 <p>I hope you're enjoying this article! Please subscribe if you'd like to be notified when I publish more content like this.</p>
                 <div style="display: flex; align-items: center;">
                     <input type="email" name="_replyto" class="form-control input-lg" placeholder="Email" title="Email" required="required" style="flex-grow: 1; margin-right: 1em;">
