@@ -492,6 +492,8 @@ example_dataframe.shape
 
 This is correct, so we can move on to the next step.
 
+<div id="mid-post-subscribe"></div>
+
 ### Write a Function to Format and Request Data
 We could stop here and use those two functions to make our API requests, but let's define one more function that will request and format the data in one step.
 

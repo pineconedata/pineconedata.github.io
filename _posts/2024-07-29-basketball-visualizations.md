@@ -776,6 +776,8 @@ plt.show()
 
 Looking at this chart, you can see why we reduced the number of numerical columns. Scatterplot matrices can get quite large with too many variables, so it can be helpful to focus on a few variables at first and individually analyze additional variables later. For example, the scatterplot matrix shows a dense linear relationship between `POINTS` and `FIELD_GOALS_MADE` and this matches the 0.97 correlation coefficient from the previous chart. Just like the correlation matrix, we can refer to back to this scatterplot matrix to quickly check the relationship between variables. 
 
+<div id="mid-post-subscribe"></div>
+
 # Generate Visualizations
 Now that we've explored the relationships between our variables a bit, let's create a few visualizations. We'll cover a scatterplot, stacked bar chart, heatmap, violin plot, joint plot, and a histogram.
 

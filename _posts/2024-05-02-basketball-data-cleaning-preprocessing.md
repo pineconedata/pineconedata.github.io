@@ -1093,6 +1093,8 @@ player_data[player_data['THREE_POINT_PERCENTAGE'].isna()][['PLAYER_NAME', 'Team'
 
 We can see that for all of the rows where THREE_POINT_PERCENTAGE is `None`, the three-point baskets made and attempted values are zero. If we manually calculated the three-point percentage for these rows, we would get `NaN` results instead of `None` due to the [division by zero](https://en.wikipedia.org/wiki/Division_by_zero). `NaN` and `None` are different values, but we've confirmed that there is no issue with the underlying data. The `None` values will automatically be replaced with `NaN`s later in this process, so we'll leave these values at `None` for now and move on to the `Position` field.
 
+<div id="mid-post-subscribe"></div>
+
 ### Handle Missing Positions
 Let's see how many rows are missing a Position value. 
 

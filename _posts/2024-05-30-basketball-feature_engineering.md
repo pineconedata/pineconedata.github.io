@@ -453,6 +453,8 @@ sorted(player_data['Conference'].unique())
 
 These values closely match the [list of conferences](https://en.wikipedia.org/wiki/NCAA_Division_I_women%27s_basketball_conference_tournaments) (with a few minor syntax differences such as "DI Independent" for independent schools) so this feature is complete. The rest of the features we'll be generating today will be based on straightforward calculations using existing columns.
 
+<div id="mid-post-subscribe"></div>
+
 ## Calculate per-Game Metrics
 The next set of columns we can calculate are per-game metrics. Each metric can be divided by the total number of games in the season to get the per-game average of that metric. For example, to determine the average points-per-game, we can divide the total points by the total games played. We could do this for almost every one of the numeric columns in this dataset, but let's focus on the number of minutes played, fouls, and the big five player statistics. 
 

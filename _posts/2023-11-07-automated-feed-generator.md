@@ -167,6 +167,8 @@ We'll go over the details of that function next, but the last item in the main f
         print(f'RSS feed generated and saved as "{file_path}".')
 ```
 
+<div id="mid-post-subscribe"></div>
+
 ## Scrape the Website
 Now we'll look at the details of the function that scrapes the website and generates the RSS feed. First, we'll want to parse the configuration options and configure the browser (which is the Firefox webdriver in this script). 
 
