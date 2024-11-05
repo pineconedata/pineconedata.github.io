@@ -7,10 +7,8 @@ thumbnail-img: /assets/img/posts/2024-04-11-basketball-data-acquisition/basketba
 share-title: "Project Setup and Data Acquisition: Outlier or Caitlin Clark? [Part 1]" 
 share-description: Interested in starting a new data science project? Learn the initial steps to start any data science project and how to acquire your datasets in this guide that is perfect for beginner data scientists and Python enthusiasts.
 share-img: /assets/img/posts/2024-04-11-basketball-data-acquisition/acquisition-social.png
-readtime: true
 gh-repo: pineconedata/ncaa-basketball-stats
 gh-badge: [star, fork, follow]
-after-content: post-subscribe.html
 ---
 
 Today we'll go over how to start a new data science project by acquiring the data (using APIs and a CSV export). This is the first part of a series that will walk through the entire process of a data science project - from initial steps like data acquisition, preprocessing, and cleaning to more advanced steps like feature engineering, machine learning, and creating visualizations. 
@@ -492,7 +490,7 @@ example_dataframe.shape
 
 This is correct, so we can move on to the next step.
 
-<div id="mid-post-subscribe"></div>
+<div class="email-subscription-container"></div>
 
 ### Write a Function to Format and Request Data
 We could stop here and use those two functions to make our API requests, but let's define one more function that will request and format the data in one step.
@@ -1015,4 +1013,6 @@ player_data.to_excel('player_data_raw.xlsx', index=False)
 # Wrap up 
 In this guide, we built a new dataset by acquiring and then combining the NCAA women's basketball player information dataset with the Yahoo Sports player statistics dataset. In the next part, we'll lay the groundwork for data analysis by cleaning and preprocessing the combined player data. In future articles, we'll expand upon this dataset by engineering a few new features, create meaningful visualizations, and train a machine learning model.
 
+
+<div class="email-subscription-container"></div>
 <div id="sources"></div>

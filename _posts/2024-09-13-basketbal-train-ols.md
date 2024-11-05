@@ -7,10 +7,8 @@ share-title: "Training a Linear Regression Model: Outlier or Caitlin Clark? [Par
 share-description: Interested in training a linear regression model on your own data? Learn how to select and train a linear regression machine learning model in the latest installment of this data science series that is perfect for beginner data scientists and Python enthusiasts.
 thumbnail-img: /assets/img/posts/2024-09-13-basketball-train-ols/thumbnail.jpg
 share-img: /assets/img/posts/2024-09-13-basketball-train-ols/social.png
-readtime: true
 gh-repo: pineconedata/ncaa-basketball-stats
 gh-badge: [star, fork, follow]
-after-content: post-subscribe.html
 ---
 
 Today we'll cover the basics of machine learning and examine how to train a linear regression machine learning model. This is the fifth part of a series that walks through the entire process of a data science project - from initial steps like data acquisition, preprocessing, and cleaning to more advanced steps like feature engineering, creating visualizations, and machine learning. 
@@ -522,7 +520,7 @@ It's worth noting that dropping this assumption leads to significantly more comp
 
 There is no direct statistical test for weak exogeneity, so we'll treat this as more of a logical check than a mathematical one. For our basketball player statistics model, weak exogeneity would mean that the statistics we're using as predictors (such as minutes played, field goals attempted, etc.) are not themselves influenced by the player's fantasy points or by unmeasured factors that also affect fantasy points. This makes logical sense based on our domain knowledge and understanding of how the data was collected, so we'll consider this assumption satisfied. 
 
-<div id="mid-post-subscribe"></div>
+<div class="email-subscription-container"></div>
 
 # Train the Model
 Now that we've covered the basics of machine learning and verified the suitability of our chosen model, we're ready to move on to the exciting part: training our linear regression model! This process involves several key steps that will help us build a robust and accurate predictive model for our basketball player statistics.
@@ -2403,4 +2401,5 @@ We can see that the model coefficients and the y-intercept are substantially dif
 # Wrap Up
 In this series, we've built a new dataset by acquiring and then combining the NCAA women's basketball player information dataset with the Yahoo Sports player statistics dataset. We laid the groundwork for data analysis by cleaning and preprocessing the combined player data, and then expanded upon it by engineering a few new features. In the previous part, we took a closer look at the underlying data in each column and created visualizations to identify the relationship between various parameters. In today's article, we learned how to select an appropriate machine learning model, properly split our data set into train and test subsets, and trained the model. In the next section, we'll move on to evaluating the model's performance.
 
+<div class="email-subscription-container"></div>
 <div id="sources"></div>

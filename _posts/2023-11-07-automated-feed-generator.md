@@ -10,7 +10,6 @@ share-img: /assets/img/posts/2023-11-07-automated-feed-generator/social.png
 share-description: Want to subscribe to updates from your favourite website but they don’t publish an RSS feed? Learn how to automatically generate an RSS feed with Python, Selenium, and FeedGen. 
 tags: [Python, Selenium, RSS, web scraping, automation]
 thumbnail-img: /assets/img/rss-icon-96.png
-after-content: post-subscribe.html
 ---
 
 RSS feeds are a fantastic tool for reading the latest content from your favorite websites without cluttering up your email inbox or manually visiting each website. However, not every website owner publishes an official RSS feed anymore, making it difficult to access up-to-date content in one place. That's why today we'll be digging into how to generate your own personalized RSS feed using Python and web scraping. 
@@ -167,7 +166,7 @@ We'll go over the details of that function next, but the last item in the main f
         print(f'RSS feed generated and saved as "{file_path}".')
 ```
 
-<div id="mid-post-subscribe"></div>
+<div class="email-subscription-container"></div>
 
 ## Scrape the Website
 Now we'll look at the details of the function that scrapes the website and generates the RSS feed. First, we'll want to parse the configuration options and configure the browser (which is the Firefox webdriver in this script). 
@@ -348,4 +347,6 @@ Before we wrap up, there are a few limitations to this Python process. There are
 # Wrap up
 We've finished thoroughly going over how to write, run, and schedule a Python script that will scrape a website and generate an RSS feed. If you found this information helpful, please give it a like, share, or fork the [GitHub repo](https://github.com/pineconedata/automated-feed-generator). If you have any questions or suggestions, feel free to [contact me](/workwithme) or open a pull request! 
 
+
+<div class="email-subscription-container"></div>
 <div id="sources"></div>

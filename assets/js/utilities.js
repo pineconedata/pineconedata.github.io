@@ -22,30 +22,39 @@ function modifyPostLinks() {
 };
 addToOnload(modifyPostLinks);
 
-// Function to add the mid-post subscribe form, if applicable
-function addMidPostSubscribe() {
-  var midSubscribeContainer = document.getElementById('mid-post-subscribe');
-
+// Function to add the email subscription form, if applicable
+function addEmailSubscriptionForm(subscribeContainer) {
   // Check if container exists, then define and append form
-  if (midSubscribeContainer) {
+  if (subscribeContainer) {
     const formHTML = `
-            <form action="https://formspree.io/f/xayrvgjj" method="POST" class="form" id="mid-post-subscribe-form" style="padding: 1.25rem; background-color: #f9f9f9; border: 0.0625rem solid #ddd; border-radius: 0.5rem; box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1); margin: 1.25rem 0;">
-                <p>I hope you're enjoying this article! Please subscribe if you'd like to be notified when I publish more content like this.</p>
+            <form action="https://formspree.io/f/xayrvgjj" method="POST" class="form" id="email-subscription-form">
+                <p>Enjoying this article? Subscribe to be notified when I publish new content like this!</p>
                 <input type="text" name="_gotcha" style="display:none">
                 <input type="hidden" name="pageTitle" id="formPageTitle">
                 <input type="hidden" name="pageUrl" id="formPageUrl">
                 <input type="hidden" name="_next" value="?message=Thank you for subscribing!">
-                <div style="display: flex; align-items: center;">
-                    <input type="email" name="_replyto" class="form-control input-lg" placeholder="Email" title="Email" required="required" style="flex-grow: 1; margin-right: 1em;">
+                <div>
+                    <input type="email" name="_replyto" class="form-control input-lg" placeholder="Email" title="Email" required="required">
                     <button type="submit" class="btn btn-lg btn-primary">Subscribe</button>
                 </div>
             </form>
         `;
-    midSubscribeContainer.innerHTML += formHTML; 
+      
+    // Append the form to the container
+    subscribeContainer.innerHTML += formHTML; 
 
     // Set the hidden inputs to the document title and current URL
     document.getElementById('formPageTitle').value = document.title;
     document.getElementById('formPageUrl').value = window.location.href;
   }
 };
-addToOnload(addMidPostSubscribe);
+
+// Function to find all email subscription containers and add the subscription form to each
+function populateSubscriptionForms() {
+  var subscribeContainers = document.querySelectorAll('.email-subscription-container');
+  
+  subscribeContainers.forEach(function(subscribeContainer) {
+    addEmailSubscriptionForm(subscribeContainer);
+  });
+}
+addToOnload(populateSubscriptionForms);

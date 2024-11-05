@@ -7,10 +7,8 @@ thumbnail-img: /assets/img/posts/2024-05-30-basketball-feature-engineering/engin
 share-title: "Feature Engineering: Outlier or Caitlin Clark? [Part 3]" 
 share-description: Interested in engineering new features for your dataset? Learn how to derive new features, calculate additional metrics, and extract textual data in the latest installment of this data science series that is perfect for beginner data scientists and Python enthusiasts.
 share-img: /assets/img/posts/2024-05-30-basketball-feature-engineering/social.png
-readtime: true
 gh-repo: pineconedata/ncaa-basketball-stats
 gh-badge: [star, fork, follow]
-after-content: post-subscribe.html
 ---
 
 Today we'll explore how to derive new features from existing columns by calculating additional metrics and extracting textual data. This is the third part of a series that walks through the entire process of a data science project - from initial steps like data acquisition, preprocessing, and cleaning to more advanced steps like feature engineering, machine learning, and creating visualizations. 
@@ -453,7 +451,7 @@ sorted(player_data['Conference'].unique())
 
 These values closely match the [list of conferences](https://en.wikipedia.org/wiki/NCAA_Division_I_women%27s_basketball_conference_tournaments) (with a few minor syntax differences such as "DI Independent" for independent schools) so this feature is complete. The rest of the features we'll be generating today will be based on straightforward calculations using existing columns.
 
-<div id="mid-post-subscribe"></div>
+<div class="email-subscription-container"></div>
 
 ## Calculate per-Game Metrics
 The next set of columns we can calculate are per-game metrics. Each metric can be divided by the total number of games in the season to get the per-game average of that metric. For example, to determine the average points-per-game, we can divide the total points by the total games played. We could do this for almost every one of the numeric columns in this dataset, but let's focus on the number of minutes played, fouls, and the big five player statistics. 
@@ -787,4 +785,5 @@ player_data.to_excel('player_data_engineered.xlsx', index=False)
 In this series, we've built a new dataset by acquiring and then combining the NCAA women's basketball player information dataset with the Yahoo Sports player statistics dataset. We laid the groundwork for data analysis by cleaning and preprocessing the combined player data, and then expanded upon it by engineering a few new features. In the next part, we'll take a closer look at the underlying data in each column and create visualizations to identify the relationship between various parameters. After that, we'll move on to training a machine learning model.
 
 
+<div class="email-subscription-container"></div>
 <div id="sources"></div>

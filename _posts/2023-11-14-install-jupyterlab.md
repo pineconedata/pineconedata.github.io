@@ -10,7 +10,6 @@ share-img: /assets/img/posts/2023-11-14-installing-jupyterlab/installing-jupyter
 share-description: Interested in self-hosting JupyterLab on Debian Linux? Discover the power of JupyterLab and Jupyter Notebooks in this comprehensive guide that is perfect for data scientists and Python enthusiasts.
 tags: [Python, Jupyter, Linux, data science, server, self-host]
 thumbnail-img: /assets/img/jupyterlab_icon.jpeg
-after-content: post-subscribe.html
 ---
 
 Today we'll be covering how to self-host JupyterLab on a Linux machine for a single user. If you're not familiar with [Project Jupyter](https://jupyter.org/), I highly recommend that you check it out, especially if you work in data science or with Python. Project Jupyter is migrating the classic [Jupyter Notebooks](https://jupyterlab.readthedocs.io/en/stable/user/notebook.html#notebook) into the new [JupyterLab](https://jupyterlab.readthedocs.io/en/stable/getting_started/overview.html), so we'll be installing and hosting JupyterLab today. JupyterLab is a fantastic tool that includes Jupyter Notebooks, terminals, and text editors, as well as a library of extensions to customize your experience. 
@@ -142,7 +141,7 @@ For the web browser interface, you'll know the server shut down successfully whe
 
 It's not recommended to run the server without configuring some basic settings (such as a password and HTTPS), so we'll start customizing our JupyterLab installation in the next section. If you haven't done so already, be sure to shut down your JupyterLab server before proceeding. 
 
-<div id="mid-post-subscribe"></div>
+<div class="email-subscription-container"></div>
 
 # Configuring JupyterLab
 JupyterLab's configuration is primarily stored in the `jupyter_lab_config.py` file under the `.jupyter` folder in your home directory, so we'll start by navigating to that folder. If you're using the terminal, then navigate back to your home directory and then into the `.jupyter` folder with `cd .jupyter`. Note that folders beginning with `.` are hidden by default, so you might want to run `ls -a` instead of just `ls` to make sure you can see the folder. If you are navigating folders via the UI, then you might want to check "Show hidden files" in the file browser. The rest of the commands in this section should be executed from inside the `.jupyter` folder unless otherwise noted. 
@@ -380,4 +379,5 @@ Congratulations! Your new JupyterLab server is ready to go and you are now self-
 - How to streamline your workflow with Jupyter's magic commands
 - And more!
 
+<div class="email-subscription-container"></div>
 <div id="sources"></div>

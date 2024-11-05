@@ -7,10 +7,8 @@ thumbnail-img: /assets/img/posts/2024-05-02-basketball-data-cleaning/clean.jpg
 share-title: "Data Cleaning and Preprocessing: Outlier or Caitlin Clark? [Part 2]" 
 share-description: Interested in the fundamental steps of any data science project? Learn how to thoroughly clean and preprocess your datasets in this comprehensive guide that is perfect for beginner data scientists and Python enthusiasts.
 share-img: /assets/img/posts/2024-05-02-basketball-data-cleaning/data-cleaning-social.png
-readtime: true
 gh-repo: pineconedata/ncaa-basketball-stats
 gh-badge: [star, fork, follow]
-after-content: post-subscribe.html
 ---
 
 Today we'll walk through how to clean and preprocess a dataset to ensure it is ready for analysis. This is the second part of a series that walks through the entire process of a data science project - from initial steps like data acquisition, preprocessing, and cleaning to more advanced steps like feature engineering, machine learning, and creating visualizations. 
@@ -1093,7 +1091,7 @@ player_data[player_data['THREE_POINT_PERCENTAGE'].isna()][['PLAYER_NAME', 'Team'
 
 We can see that for all of the rows where THREE_POINT_PERCENTAGE is `None`, the three-point baskets made and attempted values are zero. If we manually calculated the three-point percentage for these rows, we would get `NaN` results instead of `None` due to the [division by zero](https://en.wikipedia.org/wiki/Division_by_zero). `NaN` and `None` are different values, but we've confirmed that there is no issue with the underlying data. The `None` values will automatically be replaced with `NaN`s later in this process, so we'll leave these values at `None` for now and move on to the `Position` field.
 
-<div id="mid-post-subscribe"></div>
+<div class="email-subscription-container"></div>
 
 ### Handle Missing Positions
 Let's see how many rows are missing a Position value. 
@@ -1922,4 +1920,6 @@ player_data.to_excel('player_data_clean.xlsx', index=False)
 # Wrap up
 In today's guide, we laid the groundwork for data analysis by cleaning and preprocessing the combined player data. In the next article, we'll expand upon this dataset by engineering a few new features and training a machine learning model. In the final installment of this series, we'll identify relationships between various parameters and create meaningful visualizations. 
 
+
+<div class="email-subscription-container"></div>
 <div id="sources"></div>
