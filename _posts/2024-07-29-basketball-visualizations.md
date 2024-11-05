@@ -10,7 +10,6 @@ share-img: /assets/img/posts/2024-07-29-basketball-visualizations/social.png
 readtime: true
 gh-repo: pineconedata/ncaa-basketball-stats
 gh-badge: [star, fork, follow]
-after-content: post-subscribe.html
 ---
 
 Today we'll demonstrate how to determine the relationship between metrics and generate visualizations. This is the fourth part of a series that walks through the entire process of a data science project - from initial steps like data acquisition, preprocessing, and cleaning to more advanced steps like feature engineering, machine learning, and creating visualizations. 

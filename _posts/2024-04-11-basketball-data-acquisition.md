@@ -10,7 +10,6 @@ share-img: /assets/img/posts/2024-04-11-basketball-data-acquisition/acquisition-
 readtime: true
 gh-repo: pineconedata/ncaa-basketball-stats
 gh-badge: [star, fork, follow]
-after-content: post-subscribe.html
 ---
 
 Today we'll go over how to start a new data science project by acquiring the data (using APIs and a CSV export). This is the first part of a series that will walk through the entire process of a data science project - from initial steps like data acquisition, preprocessing, and cleaning to more advanced steps like feature engineering, machine learning, and creating visualizations. 
