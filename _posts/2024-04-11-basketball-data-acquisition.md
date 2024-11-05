@@ -7,7 +7,6 @@ thumbnail-img: /assets/img/posts/2024-04-11-basketball-data-acquisition/basketba
 share-title: "Project Setup and Data Acquisition: Outlier or Caitlin Clark? [Part 1]" 
 share-description: Interested in starting a new data science project? Learn the initial steps to start any data science project and how to acquire your datasets in this guide that is perfect for beginner data scientists and Python enthusiasts.
 share-img: /assets/img/posts/2024-04-11-basketball-data-acquisition/acquisition-social.png
-readtime: true
 gh-repo: pineconedata/ncaa-basketball-stats
 gh-badge: [star, fork, follow]
 ---

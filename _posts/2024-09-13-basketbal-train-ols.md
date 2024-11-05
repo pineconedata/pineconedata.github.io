@@ -7,7 +7,6 @@ share-title: "Training a Linear Regression Model: Outlier or Caitlin Clark? [Par
 share-description: Interested in training a linear regression model on your own data? Learn how to select and train a linear regression machine learning model in the latest installment of this data science series that is perfect for beginner data scientists and Python enthusiasts.
 thumbnail-img: /assets/img/posts/2024-09-13-basketball-train-ols/thumbnail.jpg
 share-img: /assets/img/posts/2024-09-13-basketball-train-ols/social.png
-readtime: true
 gh-repo: pineconedata/ncaa-basketball-stats
 gh-badge: [star, fork, follow]
 ---

@@ -7,7 +7,6 @@ thumbnail-img: /assets/img/posts/2024-05-02-basketball-data-cleaning/clean.jpg
 share-title: "Data Cleaning and Preprocessing: Outlier or Caitlin Clark? [Part 2]" 
 share-description: Interested in the fundamental steps of any data science project? Learn how to thoroughly clean and preprocess your datasets in this comprehensive guide that is perfect for beginner data scientists and Python enthusiasts.
 share-img: /assets/img/posts/2024-05-02-basketball-data-cleaning/data-cleaning-social.png
-readtime: true
 gh-repo: pineconedata/ncaa-basketball-stats
 gh-badge: [star, fork, follow]
 ---

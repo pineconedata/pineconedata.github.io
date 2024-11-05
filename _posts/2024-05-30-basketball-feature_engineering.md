@@ -7,7 +7,6 @@ thumbnail-img: /assets/img/posts/2024-05-30-basketball-feature-engineering/engin
 share-title: "Feature Engineering: Outlier or Caitlin Clark? [Part 3]" 
 share-description: Interested in engineering new features for your dataset? Learn how to derive new features, calculate additional metrics, and extract textual data in the latest installment of this data science series that is perfect for beginner data scientists and Python enthusiasts.
 share-img: /assets/img/posts/2024-05-30-basketball-feature-engineering/social.png
-readtime: true
 gh-repo: pineconedata/ncaa-basketball-stats
 gh-badge: [star, fork, follow]
 ---

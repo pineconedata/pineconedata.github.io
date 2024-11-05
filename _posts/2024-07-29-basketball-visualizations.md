@@ -7,7 +7,6 @@ thumbnail-img: /assets/img/posts/2024-07-29-basketball-visualizations/histogram.
 share-title: "Data Visualizations and Feature Selection: Outlier or Caitlin Clark? [Part 4]" 
 share-description: Interested in creating charts and graphs for your data? Learn how to determine the relationship between metrics, select meaningful charts, and generate helpful graphs in the latest installment of this data science series that is perfect for beginner data scientists and Python enthusiasts.
 share-img: /assets/img/posts/2024-07-29-basketball-visualizations/social.png
-readtime: true
 gh-repo: pineconedata/ncaa-basketball-stats
 gh-badge: [star, fork, follow]
 ---
