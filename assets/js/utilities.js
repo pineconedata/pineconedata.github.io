@@ -22,15 +22,15 @@ function modifyPostLinks() {
 };
 addToOnload(modifyPostLinks);
 
-// Function to add the mid-post subscribe form, if applicable
-function addMidPostSubscribe() {
-  var midSubscribeContainer = document.getElementById('mid-post-subscribe');
+// Function to add the email subscription form, if applicable
+function addEmailSubscriptionForm() {
+  var subscribeContainer = document.getElementById('mid-post-subscribe');
 
   // Check if container exists, then define and append form
-  if (midSubscribeContainer) {
+  if (subscribeContainer) {
     const formHTML = `
-            <form action="https://formspree.io/f/xayrvgjj" method="POST" class="form" id="mid-post-subscribe-form" style="padding: 1.25rem; background-color: #decaff; border: 0.0625rem solid #ddd; border-radius: 0.5rem; box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1); margin: 1.25rem 0;">
-                <p>I hope you're enjoying this article! Please subscribe if you'd like to be notified when I publish more content like this.</p>
+            <form action="https://formspree.io/f/xayrvgjj" method="POST" class="form" id="email-subscription-form" style="padding: 1.25rem; background-color: #decaff; border: 0.0625rem solid #ddd; border-radius: 0.5rem; box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1); margin: 1.25rem 0;">
+                <p>Enjoying this article? Subscribe to be notified when I publish new content like this!</p>
                 <input type="text" name="_gotcha" style="display:none">
                 <input type="hidden" name="pageTitle" id="formPageTitle">
                 <input type="hidden" name="pageUrl" id="formPageUrl">
@@ -41,11 +41,11 @@ function addMidPostSubscribe() {
                 </div>
             </form>
         `;
-    midSubscribeContainer.innerHTML += formHTML; 
+    subscribeContainer.innerHTML += formHTML; 
 
     // Set the hidden inputs to the document title and current URL
     document.getElementById('formPageTitle').value = document.title;
     document.getElementById('formPageUrl').value = window.location.href;
   }
 };
-addToOnload(addMidPostSubscribe);
+addToOnload(addEmailSubscriptionForm);
