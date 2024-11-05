@@ -3,7 +3,7 @@ layout: page
 title: About
 ---
 
-Hi! I am a data scientist and physicist with 8+ years of experience in the field. Pinecone Data is my company for freelancing and contract-based work. If you're interested in working with me, please [get in touch](/contact)!
+Hi! I am a data scientist and physicist with 8+ years of experience in the field. Pinecone Data is my company for freelancing and contract-based work. If you're interested in working with me, please [get in touch](/workwithme)!
 
 ## Career Highlights
 
