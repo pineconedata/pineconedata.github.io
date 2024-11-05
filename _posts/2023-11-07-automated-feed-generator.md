@@ -167,7 +167,7 @@ We'll go over the details of that function next, but the last item in the main f
         print(f'RSS feed generated and saved as "{file_path}".')
 ```
 
-<div id="mid-post-subscribe"></div>
+<div class="email-subscription-container"></div>
 
 ## Scrape the Website
 Now we'll look at the details of the function that scrapes the website and generates the RSS feed. First, we'll want to parse the configuration options and configure the browser (which is the Firefox webdriver in this script). 
@@ -348,4 +348,6 @@ Before we wrap up, there are a few limitations to this Python process. There are
 # Wrap up
 We've finished thoroughly going over how to write, run, and schedule a Python script that will scrape a website and generate an RSS feed. If you found this information helpful, please give it a like, share, or fork the [GitHub repo](https://github.com/pineconedata/automated-feed-generator). If you have any questions or suggestions, feel free to [contact me](/workwithme) or open a pull request! 
 
+
+<div class="email-subscription-container"></div>
 <div id="sources"></div>

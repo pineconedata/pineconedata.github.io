@@ -522,7 +522,7 @@ It's worth noting that dropping this assumption leads to significantly more comp
 
 There is no direct statistical test for weak exogeneity, so we'll treat this as more of a logical check than a mathematical one. For our basketball player statistics model, weak exogeneity would mean that the statistics we're using as predictors (such as minutes played, field goals attempted, etc.) are not themselves influenced by the player's fantasy points or by unmeasured factors that also affect fantasy points. This makes logical sense based on our domain knowledge and understanding of how the data was collected, so we'll consider this assumption satisfied. 
 
-<div id="mid-post-subscribe"></div>
+<div class="email-subscription-container"></div>
 
 # Train the Model
 Now that we've covered the basics of machine learning and verified the suitability of our chosen model, we're ready to move on to the exciting part: training our linear regression model! This process involves several key steps that will help us build a robust and accurate predictive model for our basketball player statistics.
@@ -2403,4 +2403,5 @@ We can see that the model coefficients and the y-intercept are substantially dif
 # Wrap Up
 In this series, we've built a new dataset by acquiring and then combining the NCAA women's basketball player information dataset with the Yahoo Sports player statistics dataset. We laid the groundwork for data analysis by cleaning and preprocessing the combined player data, and then expanded upon it by engineering a few new features. In the previous part, we took a closer look at the underlying data in each column and created visualizations to identify the relationship between various parameters. In today's article, we learned how to select an appropriate machine learning model, properly split our data set into train and test subsets, and trained the model. In the next section, we'll move on to evaluating the model's performance.
 
+<div class="email-subscription-container"></div>
 <div id="sources"></div>

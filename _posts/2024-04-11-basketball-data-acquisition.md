@@ -492,7 +492,7 @@ example_dataframe.shape
 
 This is correct, so we can move on to the next step.
 
-<div id="mid-post-subscribe"></div>
+<div class="email-subscription-container"></div>
 
 ### Write a Function to Format and Request Data
 We could stop here and use those two functions to make our API requests, but let's define one more function that will request and format the data in one step.
@@ -1015,4 +1015,6 @@ player_data.to_excel('player_data_raw.xlsx', index=False)
 # Wrap up 
 In this guide, we built a new dataset by acquiring and then combining the NCAA women's basketball player information dataset with the Yahoo Sports player statistics dataset. In the next part, we'll lay the groundwork for data analysis by cleaning and preprocessing the combined player data. In future articles, we'll expand upon this dataset by engineering a few new features, create meaningful visualizations, and train a machine learning model.
 
+
+<div class="email-subscription-container"></div>
 <div id="sources"></div>

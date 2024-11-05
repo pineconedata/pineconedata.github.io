@@ -776,7 +776,7 @@ plt.show()
 
 Looking at this chart, you can see why we reduced the number of numerical columns. Scatterplot matrices can get quite large with too many variables, so it can be helpful to focus on a few variables at first and individually analyze additional variables later. For example, the scatterplot matrix shows a dense linear relationship between `POINTS` and `FIELD_GOALS_MADE` and this matches the 0.97 correlation coefficient from the previous chart. Just like the correlation matrix, we can refer to back to this scatterplot matrix to quickly check the relationship between variables. 
 
-<div id="mid-post-subscribe"></div>
+<div class="email-subscription-container"></div>
 
 # Generate Visualizations
 Now that we've explored the relationships between our variables a bit, let's create a few visualizations. We'll cover a scatterplot, stacked bar chart, heatmap, violin plot, joint plot, and a histogram.
@@ -1315,4 +1315,5 @@ Today's visualizations were primarily an exploration of various chart types and 
 To summarize this project so far, we've built a new dataset by acquiring and then combining the NCAA women's basketball player information dataset with the Yahoo Sports player statistics dataset. We laid the groundwork for data analysis by cleaning and preprocessing the combined player data, and then expanded upon it by engineering a few new features. In this part, we took a closer look at the underlying data in each column and created visualizations to identify the relationship between various parameters. In the next article, we'll select, train, and evaluate a machine learning model.
 
 
+<div class="email-subscription-container"></div>
 <div id="sources"></div>

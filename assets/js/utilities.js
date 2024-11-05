@@ -51,7 +51,7 @@ function addEmailSubscriptionForm(subscribeContainer) {
 
 // Function to find all email subscription containers and add the subscription form to each
 function populateSubscriptionForms() {
-  var subscribeContainers = document.querySelectorAll('#mid-post-subscribe');
+  var subscribeContainers = document.querySelectorAll('.email-subscription-container');
   
   subscribeContainers.forEach(function(subscribeContainer) {
     addEmailSubscriptionForm(subscribeContainer);
