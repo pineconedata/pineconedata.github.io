@@ -23,9 +23,7 @@ function modifyPostLinks() {
 addToOnload(modifyPostLinks);
 
 // Function to add the email subscription form, if applicable
-function addEmailSubscriptionForm() {
-  var subscribeContainer = document.getElementById('mid-post-subscribe');
-
+function addEmailSubscriptionForm(subscribeContainer) {
   // Check if container exists, then define and append form
   if (subscribeContainer) {
     const formHTML = `
@@ -41,6 +39,8 @@ function addEmailSubscriptionForm() {
                 </div>
             </form>
         `;
+      
+    // Append the form to the container
     subscribeContainer.innerHTML += formHTML; 
 
     // Set the hidden inputs to the document title and current URL
@@ -48,4 +48,13 @@ function addEmailSubscriptionForm() {
     document.getElementById('formPageUrl').value = window.location.href;
   }
 };
-addToOnload(addEmailSubscriptionForm);
+
+// Function to find all email subscription containers and add the subscription form to each
+function populateSubscriptionForms() {
+  var subscribeContainers = document.querySelectorAll('#mid-post-subscribe');
+  
+  subscribeContainers.forEach(function(subscribeContainer) {
+    addEmailSubscriptionForm(subscribeContainer);
+  });
+}
+addToOnload(populateSubscriptionForms);
