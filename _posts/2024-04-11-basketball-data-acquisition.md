@@ -218,7 +218,7 @@ player_info.to_excel('player_info.xlsx', index=False)
 # Acquiring Player Statistics Data
 As mentioned before, the player statistics data can be obtained by making API requests to the [Yahoo Sports API](https://sports.yahoo.com/ncaaw/stats/individual/?selectedTable=0&leagueStructure=ncaaw.struct.div.1&sortStatId=FREE_THROWS_MADE). There are a variety of API endpoints available for sports data, but today we'll be using the Yahoo Sports API since it is free and contains all of the player statistics in one convenient result. 
 
-### Explore the API Endpoint
+## Explore the API Endpoint
 You can view this data in a table format on Yahoo's website, which can help identify particular columns (such as "G" stands for "Games Played"). 
 ![Yahoo Sports basketball statistics webpage](/assets/img/posts/2024-04-11-basketball-data-acquisition/ncaa_wbb_player_stats_page.png "Yahoo Sports basketball statistics webpage")
 
@@ -226,7 +226,7 @@ Tools such as [Postman](https://www.postman.com/) can be extremely helpful for f
 
 ![Postman API request with code sidebar](/assets/img/posts/2024-04-11-basketball-data-acquisition/ncaa_wbb_player_stats_postman.png "Postman API request with code sidebar")
 
-### Write a Function to Request Data
+## Write a Function to Request Data
 We can use the Python code copied from Postman as a starting point. At a high level, this code will make a GET request to the Yahoo Sports API endpoint with the parameters specified in the query string, using the given payload and headers. The response data is then printed. 
 
 ```python
@@ -348,7 +348,7 @@ example_response['data']['leagues'][0]['leaders'][0]
 ```
 This is correctly showing Caitlin Clark as the top-scoring player of the 2023-2024 season, so we're ready to move on to the next step. 
 
-### Write a Function to Format Data
+## Write a Function to Format Data
 Now that the API request function is working, let's define another function. This one will extract the relevant data and load it into a dataframe. 
 
 
@@ -467,7 +467,7 @@ This is correct, so we can move on to the next step.
 
 <div class="email-subscription-container"></div>
 
-### Write a Function to Format and Request Data
+## Write a Function to Format and Request Data
 We could stop here and use those two functions to make our API requests, but let's define one more function that will request and format the data in one step.
 
 
@@ -492,7 +492,7 @@ def get_and_format_data_for_stat(stat_name, season='2023', league='ncaaw'):
 
 This function combines the other two function calls and passes through the same parameters. In summary, it retrieves data for the top players for a specified statistic (`stat_name`), season (`season`), and league using the `get_data_for_stat()` function and then formats the data into a pandas DataFrame using the `format_response_data()` function. Since we'll be sending multiple requests to the API, this function streamlines the entire API request and formatting into one command and simplifies the process of generating the player statistics dataset. 
 
-### Request the Data for each Statistic
+## Request and Format Statistics Data
 Now we're ready to request data for each statistic. For this project, we'll pull the list of top players by five statistics: points, assists, rebounds, blocks, and steals. Here's what that looks like: 
 
 
@@ -507,7 +507,7 @@ steals_top_players = get_and_format_data_for_stat('STEALS')
 
 We now have five dataframes and each one contains the 500 players who scored the best in the given statistic. 
 
-### Combine each statistic into one dataset
+## Combine Statistics Data
 Since these dataframes contain the same columns with different data rows, we'll combine all five into one single dataframe. The same player could show up in each dataframe (such as Caitlin Clark being a top player in both points and assists), so we'll drop any duplicate rows and reset the index in this step as well. 
 
 
