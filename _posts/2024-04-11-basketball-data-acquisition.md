@@ -227,7 +227,7 @@ Tools such as [Postman](https://www.postman.com/) can be extremely helpful for f
 ![Postman API request with code sidebar](/assets/img/posts/2024-04-11-basketball-data-acquisition/ncaa_wbb_player_stats_postman.png "Postman API request with code sidebar")
 
 ### Write a Function to Request Data
-Here's an example of making an API request to the Yahoo Sports data using the Python `requests` library (copied from Postman). 
+We can use the Python code copied from Postman as a starting point. At a high level, this code will make a GET request to the Yahoo Sports API endpoint with the parameters specified in the query string, using the given payload and headers. The response data is then printed. 
 
 ```python
 import requests
@@ -242,7 +242,11 @@ response = requests.request("GET", url, headers=headers, data=payload)
 print(response.text)
 ```
 
-Depending on your use case, you might not need to make any modifications to this code. However, for this project, we'll want to request data for multiple statistics, so we will make a few changes to improve usability. First, we'll separate all of the query string parameters into a dictionary to be passed into the `requests.get()` function. Then, we'll put the request into a convenience function with basic error handling. 
+Depending on your use case, you might not need to make any modifications to this code. However, for this project, we'll want to request data for multiple statistics (rather than just `FREE_THROWS_MADE`), so we will make a few changes to improve usability: 
+1. Separate all of the query string parameters into a dictionary that will be passed into the `requests.get()` function 
+2. Add function parameters for the statistic name, season, league, and count
+3. Add basic error handling for request exceptions
+4. Add a docstring 
 
 
 ```python
@@ -251,7 +255,7 @@ def get_data_for_stat(stat_name, season='2023', league='ncaaw', count='500'):
     Retrieve basketball player statistics for a specified statistical category (stat_name) for a given season and league.
 
     Parameters:
-    - stat_name (str): Specifies the statistical category for which data is requested.
+    - stat_name (str): Specifies the name of the statistic to pull (points scored, field goals made, etc.).
     - season (str): Specifies the season for which data is requested (default is '2023').
     - league (str): Specifies the league for which data is requested (default is 'ncaaw' for NCAA Women's Basketball).
     - count (str): Specifies the maximum number of data entries to retrieve (default is '500').
@@ -285,26 +289,9 @@ def get_data_for_stat(stat_name, season='2023', league='ncaaw', count='500'):
         return None
 ```
 
-This `get_data_for_stat()` function retrieves basketball player statistics for the top players in a specified statistical category (`stat_name`) for a given season (`2023`) and league (`ncaaw`). At a high level, here's an overview of how it works: 
+This `get_data_for_stat()` function retrieves basketball player statistics for the top players in a specified statistical category (`stat_name`) for a given season (`2023`) and league (`ncaaw`). At a high level, the function begins by setting the base URL for the Yahoo Sports API endpoint for basketball season statistics in the `url` variable. Next, it uses the `params` variable to store various query string parameters for the API request (such as language, region, time zone, etc.).
 
-1. Function Arguments
-   - stat_name - specifies the statistic to pull the top players (points scored, field goals made, etc.)
-   - season - specifies the starting year of the desired season (set to '2023' by default to get data for the 2023-2024 season)
-   - league - specifies the league (set to 'ncaaw' for NCAA Women's Basketball by default)
-   - count - specifies the maximum number of players to retrieve (set to '500' by default)
-
-2. API Endpoint and Parameters
-   - The function begins by setting the base URL for the Yahoo Sports API endpoint for basketball season statistics in the `url` variable.
-   - Next, the function uses the `params` variable to store various query string parameters for the API request (such as language, region, time zone, etc.)
-
-3. Making the API Request
-   - The function uses the `requests.get()` method to send a GET request to the API endpoint with the specified parameters.
-   - It checks the response status code for errors using `response.raise_for_status()`. If the response indicates an error (4xx or 5xx status code), it raises an exception.
-   - If the request is successful, the function returns the JSON data obtained from the API response.
-
-4. Error Handling
-   - The function includes error handling using a try-except block to catch any exceptions that may occur during the API request process.
-   - If an exception occurs (e.g., network issues, invalid response), an error message is printed, and the function returns `None`.
+The function then uses the `requests.get()` method to send a GET request to the API endpoint with the specified parameters. It checks the response status code for errors using `response.raise_for_status()`. If the response indicates an error (4xx or 5xx status code), it raises an exception. If the request is successful, the function returns the JSON data obtained from the API response.
 
 You could further modify this code to fit your needs and add additional parameters to the function arguments (such as language or region), but we'll use this function to retrieve the top players for a given statistical category. Here's an example of retrieving the top 500 players (the default `count` is set to `500` in the function) by total points scored during the season: 
 
@@ -313,9 +300,9 @@ You could further modify this code to fit your needs and add additional paramete
 example_response = get_data_for_stat('POINTS')
 ```
 
-Since the function returns data in `json` format, we can take a look at the structure and identify a few values of interest.
+Since the function returns data in `json` format, we can take a look at the structure of the response data (using `example_response['data']`) and identify a few values of interest.
 - `example_response['data']['statTypes']` stores the syntax and sort order for all of the available statistics
-- `example_response['data']['leagues'][0]['leaders']` stores the result set for our request (the 'leaders' or top players for the given request)
+- `example_response['data']['leagues'][0]['leaders']` stores the result set for our request (where 'leaders' refers to the top players for the given request)
 
 Let's print the available statistic types as well as the first result for the top player by points scored. 
 
@@ -402,21 +389,9 @@ def format_response_data(response_data):
         return None
 ```
 
-This `format_response_data()` function extracts the player statistics from the Yahoo Sports API response data (`response_data`) and formats it into a pandas DataFrame. Here's a summary of how it works: 
+This `format_response_data()` function will take the given `response_data` (from the Yahoo Sports API) and formats it into a pandas DataFrame. At a high level, the function begins by checking if the response_data is empty. If it is, the function returns `None`. It then attempts to access specific nested fields within the JSON data to extract relevant information. Inside the try block, the function extracts the player details (name, ID, team name) and player statistics from the JSON data. It iterates through each player in the response data, creating a dictionary (`player_row`) containing player details and statistics.
 
-1. Function Arguments
-   - response_data - the JSON object containing player statistics from the Yahoo Sports API.
-2. Response Data Formatting
-   - The function begins by checking if the response_data is empty. If it is, the function returns None.
-   - It then attempts to access specific nested fields within the JSON data to extract relevant information.
-   - Inside the try block, the function extracts the player details (name, ID, team name) and player statistics from the JSON data.
-   - It iterates through each player in the response data, creating a dictionary (player_row) containing player details and statistics.
-   - The player details include 'PLAYER_NAME', 'PLAYER_ID', and 'TEAM_NAME', while the player statistics are dynamically extracted from the JSON data.
-   - These player details and statistics are appended to a list (data).
-   - Finally, the function constructs a pandas DataFrame from the list of dictionaries and returns it.
-3. Error Handling
-   - The function includes error handling using a try-except block to catch any exceptions that may occur during the data formatting process.
-   - If an exception occurs (e.g., missing or unexpected data structure), an error message is printed, and the function returns None.
+The player details include `PLAYER_NAME`, `PLAYER_ID`, and `TEAM_NAME`, while the player statistics are dynamically extracted from the JSON data. These player details and statistics are appended to a list (`data`). Finally, the function constructs a pandas DataFrame from that list of dictionaries and returns it.
 
 By using this function in conjunction with the `get_data_for_stat()` function, we can efficiently retrieve, process, and format player statistics from the Yahoo Sports API into a structured DataFrame. 
 
@@ -440,7 +415,7 @@ example_dataframe.head()
     5 rows × 23 columns
 
 
-The middle of the dataframe is cut off, so let's print the full list of columns in this dataframe as well:
+The middle of the dataframe might not be fully displayed, so let's print the full list of columns in this dataframe as well:
 
 
 ```python
@@ -456,29 +431,29 @@ example_dataframe.columns
           dtype='object')
 
 Here's a short description of each column: 
-   - PLAYER_NAME: The name of the basketball player.
-   - PLAYER_ID: The unique identifier for each basketball player.
-   - TEAM_NAME: The name of the player's basketball team.
-   - GAMES: The number of games the player has played in. This does not include attending a game but not playing (such as when a player is injured).
-   - MINUTES_PLAYED: The total number of minutes the player has been on the court. This is measured in the time on the game clock, not in real-time. There are typically 40 minutes of game-time, comprised of four 10-minute quarters. Overtime would be considered extra time. 
-   - FIELD_GOALS_MADE: The number of successful field goals made by the player. This includes both two-point and three-point field goals and does not include free throws. 
-   - FIELD_GOAL_ATTEMPTS: The total number of field goal attempts by the player.
-   - FIELD_GOAL_PERCENTAGE: The percentage of successful field goals made by the player.
-   - THREE_POINTS_MADE: The number of successful three-point baskets made by the player.
-   - THREE_POINT_ATTEMPTS: The total number of three-point basket attempts by the player.
-   - THREE_POINT_PERCENTAGE: The percentage of successful three-point baskets made by the player.
-   - FREE_THROWS_MADE: The number of successful free throws made by the player.
-   - FREE_THROW_ATTEMPTS: The total number of free throw attempts by the player.
-   - FREE_THROW_PERCENTAGE: The percentage of successful free throws made by the player.
-   - OFFENSIVE_REBOUNDS: The number of offensive rebounds grabbed by the player.
-   - DEFENSIVE_REBOUNDS: The number of defensive rebounds grabbed by the player.
-   - TOTAL_REBOUNDS: The total number of rebounds grabbed by the player.
-   - ASSISTS: The number of assists made by the player.
-   - TURNOVERS: The number of turnovers committed by the player.
-   - STEALS: The number of steals made by the player.
-   - BLOCKS: The number of baskets blocked by the player.
-   - FOULS: The number of fouls committed by the player.
-   - POINTS: The total number of points scored by the player.
+   - `PLAYER_NAME` The name of the basketball player.
+   - `PLAYER_ID` The unique identifier for each basketball player.
+   - `TEAM_NAME` The name of the player's basketball team.
+   - `GAMES` The number of games the player has played in. This does not include attending a game but not playing (such as when a player is injured).
+   - `MINUTES_PLAYED` The total number of minutes the player has been on the court. This is measured in the time on the game clock, not in real-time. There are typically 40 minutes of game-time, comprised of four 10-minute quarters. Overtime would be considered extra time. 
+   - `FIELD_GOALS_MADE` The number of successful field goals made by the player. This includes both two-point and three-point field goals and does not include free throws. 
+   - `FIELD_GOAL_ATTEMPTS` The total number of field goal attempts by the player.
+   - `FIELD_GOAL_PERCENTAGE` The percentage of successful field goals made by the player.
+   - `THREE_POINTS_MADE` The number of successful three-point baskets made by the player.
+   - `THREE_POINT_ATTEMPTS` The total number of three-point basket attempts by the player.
+   - `THREE_POINT_PERCENTAGE` The percentage of successful three-point baskets made by the player.
+   - `FREE_THROWS_MADE` The number of successful free throws made by the player.
+   - `FREE_THROW_ATTEMPTS` The total number of free throw attempts by the player.
+   - `FREE_THROW_PERCENTAGE` The percentage of successful free throws made by the player.
+   - `OFFENSIVE_REBOUNDS` The number of offensive rebounds grabbed by the player.
+   - `DEFENSIVE_REBOUNDS` The number of defensive rebounds grabbed by the player.
+   - `TOTAL_REBOUNDS` The total number of rebounds grabbed by the player.
+   - `ASSISTS` The number of assists made by the player.
+   - `TURNOVERS` The number of turnovers committed by the player.
+   - `STEALS` The number of steals made by the player.
+   - `BLOCKS` The number of baskets blocked by the player.
+   - `FOULS` The number of fouls committed by the player.
+   - `POINTS` The total number of points scored by the player.
 
 Let's quickly verify that the dataframe has the proper number of rows using the `shape()` method. Since we set the `count` to `500` in the API request, there should be 500 rows in this dataframe. 
 
@@ -499,11 +474,10 @@ We could stop here and use those two functions to make our API requests, but let
 ```python
 def get_and_format_data_for_stat(stat_name, season='2023', league='ncaaw'):
     """
-    Retrieve basketball player statistics for a specified statistical category (stat_name) for a given season and league
-    and format the data into a pandas DataFrame.
+    Retrieve basketball player statistics for a specified statistical category for a given season and league and format the data into a pandas DataFrame.
 
     Parameters:
-    - stat_name (str): Specifies the statistical category for which data is requested.
+    - stat_name (str): Specifies the name of the statistic to pull (points scored, field goals made, etc.).
     - season (str): Specifies the season for which data is requested (default is '2023').
     - league (str): Specifies the league for which data is requested (default is 'ncaaw' for NCAA Women's Basketball).
 
@@ -516,7 +490,7 @@ def get_and_format_data_for_stat(stat_name, season='2023', league='ncaaw'):
     return format_response_data(response_data)
 ```
 
-This function combines the other two function calls and passes through the same parameters. In summary, it retrieves player statistics for a specified statistical category (`stat_name`) for a given season and league using the `get_data_for_stat()` function and then formats the data into a pandas DataFrame using the `format_response_data()` function. Since we'll be sending multiple requests to the API, this function streamlines the entire API request and formatting into one command and simplifies the process of generating the player statistics dataset. 
+This function combines the other two function calls and passes through the same parameters. In summary, it retrieves data for the top players for a specified statistic (`stat_name`), season (`season`), and league using the `get_data_for_stat()` function and then formats the data into a pandas DataFrame using the `format_response_data()` function. Since we'll be sending multiple requests to the API, this function streamlines the entire API request and formatting into one command and simplifies the process of generating the player statistics dataset. 
 
 ### Request the Data for each Statistic
 Now we're ready to request data for each statistic. For this project, we'll pull the list of top players by five statistics: points, assists, rebounds, blocks, and steals. Here's what that looks like: 
