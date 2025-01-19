@@ -259,7 +259,7 @@ player_data['Team'].str.split('\(', expand=True)[1].str.split('\)', expand=True)
 
 
 
-We could modify the previous code to select only the values in the right-most set of parenthesis, but switching from the `.split()` method to using a [regular expression](https://en.wikipedia.org/wiki/Regular_expressionhttps://en.wikipedia.org/wiki/Regular_expression) (a.k.a. "regex") might be a more robust solution. Regular expressions provide more flexibility in pattern matching and are quite efficient, so let's build a pattern to select the proper value.
+We could modify the previous code to select only the values in the right-most set of parenthesis, but switching from the `.split()` method to using a [regular expression](https://en.wikipedia.org/wiki/Regular_expression) (a.k.a. "regex") might be a more robust solution. Regular expressions provide more flexibility in pattern matching and are quite efficient, so let's build a pattern to select the proper value.
 
 In this regular expression, we can use the following parts: 
 1. `\(` matches on an opening parenthesis. Parenthesis in regular expressions are used for capturing groups, so the `\` escapes the parenthesis and matches the literal value.

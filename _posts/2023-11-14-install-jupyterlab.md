@@ -22,7 +22,7 @@ Today we'll be covering how to self-host JupyterLab on a Linux machine for a sin
 
 # Getting Started
 
-Official documentation for running a JupyterLab server has not been published yet (as of November 2023), so I primarily followed the documentation on creating a [Jupyter Notebook server](https://jupyter-notebook.readthedocs.io/en/stable/public_server.html). Modifications between Jupyter Notebook and JupyterLab are mentioned throughout this article, but I recommend that you check JupyterLab's documentation for recent updates. 
+Official documentation for running a JupyterLab server has not been published yet (as of November 2023), so I primarily followed the documentation on creating a [Jupyter Notebook server](https://jupyter-notebook.readthedocs.io/en/stable/). Modifications between Jupyter Notebook and JupyterLab are mentioned throughout this article, but I recommend that you check JupyterLab's documentation for recent updates. 
 
 ## Requirements
 Before we get started, you should have: 

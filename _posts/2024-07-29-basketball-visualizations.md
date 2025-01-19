@@ -41,7 +41,7 @@ You'll want to have the latest version of [Python](https://www.python.org/) inst
   - [matplotlib](https://matplotlib.org/)
   - [seaborn](https://seaborn.pydata.org/)
   - [plotly](https://plotly.com/)
-  - [scipy](https://scipy.org/https://scipy.org/)
+  - [scipy](https://scipy.org/)
   
 For today's visualizations specifically, we'll want to import most of these libraries: 
 
@@ -1227,9 +1227,9 @@ From this graph, we can see a general upward trend between height and assists. H
 
 ## Violin Plot of Points by Class
 
-A violin plot is particularly useful for visualizing the distribution of data points. It combines aspects of a box plot and a kernel density plot to show the distribution shape and spread of the data. Similar to the box plot, the violin plot shows the same interquartile range and median, but with the distribution (smoothed using the [kernel density estimation](https://en.wikipedia.org/wiki/Kernel_density_estimationhttps://en.wikipedia.org/wiki/Kernel_density_estimation) method) plotted on either side. The width of each "violin" at each point, for example, would indicate how many players of that class scored that many total points in the season.
+A violin plot is particularly useful for visualizing the distribution of data points. It combines aspects of a box plot and a kernel density plot to show the distribution shape and spread of the data. Similar to the box plot, the violin plot shows the same interquartile range and median, but with the distribution (smoothed using the [kernel density estimation](https://en.wikipedia.org/wiki/Kernel_density_estimation) method) plotted on either side. The width of each "violin" at each point, for example, would indicate how many players of that class scored that many total points in the season.
 
-Let's use Seaborn's [violinplot() function](https://seaborn.pydata.org/generated/seaborn.violinplot.htmlhttps://seaborn.pydata.org/generated/seaborn.violinplot.html) to visualize the distribution of points scored by players across different classes (academic years).
+Let's use Seaborn's [violinplot() function](https://seaborn.pydata.org/generated/seaborn.violinplot.html) to visualize the distribution of points scored by players across different classes (academic years).
 
 
 ```python
@@ -1267,7 +1267,7 @@ From this new plot, we can see that the rest of the distributions are the same, 
 
 ## Histogram of Fouls per Game
 
-We can look at the distribution of average fouls per game using Seaborn's [histplot() function](https://seaborn.pydata.org/generated/seaborn.histplot.htmlhttps://seaborn.pydata.org/generated/seaborn.histplot.html). The `bins` parameter lets us specify how many bins we want the data grouped into, and the `kde` parameter allows us to add a [Kernel Density Estimate (KDE)](https://en.wikipedia.org/wiki/Kernel_density_estimationhttps://en.wikipedia.org/wiki/Kernel_density_estimation) line to the graph. The KDE line shows a smoothed estimate of the data's distribution. 
+We can look at the distribution of average fouls per game using Seaborn's [histplot() function](https://seaborn.pydata.org/generated/seaborn.histplot.html). The `bins` parameter lets us specify how many bins we want the data grouped into, and the `kde` parameter allows us to add a [Kernel Density Estimate (KDE)](https://en.wikipedia.org/wiki/Kernel_density_estimation) line to the graph. The KDE line shows a smoothed estimate of the data's distribution. 
 
 
 ```python
