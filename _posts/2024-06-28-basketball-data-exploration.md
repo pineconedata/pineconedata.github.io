@@ -3,10 +3,10 @@ layout: post
 title: "Data Exploration"
 subtitle: "Outlier or Caitlin Clark? [Part 4]"
 tags:  [Python, data science, pandas, machine learning, scikit-learn, data visualization]
-thumbnail-img: /assets/img/posts/2024-07-29-basketball-visualizations/histogram.png
+thumbnail-img: /assets/img/posts/2024-06-28-basketball-data-exploration/compass.jpg
 share-title: "Data Exploration: Outlier or Caitlin Clark? [Part 4]" 
 share-description: Interested in exploring and selecting appropriate features for your data? Learn how to determine the relationship between metrics, explore correlation matrices, and select meaningful features in the latest installment of this data science series that is perfect for beginner data scientists and Python enthusiasts.
-share-img: /assets/img/posts/2024-07-29-basketball-visualizations/social.png
+share-img: /assets/img/posts/2024-06-28-basketball-data-exploration/social.png
 gh-repo: pineconedata/ncaa-basketball-stats
 gh-badge: [star, fork, follow]
 ---
@@ -632,7 +632,7 @@ plt.show()
 
 
     
-![png](/assets/img/posts/2024-07-29-basketball-visualizations/output_28_0.png)
+![png](/assets/img/posts/2024-06-28-basketball-data-exploration/output_28_0.png)
     
 
 
@@ -651,7 +651,7 @@ plt.show()
 
 
     
-![png](/assets/img/posts/2024-07-29-basketball-visualizations/output_30_0.png)
+![png](/assets/img/posts/2024-06-28-basketball-data-exploration/output_30_0.png)
     
 
 
@@ -668,7 +668,7 @@ plt.show()
 
 
     
-![png](/assets/img/posts/2024-07-29-basketball-visualizations/output_32_0.png)
+![png](/assets/img/posts/2024-06-28-basketball-data-exploration/output_32_0.png)
     
 
 
@@ -689,7 +689,7 @@ plt.show()
 
 
     
-![png](/assets/img/posts/2024-07-29-basketball-visualizations/output_35_0.png)
+![png](/assets/img/posts/2024-06-28-basketball-data-exploration/output_35_0.png)
     
 
 
