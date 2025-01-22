@@ -6,7 +6,7 @@ tags:  [Python, data science, pandas, machine learning, scikit-learn, linear reg
 share-title: "Selecting a Machine Learning Model: Outlier or Caitlin Clark? [Part 6]" 
 share-description: Interested in learning how to select an approriate machine learning model? Learn the intricacies of how to select a machine learning model for your dataset in the latest installment of this data science series that is perfect for beginner data scientists and Python enthusiasts.
 thumbnail-img: "https://scikit-learn.org/stable/_downloads/b82bf6cd7438a351f19fac60fbc0d927/ml_map.svg"
-share-img: /assets/img/posts/2024-09-13-basketball-train-ols/social.png
+share-img: /assets/img/posts/2024-08-12-basketball-select-ml-ols/social.png
 gh-repo: pineconedata/ncaa-basketball-stats
 gh-badge: [star, fork, follow]
 ---
@@ -289,7 +289,7 @@ features = ['Height', 'MINUTES_PLAYED', 'FIELD_GOALS_MADE', 'THREE_POINTS_MADE',
 
 <div class="email-subscription-container"></div>
 
-### Final Objective
+### Ultimate Objective
 In summary, our ultimate objective is to train a machine learning model to predict `FANTASY_POINTS` (the target variable) based on `Height`, `MINUTES_PLAYED`, `FIELD_GOALS_MADE`, `THREE_POINTS_MADE`, `TWO_POINTS_MADE`, `FREE_THROWS_MADE`, `TOTAL_REBOUNDS`, `ASSISTS`, `TURNOVERS`, `STEALS`, `BLOCKS`, `FOULS`, and `POINTS` (the features).
 
 ### A Solved Problem
@@ -413,7 +413,7 @@ Next up, we should verify the underlying assumptions of the machine learning mod
  - **Linearity** - The relationship between the target variable and the features is linear.
  - **No Multicollinearity** - The features are not too highly correlated with each other.
  - **Weak Exogeneity** - The features are treated as fixed values, not random variables, and are free from measurement errors. 
- - **Independence of errors** - Residuals are independent of and unrelated to one another. 
+ - **Independence of Errors** - Residuals are independent of and unrelated to one another. 
  - **Zero Mean of Residuals** - The mean of the residuals is zero or close to zero.
  - **Constant Variance (Homoskedasticity)** - Residuals have constant variance across all levels of the independent variables. 
  
@@ -439,7 +439,7 @@ pairplot = sns.pairplot(data=player_data, x_vars=features, y_vars=target)
 
 
     
-![png](/assets/img/posts/2024-09-13-basketball-train-ols/output_25_0.png)
+![png](/assets/img/posts/2024-08-12-basketball-select-ml-ols/output_25_0.png)
     
 
 
@@ -466,7 +466,7 @@ pairplot.map(loess_reg)
 
 
     
-![png](/assets/img/posts/2024-09-13-basketball-train-ols/output_27_1.png)
+![png](/assets/img/posts/2024-08-12-basketball-select-ml-ols/output_27_1.png)
     
 
 
@@ -496,7 +496,7 @@ sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f", linewidt
 
 
     
-![png](/assets/img/posts/2024-09-13-basketball-train-ols/output_29_1.png)
+![png](/assets/img/posts/2024-08-12-basketball-select-ml-ols/output_29_1.png)
     
 
 
@@ -520,7 +520,7 @@ Practically speaking, weak exogeneity implies that our predictor variables are e
 
 It's worth noting that dropping this assumption leads to significantly more complex models known as errors-in-variables models. These models account for measurement errors in the predictor variables but are considerably more challenging to implement and interpret.
 
-There is no direct statistical test for weak exogeneity, so we'll treat this as more of a logical check than a mathematical one. For our basketball player statistics model, weak exogeneity would mean that the statistics we're using as predictors (such as minutes played, field goals attempted, etc.) are not themselves influenced by the player's fantasy points or by unmeasured factors that also affect fantasy points. This makes logical sense based on our domain knowledge and understanding of how the data was collected, so we'll consider this assumption satisfied. 
+There is no direct statistical test for weak exogeneity, so we'll treat this as more of a logical check than a mathematical one. For our basketball player statistics model, weak exogeneity would mean that the statistics we're using as predictors (such as minutes played, field goals attempted, etc.) are not themselves influenced by unmeasured factors that also affect fantasy points. This makes rough logical sense based on our domain knowledge, so we'll consider this assumption satisfied. 
 
 # Wrap Up
 In this series, we've built a new dataset by acquiring and then combining the NCAA women's basketball player information dataset with the Yahoo Sports player statistics dataset. We laid the groundwork for data analysis by cleaning and preprocessing the combined player data, and then expanded upon it by engineering a few new features. In the previous part, we took a closer look at the underlying data in each column and created visualizations to identify the relationship between various parameters. In today's article, we learned how to select an appropriate machine learning model, properly split our data set into train and test subsets, and trained the model. In the next section, we'll move on to evaluating the model's performance.
