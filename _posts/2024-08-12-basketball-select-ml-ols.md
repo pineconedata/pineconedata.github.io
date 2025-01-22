@@ -527,8 +527,17 @@ It's worth noting that dropping this assumption leads to significantly more comp
 There is no direct statistical test for weak exogeneity, so we'll treat this as more of a logical check than a mathematical one. For our basketball player statistics model, weak exogeneity would mean that the statistics we're using as predictors (such as minutes played, field goals attempted, etc.) are not themselves influenced by unmeasured factors that also affect fantasy points. This makes rough logical sense based on our domain knowledge, so we'll consider this assumption satisfied. 
 
 # Wrap Up
+In today's article, we covered the basics of machine learning and learned how to select an appropriate machine learning model. In the next post, we'll cover how to actually train the model. 
 
-In this series, we've built a new dataset by acquiring and then combining the NCAA women's basketball player information dataset with the Yahoo Sports player statistics dataset. We laid the groundwork for data analysis by cleaning and preprocessing the combined player data, and then expanded upon it by engineering a few new features. We then took a closer look at the underlying data in each column and created visualizations to identify the relationship between various parameters. In the previous part, we generated meaningful visualizations for our dataset. In today's article, we learned how to select an appropriate machine learning model. In future articles, we'll cover training and evaluating the selected machine learning model.
+## Articles in this Series   
+1. [Acquiring and Combining the Datasets](/2024-04-11-basketball-data-acquisition/)
+2. [Cleaning and Preprocessing the Data](/2024-05-02-basketball-data-cleaning-preprocessing/)
+3. [Engineering New Features](/2024-05-30-basketball-feature_engineering/)
+4. [Exploratory Data Analysis](/2024-06-28-basketball-data-exploration/)
+5. [Visualizations, Charts, and Graphs](/2024-07-29-basketball-visualizations/)
+6. [Selecting a Machine Learning Model](/2024-08-12-basketball-select-ml-ols/) (Today's Guide)
+7. [Training the Machine Learning Model](/2024-09-13-basketball-train-ols/)
+8. [Evaluating the Machine Learning Model](/)
 
 <div class="email-subscription-container"></div>
 <div id="sources"></div>

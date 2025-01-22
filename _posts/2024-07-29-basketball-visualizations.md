@@ -862,9 +862,17 @@ plt.show()
 From the joint plot, we can see the scatter of data points representing the relationship between turnovers and fantasy points. The regression line helps us identify any potential correlation between these two variables.
 
 # Wrap Up
-Today's visualizations were primarily an exploration of various chart types and options that can be helpful. Which charts you want to include in your report will depend on your dataset, but it's generally a good idea to try out multiple chart types and variable pairings before deciding on which ones are best.
+In this article, we focused on generating a variety of visualizations for our dataset. Today's visualizations were primarily an exploration of various chart types and options that can be helpful. Which charts you want to include in your report will depend on your dataset, but it's generally a good idea to try out multiple chart types and variable pairings before deciding on which ones are best. In the next article, we'll go over how to select the right machine learning model for a given problem. 
 
-To summarize this project so far, we've built a new dataset by acquiring and then combining the NCAA women's basketball player information dataset with the Yahoo Sports player statistics dataset. We laid the groundwork for data analysis by cleaning and preprocessing the combined player data, and then expanded upon it by engineering a few new features. In the previous part, we took a closer look at the underlying data in each column and created visualizations to identify the relationship between various parameters. In today's article, we focused on generating a variety of visualizations for our dataset. In future articles, we'll cover selecting, training, and evaluating a machine learning model.
+## Articles in this Series   
+1. [Acquiring and Combining the Datasets](/2024-04-11-basketball-data-acquisition/)
+2. [Cleaning and Preprocessing the Data](/2024-05-02-basketball-data-cleaning-preprocessing/)
+3. [Engineering New Features](/2024-05-30-basketball-feature_engineering/)
+4. [Exploratory Data Analysis](/2024-06-28-basketball-data-exploration/)
+5. [Visualizations, Charts, and Graphs](/2024-07-29-basketball-visualizations/) (Today's Guide)
+6. [Selecting a Machine Learning Model](/2024-08-12-basketball-select-ml-ols/)
+7. [Training the Machine Learning Model](/2024-09-13-basketball-train-ols/)
+8. [Evaluating the Machine Learning Model](/)
 
 
 <div class="email-subscription-container"></div>

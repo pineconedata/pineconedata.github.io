@@ -989,8 +989,17 @@ player_data.to_excel('player_data_raw.xlsx', index=False)
 ```
 
 # Wrap up 
-In this guide, we built a new dataset by acquiring and then combining the NCAA women's basketball player information dataset with the Yahoo Sports player statistics dataset. In the next part, we'll lay the groundwork for data analysis by cleaning and preprocessing the combined player data. In future articles, we will cover feature engineering, data exploration, generating visualizations, selecting a machine learning model, and training that model.
+In this guide, we built a new dataset by acquiring and then combining the NCAA women's basketball player information dataset with the Yahoo Sports player statistics dataset. In the next part, we'll lay the groundwork for data analysis by cleaning and preprocessing the combined player data. 
 
+## Articles in this Series   
+1. [Acquiring and Combining the Datasets](/2024-04-11-basketball-data-acquisition/) (Today's Guide)
+2. [Cleaning and Preprocessing the Data](/2024-05-02-basketball-data-cleaning-preprocessing/)
+3. [Engineering New Features](/2024-05-30-basketball-feature_engineering/)
+4. [Exploratory Data Analysis](/2024-06-28-basketball-data-exploration/)
+5. [Visualizations, Charts, and Graphs](/2024-07-29-basketball-visualizations/)
+6. [Selecting a Machine Learning Model](/2024-08-12-basketball-select-ml-ols/)
+7. [Training the Machine Learning Model](/2024-09-13-basketball-train-ols/)
+8. [Evaluating the Machine Learning Model](/)
 
 <div class="email-subscription-container"></div>
 <div id="sources"></div>

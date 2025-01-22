@@ -700,10 +700,17 @@ plt.show()
 Looking at this chart, you can see why we reduced the number of numerical columns. Scatterplot matrices can get quite large with too many variables, so it can be helpful to focus on a few variables at first and individually analyze additional variables later. For example, the scatterplot matrix shows a dense linear relationship between `POINTS` and `FIELD_GOALS_MADE` and this matches the 0.97 correlation coefficient from the previous chart. Just like the correlation matrix, we can refer to back to this scatterplot matrix to quickly check the relationship between variables. 
 
 # Wrap Up
-Data exploration depends greatly on your individual project, so it's likely to look a bit different for each dataset. This step is generally best as an informal, free-form exploration of your data without being too focused on the finer details like axis titles or color scheme.
+In today's guide, we took a closer look at the underlying data in each column and created visualizations to identify the relationship between various parameters. Data exploration depends greatly on your individual project, so it's likely to look a bit different for each dataset. This step is generally best as an informal, free-form exploration of your data without being too focused on the finer details like axis titles or color scheme. In the next article, we'll cover generating meaningful visualizations, including a variety of charts and graphs.
 
-To summarize this project so far, we've built a new dataset by acquiring and then combining the NCAA women's basketball player information dataset with the Yahoo Sports player statistics dataset. We laid the groundwork for data analysis by cleaning and preprocessing the combined player data, and then expanded upon it by engineering a few new features. In today's guide, we took a closer look at the underlying data in each column and created visualizations to identify the relationship between various parameters. In future articles, we will cover generating visualizations, selecting a machine learning model, training that model, and then evaluating the machine learning model.
-
+## Articles in this Series   
+1. [Acquiring and Combining the Datasets](/2024-04-11-basketball-data-acquisition/)
+2. [Cleaning and Preprocessing the Data](/2024-05-02-basketball-data-cleaning-preprocessing/)
+3. [Engineering New Features](/2024-05-30-basketball-feature_engineering/)
+4. [Exploratory Data Analysis](/2024-06-28-basketball-data-exploration/) (Today's Guide)
+5. [Visualizations, Charts, and Graphs](/2024-07-29-basketball-visualizations/)
+6. [Selecting a Machine Learning Model](/2024-08-12-basketball-select-ml-ols/)
+7. [Training the Machine Learning Model](/2024-09-13-basketball-train-ols/)
+8. [Evaluating the Machine Learning Model](/)
 
 <div class="email-subscription-container"></div>
 <div id="sources"></div>
