@@ -13,6 +13,13 @@ gh-badge: [star, fork, follow]
 
 Today we'll expand on the basics of machine learning and examine how to train a linear regression machine learning model. This is the seventh part of a series that walks through the entire process of a data science project - from initial steps like data acquisition, preprocessing, and cleaning to more advanced steps like feature engineering, creating visualizations, and machine learning. 
 
+<div id="toc"></div>
+
+# Getting Started
+First, let's take a look at an overview of this data science project. If you're already familiar with it, feel free to skip to the [next section](#basics-of-machine-learning).
+
+## Project Overview
+
 As a reminder, the dataset we'll be using in this project contains individual basketball player statistics (such as total points scored and blocks made) for the 2023-2024 NCAA women's basketball season. Here's a brief description of each major step of this project: 
 
 ![the steps for this data science project](/assets/img/posts/2024-04-11-basketball-data-acquisition/ncaa_wbb_project_steps.png "the steps for this data science project")
@@ -21,17 +28,15 @@ As a reminder, the dataset we'll be using in this project contains individual ba
 2. **Data Cleaning** - This step focuses on identifying and correcting any errors within the dataset. This includes removing duplicates, correcting inaccuracies, and handling missing data. 
 3. **Data Preprocessing** - This step ensures the data is suitable for analysis by converting datatypes, standardizing units, and replacing abbreviations.
 4. **Feature Engineering** - This step involves selecting and expanding upon the dataset's features (or columns). This includes calculating additional metrics from existing columns.
-5. **Creating Visualizations** - This step involves identifying the relationships between various parameters (such as height and blocked shots) and generating meaningful visualizations (such as bar charts, scatterplots, and candlestick charts).
-6. **Machine Learning** - This step focuses on training a machine learning model to identify the combination of individual player statistics that correlates with optimal performance. 
+5. **Data Exploration** - This step focuses on analyzing and visualizing the dataset to uncover patterns, relationships, and general trends and is a helpful preliminary step before deeper analysis.
+6. **Creating Visualizations** - This step involves identifying the relationships between various parameters (such as height and blocked shots) and generating meaningful visualizations (such as bar charts, scatterplots, and candlestick charts).
+5. **Machine Learning** - This step focuses on selecting, training, and evaluating a machine learning model. For this project, the model will identify the combination of individual player statistics that correlates with optimal performance. 
 
-We'll use Python along with the popular [scikit-learn](https://scikit-learn.org/stable/index.html) and [statsmodels](https://www.statsmodels.org/stable/index.html) libraries to train and evaluate the model. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, create meaningful visualizations, and train a basic machine learning model. Since we already gathered the raw data from online sources in [Part 1](/2024-04-11-basketball-data-acquisition/), cleaned that data in [Part 2](/2024-05-02-basketball-data-cleaning-preprocessing/), engineered new features in [Part 3](/2024-05-30-basketball-feature_engineering/), and explored visualizations in [Part 4](/2024-07-29-basketball-visualizations/), we're ready to move on to training a machine learning model.
+We'll use Python along with popular libraries like [pandas](https://pandas.pydata.org/docs/), [numpy](https://numpy.org/doc/), and [scikit-learn](https://scikit-learn.org/) to accomplish these tasks efficiently. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, identify relationships between variables, create meaningful visualizations, and train a basic machine learning model. Since we already gathered the raw data from online sources in [Part 1](/2024-04-11-basketball-data-acquisition/), cleaned that data in [Part 2](/2024-05-02-basketball-data-cleaning-preprocessing/), engineered new features in [Part 3](/2024-05-30-basketball-feature_engineering/), explored the dataset in [Part 4](2024-06-28-basketball-data-exploration/), generated visualizations in [Part 5](/2024-07-29-basketball-visualizations/), and selected a model in [Part 6](2024-08-12-basketball-select-ml-ols/), we're ready to move on to training a machine learning model.
 
-<div id="toc"></div>
+## Dependencies
+Since this is the seventh installment in the series, you likely already have your environment setup and can skip to the next section. If you're not already set up and you want to follow along on your own machine, it's recommended to read the [first article of the series](/2024-04-11-basketball-data-acquisition/) or at least review the [Getting Started](/2024-04-11-basketball-data-acquisition/#getting-started) section of that post before continuing. 
 
-# Getting Started
-Since this is the fifth installment in the series, you likely already have your environment setup and can skip to the next section. If you're not already set up and you want to follow along on your own machine, it's recommended to read the [first article of the series](/2024-04-11-basketball-data-acquisition/) or at least review the [Getting Started](/2024-04-11-basketball-data-acquisition/#getting-started) section of that post before continuing. 
-
-## Import Packages
 You'll want to have the latest version of [Python](https://www.python.org/) installed with the following packages: 
   - [pandas](https://pandas.pydata.org/docs/)
   - [requests](https://requests.readthedocs.io/en/latest/)
@@ -56,7 +61,7 @@ import matplotlib.pyplot as plt
 ```
 
 ## Import Data
-In [Part 3](/2024-05-30-basketball-feature_engineering/) of this series, we engineered new features for our dataset, which is stored in a dataframe named `player_data`. No changes were made to the underlying data set in [Part 4](/2024-07-29-basketball-visualizations/) of this series, since that part focused on creating visualizations from the data set. If you want to follow along with the code examples in this article, it's recommended to import the `player_data` dataframe before proceeding. 
+In [Part 3](/2024-05-30-basketball-feature_engineering/) of this series, we engineered new features for our dataset, which is stored in a dataframe named `player_data`. No changes have been made to the underlying dataset in the intermediary articles. If you want to follow along with the code examples in this article, it's recommended to import the `player_data` dataframe before proceeding. 
 
 
 ```python
@@ -237,27 +242,27 @@ player_data.head()
 
 
 ## Basics of Machine Learning
-Before we get into training a model, let’s briefly cover a few basics of machine learning. [Machine learning](https://en.wikipedia.org/wiki/Machine_learning) is a branch of artificial intelligence that focuses on creating algorithms and statistical models that allow computer systems to "learn" how to improve their performance on a specific task through experience. In the context of our basketball statistics project, machine learning can be particularly useful for predicting player performance, classifying player position, and identifying similar players.
+Before we get into training a model, let’s briefly revisit a few basics of machine learning. If you are already familiar with these concepts, feel free to skip to the [next section](#Model-Training). [Machine learning](https://en.wikipedia.org/wiki/Machine_learning) is a branch of artificial intelligence that focuses on creating algorithms and statistical models that allow computer systems to "learn" how to improve their performance on a specific task through experience. In the context of our basketball statistics project, machine learning can be particularly useful for predicting player performance, classifying player position, and identifying similar players.
 
 Key concepts in machine learning that we'll encounter include:
 
-1. **Model**: The system that learns patterns from data and can be used to make predictions on previously unseen data. Machine learning models are often of a specific type (Linear or Logistic Regression, Random Forests, Support Vector Machines, Neural Networks, etc.). 
-2. **Training Data:** The subset of our data used to train the model.
-3. **Testing Data:** A separate subset of data used to evaluate the model's performance.
-4. **Features:** The input variables used to make predictions. This is sometimes referred to as the independent variable(s). In our case, these could be various player statistics like three points made or assists. 
-5. **Target Variable:** The variable we're trying to predict or optimize, such as points scored or fantasy points. This is sometimes referred to as the dependent variable(s), as it depends on the independent variable(s). 
-6. **Parameters:** The values that the model learns during training, such as coefficients in linear regression. These parameters define how the model transforms input features into predictions.
-7. **Hyperparameters:** The configuration settings for the model that are set before training begins. These are not learned from the data but are specified by the data scientist. Examples include learning rate, number of iterations, or regularization strength. Hyperparameters can significantly affect model performance and are often tuned to optimize the model. 
+1. **Model** - The system that learns patterns from data and can be used to make predictions on previously unseen data. Machine learning models are often of a specific type (Linear or Logistic Regression, Random Forests, Support Vector Machines, Neural Networks, etc.). 
+2. **Training Data** - The subset of our data used to train the model.
+3. **Testing Data** - A separate subset of data used to evaluate the model's performance.
+4. **Features** - The input variables used to make predictions. This is sometimes referred to as the independent variable(s). In our case, these could be various player statistics like three points made or assists. 
+5. **Target Variable** - The variable we're trying to predict or optimize, such as points scored or fantasy points. This is sometimes referred to as the dependent variable(s), as it depends on the independent variable(s). 
+6. **Parameters** - The values that the model learns during training, such as coefficients in linear regression. These parameters define how the model transforms input features into predictions.
+7. **Hyperparameters** - The configuration settings for the model that are set before training begins. These are not learned from the data but are specified by the data scientist. Examples include learning rate, number of iterations, or regularization strength. Hyperparameters can significantly affect model performance and are often tuned to optimize the model. 
     - *Note*: The model we’ll be using today is straightforward and doesn’t typically have hyperparameters in the traditional sense. However, it’s still important to know the difference between parameters and hyperparameters since many models will have hyperparameters. 
-8. **Residuals:** The differences between the observed values and the predicted values from the model. Residuals help assess how well the model fits the data and can reveal patterns or issues in the model's predictions.
-9. **Model Evaluation:** Metrics used to assess how well our model is performing. For a Linear Regression model, this will include metrics like Mean Squared Error (MSE) and the R-squared value.
+8. **Residuals** - The differences between the observed values and the predicted values from the model. Residuals help assess how well the model fits the data and can reveal patterns or issues in the model's predictions.
+9. **Model Evaluation** - Metrics used to assess how well our model is performing. For a Linear Regression model, this will include metrics like Mean Squared Error (MSE) and the R-squared value.
 
 We’ll use primarily the first six terms throughout this article, so it’s best to familiarize yourself with them now. The other concepts will be explored in more detail in future articles (please [let me know](/workwithme/) if that is something you are interested in!). 
 
 It's important to note that our focus in this article is on classic machine learning models designed for tabular data. We won't be covering models built specifically for natural language processing, image recognition, or video analysis. However, it's worth mentioning that many problems in these domains often get transformed into tabular data problems, so some of the principles we discuss here may still apply in those contexts. With all of that out of the way, let’s move on to defining the problem and selecting an appropriate machine learning model.
 
 
-# Train the Model
+# Model Training
 Now that we've covered the basics of machine learning and verified the suitability of our chosen model, we're ready to move on to the exciting part: training our linear regression model! This process involves several key steps that will help us build a robust and accurate predictive model for our basketball player statistics.
 
 ## Define the Variables 
@@ -2135,7 +2140,8 @@ print(f'{target} = {coef_string_alt} + {ols_alt.intercept_} + error')
 We can see that the model coefficients and the y-intercept are substantially different from the model we originally trained. We won't know if this alternate model performs as well as the original one until we evaluate each model in the next article. 
 
 # Wrap Up
-In this series, we've built a new dataset by acquiring and then combining the NCAA women's basketball player information dataset with the Yahoo Sports player statistics dataset. We laid the groundwork for data analysis by cleaning and preprocessing the combined player data, and then expanded upon it by engineering a few new features. In the previous part, we took a closer look at the underlying data in each column and created visualizations to identify the relationship between various parameters. In today's article, we learned how to select an appropriate machine learning model, properly split our data set into train and test subsets, and trained the model. In the next section, we'll move on to evaluating the model's performance.
+   
+In this series, we've built a new dataset by acquiring and then combining the NCAA women's basketball player information dataset with the Yahoo Sports player statistics dataset. We laid the groundwork for data analysis by cleaning and preprocessing the combined player data, and then expanded upon it by engineering a few new features. We then took a closer look at the underlying data in each column and generated meaningful visualizations for our dataset. In the previous part, we learned how to select an appropriate machine learning model. In today's guide, we covered how to train the selected machine learning model, including how to properly split our dataset into train and test subsets. In the next part, we'll focus on how to evaluate the model's performance.
 
 <div class="email-subscription-container"></div>
 <div id="sources"></div>

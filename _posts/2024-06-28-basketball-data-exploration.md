@@ -13,6 +13,13 @@ gh-badge: [star, fork, follow]
 
 Today we'll demonstrate how to determine the relationship between metrics and select features. This is the fourth part of a series that walks through the entire process of a data science project - from initial steps like data acquisition, preprocessing, and cleaning to more advanced steps like feature engineering, machine learning, and creating visualizations. 
 
+<div id="toc"></div>
+
+# Getting Started
+First, let's take a look at an overview of this data science project. If you're already familiar with it, feel free to skip to the [next section](#identify-relationships-between-variables).
+
+## Project Overview
+
 As a reminder, the dataset we'll be using in this project contains individual basketball player statistics (such as total points scored and blocks made) for the 2023-2024 NCAA women's basketball season. Here's a brief description of each major step that we'll go through for this project: 
 
 ![the steps for this data science project](/assets/img/posts/2024-04-11-basketball-data-acquisition/ncaa_wbb_project_steps.png "the steps for this data science project")
@@ -21,17 +28,15 @@ As a reminder, the dataset we'll be using in this project contains individual ba
 2. **Data Cleaning** - This step focuses on identifying and correcting any errors within the dataset. This includes removing duplicates, correcting inaccuracies, and handling missing data. 
 3. **Data Preprocessing** - This step ensures the data is suitable for analysis by converting datatypes, standardizing units, and replacing abbreviations.
 4. **Feature Engineering** - This step involves selecting and expanding upon the dataset's features (or columns). This includes calculating additional metrics from existing columns.
-5. **Creating Visualizations** - This step involves identifying the relationships between various parameters (such as height and blocked shots) and generating meaningful visualizations (such as bar charts, scatterplots, and candlestick charts).
-6. **Machine Learning** - This step focuses on training a machine learning model to identify the combination of individual player statistics that correlates with optimal performance. 
+5. **Data Exploration** - This step focuses on analyzing and visualizing the dataset to uncover patterns, relationships, and general trends and is a helpful preliminary step before deeper analysis.
+6. **Creating Visualizations** - This step involves identifying the relationships between various parameters (such as height and blocked shots) and generating meaningful visualizations (such as bar charts, scatterplots, and candlestick charts).
+5. **Machine Learning** - This step focuses on selecting, training, and evaluating a machine learning model. For this project, the model will identify the combination of individual player statistics that correlates with optimal performance. 
 
-We'll use Python along with the popular [pandas](https://pandas.pydata.org/docs/) and [requests](https://requests.readthedocs.io/en/latest/) libraries to acquire the data efficiently. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, create meaningful visualizations, and train a basic machine learning model. Since we already gathered the raw data from online sources in [Part 1](/2024-04-11-basketball-data-acquisition/), cleaned that data in [Part 2](2024-05-02-basketball-data-cleaning-preprocessing/), and engineered new features in [Part 3](/2024-05-30-basketball-feature_engineering/), we're ready to move on to generating visualizations.
+We'll use Python along with popular libraries like [pandas](https://pandas.pydata.org/docs/), [numpy](https://numpy.org/doc/), and [scikit-learn](https://scikit-learn.org/) to accomplish these tasks efficiently. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, identify relationships between variables, create meaningful visualizations, and train a basic machine learning model. Since we already gathered the raw data from online sources in [Part 1](/2024-04-11-basketball-data-acquisition/), cleaned that data in [Part 2](2024-05-02-basketball-data-cleaning-preprocessing/), and engineered new features in [Part 3](/2024-05-30-basketball-feature_engineering/), we're ready to move on to exploring the dataset.
 
-<div id="toc"></div>
-
-# Getting Started
+## Dependencies
 Since this is the fourth installment in the series, you likely already have your environment setup and can skip to the next section. If you're not already set up and you want to follow along on your own machine, it's recommended to read the [first article of the series](/2024-04-11-basketball-data-acquisition/) or at least review the [Getting Started](/2024-04-11-basketball-data-acquisition/#getting-started) section of that post before continuing. 
 
-## Import Packages
 You'll want to have the latest version of [Python](https://www.python.org/) installed with the following packages: 
   - [pandas](https://pandas.pydata.org/docs/)
   - [requests](https://requests.readthedocs.io/en/latest/)
@@ -43,7 +48,7 @@ You'll want to have the latest version of [Python](https://www.python.org/) inst
   - [plotly](https://plotly.com/)
   - [scipy](https://scipy.org/)
   
-For today's visualizations specifically, we'll want to import most of these libraries: 
+For today's guide specifically, we'll want to import the following packages: 
 
 
 ```python
@@ -53,7 +58,6 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
 import plotly.io as pio
-import scipy
 ```
 
 Since I'm creating these graphs using [JupyterLab](https://jupyter.org/), I'll also make sure the jupyterlab-plotly extension is installed and will specify that my plotly charts should display as an iframe. 
@@ -696,9 +700,9 @@ plt.show()
 Looking at this chart, you can see why we reduced the number of numerical columns. Scatterplot matrices can get quite large with too many variables, so it can be helpful to focus on a few variables at first and individually analyze additional variables later. For example, the scatterplot matrix shows a dense linear relationship between `POINTS` and `FIELD_GOALS_MADE` and this matches the 0.97 correlation coefficient from the previous chart. Just like the correlation matrix, we can refer to back to this scatterplot matrix to quickly check the relationship between variables. 
 
 # Wrap Up
-Today's visualizations were primarily an exploration of various chart types and options that can be helpful. Which charts you want to include in your report will depend on your dataset, but it's generally a good idea to try out multiple chart types and variable pairings before deciding on which ones are best.
+Data exploration depends greatly on your individual project, so it's likely to look a bit different for each dataset. This step is generally best as an informal, free-form exploration of your data without being too focused on the finer details like axis titles or color scheme.
 
-To summarize this project so far, we've built a new dataset by acquiring and then combining the NCAA women's basketball player information dataset with the Yahoo Sports player statistics dataset. We laid the groundwork for data analysis by cleaning and preprocessing the combined player data, and then expanded upon it by engineering a few new features. In this part, we took a closer look at the underlying data in each column and created visualizations to identify the relationship between various parameters. In the next article, we'll select, train, and evaluate a machine learning model.
+To summarize this project so far, we've built a new dataset by acquiring and then combining the NCAA women's basketball player information dataset with the Yahoo Sports player statistics dataset. We laid the groundwork for data analysis by cleaning and preprocessing the combined player data, and then expanded upon it by engineering a few new features. In today's guide, we took a closer look at the underlying data in each column and created visualizations to identify the relationship between various parameters. In future articles, we will cover generating visualizations, selecting a machine learning model, training that model, and then evaluating the machine learning model.
 
 
 <div class="email-subscription-container"></div>

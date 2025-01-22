@@ -11,8 +11,14 @@ gh-repo: pineconedata/ncaa-basketball-stats
 gh-badge: [star, fork, follow]
 ---
 
-Today we'll go over how to start a new data science project by acquiring the data (using APIs and a CSV export). This is the first part of a series that will walk through the entire process of a data science project - from initial steps like data acquisition, preprocessing, and cleaning to more advanced steps like feature engineering, machine learning, and creating visualizations. 
+Today we'll go over how to start a new data science project by acquiring the data (using APIs and a CSV export). This is the first part of a series that will walk through the entire process of a data science project - from initial steps like data acquisition, preprocessing, and cleaning to more advanced steps like feature engineering, creating visualizations, and machine learning. 
 
+<div id="toc"></div>
+
+# Getting Started
+First, let's take a look at an overview of this data science project. If you're already familiar with it, feel free to skip to the [next section](#identifying-datasets).
+
+## Project Overview
 The dataset we'll be using in this project contains individual basketball player statistics (such as total points scored and blocks made) for the 2023-2024 NCAA women's basketball season. Here's a brief description of each major step that we'll go through for this project: 
 
 ![the steps for this data science project](/assets/img/posts/2024-04-11-basketball-data-acquisition/ncaa_wbb_project_steps.png "the steps for this data science project")
@@ -21,18 +27,16 @@ The dataset we'll be using in this project contains individual basketball player
 2. **Data Cleaning** - This step focuses on identifying and correcting any errors within the dataset. This includes removing duplicates, correcting inaccuracies, and handling missing data. 
 3. **Data Preprocessing** - This step ensures the data is suitable for analysis by converting datatypes, standardizing units, and replacing abbreviations.
 4. **Feature Engineering** - This step involves selecting and expanding upon the dataset's features (or columns). This includes calculating additional metrics from existing columns.
-5. **Machine Learning** - This step focuses on training a machine learning model to identify the combination of individual player statistics that correlates with optimal performance. 
+5. **Data Exploration** - This step focuses on analyzing and visualizing the dataset to uncover patterns, relationships, and general trends and is a helpful preliminary step before deeper analysis.
 6. **Creating Visualizations** - This step involves identifying the relationships between various parameters (such as height and blocked shots) and generating meaningful visualizations (such as bar charts, scatterplots, and candlestick charts).
+5. **Machine Learning** - This step focuses on selecting, training, and evaluating a machine learning model. For this project, the model will identify the combination of individual player statistics that correlates with optimal performance. 
 
-We'll use Python along with the popular pandas and requests libraries to accomplish these tasks efficiently. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, create meaningful visualizations, and train a basic machine learning model. Due to the size of this project, we'll start today with just the first step: data acqusition. 
-
-<div id="toc"></div>
-
-# Getting Started
-First, let's cover what you'll need if you want to follow along with this guide. If you already have a Python environment up and running and are familiar with how to install packages, then feel free to skip to the next section. 
+We'll use Python along with popular libraries like [pandas](https://pandas.pydata.org/docs/), [numpy](https://numpy.org/doc/), and [scikit-learn](https://scikit-learn.org/) to accomplish these tasks efficiently. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, identify relationships between variables, create meaningful visualizations, and train a basic machine learning model. Due to the size of this project, we'll start today with just the first step: data acqusition. 
 
 ## Requirements
-Before we get started, you should have: 
+Next, let's cover what you'll need if you want to follow along with this guide. If you already have a Python environment up and running and are familiar with how to install packages, then feel free to skip to the next section. 
+
+Before starting, you should have: 
 - A computer with the appropriate access level to install and remove programs.
   - This guide uses a Linux distribution (specifically Ubuntu), but this code can work on any major OS with a few minor changes.
 - A reliable internet connection to download the necessary software and make API requests. 
@@ -40,7 +44,7 @@ Before we get started, you should have:
 - Basic programming knowledge is a plus. If you've never used Python before, then going through the [beginner's guide](https://wiki.python.org/moin/BeginnersGuide) first might be helpful.
 
 ## Dependencies
-This project depends on having Python, a package manager (such as pip), and the relevant packages (listed below) installed before moving forward.
+This project depends on having Python, a package manager (such as `pip`), and the relevant packages (listed below) installed before moving forward.
 
 ### Python
 This project depends on [Python](https://www.python.org), which is probably already installed on your computer if you're using a common OS. You can verify if Python is installed and which version is currently being used by running:
@@ -985,7 +989,7 @@ player_data.to_excel('player_data_raw.xlsx', index=False)
 ```
 
 # Wrap up 
-In this guide, we built a new dataset by acquiring and then combining the NCAA women's basketball player information dataset with the Yahoo Sports player statistics dataset. In the next part, we'll lay the groundwork for data analysis by cleaning and preprocessing the combined player data. In future articles, we'll expand upon this dataset by engineering a few new features, create meaningful visualizations, and train a machine learning model.
+In this guide, we built a new dataset by acquiring and then combining the NCAA women's basketball player information dataset with the Yahoo Sports player statistics dataset. In the next part, we'll lay the groundwork for data analysis by cleaning and preprocessing the combined player data. In future articles, we will cover feature engineering, data exploration, generating visualizations, selecting a machine learning model, and training that model.
 
 
 <div class="email-subscription-container"></div>

@@ -13,6 +13,12 @@ gh-badge: [star, fork, follow]
 
 Today we'll walk through how to clean and preprocess a dataset to ensure it is ready for analysis. This is the second part of a series that walks through the entire process of a data science project - from initial steps like data acquisition, preprocessing, and cleaning to more advanced steps like feature engineering, machine learning, and creating visualizations. 
 
+<div id="toc"></div>
+
+# Getting Started
+First, let's take a look at an overview of this data science project. If you're already familiar with it, feel free to skip to the [next section](#data-cleaning).
+
+## Project Overview
 As a reminder, the dataset we'll be using in this project contains individual basketball player statistics (such as total points scored and blocks made) for the 2023-2024 NCAA women's basketball season. Here's a brief description of each major step that we'll go through for this project: 
 
 ![the steps for this data science project](/assets/img/posts/2024-04-11-basketball-data-acquisition/ncaa_wbb_project_steps.png "the steps for this data science project")
@@ -21,21 +27,28 @@ As a reminder, the dataset we'll be using in this project contains individual ba
 2. **Data Cleaning** - This step focuses on identifying and correcting any errors within the dataset. This includes removing duplicates, correcting inaccuracies, and handling missing data. 
 3. **Data Preprocessing** - This step ensures the data is suitable for analysis by converting datatypes, standardizing units, and replacing abbreviations.
 4. **Feature Engineering** - This step involves selecting and expanding upon the dataset's features (or columns). This includes calculating additional metrics from existing columns.
-5. **Machine Learning** - This step focuses on training a machine learning model to identify the combination of individual player statistics that correlates with optimal performance. 
+5. **Data Exploration** - This step focuses on analyzing and visualizing the dataset to uncover patterns, relationships, and general trends and is a helpful preliminary step before deeper analysis.
 6. **Creating Visualizations** - This step involves identifying the relationships between various parameters (such as height and blocked shots) and generating meaningful visualizations (such as bar charts, scatterplots, and candlestick charts).
+5. **Machine Learning** - This step focuses on selecting, training, and evaluating a machine learning model. For this project, the model will identify the combination of individual player statistics that correlates with optimal performance. 
 
-We'll use Python along with the popular [pandas](https://pandas.pydata.org/docs/) and [requests](https://requests.readthedocs.io/en/latest/) libraries to accomplish these tasks efficiently. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, create meaningful visualizations, and train a basic machine learning model. Since we already gathered the raw data from online sources in the last part, let's move on to the data cleaning and preprocessing steps. 
+We'll use Python along with popular libraries like [pandas](https://pandas.pydata.org/docs/), [numpy](https://numpy.org/doc/), and [scikit-learn](https://scikit-learn.org/) to accomplish these tasks efficiently. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, identify relationships between variables, create meaningful visualizations, and train a basic machine learning model. Since we already gathered the raw data from online sources in [Part 1](/2024-04-11-basketball-data-acquisition/), let's move on to the data cleaning and preprocessing steps. 
 
-<div id="toc"></div>
-
-# Getting Started
-Since this is the second installment in the series, you likely already have your environment setup and can skip to the next section. If you're not already set up and you want to follow along on your own machine, it's recommended to read the [previous post](/2024-04-11-basketball-data-acquisition/) or at least review the [Getting Started](/2024-04-11-basketball-data-acquisition/#getting-started) section of that post before continuing. In summary, you'll want to have [Python](https://www.python.org/) installed with the following packages: 
+## Dependencies
+Since this is the second installment in the series, you might already have your environment setup and can skip to the next section. If you're not already set up and you want to follow along on your own machine, it's recommended to read the [previous post](/2024-04-11-basketball-data-acquisition/) or at least review the [Getting Started](/2024-04-11-basketball-data-acquisition/#getting-started) section of that post before continuing. In summary, you'll want to have [Python](https://www.python.org/) installed with the following packages: 
   - [pandas](https://pandas.pydata.org/docs/)
   - [requests](https://requests.readthedocs.io/en/latest/)
   - [json](https://docs.python.org/3/library/json.html)
   - [os](https://docs.python.org/3/library/os.html)
   - [numpy](https://numpy.org/doc/)
   - [openpyxl](https://openpyxl.readthedocs.io/en/stable/)
+  
+For today's guide specifically, we'll want to import the following packages: 
+```python
+import pandas as pd
+import numpy as np
+```
+
+## Import Data
   
 In [Part 1](/2024-04-11-basketball-data-acquisition/) of this series, we acquired two datasets and combined them into one final dataset, stored in a dataframe named `player_data`. If you want to follow along with the code examples in this article, it's recommended to import the `player_data` dataframe before proceeding. 
 
@@ -1918,8 +1931,7 @@ player_data.to_excel('player_data_clean.xlsx', index=False)
 ```
 
 # Wrap up
-In today's guide, we laid the groundwork for data analysis by cleaning and preprocessing the combined player data. In the next article, we'll expand upon this dataset by engineering a few new features and training a machine learning model. In the final installment of this series, we'll identify relationships between various parameters and create meaningful visualizations. 
-
+In today's guide, we laid the groundwork for data analysis by cleaning and preprocessing the combined player data. In the next article, we'll expand upon this dataset by engineering new features. In future articles, we will cover data exploration, generating visualizations, selecting a machine learning model, and training that model.
 
 <div class="email-subscription-container"></div>
 <div id="sources"></div>
