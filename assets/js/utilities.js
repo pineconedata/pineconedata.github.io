@@ -28,7 +28,7 @@ function addEmailSubscriptionForm(subscribeContainer) {
   if (subscribeContainer) {
     const formHTML = `
             <form action="https://formspree.io/f/xayrvgjj" method="POST" class="form" id="email-subscription-form">
-                <p>Enjoying this article? Subscribe to be notified when I publish new content like this!</p>
+                <p>Enjoying this article? Subscribe to be notified when I publish new content like this! No spam - just helpful updates once a month, straight to your inbox.</p>
                 <input type="hidden" name="_subject" value="Subscribe Request from pineconedata.com">
                 <input type="text" name="_gotcha" style="display:none">
                 <input type="hidden" name="pageTitle" id="formPageTitle">
