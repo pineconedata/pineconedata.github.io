@@ -864,6 +864,8 @@ From the joint plot, we can see the scatter of data points representing the rela
 # Wrap Up
 In this article, we focused on generating a variety of visualizations for our dataset. Today's visualizations were primarily an exploration of various chart types and options that can be helpful. Which charts you want to include in your report will depend on your dataset, but it's generally a good idea to try out multiple chart types and variable pairings before deciding on which ones are best. In the next article, we'll go over how to select the right machine learning model for a given problem. 
 
+Also, all of the code snippets in today's guide are available in a Jupyter Notebook in the [ncaa-basketball-stats](https://github.com/pineconedata/ncaa-basketball-stats) repository on [GitHub](https://github.com/pineconedata/).
+
 ## Articles in this Series   
 1. [Acquiring and Combining the Datasets](/2024-04-11-basketball-data-acquisition/)
 2. [Cleaning and Preprocessing the Data](/2024-05-02-basketball-data-cleaning-preprocessing/)

@@ -786,6 +786,8 @@ player_data.to_excel('player_data_engineered.xlsx', index=False)
 # Wrap up 
 In today's guide, we expanded upon our dataset by engineering a few new features. In the next part, we'll take a closer look at the underlying data in each column and create visualizations to identify the relationship between various parameters.
 
+Also, all of the code snippets in today's guide are available in a Jupyter Notebook in the [ncaa-basketball-stats](https://github.com/pineconedata/ncaa-basketball-stats) repository on [GitHub](https://github.com/pineconedata/).
+
 ## Articles in this Series   
 1. [Acquiring and Combining the Datasets](/2024-04-11-basketball-data-acquisition/)
 2. [Cleaning and Preprocessing the Data](/2024-05-02-basketball-data-cleaning-preprocessing/)

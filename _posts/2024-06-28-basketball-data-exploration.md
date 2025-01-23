@@ -707,6 +707,8 @@ Looking at this chart, you can see why we reduced the number of numerical column
 # Wrap Up
 In today's guide, we took a closer look at the underlying data in each column and created visualizations to identify the relationship between various parameters. Data exploration depends greatly on your individual project, so it's likely to look a bit different for each dataset. This step is generally best as an informal, free-form exploration of your data without being too focused on the finer details like axis titles or color scheme. In the next article, we'll cover generating meaningful visualizations, including a variety of charts and graphs.
 
+Also, all of the code snippets in today's guide are available in a Jupyter Notebook in the [ncaa-basketball-stats](https://github.com/pineconedata/ncaa-basketball-stats) repository on [GitHub](https://github.com/pineconedata/).
+
 ## Articles in this Series   
 1. [Acquiring and Combining the Datasets](/2024-04-11-basketball-data-acquisition/)
 2. [Cleaning and Preprocessing the Data](/2024-05-02-basketball-data-cleaning-preprocessing/)

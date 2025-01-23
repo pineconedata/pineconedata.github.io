@@ -77,10 +77,6 @@ Once those required packages have been installed, we can start writing the progr
 ```python
 import pandas as pd
 import requests
-import json
-import os
-import numpy as np
-import openpyxl 
 ```
 
 Now that we've ensured the necessary dependencies are installed, it's time to acquire the data. 
@@ -991,7 +987,9 @@ player_data.to_excel('player_data_raw.xlsx', index=False)
 ```
 
 # Wrap up 
-In this guide, we built a new dataset by acquiring and then combining the NCAA women's basketball player information dataset with the Yahoo Sports player statistics dataset. In the next part, we'll lay the groundwork for data analysis by cleaning and preprocessing the combined player data. 
+In this guide, we built a new dataset by acquiring and then combining the NCAA women's basketball player information dataset with the Yahoo Sports player statistics dataset. In the next part, we'll lay the groundwork for data analysis by cleaning and preprocessing the combined player data.
+
+Also, all of the code snippets in today's guide are available in a Jupyter Notebook in the [ncaa-basketball-stats](https://github.com/pineconedata/ncaa-basketball-stats) repository on [GitHub](https://github.com/pineconedata/).
 
 ## Articles in this Series   
 1. [Acquiring and Combining the Datasets](/2024-04-11-basketball-data-acquisition/) (Today's Guide)

@@ -1482,7 +1482,9 @@ player_data.to_excel('player_data_clean.xlsx', index=False)
 ```
 
 # Wrap up
-In today's guide, we laid the groundwork for data analysis by cleaning and preprocessing the combined player data. In the next article, we'll expand upon this dataset by engineering new features. 
+In today's guide, we laid the groundwork for data analysis by cleaning and preprocessing the combined player data. In the next article, we'll expand upon this dataset by engineering new features.
+
+Also, all of the code snippets in today's guide are available in a Jupyter Notebook in the [ncaa-basketball-stats](https://github.com/pineconedata/ncaa-basketball-stats) repository on [GitHub](https://github.com/pineconedata/).
 
 ## Articles in this Series   
 1. [Acquiring and Combining the Datasets](/2024-04-11-basketball-data-acquisition/)

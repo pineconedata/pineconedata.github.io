@@ -1326,6 +1326,8 @@ We can see that the model coefficients and the y-intercept are substantially dif
 # Wrap Up
 In today's guide, we covered how to train the selected machine learning model, including how to properly split our dataset into train and test subsets. In the next part, we'll focus on how to evaluate the model's performance.
 
+Also, all of the code snippets in today's guide are available in a Jupyter Notebook in the [ncaa-basketball-stats](https://github.com/pineconedata/ncaa-basketball-stats) repository on [GitHub](https://github.com/pineconedata/).
+
 ## Articles in this Series   
 1. [Acquiring and Combining the Datasets](/2024-04-11-basketball-data-acquisition/)
 2. [Cleaning and Preprocessing the Data](/2024-05-02-basketball-data-cleaning-preprocessing/)

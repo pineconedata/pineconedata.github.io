@@ -520,6 +520,8 @@ There is no direct statistical test for weak exogeneity, so we'll treat this as 
 # Wrap Up
 In today's article, we covered the basics of machine learning and learned how to select an appropriate machine learning model. In the next post, we'll cover how to actually train the model. 
 
+Also, all of the code snippets in today's guide are available in a Jupyter Notebook in the [ncaa-basketball-stats](https://github.com/pineconedata/ncaa-basketball-stats) repository on [GitHub](https://github.com/pineconedata/).
+
 ## Articles in this Series   
 1. [Acquiring and Combining the Datasets](/2024-04-11-basketball-data-acquisition/)
 2. [Cleaning and Preprocessing the Data](/2024-05-02-basketball-data-cleaning-preprocessing/)
