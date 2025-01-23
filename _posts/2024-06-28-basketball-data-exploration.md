@@ -30,9 +30,9 @@ As a reminder, the dataset we'll be using in this project contains individual ba
 4. **Feature Engineering** - This step involves selecting and expanding upon the dataset's features (or columns). This includes calculating additional metrics from existing columns.
 5. **Data Exploration** - This step focuses on analyzing and visualizing the dataset to uncover patterns, relationships, and general trends and is a helpful preliminary step before deeper analysis.
 6. **Creating Visualizations** - This step involves identifying the relationships between various parameters (such as height and blocked shots) and generating meaningful visualizations (such as bar charts, scatterplots, and candlestick charts).
-5. **Machine Learning** - This step focuses on selecting, training, and evaluating a machine learning model. For this project, the model will identify the combination of individual player statistics that correlates with optimal performance. 
+7. **Machine Learning** - This step focuses on selecting, training, and evaluating a machine learning model. For this project, the model will identify the combination of individual player statistics that correlates with optimal performance. 
 
-We'll use Python along with popular libraries like [pandas](https://pandas.pydata.org/docs/), [numpy](https://numpy.org/doc/), and [scikit-learn](https://scikit-learn.org/) to accomplish these tasks efficiently. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, identify relationships between variables, create meaningful visualizations, and train a basic machine learning model. Since we already gathered the raw data from online sources in [Part 1](/2024-04-11-basketball-data-acquisition/), cleaned that data in [Part 2](2024-05-02-basketball-data-cleaning-preprocessing/), and engineered new features in [Part 3](/2024-05-30-basketball-feature_engineering/), we're ready to move on to exploring the dataset.
+We'll use Python along with popular libraries like [pandas](https://pandas.pydata.org/docs/), [numpy](https://numpy.org/doc/), and [scikit-learn](https://scikit-learn.org/) to accomplish these tasks efficiently. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, identify relationships between variables, create meaningful visualizations, and train a basic machine learning model. Due to the size of this project, today we'll cover the fifth step: exploratory data analysis.
 
 ## Dependencies
 Since this is the fourth installment in the series, you likely already have your environment setup and can skip to the next section. If you're not already set up and you want to follow along on your own machine, it's recommended to read the [first article of the series](/2024-04-11-basketball-data-acquisition/) or at least review the [Getting Started](/2024-04-11-basketball-data-acquisition/#getting-started) section of that post before continuing. 
@@ -60,7 +60,7 @@ import plotly.express as px
 import plotly.io as pio
 ```
 
-Since I'm creating these graphs using [JupyterLab](https://jupyter.org/), I'll also make sure the jupyterlab-plotly extension is installed and will specify that my plotly charts should display as an iframe. 
+Since I'm creating these graphs using [JupyterLab](https://jupyter.org/), I'll also make sure the `jupyterlab-plotly` extension is installed and will specify that plotly charts should display as an iframe. 
 
 
 ```python
@@ -253,16 +253,16 @@ That's all the setup steps needed, so we're ready to move on to identifying the 
 In this section, we'll explore the dataset to understand relationships between various parameters. We'll use the [pandas `describe()` function](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.describe.html) for a statistical summary, create a correlation matrix to visualize variable relationships, and generate a pairwise plot for a detailed view. This analysis will help us identify patterns and help us select meaningful visualizations for this data science project.
 
 ## Describe the Dataset
-The first step is to get a statistical summary of our dataset. The `describe()` function in pandas provides a high-level statistical summary for each numerical column of our dataset, including: 
+The first step is to get a statistical summary of our dataset. The [`describe()` function](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.describe.html) in pandas provides a high-level statistical summary for each numerical column of our dataset, including: 
 
-1. Count - The number of non-null entries in a column.
-2. Mean - The average value of all entries in a column.
-3. Standard Deviation - A measure of the amount of variation or dispersion of the entries in a column.
-4. Minimum - The smallest entry in a column.
-5. 25th percentile - The value below which a quarter of the entries in a column fall.
-6. Median - The middle value in a column when the entries are sorted in ascending or descending order.
-7. 75th percentile - The value below which three quarters of the entries in a column fall.
-8. Maximum - The largest entry in a column.
+1. **Count** - The number of non-null entries in a column.
+2. **Mean**- The average value of all entries in a column.
+3. **Standard Deviation** - A measure of the amount of variation or dispersion of the entries in a column.
+4. **Minimum** - The smallest entry in a column.
+5. **25th percentile** - The value below which a quarter of the entries in a column fall.
+6. **Median** - The middle value in a column when the entries are sorted in ascending or descending order.
+7. **75th percentile** - The value below which three quarters of the entries in a column fall.
+8. **Maximum** - The largest entry in a column.
 
 
 ```python
@@ -612,16 +612,18 @@ numerical_columns = ['Height', 'MINUTES_PLAYED', 'FIELD_GOALS_MADE',
 
 <div class="email-subscription-container"></div>
 
-## Generate Correlation Matrix
-
-A [correlation matrix](https://en.wikipedia.org/wiki/Correlation#Correlation_matrices) is a table showing the correlation coefficients between many variables. Each cell in the table shows the correlation between two variables. The value is in the range of -1 to 1 and each cell color indicates the strength and direction of the correlation between two variables. If two variables have a high correlation, it means that when one variable changes, the other variable tends to also change in a specific direction. Values closer to zero indicate a weak correlation, where a change in one variable does not correlate with a change in the other variable. 
-
-### Correlation vs Causation
+## Correlation vs Causation
 Note that [correlation does not imply causation](https://en.wikipedia.org/wiki/Correlation_does_not_imply_causation). Just because there is a statistical association between two variables does not mean that a change in one variable actually *causes* a change in the other variable. There is an entire website containing [spurious correlations](https://tylervigen.com/spurious-correlations), but here's one example of two variables that are strongly correlated, but are unlikely to have a cause-and-effect relationship: the divorce rate in Maine and the per capita consumption of margarine. 
 
 ![correlation does not imply causation](https://tylervigen.com/spurious/correlation/image/5920_per-capita-consumption-of-margarine_correlates-with_the-divorce-rate-in-maine.svg "correlation does not imply causation")
 
 So keep in mind that correlation is not the same as causation. That said, knowing which variables are correlated with each other is still useful for this project. By examining the correlation matrix, we can identify which statistics tend to increase or decrease together, which can give us insights about the data. This can be particularly useful for feature selection in machine learning models, as it helps to avoid situations where multiple features are highly correlated with each other ([multicollinearity](https://en.wikipedia.org/wiki/Multicollinearity)).
+
+## Generate Correlation Matrix
+
+A [correlation matrix](https://en.wikipedia.org/wiki/Correlation#Correlation_matrices) is a table showing the correlation coefficients between many variables. Each cell in the table shows the correlation between two variables. The value is in the range of `-1` to `1` and each cell color indicates the strength and direction of the correlation between two variables. If two variables have a high correlation, it means that when one variable changes, the other variable tends to also change in a specific direction. Values closer to zero indicate a weak correlation, where a change in one variable does not correlate with a change in the other variable. 
+
+### Correlation Matrix of Two Features
 
 Before creating the full correlation matrix with all of the numerical columns, let's take a quick look at a correlation matrix that only includes two metrics that we already suspect are correlated: field goals made and field goals attempted. We'll use the [pandas `corr()` method](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html) to create the correlation matrix itself and then use a [Seaborn heatmap](https://seaborn.pydata.org/generated/seaborn.heatmap.html) to visualize it.
 
@@ -644,6 +646,8 @@ The simplest example of a strong correlation in the correlation matrix is the on
 
 You might also notice that we only need half of this matrix - either the half above the diagonal line of `1.00` values or the half below the diagonal line. The diagonal line of correlation coefficients show the one to one relationship between each metric and itself - for example, the top-left square shows the relationship between `FIELD_GOALS_MADE` and `FIELD_GOALS_MADE` (itself). The correlation coefficients in the bottom-left and the top-right squares are identical, since both of them show the relationship between `FIELD_GOAL_ATTEMPTS` and `FIELD_GOALS_MADE`. To see this point illustrated a bit more clearly, we can add two more pairings of similar metrics: two pointers made and two pointers attempted. 
 
+### Correlation Matrix of Four Features
+Let's add the two pointers made and two pointers attempted to our previous correlation matrix.
 
 ```python
 plt.figure(figsize=(12, 10))
@@ -652,14 +656,15 @@ sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f", linewidt
 plt.title('Correlation Heatmap of Player Statistics')
 plt.show()
 ```
-
-
     
 ![png](/assets/img/posts/2024-06-28-basketball-data-exploration/output_30_0.png)
-    
 
 
-Just like the previous matrix, we can see that there's a diagonal line of `1.00` values and the values are mirrored across that diagonal line of `1.00` values. The correlation coefficient between two pointers made and two pointers attempted is even stronger (`0.95`) than field goals made and attempted, so these two values are also strongly correlated. Now that we understand a bit more about correlation matrices, we're ready to create the full chart. 
+Just like the previous matrix, we can see that there's a diagonal line of `1.00` values and the values are mirrored across that diagonal line of `1.00` values. The correlation coefficient between two pointers made and two pointers attempted is even stronger (`0.95`) than field goals made and attempted, so these two values are also strongly correlated. 
+
+### Correlation Matrix of All Selected Features
+
+Now that we understand a bit more about correlation matrices, we're ready to create the full chart. 
 
 
 ```python
@@ -697,7 +702,7 @@ plt.show()
     
 
 
-Looking at this chart, you can see why we reduced the number of numerical columns. Scatterplot matrices can get quite large with too many variables, so it can be helpful to focus on a few variables at first and individually analyze additional variables later. For example, the scatterplot matrix shows a dense linear relationship between `POINTS` and `FIELD_GOALS_MADE` and this matches the 0.97 correlation coefficient from the previous chart. Just like the correlation matrix, we can refer to back to this scatterplot matrix to quickly check the relationship between variables. 
+Looking at this chart, you can see why we reduced the number of numerical columns. Scatterplot matrices can get quite large with too many variables, so it can be helpful to focus on a few variables at first and individually analyze additional variables later. For example, the scatterplot matrix shows a dense linear relationship between `POINTS` and `FIELD_GOALS_MADE` and this matches the `0.97` correlation coefficient from the previous chart. Just like the correlation matrix, we can refer to back to this scatterplot matrix to quickly check the relationship between variables. 
 
 # Wrap Up
 In today's guide, we took a closer look at the underlying data in each column and created visualizations to identify the relationship between various parameters. Data exploration depends greatly on your individual project, so it's likely to look a bit different for each dataset. This step is generally best as an informal, free-form exploration of your data without being too focused on the finer details like axis titles or color scheme. In the next article, we'll cover generating meaningful visualizations, including a variety of charts and graphs.

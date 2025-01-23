@@ -30,9 +30,9 @@ As a reminder, the dataset we'll be using in this project contains individual ba
 4. **Feature Engineering** - This step involves selecting and expanding upon the dataset's features (or columns). This includes calculating additional metrics from existing columns.
 5. **Data Exploration** - This step focuses on analyzing and visualizing the dataset to uncover patterns, relationships, and general trends and is a helpful preliminary step before deeper analysis.
 6. **Creating Visualizations** - This step involves identifying the relationships between various parameters (such as height and blocked shots) and generating meaningful visualizations (such as bar charts, scatterplots, and candlestick charts).
-5. **Machine Learning** - This step focuses on selecting, training, and evaluating a machine learning model. For this project, the model will identify the combination of individual player statistics that correlates with optimal performance. 
+7. **Machine Learning** - This step focuses on selecting, training, and evaluating a machine learning model. For this project, the model will identify the combination of individual player statistics that correlates with optimal performance. 
 
-We'll use Python along with popular libraries like [pandas](https://pandas.pydata.org/docs/), [numpy](https://numpy.org/doc/), and [scikit-learn](https://scikit-learn.org/) to accomplish these tasks efficiently. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, identify relationships between variables, create meaningful visualizations, and train a basic machine learning model.  Since we already gathered the raw data from online sources in [Part 1](/2024-04-11-basketball-data-acquisition/), cleaned that data in [Part 2](/2024-05-02-basketball-data-cleaning-preprocessing/), engineered new features in [Part 3](/2024-05-30-basketball-feature_engineering/), explored the dataset in [Part 4](2024-06-28-basketball-data-exploration/), and generated visualizations in [Part 5](/2024-07-29-basketball-visualizations/), we're ready to move on to selecting a machine learning model.
+We'll use Python along with popular libraries like [pandas](https://pandas.pydata.org/docs/), [numpy](https://numpy.org/doc/), and [scikit-learn](https://scikit-learn.org/) to accomplish these tasks efficiently. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, identify relationships between variables, create meaningful visualizations, and train a basic machine learning model. Due to the size of this project, today we'll cover part of the seventh step: selecting a machine learning model.
 
 ## Dependencies
 Since this is the sixth installment in the series, you likely already have your environment setup and can skip to the next section. If you're not already set up and you want to follow along on your own machine, it's recommended to read the [first article of the series](/2024-04-11-basketball-data-acquisition/) or at least review the [Getting Started](/2024-04-11-basketball-data-acquisition/#getting-started) section of that post before continuing. 
@@ -385,7 +385,7 @@ The next question is: "Are there fewer than 100,000 samples?" Looking back to th
 At this point, we have ended up at the question: "Should only a few features be important?" Answering "yes" will take us to [Lasso](https://en.wikipedia.org/wiki/Lasso_(statistics)) and answering "no" will take us to [RidgeRegression](https://en.wikipedia.org/wiki/Ridge_regression). However, both Lasso and Ridge regression in this context are meant to be improvements upon [Ordinary Least Squares (OLS)](https://en.wikipedia.org/wiki/Ordinary_least_squares) linear regression. To clarify, [linear regression](https://en.wikipedia.org/wiki/Linear_regression) is a specific type of regression analysis where the relationship between the dependent variable and the independent variables is assumed to be linear. It finds the best-fitting straight line (called the regression line) through the data points to make predictions. So, instead of using either lasso or ridge regression today, we'll explore the classic OLS linear regression model. 
 
 ## Model Characteristics
-Ordinary Least Squares (OLS) is the most basic form of linear regression. It aims to minimize the sum of the squared differences between observed and predicted values (the residuals). As a type of linear regression, it assumes a linear relationship between the independent and dependent variables. It can be sensitive to outliers, which can skew the results significantly. It also does not offer regularization, which means it can overfit when there are many predictors or when predictors are highly correlated. However, it is simple and explainable, so it offers a good starting point. 
+[Ordinary Least Squares (OLS)](https://en.wikipedia.org/wiki/Ordinary_least_squares) is the most basic form of linear regression. It aims to minimize the sum of the squared differences between observed and predicted values (the residuals). As a type of linear regression, it assumes a linear relationship between the independent and dependent variables. It can be sensitive to outliers, which can skew the results significantly. It also does not offer regularization, which means it can overfit when there are many predictors or when predictors are highly correlated. However, it is simple and explainable, so it offers a good starting point. 
 
 As mentioned earlier, linear regression assumes that the relationship between the independent variables (features) and the dependent variable (target) can be described by a straight line. This line (also known as the regression line) is represented by an equation of the form:
 
@@ -416,7 +416,7 @@ Now that we conceptually understand a bit more about how this model works, we ca
 Next up, we should verify the underlying assumptions of the machine learning model are satisfied by our particular problem and situation. This step might be tempting to skip, but it can save hours of time in the future and can help ensure your model is generalized. The basic [assumptions of linear regression models](https://en.wikipedia.org/wiki/Linear_regression#Assumptions) generally are: 
  - **Linearity** - The relationship between the target variable and the features is linear.
  - **No Multicollinearity** - The features are not too highly correlated with each other.
- - **Weak Exogeneity** - The features are treated as fixed values, not random variables, and are free from measurement errors. 
+ - **Weak Exogeneity** - The features are treated as fixed values, not random variables, and are not correlated with any error in \\(FantasyPoints\\). 
  - **Independence of Errors** - Residuals are independent of and unrelated to one another. 
  - **Zero Mean of Residuals** - The mean of the residuals is zero or close to zero.
  - **Constant Variance (Homoskedasticity)** - Residuals have constant variance across all levels of the independent variables. 
@@ -426,7 +426,7 @@ Next up, we should verify the underlying assumptions of the machine learning mod
 You might notice that the first three assumptions pertain to the features and the last three assumptions pertain to the residuals. Residuals are the difference between the predicted target variable and the actual target variable. This means that we must be able to generate predictions and therefore have trained the model before evaluating those assumptions. So we can go through each of the first three assumptions (linearity, no multicollinearity, and weak exogeneity) today and will leave the other three for a future article.  
 
 ### Linearity
-The first assumption we'll look at is whether the relationship between the independent and dependent variables is linear. Looking at the basic OLS linear regression equation from the [earlier section](#model-characteristics), we can see that the coefficients (parameters), random error, and variables are linear. Linear regression models can model curvature to some extent (in the variables, not the parameters), but for today we'll focus on a strictly linear relationship. 
+The first assumption we'll look at is whether the relationship between the independent and dependent variables is linear. Linear regression models can model curvature to some extent (in the variables, not the parameters), but for today we'll focus on a strictly linear relationship. 
 
 There are a few common methods to detect linearity: 
 
@@ -467,8 +467,6 @@ pairplot.map(loess_reg)
     <seaborn.axisgrid.PairGrid at 0x74cd86773280>
 
 
-
-
     
 ![png](/assets/img/posts/2024-08-12-basketball-select-ml-ols/output_27_1.png)
     
@@ -482,7 +480,7 @@ There are a few common ways to detect multicollinearity; we'll look at the top t
 2. **Variance Inflation Factor** - We can check the [variance inflation factor](https://en.wikipedia.org/wiki/Variance_inflation_factor) after training the model.
 
 To check the correlation coefficient, we can use the same method as in [Part 3](https://www.pineconedata.com/2024-07-29-basketball-visualizations/#generate-correlation-matrix). 
-We can check the correlation coefficients before training the model using a correlation matrix. As a reminder, a correlation matrix displays the correlation coefficients between all pairs of variables, with values ranging from -1 to 1. Strong correlations (when the absolute value of the correlation coefficient is typically above 0.8 or 0.9) suggest potential multicollinearity.
+We can check the correlation coefficients before training the model using a correlation matrix. As a reminder, a correlation matrix displays the correlation coefficients between all pairs of variables, with values ranging from `-1` to `1`. Strong correlations (when the absolute value of the correlation coefficient is typically above `0.8` or `0.9`) suggest potential multicollinearity.
 
 
 ```python
@@ -491,18 +489,9 @@ correlation_matrix = player_data[features].corr()
 sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f", linewidths=0.5)
 ```
 
-
-
-
-    <Axes: >
-
-
-
-
     
 ![png](/assets/img/posts/2024-08-12-basketball-select-ml-ols/output_29_1.png)
     
-
 
 From this chart, we can see that the variables with the strongest correlations are: 
  - `FIELD_GOALS_MADE` and `TWO_POINTS_MADE` with a correlation coefficient of `0.86`
@@ -515,16 +504,18 @@ When you encounter variable pairings with strong correlations in your correlatio
 3. **Use regularization techniques** - Methods like Ridge Regression (L2 regularization) or Lasso Regression (L1 regularization) can help mitigate the effects of multicollinearity by adding a penalty term to the model that discourages large coefficients. We could also apply regularization to the features separately, before training the OLS model.
 4. **Collect more data** - Sometimes, multicollinearity can be reduced by increasing the sample size, which may help differentiate the effects of correlated variables. This is more situational and will not apply in all scenarios.
 
-Since we're interested in seeing how the model behaves with a simple application of OLS linear regression, we'll proceed without removing, combining, or regularizing any of the features. However, we should keep this information in mind in the future since we might want to retrain the model without one or more of the features. 
+Since we're interested in seeing how the model behaves with a simple application of OLS linear regression, we'll proceed without removing, combining, or regularizing any of the features. However, we should keep this information in mind in the future since we might want to compare the results to a separate model that was trained without one or more of the highly correlated features. 
 
 ### Weak Exogeneity
-Weak exogeneity is another crucial assumption in linear regression that we need to verify. This assumption essentially means that the predictor variables (our independent variables) can be treated as fixed values, rather than random variables. In other words, we assume that our predictor variables are not influenced by the dependent variable or by external factors that also affect the dependent variable.
+Weak exogeneity is another crucial assumption in linear regression that we need to verify. In the context of linear regression, weak exogeneity means that the predictor variables (independent variables) are not correlated with the error term in the model. More formally, weak exogeneity assumes that the independent variables can be treated as fixed in value and are not influenced by the dependent variable or by factors that affect both the dependent variable and the predictors.
 
-Practically speaking, weak exogeneity implies that our predictor variables are error-free, meaning they are not contaminated with measurement errors. While this assumption may not always be realistic in many real-world settings, it's an important simplification that allows us to use standard linear regression techniques.
+This assumption does not require the predictor variables to be free from all external influences, but rather that the predictors are not subject to endogeneity. Endogeneity could arise if, for example, the predictors are correlated with unobserved factors that also affect the dependent variable. Under weak exogeneity, we assume that such correlations do not exist.
 
-It's worth noting that dropping this assumption leads to significantly more complex models known as errors-in-variables models. These models account for measurement errors in the predictor variables but are considerably more challenging to implement and interpret.
+In practical terms, weak exogeneity also implies that the predictors are not contaminated by measurement errors that are correlated with the error term in the regression. While weak exogeneity is often an idealization that may not always hold in real-world data, it is necessary for the standard ordinary least squares (OLS) estimation procedure to produce unbiased and consistent estimates.
 
-There is no direct statistical test for weak exogeneity, so we'll treat this as more of a logical check than a mathematical one. For our basketball player statistics model, weak exogeneity would mean that the statistics we're using as predictors (such as minutes played, field goals attempted, etc.) are not themselves influenced by unmeasured factors that also affect fantasy points. This makes rough logical sense based on our domain knowledge, so we'll consider this assumption satisfied. 
+It's worth noting that dropping this assumption would require significantly more complex models (such as errors-in-variables models). These models account for measurement errors in the predictor variables but are generally more challenging to implement and interpret.
+
+There is no direct statistical test for weak exogeneity, so we'll treat this as more of a logical check than a mathematical one. For our basketball player statistics model, weak exogeneity would mean that the statistics we're using as predictors (such as minutes played, field goals attempted, etc.) are not themselves influenced by unmeasured factors that also affect fantasy points. Based on our understanding of the domain, this makes rough logical sense and we'll consider this assumption satisfied. 
 
 # Wrap Up
 In today's article, we covered the basics of machine learning and learned how to select an appropriate machine learning model. In the next post, we'll cover how to actually train the model. 

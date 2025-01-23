@@ -29,7 +29,7 @@ The dataset we'll be using in this project contains individual basketball player
 4. **Feature Engineering** - This step involves selecting and expanding upon the dataset's features (or columns). This includes calculating additional metrics from existing columns.
 5. **Data Exploration** - This step focuses on analyzing and visualizing the dataset to uncover patterns, relationships, and general trends and is a helpful preliminary step before deeper analysis.
 6. **Creating Visualizations** - This step involves identifying the relationships between various parameters (such as height and blocked shots) and generating meaningful visualizations (such as bar charts, scatterplots, and candlestick charts).
-5. **Machine Learning** - This step focuses on selecting, training, and evaluating a machine learning model. For this project, the model will identify the combination of individual player statistics that correlates with optimal performance. 
+7. **Machine Learning** - This step focuses on selecting, training, and evaluating a machine learning model. For this project, the model will identify the combination of individual player statistics that correlates with optimal performance. 
 
 We'll use Python along with popular libraries like [pandas](https://pandas.pydata.org/docs/), [numpy](https://numpy.org/doc/), and [scikit-learn](https://scikit-learn.org/) to accomplish these tasks efficiently. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, identify relationships between variables, create meaningful visualizations, and train a basic machine learning model. Due to the size of this project, we'll start today with just the first step: data acqusition. 
 
@@ -982,7 +982,9 @@ player_data.shape
 
 So our final dataset has 900 rows and 27 columns. This is enough data for our project, so we're ready to move on to the cleaning and preprocessing steps.
 
-If you're going to use a new Jupyter notebook / Python script for the next part of this series, then it's a good idea to export this dataset. As a reminder, you can use the `to_csv()` method instead of `.to_excel()` if you prefer. 
+# Export Data
+
+If you're going to use a new Jupyter notebook / Python script for the next part of this series, then it's a good idea to export this dataset. As a reminder, you can use the [`to_csv()` method](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_csv.html) instead of the [`.to_excel()` method](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_excel.html) if you prefer. 
 
 ```python
 player_data.to_excel('player_data_raw.xlsx', index=False)

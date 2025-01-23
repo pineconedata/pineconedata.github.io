@@ -30,9 +30,9 @@ As a reminder, the dataset we'll be using in this project contains individual ba
 4. **Feature Engineering** - This step involves selecting and expanding upon the dataset's features (or columns). This includes calculating additional metrics from existing columns.
 5. **Data Exploration** - This step focuses on analyzing and visualizing the dataset to uncover patterns, relationships, and general trends and is a helpful preliminary step before deeper analysis.
 6. **Creating Visualizations** - This step involves identifying the relationships between various parameters (such as height and blocked shots) and generating meaningful visualizations (such as bar charts, scatterplots, and candlestick charts).
-5. **Machine Learning** - This step focuses on selecting, training, and evaluating a machine learning model. For this project, the model will identify the combination of individual player statistics that correlates with optimal performance. 
+7. **Machine Learning** - This step focuses on selecting, training, and evaluating a machine learning model. For this project, the model will identify the combination of individual player statistics that correlates with optimal performance. 
 
-We'll use Python along with popular libraries like [pandas](https://pandas.pydata.org/docs/), [numpy](https://numpy.org/doc/), and [scikit-learn](https://scikit-learn.org/) to accomplish these tasks efficiently. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, identify relationships between variables, create meaningful visualizations, and train a basic machine learning model. Since we already gathered the raw data from online sources in [Part 1](/2024-04-11-basketball-data-acquisition/), cleaned that data in [Part 2](2024-05-02-basketball-data-cleaning-preprocessing/), and engineered new features in [Part 3](/2024-05-30-basketball-feature_engineering/), and explored the dataset in [Part 4](2024-06-28-basketball-data-exploration/), we're ready to move on to generating visualizations.
+We'll use Python along with popular libraries like [pandas](https://pandas.pydata.org/docs/), [numpy](https://numpy.org/doc/), and [scikit-learn](https://scikit-learn.org/) to accomplish these tasks efficiently. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, identify relationships between variables, create meaningful visualizations, and train a basic machine learning model. Due to the size of this project, today we'll cover the sixth step: creating visualizations.
 
 ## Dependencies
 Since this is the fifth installment in the series, you likely already have your environment setup and can skip to the next section. If you're not already set up and you want to follow along on your own machine, it's recommended to read the [first article of the series](/2024-04-11-basketball-data-acquisition/) or at least review the [Getting Started](/2024-04-11-basketball-data-acquisition/#getting-started) section of that post before continuing. 
@@ -60,7 +60,7 @@ import plotly.io as pio
 import scipy
 ```
 
-Since I'm creating these graphs using [JupyterLab](https://jupyter.org/), I'll also make sure the `jupyterlab-plotly` extension is installed and will specify that my plotly charts should display as an iframe. 
+Since I'm creating these graphs using [JupyterLab](https://jupyter.org/), I'll also make sure the `jupyterlab-plotly` extension is installed and will specify that plotly charts should display as an iframe. 
 
 
 ```python
@@ -388,7 +388,7 @@ plt.show()
 In this scatterplot, we can see a dense clump of players up until around 225 field goals made, and then a more spread out distribution of players with between 225 and 300 field goals made. There's also one player who scored more than 300 field goals in the season, represented as the single outlier in the far upper right corner of the graph. Let's identify that top player.
 
 ### View Top Players by Points
-To see which players made the highest number of field goals in the season, we can use the pandas nlargest() function. By passing the arguments `5` and `FIELD_GOALS_MADE`, we can specify that we want to select the five rows with the highest value in the FIELD_GOALS_MADE column. 
+To see which players made the highest number of field goals in the season, we can use the [pandas nlargest() function](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.nlargest.html). By passing the arguments `5` and `FIELD_GOALS_MADE`, we can specify that we want to select the five rows with the highest value in the `FIELD_GOALS_MADE` column. 
 
 
 ```python
@@ -516,7 +516,7 @@ plt.show()
 From the boxes on this plot, we can see that Centers are generally the tallest and Guards are generally the shortest players in this dataset. Forwards, on the other hand, have a smaller interquartile range in between Centers and Guards, and as a result have more outliers drawn on the plot. 
 
 ## Box Plot of Three Points Made by Conference
-We can create another box plot that shows the number of three point field goals each player made by Conference. This gives us a high level overview of the distribution of successful three-pointers for players in each Conference. 
+We can create another box plot that shows the number of three point field goals each player made by `Conference`. This gives us a high level overview of the distribution of successful three-pointers for players in each `Conference`. 
 
 
 ```python
@@ -581,7 +581,7 @@ player_data[player_data['THREE_POINTS_MADE'] > 0].groupby('Conference').size()
 
 
 
-We can see that the DI Independent Conference only has one data point where the number of `THREE_POINTS_MADE` is greater than zero, which explains why the box in the chart above looks more like a single point. 
+We can see that the DI Independent conference only has one data point where the number of `THREE_POINTS_MADE` is greater than zero, which explains why the box in the chart above looks more like a single point. 
 
 Also we can see that the Big Ten conference has an outlier with significantly more `THREE_POINTS_MADE` compared to any other data point. We can verify who that player is with the panda's [groupby()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.groupby.html) and [max()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.max.html) functions.
 
@@ -755,7 +755,7 @@ From the stacked bar chart, we can see that Centers have the lowest number of re
 
 ## Heatmap of Player Assists and Steals by Height
 
-Next, let's create a heatmap using Seaborn's `heatmap()` function to visualize the relationship between a player's height and their number of steals and assists. Heatmaps are great for identifying patterns and trends in large datasets. To make patterns easier to see, we grouped assists and steals into bins. Once the data is binned, we can configure the heatmap to show assists on the x-axis, height on the y-axis, and steals as the color. 
+Next, let's create a heatmap using [Seaborn's `heatmap()` function](https://seaborn.pydata.org/generated/seaborn.heatmap.html) to visualize the relationship between a player's height and their number of steals and assists. Heatmaps are great for identifying patterns and trends in large datasets. To make patterns easier to see, we grouped assists and steals into bins. Once the data is binned, we can configure the heatmap to show assists on the x-axis, height on the y-axis, and steals as the color. 
 
 
 ```python

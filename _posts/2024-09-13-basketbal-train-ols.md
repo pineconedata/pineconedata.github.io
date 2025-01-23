@@ -30,9 +30,9 @@ As a reminder, the dataset we'll be using in this project contains individual ba
 4. **Feature Engineering** - This step involves selecting and expanding upon the dataset's features (or columns). This includes calculating additional metrics from existing columns.
 5. **Data Exploration** - This step focuses on analyzing and visualizing the dataset to uncover patterns, relationships, and general trends and is a helpful preliminary step before deeper analysis.
 6. **Creating Visualizations** - This step involves identifying the relationships between various parameters (such as height and blocked shots) and generating meaningful visualizations (such as bar charts, scatterplots, and candlestick charts).
-5. **Machine Learning** - This step focuses on selecting, training, and evaluating a machine learning model. For this project, the model will identify the combination of individual player statistics that correlates with optimal performance. 
+7. **Machine Learning** - This step focuses on selecting, training, and evaluating a machine learning model. For this project, the model will identify the combination of individual player statistics that correlates with optimal performance. 
 
-We'll use Python along with popular libraries like [pandas](https://pandas.pydata.org/docs/), [numpy](https://numpy.org/doc/), and [scikit-learn](https://scikit-learn.org/) to accomplish these tasks efficiently. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, identify relationships between variables, create meaningful visualizations, and train a basic machine learning model. Since we already gathered the raw data from online sources in [Part 1](/2024-04-11-basketball-data-acquisition/), cleaned that data in [Part 2](/2024-05-02-basketball-data-cleaning-preprocessing/), engineered new features in [Part 3](/2024-05-30-basketball-feature_engineering/), explored the dataset in [Part 4](2024-06-28-basketball-data-exploration/), generated visualizations in [Part 5](/2024-07-29-basketball-visualizations/), and selected a model in [Part 6](2024-08-12-basketball-select-ml-ols/), we're ready to move on to training a machine learning model.
+We'll use Python along with popular libraries like [pandas](https://pandas.pydata.org/docs/), [numpy](https://numpy.org/doc/), and [scikit-learn](https://scikit-learn.org/) to accomplish these tasks efficiently. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, identify relationships between variables, create meaningful visualizations, and train a basic machine learning model. Due to the size of this project, today we'll cover part of the seventh step: training a machine learning model.
 
 ## Dependencies
 Since this is the seventh installment in the series, you likely already have your environment setup and can skip to the next section. If you're not already set up and you want to follow along on your own machine, it's recommended to read the [first article of the series](/2024-04-11-basketball-data-acquisition/) or at least review the [Getting Started](/2024-04-11-basketball-data-acquisition/#getting-started) section of that post before continuing. 
@@ -263,20 +263,31 @@ It's important to note that our focus in this article is on classic machine lear
 
 
 # Model Training
-Now that we've covered the basics of machine learning and verified the suitability of our chosen model, we're ready to move on to the exciting part: training our linear regression model! This process involves several key steps that will help us build a robust and accurate predictive model for our basketball player statistics.
+Now that we've covered the basics of machine learning, we're ready to move on to the exciting part: training our [Ordinary Least Squares (OLS)](https://en.wikipedia.org/wiki/Ordinary_least_squares) linear regression model! This process involves several key steps that will help us build a robust and accurate predictive model for our basketball player statistics.
 
 ## Define the Variables 
-As a reminder, in an earlier section we defined the features and target variable. We'll label the features (independent variables) as `X` and the target (dependent) variable as `y` for conciseness.
+As a reminder from the [previous article](/2024-08-12-basketball-select-ml-ols/), we defined the `target` and `feature` variables as: 
+
+```python
+target = 'FANTASY_POINTS'
+features = ['Height', 'MINUTES_PLAYED', 'FIELD_GOALS_MADE', 'THREE_POINTS_MADE',
+            'TWO_POINTS_MADE', 'FREE_THROWS_MADE', 'TOTAL_REBOUNDS', 'ASSISTS',
+            'TURNOVERS', 'STEALS', 'BLOCKS', 'FOULS', 'POINTS']
+```
+
+We'll label the features (independent variables) as `X` and the target (dependent) variable as `y` for conciseness.
 
 
 ```python
 X = player_data[features]
 y = player_data[target]
-X
 ```
 
+Let's take a quick look at the values in `X`:
 
-
+```python
+X
+```
 
 <div>
 <style scoped>
@@ -493,7 +504,7 @@ X
 <p>900 rows × 13 columns</p>
 </div>
 
-
+Let's check the values in `y` as well:
 
 
 ```python
@@ -516,13 +527,13 @@ y
     899     597.9
     Name: FANTASY_POINTS, Length: 900, dtype: float64
 
-
+These look great and match with the values we saw in the previous article, so we can move on to the next step.
 
 ## Create Training and Testing Splits
 Now that we have our variables defined, we can create the training and testing splits. This involves dividing our dataset into two parts: a set for training and a set for testing. The train set will be used to train the model, and the test set will be used exclusively for testing and evaluating the model after training. 
 
-Why wouldn't we just use all of the data for training?
-1. **Model Evaluation** - The test set allows us to evaluate how well our model performs on unseen data, giving us a more realistic estimate of its performance in real-world scenarios.
+At this point, you might wonder: *Why don't we just use all of the data for training?* There are several reasons for this:
+1. **Model Evaluation** - Having a test set allows us to evaluate how well our model performs on unseen data, giving us a more realistic estimate of its performance in real-world scenarios.
 2. **Preventing Overfitting** - By keeping a portion of our data separate for testing, we can detect if our model is overfitting to the training data. Overfitting occurs when a model learns the training data too well, including its noise and peculiarities, leading to poor generalization on new data.
 3. **Validating Model Generalization** - The test set helps us validate whether our model can generalize well to new, unseen data. This is crucial for ensuring that our model will perform reliably when deployed in practice.
 4. **Hyperparameter Tuning** - While we don't have any hyperparameters to tune today, splitting the data is also essential for hyperparameter tuning techniques like cross-validation.
@@ -667,7 +678,7 @@ X_train.head(5)
 
 
 ### Reproducibility
-You might notice that if you run the `train_test_split()` for a second time, there are different rows of data included in each split. This is because the data is shuffled before splitting, and the shuffling is not guaranteed to be reproducible by default.
+You might notice that if you run the `train_test_split()` for a second time, there are different rows of data included in each split. Here's an example of re-running the exact same code:
 
 
 ```python
@@ -797,8 +808,7 @@ X_train.head(5)
 </div>
 
 
-
-This can mean that the model is trained and tested on different datasets each time that you run it. That's often a good thing, but it can be better to have reproducible results for initial creation and evaluation of the model (especially if you want to follow along with this guide). 
+This happens because the data is shuffled before splitting, and the shuffling is not guaranteed to be reproducible by default. This can mean that the model is trained and tested on different datasets each time that you run it. That can be a good thing, but it might be better to have reproducible results for initial creation and evaluation of the model (especially if you want to follow along with this guide). 
 
 We can ensure reproducibility of the splits by controlling the shuffling with the `random_state` parameter: 
 
@@ -807,9 +817,6 @@ We can ensure reproducibility of the splits by controlling the shuffling with th
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=314)
 X_train.head(5)
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -928,7 +935,6 @@ X_train.head(5)
   </tbody>
 </table>
 </div>
-
 
 
 Now, no matter how many times you run the snippet, you should get the same rows of data in the train and test splits every time. 
@@ -1271,7 +1277,7 @@ FANTASY_POINTS =  3   * THREE_POINTS_MADE +
 This means that the model estimated approximately the same equation as the original fantasy points calculation, with the addition of a few dependent variables with coefficients close to zero and an intercept value close to zero. As a reminder, some models will be sufficiently complex that it might be difficult to output and effectively analyze the estimated equation, but it provides a lot of value in this case.
 
 ## Alternate Training
-Since we have ended up with essentially the same equation as the original fantasy points calculation, we can logically expect our model to perform pretty well in the next phase of model evaluation. So, we can also train an alternate model with a few of the features removed for comparison. First, let's remove all three of the features with high correlation coefficients: 
+Since we have ended up with essentially the same equation as the original fantasy points calculation, we can logically expect our model to perform pretty well in the next phase of model evaluation. So, we can also train an alternate model with a few of the features removed for comparison. First, let's create an alternate version of `X` with all three of the features with high correlation coefficients removed: 
 
 
 ```python
@@ -1280,14 +1286,14 @@ X_alt = player_data[features].drop(columns=['FIELD_GOALS_MADE', 'TWO_POINTS_MADE
 
 *Note: this is more features than you would likely want to remove in a real-world scenario, but removing too many features will give us an opportunity to compare a less-than-perfect model to a perfect model in the model evaluation phase.*
 
-Our target variable is unchanged, so we can create alternate training and test splits: 
+Our target variable `y` is unchanged, so we can create alternate training and test splits using this `X_alt`: 
 
 
 ```python
 X_train_alt, X_test_alt, y_train_alt, y_test_alt = train_test_split(X_alt, y, random_state=314)
 ```
 
-We can now train an alternate model using these new test splits: 
+We can now train an alternate model using these new training splits: 
 
 
 ```python
