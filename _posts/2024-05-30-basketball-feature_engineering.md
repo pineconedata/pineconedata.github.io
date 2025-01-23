@@ -11,42 +11,49 @@ gh-repo: pineconedata/ncaa-basketball-stats
 gh-badge: [star, fork, follow]
 ---
 
-Today we'll explore how to derive new features from existing columns by calculating additional metrics and extracting textual data. This is the third part of a series that walks through the entire process of a data science project - from initial steps like data acquisition, preprocessing, and cleaning to more advanced steps like feature engineering, machine learning, and creating visualizations. 
+Today we'll explore how to derive new features from existing columns by calculating additional metrics and extracting textual data. This is the third part of a series that walks through the entire process of a data science project - from initial steps like data acquisition, preprocessing, and cleaning to more advanced steps like feature engineering, creating visualizations, and machine learning. 
 
+
+<div id="toc"></div>
+
+# Getting Started
+First, let's take a look at an overview of this data science project. If you're already familiar with it, feel free to skip to the [next section](#feature-engineering).
+
+## Project Overview
 As a reminder, the dataset we'll be using in this project contains individual basketball player statistics (such as total points scored and blocks made) for the 2023-2024 NCAA women's basketball season. Here's a brief description of each major step that we'll go through for this project: 
 
-![the steps for this data science project](/assets/img/posts/2024-04-11-basketball-data-acquisition/ncaa_wbb_project_steps.png "the steps for this data science project")
+![the steps for this data science project](/assets/img/posts/2024-04-11-basketball-data-acquisition/project_steps.png "the steps for this data science project")
 
 1. **Data Acquisition** - This initial step involves obtaining data from two sources: (1) exporting the NCAA's online individual player statistics report and (2) making API requests to the Yahoo Sports endpoint. 
 2. **Data Cleaning** - This step focuses on identifying and correcting any errors within the dataset. This includes removing duplicates, correcting inaccuracies, and handling missing data. 
 3. **Data Preprocessing** - This step ensures the data is suitable for analysis by converting datatypes, standardizing units, and replacing abbreviations.
 4. **Feature Engineering** - This step involves selecting and expanding upon the dataset's features (or columns). This includes calculating additional metrics from existing columns.
-5. **Machine Learning** - This step focuses on training a machine learning model to identify the combination of individual player statistics that correlates with optimal performance. 
+5. **Data Exploration** - This step focuses on analyzing and visualizing the dataset to uncover patterns, relationships, and general trends and is a helpful preliminary step before deeper analysis.
 6. **Creating Visualizations** - This step involves identifying the relationships between various parameters (such as height and blocked shots) and generating meaningful visualizations (such as bar charts, scatterplots, and candlestick charts).
+7. **Machine Learning** - This step focuses on selecting, training, and evaluating a machine learning model. For this project, the model will identify the combination of individual player statistics that correlates with optimal performance. 
 
-We'll use Python along with the popular [pandas](https://pandas.pydata.org/docs/) and [requests](https://requests.readthedocs.io/en/latest/) libraries to accomplish these tasks efficiently. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, create meaningful visualizations, and train a basic machine learning model. Since we already gathered the raw data from online sources in [Part 1](/2024-04-11-basketball-data-acquisition/) and cleaned that data in [Part 2](2024-05-02-basketball-data-cleaning-preprocessing/), we're ready to move on to feature engineering.
+We'll use Python along with popular libraries like [pandas](https://pandas.pydata.org/docs/), [numpy](https://numpy.org/doc/), and [scikit-learn](https://scikit-learn.org/) to accomplish these tasks efficiently. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, identify relationships between variables, create meaningful visualizations, and train a basic machine learning model. Due to the size of this project, today we'll cover the fourth step: feature engineering.
 
-<div id="toc"></div>
-
-# Getting Started
-Since this is the third installment in the series, you likely already have your environment setup and can skip to the next section. If you're not already set up and you want to follow along on your own machine, it's recommended to read the [previous post](/2024-04-11-basketball-data-acquisition/) or at least review the [Getting Started](/2024-04-11-basketball-data-acquisition/#getting-started) section of that post before continuing. In summary, you'll want to have [Python](https://www.python.org/) installed with the following packages: 
+## Dependencies
+Since this is the third installment in the series, you likely already have your environment setup and can skip to the next section. If you're not already set up and you want to follow along on your own machine, it's recommended to read the [first post in this series](/2024-04-11-basketball-data-acquisition/) or at least review the [Getting Started](/2024-04-11-basketball-data-acquisition/#getting-started) section of that post before continuing. In summary, you'll want to have [Python](https://www.python.org/) installed with the following packages: 
   - [pandas](https://pandas.pydata.org/docs/)
   - [requests](https://requests.readthedocs.io/en/latest/)
   - [json](https://docs.python.org/3/library/json.html)
   - [os](https://docs.python.org/3/library/os.html)
   - [numpy](https://numpy.org/doc/)
   
+For today's guide specifically, we'll want to import the following packages: 
+```python
+import pandas as pd
+import numpy as np
+```
+
+## Import Data
+  
 In [Part 2](2024-05-02-basketball-data-cleaning-preprocessing/) of this series, we cleaned and preprocessed the values in our dataset, which is stored in a dataframe named `player_data`. If you want to follow along with the code examples in this article, it's recommended to import the `player_data` dataframe before proceeding. 
 
 
 ```python
-import pandas as pd
-import requests
-import json
-import os
-import numpy as np
-
-
 player_data = pd.read_excel('player_data_clean.xlsx')
 ```
 
@@ -200,9 +207,9 @@ player_data[['TEAM_NAME', 'Team']].sample(10)
 
 
 
-So the TEAM_NAME column from the player statistics dataset contains strictly the name of the team, but the Team column from the player information dataset contains both the team name and the [basketball conference](https://en.wikipedia.org/wiki/NCAA_Division_I_women%27s_basketball_conference_tournaments) in parenthesis. If we only had the TEAM_NAME column and wanted to know the conference, then we could pull in another data source to map team names to conference names. However, since the conference is listed in the TEAM column, we can split this information into a separate column as a feature. 
+So the `TEAM_NAME` column from the player statistics dataset contains strictly the name of the team, but the `Team` column from the player information dataset contains both the team name and the [basketball conference](https://en.wikipedia.org/wiki/NCAA_Division_I_women%27s_basketball_conference_tournaments) in parenthesis. If we only had the `TEAM_NAME` column and wanted to know the conference, then we could pull in another data source to map team names to conference names. However, since the conference is listed in the `Team` column, we can split this information into a separate column as a feature. 
 
-There are multiple ways to do this, so let's start with the most obvious one. It looks like the conference name is enclosed in parentheses after the team name. We could extract the conference name by splitting the 'Team' column on the opening and closing parentheses and selecting the last element of the resulting list.
+There are multiple ways to do this, so let's start with the most obvious one. It looks like the conference name is enclosed in parentheses after the team name. We could extract the conference name by splitting the `Team` column on the opening and closing parentheses and selecting the last element of the resulting list.
 
 
 ```python
@@ -235,23 +242,18 @@ player_data.loc[[125, 824], 'Team']
 ```
 
 
-
-
     125       LMU (CA) (WCC)
     824     Miami (FL) (ACC)
     Name: Team, dtype: object
 
 
 
-For these two examples, the extracted Conference name would be "CA" and "FL" instead of the proper "WCC" and "ACC". 
+For these two examples, the extracted conference name would be set to "CA" and "FL" instead of the proper "WCC" and "ACC". 
 
 
 ```python
 player_data['Team'].str.split('\(', expand=True)[1].str.split('\)', expand=True)[0].iloc[[125, 824]]
 ```
-
-
-
 
     125    CA
     824    FL
@@ -261,7 +263,9 @@ player_data['Team'].str.split('\(', expand=True)[1].str.split('\)', expand=True)
 
 We could modify the previous code to select only the values in the right-most set of parenthesis, but switching from the `.split()` method to using a [regular expression](https://en.wikipedia.org/wiki/Regular_expression) (a.k.a. "regex") might be a more robust solution. Regular expressions provide more flexibility in pattern matching and are quite efficient, so let's build a pattern to select the proper value.
 
-In this regular expression, we can use the following parts: 
+<div class="email-subscription-container"></div>
+
+Our regular expression will be composed of the following parts: 
 1. `\(` matches on an opening parenthesis. Parenthesis in regular expressions are used for capturing groups, so the `\` escapes the parenthesis and matches the literal value.
 2. `([^)]+)` matches matches one or more characters that are not a closing parentheses (any text inside the parentheses). The `^` symbol negates the set, so this pattern matches anything except a right parenthesis. The `+` quantifier means "one or more" of these characters. This ensures we capture the entire conference name instead of just the first letter. 
 3. `\)` matches on a closing parenthesis. Just like the opening parenthesis, this needs to be escaped.
@@ -450,8 +454,6 @@ sorted(player_data['Conference'].unique())
 
 
 These values closely match the [list of conferences](https://en.wikipedia.org/wiki/NCAA_Division_I_women%27s_basketball_conference_tournaments) (with a few minor syntax differences such as "DI Independent" for independent schools) so this feature is complete. The rest of the features we'll be generating today will be based on straightforward calculations using existing columns.
-
-<div class="email-subscription-container"></div>
 
 ## Calculate per-Game Metrics
 The next set of columns we can calculate are per-game metrics. Each metric can be divided by the total number of games in the season to get the per-game average of that metric. For example, to determine the average points-per-game, we can divide the total points by the total games played. We could do this for almost every one of the numeric columns in this dataset, but let's focus on the number of minutes played, fouls, and the big five player statistics. 
@@ -719,7 +721,7 @@ player_data[['PLAYER_NAME', 'FANTASY_POINTS']].sample(5)
 
 
 
-This completes the feature engineering section of this project! Let's take a look at our final set of columns and data types before we move on to data visualization and machine learning. 
+This completes the feature engineering section of this project! Let's take a look at our final set of columns and data types before we move on to the next steps of the project.
 
 
 ```python
@@ -773,17 +775,28 @@ player_data.dtypes
     dtype: object
 
 
+# Export Data
 
-If you're going to use a new Jupyter notebook / Python script for the next part of this series, then it's a good idea to export this final dataset. As a reminder, you can use the `to_csv()` method instead of `.to_excel()` if you prefer. 
-
+If you're going to use a new Jupyter notebook / Python script for the next part of this series, then it's a good idea to export this final dataset.  As a reminder, you can use the [`to_csv()` method](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_csv.html) instead of the [`.to_excel()` method](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_excel.html) if you prefer. 
 
 ```python
 player_data.to_excel('player_data_engineered.xlsx', index=False)
 ```
 
 # Wrap up 
-In this series, we've built a new dataset by acquiring and then combining the NCAA women's basketball player information dataset with the Yahoo Sports player statistics dataset. We laid the groundwork for data analysis by cleaning and preprocessing the combined player data, and then expanded upon it by engineering a few new features. In the next part, we'll take a closer look at the underlying data in each column and create visualizations to identify the relationship between various parameters. After that, we'll move on to training a machine learning model.
+In today's guide, we expanded upon our dataset by engineering a few new features. In the next part, we'll take a closer look at the underlying data in each column and create visualizations to identify the relationship between various parameters.
 
+Also, all of the code snippets in today's guide are available in a Jupyter Notebook in the [ncaa-basketball-stats](https://github.com/pineconedata/ncaa-basketball-stats) repository on [GitHub](https://github.com/pineconedata/).
+
+## Articles in this Series   
+1. [Acquiring and Combining the Datasets](/2024-04-11-basketball-data-acquisition/)
+2. [Cleaning and Preprocessing the Data](/2024-05-02-basketball-data-cleaning-preprocessing/)
+3. [Engineering New Features](/2024-05-30-basketball-feature_engineering/) (Today's Guide)
+4. [Exploratory Data Analysis](/2024-06-28-basketball-data-exploration/)
+5. [Visualizations, Charts, and Graphs](/2024-07-29-basketball-visualizations/)
+6. [Selecting a Machine Learning Model](/2024-08-12-basketball-select-ml-ols/)
+7. [Training the Machine Learning Model](/2024-09-13-basketball-train-ols/)
+8. [Evaluating the Machine Learning Model](/)
 
 <div class="email-subscription-container"></div>
 <div id="sources"></div>

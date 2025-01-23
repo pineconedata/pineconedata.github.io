@@ -21,14 +21,15 @@ addToOnload(function(){
         var sourceTitle = document.createElement('h2');
         sourceTitle.id = 'source-title';
         sourceTitle.textContent = 'Sources';
+        
+        // Create the details element and summary element
+        var details = document.createElement('details');
+        var summary = document.createElement('summary');
+        summary.textContent = 'Click to expand/collapse sources';
 
         // Create the source list 
         var sourceList = document.createElement('ul');
         sourceList.id = 'source-list';
-
-        // Append the elements to the source container
-        sourceContainer.appendChild(sourceTitle);
-        sourceContainer.appendChild(sourceList);
 
         // Populate the source list 
         extractedLinks.forEach(function(extractedLink){
@@ -40,5 +41,13 @@ addToOnload(function(){
           listItem.appendChild(link);
           sourceList.appendChild(listItem);
         });
+
+        // Append the source list to the details element
+        details.appendChild(summary);
+        details.appendChild(sourceList);
+
+        // Append the title and details (with the list) to the source container
+        sourceContainer.appendChild(sourceTitle);
+        sourceContainer.appendChild(details);
     }
 });

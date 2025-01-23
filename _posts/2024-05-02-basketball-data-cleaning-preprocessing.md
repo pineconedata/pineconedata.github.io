@@ -11,31 +11,44 @@ gh-repo: pineconedata/ncaa-basketball-stats
 gh-badge: [star, fork, follow]
 ---
 
-Today we'll walk through how to clean and preprocess a dataset to ensure it is ready for analysis. This is the second part of a series that walks through the entire process of a data science project - from initial steps like data acquisition, preprocessing, and cleaning to more advanced steps like feature engineering, machine learning, and creating visualizations. 
+Today we'll walk through how to clean and preprocess a dataset to ensure it is ready for analysis. This is the second part of a series that walks through the entire process of a data science project - from initial steps like data acquisition, preprocessing, and cleaning to more advanced steps like feature engineering, creating visualizations, and machine learning. 
 
+<div id="toc"></div>
+
+# Getting Started
+First, let's take a look at an overview of this data science project. If you're already familiar with it, feel free to skip to the [next section](#data-cleaning).
+
+## Project Overview
 As a reminder, the dataset we'll be using in this project contains individual basketball player statistics (such as total points scored and blocks made) for the 2023-2024 NCAA women's basketball season. Here's a brief description of each major step that we'll go through for this project: 
 
-![the steps for this data science project](/assets/img/posts/2024-04-11-basketball-data-acquisition/ncaa_wbb_project_steps.png "the steps for this data science project")
+![the steps for this data science project](/assets/img/posts/2024-04-11-basketball-data-acquisition/project_steps.png "the steps for this data science project")
 
 1. **Data Acquisition** - This initial step involves obtaining data from two sources: (1) exporting the NCAA's online individual player statistics report and (2) making API requests to the Yahoo Sports endpoint. 
 2. **Data Cleaning** - This step focuses on identifying and correcting any errors within the dataset. This includes removing duplicates, correcting inaccuracies, and handling missing data. 
 3. **Data Preprocessing** - This step ensures the data is suitable for analysis by converting datatypes, standardizing units, and replacing abbreviations.
 4. **Feature Engineering** - This step involves selecting and expanding upon the dataset's features (or columns). This includes calculating additional metrics from existing columns.
-5. **Machine Learning** - This step focuses on training a machine learning model to identify the combination of individual player statistics that correlates with optimal performance. 
+5. **Data Exploration** - This step focuses on analyzing and visualizing the dataset to uncover patterns, relationships, and general trends and is a helpful preliminary step before deeper analysis.
 6. **Creating Visualizations** - This step involves identifying the relationships between various parameters (such as height and blocked shots) and generating meaningful visualizations (such as bar charts, scatterplots, and candlestick charts).
+7. **Machine Learning** - This step focuses on selecting, training, and evaluating a machine learning model. For this project, the model will identify the combination of individual player statistics that correlates with optimal performance. 
 
-We'll use Python along with the popular [pandas](https://pandas.pydata.org/docs/) and [requests](https://requests.readthedocs.io/en/latest/) libraries to accomplish these tasks efficiently. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, create meaningful visualizations, and train a basic machine learning model. Since we already gathered the raw data from online sources in the last part, let's move on to the data cleaning and preprocessing steps. 
+We'll use Python along with popular libraries like [pandas](https://pandas.pydata.org/docs/), [numpy](https://numpy.org/doc/), and [scikit-learn](https://scikit-learn.org/) to accomplish these tasks efficiently. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, identify relationships between variables, create meaningful visualizations, and train a basic machine learning model. Due to the size of this project, today we'll cover the second and third steps: data cleaning and data preprocessing.
 
-<div id="toc"></div>
-
-# Getting Started
-Since this is the second installment in the series, you likely already have your environment setup and can skip to the next section. If you're not already set up and you want to follow along on your own machine, it's recommended to read the [previous post](/2024-04-11-basketball-data-acquisition/) or at least review the [Getting Started](/2024-04-11-basketball-data-acquisition/#getting-started) section of that post before continuing. In summary, you'll want to have [Python](https://www.python.org/) installed with the following packages: 
+## Dependencies
+Since this is the second installment in the series, you might already have your environment setup and can skip to the next section. If you're not already set up and you want to follow along on your own machine, it's recommended to read the [previous post](/2024-04-11-basketball-data-acquisition/) or at least review the [Getting Started](/2024-04-11-basketball-data-acquisition/#getting-started) section of that post before continuing. In summary, you'll want to have [Python](https://www.python.org/) installed with the following packages: 
   - [pandas](https://pandas.pydata.org/docs/)
   - [requests](https://requests.readthedocs.io/en/latest/)
   - [json](https://docs.python.org/3/library/json.html)
   - [os](https://docs.python.org/3/library/os.html)
   - [numpy](https://numpy.org/doc/)
   - [openpyxl](https://openpyxl.readthedocs.io/en/stable/)
+  
+For today's guide specifically, we'll want to import the following packages: 
+```python
+import pandas as pd
+import numpy as np
+```
+
+## Import Data
   
 In [Part 1](/2024-04-11-basketball-data-acquisition/) of this series, we acquired two datasets and combined them into one final dataset, stored in a dataframe named `player_data`. If you want to follow along with the code examples in this article, it's recommended to import the `player_data` dataframe before proceeding. 
 
@@ -44,7 +57,7 @@ player_data = pd.read_excel('player_data_raw.xlsx')
 ```
 
 # Data Cleaning
-Before we can analyze the dataset, we need to ensure it is clean and reliable. In this section, we'll address issues like missing values, incorrect entries, and inconsistencies. This saves you the headache of training a model with unintended values or creating graphs without the full dataset.
+Before we can analyze the dataset, we need to ensure it is clean and reliable. This prevents headaches like training a model with unintended values or creating graphs without the full dataset. In this guide, we'll address issues like missing values, incorrect entries, and inconsistencies. 
 
 ## Handle Missing Values
 Missing values (such as `None` and `NaN`) can significantly impact the accuracy and validity of statistical analyses and visualizations, so we want to identify and handle (remove, impute, accept) each instance of missing and empty values in the dataset. There are several ways to handle missing values, but let's take a look at the most common methods:
@@ -512,7 +525,7 @@ player_data[player_data.isna().any(axis=1)][['PLAYER_NAME', 'Team', 'Position', 
 
 
 
-The `NaN` values in each column should be dealt with separately, meaning the `NaN`s in the `Position` column will be handled separately from the `NaN`s in the `THREE_POINT_PERCENTAGE` column. Since the THREE_POINT_PERCENTAGE is a calculated field, let's take a look at that first. 
+The `NaN` values in each column should be dealt with separately, meaning the `NaN`s in the `Position` column will be handled separately from the `NaN`s in the `THREE_POINT_PERCENTAGE` column. Since the `THREE_POINT_PERCENTAGE` is a calculated field, let's take a look at that first. 
 
 ### Handle Missing Three-Point Percentages
 Three-point percentages in basketball are calculated by dividing the number of three-point baskets made by the number of three-point baskets attempted. So, let's add those two columns in to our output.
@@ -589,463 +602,13 @@ player_data[player_data['THREE_POINT_PERCENTAGE'].isna()][['PLAYER_NAME', 'Team'
       <td>None</td>
     </tr>
     <tr>
-      <th>258</th>
-      <td>Emily Saunders</td>
-      <td>Youngstown St. (Horizon)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>264</th>
-      <td>Lauren Betts</td>
-      <td>UCLA (Pac-12)</td>
-      <td>C</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>265</th>
-      <td>Tenin Magassa</td>
-      <td>Rhode Island (Atlantic 10)</td>
-      <td>C</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>275</th>
-      <td>Brooklyn Meyer</td>
-      <td>South Dakota St. (Summit League)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>282</th>
-      <td>Breya Cunningham</td>
-      <td>Arizona (Pac-12)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>290</th>
-      <td>Rochelle Norris</td>
-      <td>Central Mich. (MAC)</td>
-      <td>C</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>296</th>
-      <td>Rita Igbokwe</td>
-      <td>Ole Miss (SEC)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>297</th>
-      <td>Kyndall Golden</td>
-      <td>Kennesaw St. (ASUN)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>306</th>
-      <td>Kennedy Basham</td>
-      <td>Oregon (Pac-12)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>307</th>
-      <td>Maria Gakdeng</td>
-      <td>North Carolina (ACC)</td>
-      <td>C</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>311</th>
-      <td>Kate Samson</td>
-      <td>Navy (Patriot)</td>
-      <td>C</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>316</th>
-      <td>Liatu King</td>
-      <td>Pittsburgh (ACC)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>318</th>
-      <td>Ashlee Lewis</td>
-      <td>Cal St. Fullerton (Big West)</td>
-      <td>C</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>319</th>
-      <td>Jillian Archer</td>
-      <td>St. John's (NY) (Big East)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>322</th>
-      <td>Kylee Watson</td>
-      <td>Notre Dame (ACC)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>326</th>
-      <td>Caitlin Staley</td>
-      <td>Western Ky. (CUSA)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>332</th>
-      <td>Sacha Washington</td>
-      <td>Vanderbilt (SEC)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>340</th>
-      <td>Adreanna Waddle</td>
-      <td>Prairie View (SWAC)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>348</th>
-      <td>River Baldwin</td>
-      <td>NC State (ACC)</td>
-      <td>C</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>353</th>
-      <td>Zyheima Swint</td>
-      <td>Hofstra (CAA)</td>
-      <td>C</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>355</th>
-      <td>Phillipina Kyei</td>
-      <td>Oregon (Pac-12)</td>
-      <td>C</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>358</th>
-      <td>Jasmin Dixon</td>
-      <td>Northwestern St. (Southland)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>361</th>
-      <td>Shamarre Hale</td>
-      <td>Austin Peay (ASUN)</td>
-      <td>C</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>366</th>
-      <td>Jadyn Donovan</td>
-      <td>Duke (ACC)</td>
-      <td>G</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>367</th>
-      <td>Melyia Grayson</td>
-      <td>Southern Miss. (Sun Belt)</td>
-      <td>C</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>379</th>
-      <td>ZiKeyah Carter</td>
-      <td>Chicago St. (DI Independent)</td>
-      <td>C</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>380</th>
-      <td>Meghan Downing</td>
-      <td>ETSU (SoCon)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>394</th>
-      <td>Makayla Minett</td>
-      <td>Denver (Summit League)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>401</th>
-      <td>Ugonne Onyiah</td>
-      <td>California (Pac-12)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>402</th>
-      <td>Bella Murekatete</td>
-      <td>Washington St. (Pac-12)</td>
-      <td>C</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>409</th>
-      <td>Zoe McCrary</td>
-      <td>Col. of Charleston (CAA)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>411</th>
-      <td>Ashlee Locke</td>
-      <td>Mercer (SoCon)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>414</th>
-      <td>Kyra Wood</td>
-      <td>Syracuse (ACC)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>420</th>
-      <td>Laura Bello</td>
-      <td>Idaho St. (Big Sky)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>424</th>
-      <td>Khalis Cain</td>
-      <td>UNC Greensboro (SoCon)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>428</th>
-      <td>Hannah Noveroske</td>
-      <td>Toledo (MAC)</td>
-      <td>C</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>431</th>
-      <td>Yaubryon Chambers</td>
-      <td>Tennessee Tech (OVC)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>433</th>
-      <td>Sierra McCullough</td>
-      <td>Eastern Ky. (ASUN)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>437</th>
-      <td>India Howard</td>
-      <td>North Ala. (ASUN)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>440</th>
-      <td>Kayla Clark</td>
-      <td>Bethune-Cookman (SWAC)</td>
-      <td>C</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>443</th>
-      <td>Katlyn Manuel</td>
-      <td>ULM (Sun Belt)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>445</th>
-      <td>Jordana Reisma</td>
-      <td>Cleveland St. (Horizon)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>462</th>
-      <td>Carys Roy</td>
-      <td>Saint Peter's (MAAC)</td>
-      <td>C</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>468</th>
-      <td>Clarice Akunwafo</td>
-      <td>Southern California (Pac-12)</td>
-      <td>C</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>526</th>
-      <td>Carter McCray</td>
-      <td>Northern Ky. (Horizon)</td>
-      <td>C</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>548</th>
-      <td>Ajae Petty</td>
-      <td>Kentucky (SEC)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>664</th>
-      <td>Ellie Mitchell</td>
-      <td>Princeton (Ivy League)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>682</th>
-      <td>Teneisia Brown</td>
-      <td>FDU (NEC)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>686</th>
-      <td>Alancia Ramsey</td>
-      <td>Coastal Carolina (Sun Belt)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>715</th>
-      <td>Chyna Cornwell</td>
-      <td>Rutgers (Big Ten)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>722</th>
-      <td>Kennedy Taylor</td>
-      <td>Missouri St. (MVC)</td>
-      <td>F</td>
-      <td>0</td>
-      <td>0</td>
-      <td>None</td>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
     </tr>
     <tr>
       <th>726</th>
@@ -1089,12 +652,12 @@ player_data[player_data['THREE_POINT_PERCENTAGE'].isna()][['PLAYER_NAME', 'Team'
 
 
 
-We can see that for all of the rows where THREE_POINT_PERCENTAGE is `None`, the three-point baskets made and attempted values are zero. If we manually calculated the three-point percentage for these rows, we would get `NaN` results instead of `None` due to the [division by zero](https://en.wikipedia.org/wiki/Division_by_zero). `NaN` and `None` are different values, but we've confirmed that there is no issue with the underlying data. The `None` values will automatically be replaced with `NaN`s later in this process, so we'll leave these values at `None` for now and move on to the `Position` field.
+We can see that for all of the rows where `THREE_POINT_PERCENTAGE` is `None`, the three-point baskets made and attempted values are zero. If we manually calculated the three-point percentage for these rows, we would get `NaN` results instead of `None` due to the [division by zero](https://en.wikipedia.org/wiki/Division_by_zero). `NaN` and `None` are different values, but we've confirmed that there is no issue with the underlying data. The `None` values will automatically be replaced with `NaN`s later in this process, so we'll leave these values at `None` for now and move on to the `Position` field.
 
 <div class="email-subscription-container"></div>
 
 ### Handle Missing Positions
-Let's see how many rows are missing a Position value. 
+Let's see how many rows are missing a `Position` value. 
 
 
 ```python
@@ -1166,7 +729,7 @@ You can use several external data sources, but here's an example using [ESPN's w
 
 ![Manually look up a player's position](/assets/img/posts/2024-05-02-basketball-data-cleaning/ncaa_wbb_player_data_missing_position.png "Manually look up a player's position")
 
-With that, we can locate and set the correct value of the Position field for each of the four players. 
+With that, we can locate and set the correct value of the `Position` field for each of the four players. 
 
 
 ```python
@@ -1176,15 +739,12 @@ player_data.loc[player_data['PLAYER_NAME'] == 'Ava Uhrich', 'Position'] = 'F'
 player_data.loc[player_data['PLAYER_NAME'] == 'Madelyn Bischoff', 'Position'] = 'G'
 ```
 
-We can confirm that these changes were applied correctly by re-pulling the rows with a missing Position value.
+We can confirm that these changes were applied correctly by re-pulling the rows with a missing `Position` value.
 
 
 ```python
 player_data[player_data['Position'].isna()][['PLAYER_NAME', 'Team', 'Position']]
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -1345,7 +905,7 @@ player_data[player_data['Height'].eq('0-0')]
 
 
 
-There are only two rows with missing heights, so we can manually look up and update these values using the same method as the missing Position values. 
+There are only two rows with missing heights, so we can manually look up and update these values using the same method as the missing `Position` values. 
 
 
 ```python
@@ -1353,7 +913,7 @@ player_data.loc[player_data['PLAYER_NAME'] == 'Ava Uhrich', 'Height'] = '6-0'
 player_data.loc[player_data['PLAYER_NAME'] == 'Payton Hull', 'Height'] = '5-11'
 ```
 
-We can double-check that this worked properly, just like the Position field.
+We can double-check that this worked properly for the `Height` column, just like the `Position` field.
 
 
 ```python
@@ -1413,7 +973,7 @@ player_data[player_data.eq('0-0').any(axis=1)]
 
 
 ### Handle Incorrect Classes
-We can apply the same process used for Height to the Class field. Since there's only one player with an incorrect class, this is a quick update.
+We can apply the same process used for `Height` to the `Class` field. Since there's only one player with an incorrect class, this is a quick update.
 
 
 ```python
@@ -1433,7 +993,7 @@ player_data['Class'].unique()
 Now that we've handled all of the empty and incorrect values, we're ready to move on to other data preprocessing steps. 
 
 # Data Preprocessing 
-The goal of this step is to make sure our dataset is consistent and suitable for analysis. This stepp will change quite a bit depending on the exact project. For this project, we'll be setting column datatypes, converting units, and substituting abbreviated values. For advanced machine learning projects, data preprocessing often includes additional steps like feature scaling, normalizing certain features, and encoding categorical values. 
+The goal of this step is to make sure our dataset is consistent and suitable for analysis. This step will change quite a bit depending on the exact project. For this project, we'll be setting column datatypes, converting units, and substituting abbreviated values. For advanced machine learning projects, data preprocessing often includes additional steps like feature scaling, normalizing certain features, and encoding categorical values. 
 
 ## Data Type Conversion
 Data type conversion is a fundamental step in preparing a dataset for analysis. Specifically, we often encounter situations where numbers are stored as strings or objects instead of their native numerical formats (e.g., integers or floats). In this step, let's take a closer look at the initial data type of each column and identify opportunities to convert these values into more suitable datatypes.
@@ -1537,7 +1097,7 @@ player_data.dtypes
 
 All of the defined numeric columns were properly converted to either integers or floats. The percentage fields are now stored as floats, while the rest of them are integers.
 
-We can also revisit the `None` values in the THREE_POINT_PERCENTAGE column to see if they were impacted by the datatype conversion. 
+We can also revisit the `None` values in the `THREE_POINT_PERCENTAGE` column to see if they were impacted by the datatype conversion. 
 
 ```python
 player_data[player_data['THREE_POINT_PERCENTAGE'].isna()][['PLAYER_NAME', 'Team', 'Position', 'THREE_POINTS_MADE', 'THREE_POINT_ATTEMPTS', 'THREE_POINT_PERCENTAGE']].head()
@@ -1623,12 +1183,14 @@ player_data[player_data['THREE_POINT_PERCENTAGE'].isna()][['PLAYER_NAME', 'Team'
 </div>
 
 
-So the `to_numeric()` method automatically handled the `None` values in the three-point percentage column and converted them to `NaN`s. With the numeric columns converted, we can move on to the columns that should contain only text. 
+So the `to_numeric()` method automatically handled the `None` values in the three-point percentage column and converted them to `NaN`s. Neat!
+
+With the numeric columns converted, we can move on to the columns that should contain only text. 
 
 ### Convert Text-only Columns
 In pandas, both the object and string data types can be used to represent text. However, there is a slight difference between them:
-   - object dtype - This is the default dtype and is a catch-all for any non-numeric data. It can hold any Python object, including strings, lists, dictionaries, etc. When a column contains multiple data types or when pandas cannot guess the data type, it defaults to the object dtype. While this is more flexible, operations on columns with object dtype may be slower compared to columns with the string data type. The [pandas documentation](https://pandas.pydata.org/pandas-docs/stable/user_guide/text.html) outlines reasons why it's better to use the string dtype for storing text-only data. 
-   - string dtype - This dtype specifically represents strings. Columns with this dtype contain only string data (not a mixture of string and other dtypes), which improves readability and allows for better dtype-specific operations like the `select_dtypes()` method. Additionally, with the str dtype, you can use some string-specific methods and functions directly on the column without the need for explicit type conversions. 
+   - `object` dtype - This is the default dtype and is a catch-all for any non-numeric data. It can hold any Python object, including strings, lists, dictionaries, etc. When a column contains multiple data types or when pandas cannot guess the data type, it defaults to the object dtype. While this is more flexible, operations on columns with object dtype may be slower compared to columns with the string data type. The [pandas documentation](https://pandas.pydata.org/pandas-docs/stable/user_guide/text.html) outlines reasons why it's better to use the string dtype for storing text-only data. 
+   - `string` dtype - This dtype specifically represents strings. Columns with this dtype contain only string data (not a mixture of string and other dtypes), which improves readability and allows for better dtype-specific operations like the `select_dtypes()` method. Additionally, with the str dtype, you can use some string-specific methods and functions directly on the column without the need for explicit type conversions. 
 
 Let's start by identifying which columns should contain only string data. 
 
@@ -1803,16 +1365,16 @@ player_data[string_columns].dtypes
 
 
 
-We're finished converting data types, so it's time to move on to value substitution. 
+Now that we're finished converting data types, it's time to move on to value substitution. 
 
 ## Value Substitution 
 Value substitution (or value mapping) refers to replacing one value with another. One of the most common uses for this is to replace abbreviations with their full values (such as replacing "Fr." with "Freshman"). For machine learning datasets, value substitution can also include mapping categorical values to number or array formats. 
 
-The first value substitution we'll make is swapping the abbreviated position names with the full values. The [Position](https://en.wikipedia.org/wiki/Basketball_positions) field in this dataset refers to where the player typically plays on the court. Here's a diagram of the positions: 
+The first value substitution we'll make is swapping the abbreviated position names with the full values. The `Position`field in this dataset refers to the [position](https://en.wikipedia.org/wiki/Basketball_positions) where the player typically plays on the court. Here's a diagram of the positions: 
 
 ![Diagram of basketball positions](https://upload.wikimedia.org/wikipedia/commons/a/ac/Basketball_Positions.png "Diagram of basketball positions")
 
-Let's see what Position values are currently in our dataset.
+Let's see what `Position` values are currently in our dataset.
 
 
 ```python
@@ -1828,7 +1390,7 @@ player_data['Position'].unique()
 
 
 
-So this data set uses the three types of positions instead of the five specific positions. To make the values more readable, let's create a map between the current single-letter values and the full-length position name. 
+So this data set uses the three types of positions instead of the five specific positions. This means that shooting guard and point guard are both stored as `G` for guard, and power forward and small forward are both stored as `F` for forward. To make these `F`, `G`, `C` values more readable, let's create a map between the current single-letter values and the full-length position name. 
 
 
 ```python
@@ -1882,7 +1444,7 @@ player_data['Class'].unique()
 There are more substitutions that we could make (such as replacing "St." with "State" in the team name), but those are the only ones we'll make today. Next, let's look at unit conversions.
 
 ## Unit Conversion
-The only unit conversion we'll be doing today is to convert the feet-inches notation in the `Height` column to the total number of inches. This means that a height of five feet, three inches tall is currently stored as `5-3`, but will be converted to the total number of inches, `63`. We can define a function to convert the individual Height values:
+The only unit conversion we'll be doing today is to convert the feet-inches notation in the `Height` column to the total number of inches. This means that a height of five feet, three inches tall is currently stored as `5-3`, but will be converted to the total number of inches, `63`. We can define a function to convert the individual `Height` values:
 
 
 ```python
@@ -1909,17 +1471,30 @@ player_data['Height'].unique()
 
 
 
-That wraps up everything needed for data preprocessing and our dataset is ready for feature engineering and machine learning. 
+That wraps up everything needed for data preprocessing and our dataset is ready for the next steps of the project like feature engineering and machine learning!
 
-If you're going to use a new Jupyter notebook / Python script for the next part of this series, then it's a good idea to export this dataset. As a reminder, you can use the `to_csv()` method instead of `.to_excel()` if you prefer. 
+# Export Data
+
+If you're going to use a new Jupyter notebook / Python script for the next part of this series, then it's a good idea to export this dataset.  As a reminder, you can use the [`to_csv()` method](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_csv.html) instead of the [`.to_excel()` method](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_excel.html) if you prefer. 
 
 ```python
 player_data.to_excel('player_data_clean.xlsx', index=False)
 ```
 
 # Wrap up
-In today's guide, we laid the groundwork for data analysis by cleaning and preprocessing the combined player data. In the next article, we'll expand upon this dataset by engineering a few new features and training a machine learning model. In the final installment of this series, we'll identify relationships between various parameters and create meaningful visualizations. 
+In today's guide, we laid the groundwork for data analysis by cleaning and preprocessing the combined player data. In the next article, we'll expand upon this dataset by engineering new features.
 
+Also, all of the code snippets in today's guide are available in a Jupyter Notebook in the [ncaa-basketball-stats](https://github.com/pineconedata/ncaa-basketball-stats) repository on [GitHub](https://github.com/pineconedata/).
+
+## Articles in this Series   
+1. [Acquiring and Combining the Datasets](/2024-04-11-basketball-data-acquisition/)
+2. [Cleaning and Preprocessing the Data](/2024-05-02-basketball-data-cleaning-preprocessing/) (Today's Guide)
+3. [Engineering New Features](/2024-05-30-basketball-feature_engineering/)
+4. [Exploratory Data Analysis](/2024-06-28-basketball-data-exploration/)
+5. [Visualizations, Charts, and Graphs](/2024-07-29-basketball-visualizations/)
+6. [Selecting a Machine Learning Model](/2024-08-12-basketball-select-ml-ols/)
+7. [Training the Machine Learning Model](/2024-09-13-basketball-train-ols/)
+8. [Evaluating the Machine Learning Model](/)
 
 <div class="email-subscription-container"></div>
 <div id="sources"></div>
