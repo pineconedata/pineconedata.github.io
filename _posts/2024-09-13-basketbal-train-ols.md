@@ -246,11 +246,11 @@ Before we get into training a model, let’s briefly revisit a few basics of mac
 
 Key concepts in machine learning that we'll encounter include:
 
-1. **Model** - The system that learns patterns from data and can be used to make predictions on previously unseen data. Machine learning models are often of a specific type (Linear or Logistic Regression, Random Forests, Support Vector Machines, Neural Networks, etc.). 
+1. **Model** - The system that learns patterns from data and can be used to make predictions on previously unseen data. Machine learning models are often of a specific type (Linear or Logistic Regression, Random Forests, Support Vector Machines, Neural Networks, etc.). Today's model is a Linear Regression model. 
 2. **Training Data** - The subset of our data used to train the model.
 3. **Testing Data** - A separate subset of data used to evaluate the model's performance.
-4. **Features** - The input variables used to make predictions. This is sometimes referred to as the independent variable(s). In our case, these could be various player statistics like three points made or assists. 
-5. **Target Variable** - The variable we're trying to predict or optimize, such as points scored or fantasy points. This is sometimes referred to as the dependent variable(s), as it depends on the independent variable(s). 
+4. **Features** - The input variables used to make predictions. These are sometimes referred to as the independent variable(s) or the predictor(s). For this project, these are various player statistics like three points made and assists.
+5. **Target Variable** - The variable we're trying to predict or optimize. This is sometimes referred to as the dependent variable(s), as it depends on the independent variable(s). In today's project, this is Fantasy Points.
 6. **Parameters** - The values that the model learns during training, such as coefficients in linear regression. These parameters define how the model transforms input features into predictions.
 7. **Hyperparameters** - The configuration settings for the model that are set before training begins. These are not learned from the data but are specified by the data scientist. Examples include learning rate, number of iterations, or regularization strength. Hyperparameters can significantly affect model performance and are often tuned to optimize the model. 
     - *Note*: The model we’ll be using today is straightforward and doesn’t typically have hyperparameters in the traditional sense. However, it’s still important to know the difference between parameters and hyperparameters since many models will have hyperparameters. 
@@ -259,7 +259,7 @@ Key concepts in machine learning that we'll encounter include:
 
 We’ll use primarily the first six terms throughout this article, so it’s best to familiarize yourself with them now. The other concepts will be explored in more detail in future articles (please [let me know](/workwithme/) if that is something you are interested in!). 
 
-It's important to note that our focus in this article is on classic machine learning models designed for tabular data. We won't be covering models built specifically for natural language processing, image recognition, or video analysis. However, it's worth mentioning that many problems in these domains often get transformed into tabular data problems, so some of the principles we discuss here may still apply in those contexts. With all of that out of the way, let’s move on to defining the problem and selecting an appropriate machine learning model.
+Note: Our focus in this article is on classic machine learning models designed for tabular data. We won't be covering models built specifically for natural language processing, image recognition, or video analysis. However, it's worth mentioning that many problems in these domains often get transformed into tabular data problems, so some of the principles we discuss here may still apply in those contexts. With all of that out of the way, let’s move on to training the machine learning model.
 
 
 # Model Training
@@ -1176,19 +1176,20 @@ Now that we have the final model equation, we can see that multiple variables ha
 
 
 ```python
-coef_series_simple = coef_series[coef_series > 0.0001]
+coef_series_simple = coef_series[abs(coef_series) > 0.0001]
 coef_string_simple = "\n\t\t + ".join(f"{coef:.4f} * {feat}" for feat, coef in coef_series_simple.items())
 print(f'{target} = {coef_string_simple} + {linear_reg_model.intercept_} + error')
 ```
 
     FANTASY_POINTS = 1.6667 * FIELD_GOALS_MADE
-    		 + 1.3333 * THREE_POINTS_MADE
-    		 + 0.3333 * TWO_POINTS_MADE
-    		 + 1.0000 * FREE_THROWS_MADE
-    		 + 1.2000 * TOTAL_REBOUNDS
-    		 + 1.5000 * ASSISTS
-    		 + 2.0000 * STEALS
-    		 + 2.0000 * BLOCKS + -6.821210263296962e-13 + error
+		 + 1.3333 * THREE_POINTS_MADE
+		 + 0.3333 * TWO_POINTS_MADE
+		 + 1.0000 * FREE_THROWS_MADE
+		 + 1.2000 * TOTAL_REBOUNDS
+		 + 1.5000 * ASSISTS
+		 + -1.0000 * TURNOVERS
+		 + 2.0000 * STEALS
+		 + 2.0000 * BLOCKS + 2.2737367544323206e-13 + error
 
 
 Excellent! We can compare this to the original equation for Fantasy Points:
@@ -1306,7 +1307,7 @@ We can print the model equation for this alternate model as well:
 
 ```python
 coef_series_alt = pd.Series(data=ols_alt.coef_, index=ols_alt.feature_names_in_)
-coef_series_alt = coef_series_alt[coef_series_alt > 0.0001]
+coef_series_alt = coef_series_alt[abs(coef_series_alt) > 0.0001]
 coef_string_alt = "\n\t\t + ".join(f"{coef:.4f} * {feat}" for feat, coef in coef_series_alt.items())
 print(f'{target} = {coef_string_alt} + {ols_alt.intercept_} + error')
 ```
@@ -1319,6 +1320,17 @@ print(f'{target} = {coef_string_alt} + {ols_alt.intercept_} + error')
     		 + 1.2482 * ASSISTS
     		 + 2.1495 * STEALS
     		 + 2.5698 * BLOCKS + -131.85858178609237 + error
+             
+    FANTASY_POINTS = 2.4532 * Height
+		 + 0.1039 * MINUTES_PLAYED
+		 + 2.2037 * THREE_POINTS_MADE
+		 + 2.3917 * FREE_THROWS_MADE
+		 + 1.5219 * TOTAL_REBOUNDS
+		 + 1.3231 * ASSISTS
+		 + -0.5706 * TURNOVERS
+		 + 2.2393 * STEALS
+		 + 2.4818 * BLOCKS
+		 + -0.2612 * FOULS + -203.27425560271263 + error
 
 
 We can see that the model coefficients and the y-intercept are substantially different from the model we originally trained. We won't know if this alternate model performs as well as the original one until we evaluate each model in the next article. 
