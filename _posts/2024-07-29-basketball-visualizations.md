@@ -874,7 +874,7 @@ Also, all of the code snippets in today's guide are available in a Jupyter Noteb
 5. [Visualizations, Charts, and Graphs](/2024-07-29-basketball-visualizations/) (Today's Guide)
 6. [Selecting a Machine Learning Model](/2024-08-12-basketball-select-ml-ols/)
 7. [Training the Machine Learning Model](/2024-09-13-basketball-train-ols/)
-8. [Evaluating the Machine Learning Model](/)
+8. [Evaluating the Machine Learning Model](/2024-11-27-basketball-evaluate-ols-model/)
 
 
 <div class="email-subscription-container"></div>
