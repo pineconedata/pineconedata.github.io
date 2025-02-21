@@ -1335,6 +1335,22 @@ print(f'{target} = {coef_string_alt} + {ols_alt.intercept_} + error')
 
 We can see that the model coefficients and the y-intercept are substantially different from the model we originally trained. We won't know if this alternate model performs as well as the original one until we evaluate each model in the next article. 
 
+# Export Data & Models
+If you're going to use a new Jupyter notebook / Python script for the next part of this series, then it's a good idea to export the testing dataset. 
+
+```python
+X_test.to_csv('X_test_full.csv', index=False)
+X_test_alt.to_csv('X_test_few.csv', index=False)
+y_test.to_csv('y_actual.csv', index=False)
+```
+
+While it's not strictly necessary to export small, simple models like these, it's often helpful for checkpointing and collaboration. There are multiple ways to export machine learning models detailed in [scikit-learn's model persistence](https://scikit-learn.org/stable/model_persistence.html) page, including the popular [pickle](https://docs.python.org/3/library/pickle.html#module-pickle) library, but for today we'll use [joblib](https://joblib.readthedocs.io/en/latest/index.html#module-joblib). 
+
+```python
+joblib.dump(linear_reg_model, 'model_full.sav')
+joblib.dump(ols_alt, 'model_few.sav')
+```
+
 # Wrap Up
 In today's guide, we covered how to train the selected machine learning model, including how to properly split our dataset into train and test subsets. In the next part, we'll focus on how to evaluate the model's performance.
 
