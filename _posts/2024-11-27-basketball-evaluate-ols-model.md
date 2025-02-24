@@ -66,7 +66,7 @@ import matplotlib.pyplot as plt
 ## Import Data
 In the [previous part](/2024-09-13-basketball-train-ols/) of this series, we created our training and testing splits from the `player_data` dataframe. If you want to follow along with the code samples in this article, it's recommended to import the testing splits before proceeding.
 
-*Note: To reduce confusion, the variable names in this article are slightly different than in the previous article. Since the model initially trained used the full set of features, variable names for that model will be appended with `_full`. Since the alternate model trained used fewer features, variable names for that model will be appended with `_few` instead of `_alt`. For example, `X_test` is now `X_test_full` and `X_test_alt` is now `X_test_few`.* 
+*Note: To reduce confusion, the variable names in this article are slightly different than in the previous article. Since the model initially trained used the full set of features, variable names for that model will be appended with `_full`. Since the alternate model trained used fewer features (`FIELD_GOALS_MADE`, `TWO_POINTS_MADE`, and `POINTS` were all removed), variable names for that model will be appended with `_few` instead of `_alt`. For example, `X_test` is now `X_test_full` and `X_test_alt` is now `X_test_few`.* 
 
 
 ```python
@@ -1861,7 +1861,7 @@ df
 
 
 
-Interestingly, we can see that both models deemed the Points feature completely unnecessary. `model_few` weights Blocks, Free Throws Made, Height, Three Points Made, Steals, and Total Rebounds as more important than `model_full`. `model_full` weights Assists, Field Goals Made, Turnovers, and Two Points Made as more important than `model_few`. The importance of Fouls and Minutes Played is similar between the two models. 
+As a reminder, `model_few` has fewer parameters than `model_full`, because `FIELD_GOALS_MADE`, `TWO_POINTS_MADE`, and `POINTS` were removed from the feature set to create `model_few`. Interestingly, we can see that `model_full` deemed the Points feature completely unnecessary. `model_few` weights Blocks, Free Throws Made, Height, Three Points Made, Steals, and Total Rebounds as more important than `model_full`. `model_full` weights Assists and Turnovers (plus Field Goals Made and Two Points Made of course) as more important than `model_few`. The importance of Fouls and Minutes Played is similar between the two models. 
 
 # Wrap Up
 In today's guide, we covered common methods to evaluate the performance of our OLS linear regression model. This is the final installment in this series! We might revisit this dataset again in the future with a different type of machine learning model (please [let me know](https://www.pineconedata.com/workwithme/) if you're interested in that).
