@@ -21,9 +21,9 @@ author: Pinecone Data, LLC
 
 navbar-links:
   Home: "/"
-  About: "about"
-  Topics: "tags"
-  Contact: "workwithme"
+  About: "about/"
+  Topics: "tags/"
+  Contact: "workwithme/"
 
 ################
 # --- Logo --- #
