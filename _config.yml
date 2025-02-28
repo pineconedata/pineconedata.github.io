@@ -49,18 +49,18 @@ round-avatar: true
 # You can change the order that they show up on the page by changing the order here.
 # Uncomment the links you want to show and add your information to each one.
 social-network-links:
-  email: "emily@pineconedata.com"
-  # facebook: yourname
-  rss: true  # remove this line if you don't want to show an RSS link at the bottom
+  rss: true
   github: pineconedata
+  linkedin: EmilyRCreager
+  email: "emily@pineconedata.com"
   privacy-policy: privacy-policy
   instagram: pinecone.data
+ # facebook: yourname
  # twitter: yourname
  # patreon: yourname
  # youtube: c/yourname
  # medium: yourname
  # reddit: yourname
- # linkedin: daattali
  # xing: yourname
  # stackoverflow: "3943160/daattali"
  # snapchat: deanat78
