@@ -31,6 +31,7 @@
 
 /* Email Input Field */
 #email-subscription-form input[type="email"],
+#email-subscription-form input[name="name"],
 #unsubscribe-form input[type="email"] {
   flex-grow: 1;
   margin-right: 1em;
