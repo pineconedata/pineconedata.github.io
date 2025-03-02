@@ -17,21 +17,19 @@
 }
 
 /* Form Input and Button Container */
-#email-subscription-form div,
-#unsubscribe-form div {
+#email-subscription-form div {
   display: flex;
   align-items: center;
 }
 
 /* Form Text */
-#email-subscription-form p,
-#unsubscribe-form p {
+#email-subscription-form p {
   margin-bottom: 0.5rem;
 }
 
 /* Email Input Field */
 #email-subscription-form input[type="email"],
-#unsubscribe-form input[type="email"] {
+#email-subscription-form input[name="name"] {
   flex-grow: 1;
   margin-right: 1em;
 }

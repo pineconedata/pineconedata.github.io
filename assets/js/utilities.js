@@ -27,20 +27,19 @@ function addEmailSubscriptionForm(subscribeContainer) {
   // Check if container exists, then define and append form
   if (subscribeContainer) {
     const formHTML = `
-            <form action="https://formspree.io/f/xayrvgjj" method="POST" class="form" id="email-subscription-form">
+            <form action="https://newsletter.pineconedata.com/subscription/form" method="POST" class="form" id="email-subscription-form" target="_blank">
                 <p>Enjoying this article? Subscribe to be notified when I publish new content like this! No spam - just helpful updates once a month, straight to your inbox.</p>
-                <input type="hidden" name="_subject" value="Subscribe Request from pineconedata.com">
-                <input type="text" name="_gotcha" style="display:none">
+                <input id="78765" style="display: none;" type="checkbox" name="l" checked value="7876556a-4122-465b-b6eb-6df787f9a493"/>
                 <input type="hidden" name="pageTitle" id="formPageTitle">
                 <input type="hidden" name="pageUrl" id="formPageUrl">
-                <input type="hidden" name="_next" value="?message=Thank you for subscribing!">
                 <div>
-                    <input type="email" name="_replyto" class="form-control input-lg" placeholder="Email" title="Email" required="required">
-                    <button type="submit" class="btn btn-lg btn-primary">Subscribe</button>
+                    <input type="email" name="email" class="form-control input-lg" placeholder="Email" title="Email" required="required">
+                    <input type="text" name="name" class="form-control input-lg" placeholder="Name (Optional)" title="Name">
+                    <button type="submit" value="Subscribe" class="btn btn-lg btn-primary">Subscribe</button>
                 </div>
             </form>
         `;
-      
+
     // Append the form to the container
     subscribeContainer.innerHTML += formHTML; 
 
