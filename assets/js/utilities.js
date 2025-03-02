@@ -27,7 +27,7 @@ function addEmailSubscriptionForm(subscribeContainer) {
   // Check if container exists, then define and append form
   if (subscribeContainer) {
     const formHTML = `
-            <form action="https://newsletter.pineconedata.com/subscription/form" method="POST" class="form" id="email-subscription-form" target="blank">
+            <form action="https://newsletter.pineconedata.com/subscription/form" method="POST" class="form" id="email-subscription-form" target="_blank">
                 <p>Enjoying this article? Subscribe to be notified when I publish new content like this! No spam - just helpful updates once a month, straight to your inbox.</p>
                 <input id="78765" style="display: none;" type="checkbox" name="l" checked value="7876556a-4122-465b-b6eb-6df787f9a493"/>
                 <input type="hidden" name="pageTitle" id="formPageTitle">
