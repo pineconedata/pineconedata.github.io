@@ -33,3 +33,26 @@
   flex-grow: 1;
   margin-right: 1em;
 }
+
+/* *** Hello Page Link Container *** */
+.button-link-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  text-align: center;
+}
+
+.button-link-container a {
+  display: inline-block;
+  padding: 15px 25px;
+  background-color: #615EEA;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.button-link-container a:hover {
+  background-color: #4C49C7;
+}
