@@ -657,7 +657,7 @@ This means that we can expect the predictions from `model_full` to be almost per
 # Evaluate the Model
 After training our linear regression model, the next crucial step is to evaluate its performance. This evaluation process helps us understand how well our model is doing, identify any issues, and determine if it's ready for real-world application or if it needs further refinement. In this section, we'll explore various metrics and techniques to assess our model's accuracy and reliability.
 
-## Evaluation Metrics
+## Evaluation Metric Definitions
 
 Let's start with a quick overview of each evaluation metric we'll be exploring today. 
 - **[R-squared (R²)](https://en.wikipedia.org/wiki/Coefficient_of_determination)** - This measures the proportion of variance explained by the model. It gives a good first glance at how much of the variability in the target (Fantasy Points in this case) is explained by the model. It's also referred to as the coefficient of determination.
@@ -1539,6 +1539,16 @@ mae_base
 Similar to MSE and RMSE, the lower the MAE, the better the model's fit. `mae_full` is still quite close to zero, and `mae_few` is much better than `mae_base`, so both of those models perform better than the baseline model. We can use the same context used for RMSE (where `y_actual` ranges from ~190 to ~1,300 with a mean of ~658) to further confirm that the baseline model performs quite poorly, while `mae_few` performs reasonably well. 
 
 <div class="email-subscription-container"></div>
+
+## Evaluation Metric Results
+For convenience, we can also summarize the results of all of these evaluation metrics in a single table: 
+
+| Method | Model | \\(R^2\\) | Adjusted \\(R^2\\) | MSE | RMSE | MAE |
+|---|---|---|---|---|---|---|
+| Mean | `model_base` | 0 | 0 | 32,663.91 | 180.73 | 139.73 |
+| OLS | `model_full` | 1.0 | 1.0 | 3.91 \\(x10^{-26}\\) | 1.97 \\(x10^{-13}\\) | 1.66 \\(x10^{-13}\\) |
+| OLS | `model_few` | 0.921 | 0.917 | 2,589.41 | 50.88 | 39.83 |
+|  |  | *Closer to 1.0 is better* | *Closer to 1.0 is better* | *Lower is better* | *Lower is better* | *Lower is better* |
 
 ## Residuals Plots
 As a reminder, a [residual](https://en.wikipedia.org/wiki/Errors_and_residuals) is the difference between an observed value and its corresponding predicted value (\\(y_i - \hat{y_i}\\)). We calculated the residuals in a previous step, so now we're ready to plot and evaluate them. Plotting residuals is a useful visual way to evaluate the assumptions and identify potential issues with the fit of a regression model that metrics alone might miss.
