@@ -412,19 +412,23 @@ Note: Since we're primarily working with NumPy arrays, we'll be using the optimi
 ## Calculate Predictions Manually
 
 Even if it might not be the most efficient method, we can manully calculate predictions. To understand how this works, let's start by looking at the model equation from the previous article: 
-FANTASY_POINTS = 1.3779112764770156e-14*Height
- + 1.1934897514720433e-15*MINUTES_PLAYED
- + 1.6666666666666634*FIELD_GOALS_MADE
- + 1.333333333333333*THREE_POINTS_MADE
- + 0.33333333333333315*TWO_POINTS_MADE
- + 1.0000000000000009*FREE_THROWS_MADE
- + 1.1999999999999982*TOTAL_REBOUNDS
- + 1.499999999999999*ASSISTS
- + -0.9999999999999992*TURNOVERS
- + 1.999999999999999*STEALS
- + 2.000000000000001*BLOCKS
- + -1.201296007113939e-15*FOULS
- + -7.233796894823286e-16*POINTS + -6.821210263296962e-13
+
+
+    FANTASY_POINTS = 1.3779112764770156e-14*Height
+     + 1.1934897514720433e-15*MINUTES_PLAYED
+     + 1.6666666666666634*FIELD_GOALS_MADE
+     + 1.333333333333333*THREE_POINTS_MADE
+     + 0.33333333333333315*TWO_POINTS_MADE
+     + 1.0000000000000009*FREE_THROWS_MADE
+     + 1.1999999999999982*TOTAL_REBOUNDS
+     + 1.499999999999999*ASSISTS
+     + -0.9999999999999992*TURNOVERS
+     + 1.999999999999999*STEALS
+     + 2.000000000000001*BLOCKS
+     + -1.201296007113939e-15*FOULS
+     + -7.233796894823286e-16*POINTS + -6.821210263296962e-13
+
+
 As a reminder, this equation was assembled using the `.coef_`, `.feature_names_in_`, and `.intercept_` [attributes](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html). 
 
 Now that we have the model equation, let's pull out a single row of data to use to calculate the model's prediction: 
