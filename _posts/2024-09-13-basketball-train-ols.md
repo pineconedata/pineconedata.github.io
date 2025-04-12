@@ -4,7 +4,7 @@ title: "Training a Linear Regression Model"
 subtitle: "Outlier or Caitlin Clark? [Part 7]"
 tags:  [Python, data science, pandas, machine learning, scikit-learn, linear regression]
 share-title: "Training a Linear Regression Model: Outlier or Caitlin Clark? [Part 7]" 
-share-description: Interested in training a linear regression model on your own data? Learn how to train a linear regression machine learning model in the latest installment of this data science series that is perfect for beginner data scientists and Python enthusiasts.
+share-description: Interested in training a linear regression model on your own data? Learn how to use Python, scikit-learn, and pandas to create train-test splits, train the model, and analyse the model equation in the latest installment of this data science series!
 thumbnail-img: /assets/img/posts/2024-09-13-basketball-train-ols/thumbnail.jpg
 share-img: /assets/img/posts/2024-09-13-basketball-train-ols/social.png
 gh-repo: pineconedata/ncaa-basketball-stats

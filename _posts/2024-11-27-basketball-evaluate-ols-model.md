@@ -4,7 +4,7 @@ title: "Evaluating a Linear Regression Model"
 subtitle: "Outlier or Caitlin Clark? [Part 8]"
 tags:  [Python, data science, pandas, machine learning, scikit-learn, linear regression]
 share-title: "Evaluating a Linear Regression Model: Outlier or Caitlin Clark? [Part 8]" 
-share-description: Interested in evaluating the performance of a linear regression model on your own data? Learn how to evaluate a linear regression machine learning model in the latest installment of this data science series that is perfect for beginner data scientists and Python enthusiasts.
+share-description: How do you know if your machine learning model is performing well? Today, we'll walk through evaluating an Ordinary Least Squares (OLS) linear regression model using Python, Scikit-learn, and NumPy. Learn how to examine its performance with essential metrics such as R-squared, Mean Absolute Error, and residuals!
 thumbnail-img: /assets/img/posts/2024-11-27-basketball-evaluate-ols-model/thumbnail.png
 share-img: /assets/img/posts/2024-11-27-basketball-evaluate-ols-model/social.png
 gh-repo: pineconedata/ncaa-basketball-stats

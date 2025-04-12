@@ -4,7 +4,7 @@ title: "Selecting a Machine Learning Model"
 subtitle: "Outlier or Caitlin Clark? [Part 6]"
 tags:  [Python, data science, pandas, machine learning, scikit-learn, linear regression]
 share-title: "Selecting a Machine Learning Model: Outlier or Caitlin Clark? [Part 6]" 
-share-description: Interested in learning how to select an approriate machine learning model? Learn the intricacies of how to select a machine learning model for your dataset in the latest installment of this data science series that is perfect for beginner data scientists and Python enthusiasts.
+share-description: In our latest post, learn how to choose the perfect machine learning model for your project. Discover the key steps: identifying objectives and target variables, suitable candidates, and ensuring assumptions are met with Python & Scikit-learn! 
 thumbnail-img: /assets/img/posts/2024-08-12-basketball-select-ml-ols/scikit-learn_ml_map.svg
 share-img: /assets/img/posts/2024-08-12-basketball-select-ml-ols/social.png
 gh-repo: pineconedata/ncaa-basketball-stats

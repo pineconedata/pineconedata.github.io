@@ -5,7 +5,7 @@ subtitle: "Outlier or Caitlin Clark? [Part 1]"
 tags:  [Python, data science, pandas, API]
 thumbnail-img: /assets/img/posts/2024-04-11-basketball-data-acquisition/basketball.jpg
 share-title: "Project Setup and Data Acquisition: Outlier or Caitlin Clark? [Part 1]" 
-share-description: Interested in starting a new data science project? Learn the initial steps to start any data science project and how to acquire your datasets in this guide that is perfect for beginner data scientists and Python enthusiasts.
+share-description: Interested in starting a new data science project? Discover how to acquire multiple datasets using APIs and online sources, then seamlessly merge those dataframes into one unified dataset using Python's pandas and requests libraries.
 share-img: /assets/img/posts/2024-04-11-basketball-data-acquisition/acquisition-social.png
 gh-repo: pineconedata/ncaa-basketball-stats
 gh-badge: [star, fork, follow]

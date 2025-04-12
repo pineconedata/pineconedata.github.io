@@ -5,7 +5,7 @@ subtitle: "Outlier or Caitlin Clark? [Part 5]"
 tags:  [Python, data science, pandas, machine learning, scikit-learn, data visualization]
 thumbnail-img: /assets/img/posts/2024-07-29-basketball-visualizations/histogram.png
 share-title: "Data Visualizations: Outlier or Caitlin Clark? [Part 5]" 
-share-description: Interested in creating charts and graphs for your data? Learn how to select meaningful charts and generate helpful graphs in the latest installment of this data science series that is perfect for beginner data scientists and Python enthusiasts.
+share-description: How do you create meaningful visualizations for your dataset with Python? Learn how to use the Matplotlib, Seaborn, and Pyplot libraries to craft stunning scatterplots, bar charts, violin plots, and more in our latest article!
 share-img: /assets/img/posts/2024-07-29-basketball-visualizations/social.png
 gh-repo: pineconedata/ncaa-basketball-stats
 gh-badge: [star, fork, follow]
