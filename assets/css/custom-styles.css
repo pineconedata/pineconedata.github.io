@@ -1,58 +1,403 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700;800&display=swap');
+
+/* ==============================
+Theme variables
+============================== */
+
+:root {
+    --pinecone-font-sans: "Source Sans 3", "Open Sans", Arial, sans-serif;
+
+    --pinecone-purple: #615EEA;
+    --pinecone-purple-dark: #4946C9;
+    --pinecone-purple-light: #F0EFFF;
+    --pinecone-purple-border: #C9C7FA;
+
+    --pinecone-text: #404040;
+    --pinecone-muted: #666;
+    --pinecone-border: #e5e5e5;
+    --pinecone-card-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+/* ==============================
+Global theme overrides
+============================== */
+
+body,
+button,
+input,
+select,
+textarea,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a {
+    font-family: var(--pinecone-font-sans);
+}
+
+/* Tables in blog posts */
 .blog-post table {
-  width: 100%; /* Ensure the table fills its container's width */
-  overflow-x: auto; /* Enable horizontal scrolling */
-  border-collapse: collapse; /* Merge border spacing */
-  display: block; 
+    width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    display: block;
 }
 
-/* *** Email Subscription Form *** */
-/* Form Container */
+/* ==============================
+Brand buttons
+============================== */
+
+.btn-primary {
+    background-color: var(--pinecone-purple);
+    border-color: var(--pinecone-purple);
+    color: #fff;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary:active:focus {
+    background-color: var(--pinecone-purple-dark);
+    border-color: var(--pinecone-purple-dark);
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn-outline {
+    background-color: var(--pinecone-purple-light);
+    border: 1px solid var(--pinecone-purple-border);
+    color: var(--pinecone-purple);
+}
+
+.btn-outline:hover,
+.btn-outline:focus,
+.btn-outline:active {
+    background-color: var(--pinecone-purple);
+    border-color: var(--pinecone-purple);
+    color: #fff;
+    text-decoration: none;
+}
+
+.home-btn {
+    font-size: 1rem;
+    padding: 0.65rem 1rem;
+    border-radius: 6px;
+}
+
+/* ==============================
+Email subscription form
+============================== */
+
 #email-subscription-form {
-  padding: 1.25rem;
-  background-color: #decaff;
-  border: 0.0625rem solid #ddd;
-  border-radius: 0.5rem;
-  box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1);
-  margin: 1.5rem 0;
+    padding: 1.25rem;
+    background-color: #decaff;
+    border: 0.0625rem solid #ddd;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1);
+    margin: 1.5rem 0;
 }
 
-/* Form Input and Button Container */
 #email-subscription-form div {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
-/* Form Text */
 #email-subscription-form p {
-  margin-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
-/* Email Input Field */
 #email-subscription-form input[type="email"],
 #email-subscription-form input[name="name"] {
-  flex-grow: 1;
-  margin-right: 1em;
+    flex-grow: 1;
+    margin-right: 1em;
 }
 
-/* *** Hello Page Link Container *** */
+/* ==============================
+Hello page link container
+============================== */
+
 .button-link-container {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
 }
 
 .button-link-container a {
-  display: inline-block;
-  padding: 15px 25px;
-  background-color: #615EEA;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
+    display: inline-block;
+    padding: 15px 25px;
+    background-color: var(--pinecone-purple);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
-.button-link-container a:hover {
-  background-color: #4C49C7;
+.button-link-container a:hover,
+.button-link-container a:focus {
+    background-color: var(--pinecone-purple-dark);
+    color: #fff;
+    text-decoration: none;
+}
+
+/* ==============================
+Homepage layout
+============================== */
+
+.home-section {
+    margin: 3.5rem auto;
+}
+
+.home-section:first-of-type {
+    margin-top: 2rem;
+}
+
+.home-section h2 {
+    margin-bottom: 1.25rem;
+    font-size: 1.75rem;
+    line-height: 1.25;
+}
+
+.home-section-link {
+    margin-top: 1.25rem;
+}
+
+/* ==============================
+Homepage cards
+============================== */
+
+.home-card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+
+.home-card {
+    border: 1px solid var(--pinecone-border);
+    border-radius: 10px;
+    padding: 1.1rem;
+    background: #fff;
+    box-shadow: var(--pinecone-card-shadow);
+}
+
+.home-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.65rem;
+    font-size: 1.1rem;
+    line-height: 1.3;
+}
+
+.home-card p {
+    margin-bottom: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #555;
+}
+
+/* ==============================
+Homepage featured project cards
+============================== */
+
+.home-project-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+
+.home-project-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    border: 1px solid var(--pinecone-border);
+    border-radius: 10px;
+    padding: 1.35rem 1.5rem;
+    background: #fff;
+    box-shadow: var(--pinecone-card-shadow);
+}
+
+.home-project-card h3,
+.home-project-card p {
+    margin: 0;
+}
+
+.home-project-card h3 {
+    font-size: 1.1rem;
+    line-height: 1.3;
+}
+
+.home-project-card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #555;
+}
+
+.home-project-stack {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: var(--pinecone-muted);
+    font-weight: 500;
+}
+
+.home-project-link {
+    margin-top: auto;
+}
+
+.home-card-link {
+    font-weight: 700;
+    color: var(--pinecone-purple);
+}
+
+.home-card-link:hover,
+.home-card-link:focus {
+    color: var(--pinecone-purple-dark);
+    text-decoration: none;
+}
+
+.home-project-cta {
+    margin-top: 1.25rem;
+    margin-bottom: 0;
+}
+
+.home-project-cta-button {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 0.85rem 1rem;
+    border-radius: 6px;
+}
+
+/* ==============================
+Homepage technical writing cards
+============================== */
+
+.home-writing-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 1.25rem;
+}
+
+.home-writing-card {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 1rem;
+    align-items: center;
+    border: 1px solid var(--pinecone-border);
+    border-radius: 10px;
+    padding: 1rem;
+    background: #fff;
+    box-shadow: var(--pinecone-card-shadow);
+}
+
+.home-writing-image-link {
+    display: block;
+}
+
+.home-writing-image {
+    width: 140px;
+    height: 95px;
+    object-fit: contain;
+    display: block;
+}
+
+.home-writing-content h3 {
+    margin-top: 0;
+    margin-bottom: 0.25rem;
+    font-size: 1.05rem;
+    line-height: 1.3;
+}
+
+.home-writing-content h3 a {
+    color: inherit;
+}
+
+.home-writing-content h3 a:hover,
+.home-writing-content h3 a:focus {
+    color: var(--pinecone-purple);
+    text-decoration: none;
+}
+
+.home-post-date {
+    display: block;
+    font-size: 0.85rem;
+    color: #777;
+}
+
+.home-writing-excerpt {
+    margin: 0.5rem 0 0;
+    font-size: 0.95rem;
+    line-height: 1.45;
+    color: #555;
+}
+
+.home-writing-readmore {
+    font-weight: 700;
+    color: var(--pinecone-text);
+    white-space: nowrap;
+}
+
+.home-writing-readmore:hover,
+.home-writing-readmore:focus {
+    color: var(--pinecone-purple);
+    text-decoration: none;
+}
+
+/* ==============================
+Homepage final CTA
+============================== */
+
+.home-final-cta {
+    padding: 2rem;
+    border-radius: 10px;
+    background: #f7f7f7;
+    border: 1px solid var(--pinecone-border);
+}
+
+.home-final-cta h2 {
+    margin-top: 0;
+}
+
+.home-final-cta p {
+    font-size: 1rem;
+    line-height: 1.55;
+    color: #555;
+}
+
+/* ==============================
+Responsive styles
+============================== */
+
+@media (min-width: 992px) {
+    .home-project-list {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .home-card-grid,
+    .home-project-list {
+        grid-template-columns: 1fr;
+    }
+
+    .home-btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 0.75rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .home-writing-card {
+        grid-template-columns: 1fr;
+    }
+
+    .home-writing-image {
+        width: 100%;
+        height: 140px;
+    }
 }
