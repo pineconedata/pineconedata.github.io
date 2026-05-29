@@ -377,6 +377,7 @@ pre,
 .highlight pre {
     border-radius: 8px;
     border: 1px solid var(--pinecone-border);
+    border-left: 3px solid #c7c7c7;
     background: #fafafa;
     padding: 1rem;
     margin: 1.5rem 0;
