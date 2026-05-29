@@ -43,6 +43,7 @@ a {
     overflow-x: auto;
     border-collapse: collapse;
     display: block;
+    margin: 1.5rem 0;
 }
 
 /* ==============================
@@ -378,6 +379,7 @@ pre,
     border: 1px solid var(--pinecone-border);
     background: #fafafa;
     padding: 1rem;
+    margin: 1.5rem 0;
     font-size: 0.9rem;
     line-height: 1.55;
     overflow-x: auto;
