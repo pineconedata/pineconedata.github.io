@@ -3,6 +3,8 @@ layout: page
 title: Work with Me
 subtitle: How can I help?
 type: info
+share-title: Work with Me | Pinecone Data
+share-description: Get help with Python automation, reporting workflows, spreadsheet automation, SQL analytics, data cleaning, and practical machine learning prototypes.
 ---
 
 I help small teams and businesses use Python, data analysis, automation, and machine learning to solve practical problems.
@@ -14,8 +16,8 @@ Whether you need to clean up messy data, automate a recurring report, collect da
 - "We spend hours every week manually updating this spreadsheet."
 - "We need to collect and structure data from a website."
 - "We have data, but we are not sure what it tells us."
-- "We want to test whether machine learning could help with this process."
 - "We need a Python script, workflow, or prototype built by someone who can work independently."
+- "We want to test whether machine learning could help with this process."
 
 ## Typical projects
 - Data cleaning, analysis, and reporting
