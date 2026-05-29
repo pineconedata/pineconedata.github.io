@@ -369,6 +369,66 @@ Homepage final CTA
 }
 
 /* ==============================
+Code blocks
+============================== */
+
+pre,
+.highlight pre {
+    border-radius: 8px;
+    border: 1px solid var(--pinecone-border);
+    background: #fafafa;
+    padding: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    overflow-x: auto;
+    box-shadow: var(--pinecone-card-shadow);
+}
+
+code,
+pre code {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+.highlighter-rouge,
+.highlight {
+    border-radius: 8px;
+}
+
+p code,
+li code {
+    color: var(--pinecone-purple-dark);
+    background-color: #f4f3ff;
+    border-radius: 4px;
+    padding: 0.1rem 0.25rem;
+    font-size: 0.9em;
+}
+
+.highlight .gd,
+.highlight .s,
+.highlight .s1,
+.highlight .s2,
+.highlight .sb,
+.highlight .sc,
+.highlight .sd,
+.highlight .se,
+.highlight .sh,
+.highlight .si,
+.highlight .sx,
+.highlight .sr,
+.highlight .ss,
+.highlight .m,
+.highlight .mi,
+.highlight .mf,
+.highlight .mh,
+.highlight .mo {
+    color: var(--pinecone-purple);
+}
+
+.highlight .nf {
+    color: var(--pinecone-purple-dark);
+}
+
+/* ==============================
 Responsive styles
 ============================== */
 
