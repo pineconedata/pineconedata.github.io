@@ -391,7 +391,6 @@ Code blocks
 
 pre,
 .highlight pre {
-    border-radius: 8px;
     border: 1px solid var(--pinecone-border);
     border-left: 3px solid #c7c7c7;
     background: #fafafa;
@@ -408,16 +407,10 @@ pre code {
     font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
 }
 
-.highlighter-rouge,
-.highlight {
-    border-radius: 8px;
-}
-
 p code,
 li code {
     color: var(--pinecone-purple-dark);
     background-color: #f4f3ff;
-    border-radius: 4px;
     padding: 0.1rem 0.25rem;
     font-size: 0.9em;
 }
