@@ -37,5 +37,5 @@ Send me a note with a brief description of the problem, what you have tried so f
   <textarea type="text" name="content" class="form-control input-lg" placeholder="Message" title="Message" required="required" rows="5"></textarea>
   <input type="text" name="_gotcha" style="display:none">
   <input type="hidden" name="_next" value="?message=Your message was sent successfully - thank you! I will get back to you as soon as possible!">
-  <button type="submit" class="btn btn-lg btn-primary">Send</button>
+  <button type="submit" class="btn btn-lg btn-primary">Send Message</button>
 </form>
