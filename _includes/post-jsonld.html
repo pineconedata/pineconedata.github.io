@@ -1,0 +1,35 @@
+{% if page.layout == "post" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ page.title | jsonify }},
+  {% if page.description %}
+  "description": {{ page.description | strip_html | strip_newlines | jsonify }},
+  {% elsif page.excerpt %}
+  "description": {{ page.excerpt | strip_html | strip_newlines | truncate: 160 | jsonify }},
+  {% endif %}
+  "author": {
+    "@type": "Person",
+    "name": "Emily Creager"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Pinecone Data",
+    "url": "{{ site.url }}"
+  },
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "dateModified": "{% if page.last_modified_at %}{{ page.last_modified_at | date_to_xmlschema }}{% else %}{{ page.date | date_to_xmlschema }}{% endif %}",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ page.url | absolute_url }}"
+  },
+  "url": "{{ page.url | absolute_url }}"
+  {% if page.thumbnail-img or page.cover-img or page.share-img %}
+  ,"image": [
+    "{% if page.share-img %}{{ page.share-img | absolute_url }}{% elsif page.thumbnail-img %}{{ page.thumbnail-img | absolute_url }}{% elsif page.cover-img %}{{ page.cover-img | absolute_url }}{% endif %}"
+  ]
+  {% endif %}
+}
+</script>
+{% endif %}
