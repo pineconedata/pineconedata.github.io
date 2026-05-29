@@ -1,8 +1,182 @@
 ---
-layout: home
-title: Welcome!
-subtitle: Data Science / ML / Python
+layout: page
+title: Pinecone Data
+subtitle: Practical data science and automation for small teams
 share-title: Home | Pinecone Data Website
-share-description: Hello there! I'm a Senior Data Scientist with 8+ years of experience. With a background in physics, I explore the realm of AI implementation, advocating for open source and local solutions. Explore cutting edge strategies, practical tips, and robust analyses in my articles. 
+share-description: Hello there! I'm a Senior Data Scientist with 9+ years of experience. With a background in physics, I explore the realm of AI implementation, advocating for open source and local solutions. Explore cutting edge strategies, practical tips, and robust analyses in my articles.
 head-extra: google47a4870caa78d71f.html
 ---
+
+<section class="home-section" id="portfolio">
+    <h2>Featured Work</h2>
+
+    <div class="home-project-list">
+        <article class="home-project-card">
+            <h3>Automated Feed Generator</h3>
+
+            <p>
+                A Python script that scrapes website updates, generates RSS feeds, and can be scheduled to run
+                automatically for recurring content collection.
+            </p>
+
+            <p class="home-project-stack">
+                Python · Selenium · feedgen · JSON configuration · cron scheduling
+            </p>
+
+            <p class="home-project-link">
+                <a href="/2023-11-07-automated-feed-generator/" class="home-card-link">Project Details →</a>
+            </p>
+        </article>
+
+        <article class="home-project-card">
+            <h3>Data Acquisition Pipeline</h3>
+
+            <p>
+                A Python data collection walkthrough showing how to set up a project, acquire basketball statistics, and
+                prepare raw data for analysis.
+            </p>
+
+            <p class="home-project-stack">
+                Python · pandas · data acquisition · project setup · GitHub
+            </p>
+
+            <p class="home-project-link">
+                <a href="/2024-04-11-basketball-data-acquisition/" class="home-card-link">Project Details →</a>
+            </p>
+        </article>
+
+        <article class="home-project-card">
+            <h3>Data Cleaning Workflow</h3>
+
+            <p>
+                A data cleaning and preprocessing walkthrough that turns raw basketball data into a structured dataset
+                ready for analysis and modeling.
+            </p>
+
+            <p class="home-project-stack">
+                Python · pandas · data cleaning · preprocessing · analysis workflow
+            </p>
+
+            <p class="home-project-link">
+                <a href="/2024-05-02-basketball-data-cleaning-preprocessing/" class="home-card-link">Project Details →</a>
+            </p>
+        </article>
+
+    </div>
+    <p class="home-project-cta">
+        <a href="/workwithme/" class="btn btn-outline home-project-cta-button">
+            Discuss a Project
+        </a>
+    </p>
+</section>
+
+
+<section class="home-section">
+    <h2>Services</h2>
+
+    <div class="home-card-grid home-services-grid">
+        <div class="home-card">
+            <h3>Automated reporting workflows</h3>
+            <p>
+                Scheduled Python workflows that pull data, clean it, generate reports, and publish or send updates
+                automatically.
+            </p>
+        </div>
+
+        <div class="home-card">
+            <h3>Spreadsheet automation</h3>
+            <p>
+                Google Sheets and Apps Script tools that validate data, flag issues, generate summaries, and reduce
+                manual spreadsheet maintenance.
+            </p>
+        </div>
+
+        <div class="home-card">
+            <h3>SQL analytics and data modeling</h3>
+            <p>
+                Structured staging tables, analytics marts, and reusable queries for reporting, trend analysis, and
+                performance monitoring.
+            </p>
+        </div>
+
+        <div class="home-card">
+            <h3>Python data workflows</h3>
+            <p>
+                Data cleaning, API collection, web scraping, ETL support, and lightweight scripts for repeatable data
+                processes.
+            </p>
+        </div>
+
+        <div class="home-card">
+            <h3>Machine learning prototypes</h3>
+            <p>
+                Practical model exploration, feature engineering, evaluation, and prototype workflows to test whether ML
+                can help with a specific problem.
+            </p>
+        </div>
+
+        <div class="home-card">
+            <h3>Dashboards and internal tools</h3>
+            <p>
+                Lightweight tools and reporting interfaces that help teams inspect data, monitor workflows, and make
+                recurring decisions faster.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="home-section">
+    <h2>Technical Writing</h2>
+
+    <div class="home-writing-grid">
+        {% for post in site.posts limit:3 %}
+        <article class="home-writing-card">
+            {% if post.thumbnail-img %}
+            <a href="{{ post.url | relative_url }}" class="home-writing-image-link">
+                <img src="{{ post.thumbnail-img | relative_url }}" alt="{{ post.title }}" class="home-writing-image">
+            </a>
+            {% elsif post.cover-img %}
+            <a href="{{ post.url | relative_url }}" class="home-writing-image-link">
+                <img src="{{ post.cover-img | relative_url }}" alt="{{ post.title }}" class="home-writing-image">
+            </a>
+            {% elsif post.share-img %}
+            <a href="{{ post.url | relative_url }}" class="home-writing-image-link">
+                <img src="{{ post.share-img | relative_url }}" alt="{{ post.title }}" class="home-writing-image">
+            </a>
+            {% endif %}
+
+            <div class="home-writing-content">
+                <h3>
+                    <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                </h3>
+
+                <span class="home-post-date">{{ post.date | date: "%B %-d, %Y" }}</span>
+
+                {% if post.excerpt %}
+                <p class="home-writing-excerpt">
+                    {{ post.excerpt | strip_html | truncatewords: 24 }}
+                    <a href="{{ post.url | relative_url }}" class="home-writing-readmore">[Read More]</a>
+                </p>
+                {% endif %}
+
+
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+
+    <p class="home-section-link">
+        <a href="/writing/" class="btn btn-outline home-btn">View more writing →</a>
+    </p>
+</section>
+
+<section class="home-section home-final-cta">
+    <h2>Have a data workflow you want to improve?</h2>
+
+    <p>
+        Send me a short note about the manual process, messy data, or reporting problem you want to make easier.
+    </p>
+
+    <a href="/workwithme/" class="btn btn-primary btn-lg">Get in Touch</a>
+
+</section>
