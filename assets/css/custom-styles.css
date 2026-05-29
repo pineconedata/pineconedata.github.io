@@ -37,13 +37,29 @@ a {
     font-family: var(--pinecone-font-sans);
 }
 
-/* Tables in blog posts */
+/* Blog post tables */
 .blog-post table {
     width: 100%;
     overflow-x: auto;
     border-collapse: collapse;
     display: block;
     margin: 1.5rem 0;
+    border: 1px solid #e2e2e2;
+}
+
+.blog-post table th,
+.blog-post table td {
+    border: 1px solid #e2e2e2;
+    padding: 0.65rem 0.8rem;
+}
+
+.blog-post table th {
+    background-color: #f7f7f7;
+    font-weight: 700;
+}
+
+.blog-post table tbody tr:nth-child(even) {
+    background-color: #fafafa;
 }
 
 /* ==============================
