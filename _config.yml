@@ -276,12 +276,13 @@ defaults:
       social-share: true # add social media sharing buttons to all blog posts
       js: [/assets/js/utilities.js, /assets/js/table-of-contents.js, /assets/js/sources.js] # add cerain JS files to all blog posts
       after-content: [default-after-content.html]
-      head-extra: [post-jsonld.html]
+      head-extra: [post-jsonld.html, noindex.html]
   -
     scope:
       path: "" # any file that's not a post will be a "page" layout by default
     values:
       layout: "page"
+      head-extra: [noindex.html]
 
 # Exclude these files from production site
 exclude:
