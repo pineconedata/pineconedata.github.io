@@ -2,6 +2,10 @@
 layout: page
 title: Nice to meet you!
 subtitle: How can I help?
+permalink: /hello/
+sitemap:
+  exclude: "yes"
+noindex: true
 ---
 
 Hi! I am a data scientist and physicist with 9+ years of experience in the field. Pinecone Data is my company for independent contracts and freelance work. If you're interested in working with me, please [get in touch](/workwithme/)!
