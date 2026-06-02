@@ -15,6 +15,6 @@ Hi! I am a data scientist and physicist with 9+ years of experience in the field
     <a target="_blank" href="/workwithme/">Contact Me</a>
     <a target="_blank" href="https://github.com/pineconedata">GitHub</a>
     <a target="_blank" href="https://linkedin.com/in/EmilyRCreager">LinkedIn</a>
-    <a target="_blank" href="/">Articles</a>
+    <a target="_blank" href="/writing/">Writing</a>
     <a target="_blank" href="https://www.instagram.com/pinecone.data/">Instagram</a>
 </div>
