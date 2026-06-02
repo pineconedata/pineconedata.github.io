@@ -1,38 +1,41 @@
 ---
 layout: post
-title: "Ridge vs. OLS Linear Regression Models"
-subtitle: "Outlier or Caitlin Clark? [Part 9]"
-tags:  [Python, data science, pandas, machine learning, scikit-learn, linear regression]
-share-title: "Ridge vs. OLS Linear Regression Models: Outlier or Caitlin Clark? [Part 9]" 
-share-description: Curious about the difference between Ridge Regression and Ordinary Least Squares Linear Regression? Join me in our latest blog post to learn how to train and evaluate Ridge Regression models using Python's Scikit-learn library. 
-thumbnail-img: /assets/img/posts/2025-04-04-ridge-regression-vs-ols-linear-regression-models/thumbnail.png
-share-img: /assets/img/posts/2025-04-04-ridge-regression-vs-ols-linear-regression-models/social.png
+title: Ridge Regression vs. OLS Linear Regression
+subtitle: Outlier or Caitlin Clark? [Bonus Article]
+description: Compare Ridge Regression and ordinary least squares linear regression using a basketball dataset, including regularization, model training, prediction errors, regression metrics, and feature coefficient differences.
+tags: [Python, data science, machine learning, linear regression, ridge regression, scikit-learn]
+thumbnail-img: /assets/img/posts/2025-04-04-ridge-regression-vs-ols-linear-regression-models/ridge-regression.jpg
+share-title: "Ridge Regression vs. OLS Linear Regression: Outlier or Caitlin Clark? [Bonus Article]"
+share-description: Compare Ridge Regression and ordinary least squares linear regression using a basketball dataset, including regularization, model training, prediction errors, regression metrics, and feature coefficient differences.
 gh-repo: pineconedata/ncaa-basketball-stats
 gh-badge: [star, fork, follow]
+last-updated: 2026-06-02
+sitemap:
+  priority: 0.9
 ---
 
-Today we'll revisit our *Outlier or Caitlin Clark?* data science project by examining the differences between Ridge Regression and our previously-trained Ordinary Least Squares (OLS) linear regression model. This is the ninth part of a series that walks through the entire process of a data science project - from initial steps like data acquisition, preprocessing, and cleaning to more advanced steps like feature engineering, creating visualizations, and machine learning. This article will have some overlap and assume knowledge from the [previous articles](#articles-in-this-series), so it's recommended to check out [selecting a machine learning model](/2024-08-12-basketball-select-ml-ols/), [training an OLS model](/2024-09-13-basketball-train-ols/), and [evaluating an OLS model](/2024-11-27-basketball-evaluate-ols-model/) as well. 
+Today we'll extend the Basketball Data Science Project by comparing Ridge Regression with the ordinary least squares linear regression models from the core series.
 
-<div id="toc"></div>
+This is a bonus article in the [Basketball Data Science Project](/projects/basketball-data-science-project/), an end-to-end Python series using 2023–24 NCAA basketball player statistics. The core project explored whether Caitlin Clark's season was a statistical outlier and built a machine learning workflow for predicting fantasy points.
 
-# Getting Started
-First, let's take a look at an overview of this data science project. If you're already familiar with it, feel free to skip to the [next section](#select-the-model). 
+In [Part 8](/2024-11-27-basketball-evaluate-ols-model/), we evaluated the OLS models trained earlier in the project using regression metrics, residual analysis, and diagnostic plots. In this article, we'll train Ridge Regression models on the same dataset, compare them with the OLS models, and look at how regularization changes model performance and feature coefficients.
 
-## Project Overview
+[Previous: Evaluating a Linear Regression Model](/2024-11-27-basketball-evaluate-ols-model/)  
+[Full series: Basketball Data Science Project](/projects/basketball-data-science-project/)
 
-As a reminder, the dataset we'll be using in this project contains individual basketball player statistics (such as total points scored and blocks made) for the 2023-2024 NCAA women's basketball season. Here's a brief description of each major step of this project: 
+## Overview
 
-![the steps for this data science project](/assets/img/posts/2024-04-11-basketball-data-acquisition/project_steps.png "the steps for this data science project")
+In this bonus article, we'll compare regularized and unregularized linear regression models. The workflow includes:
 
-1. **Data Acquisition** - This initial step involves obtaining data from two sources: (1) exporting the NCAA's online individual player statistics report and (2) making API requests to the Yahoo Sports endpoint. 
-2. **Data Cleaning** - This step focuses on identifying and correcting any errors within the dataset. This includes removing duplicates, correcting inaccuracies, and handling missing data. 
-3. **Data Preprocessing** - This step ensures the data is suitable for analysis by converting datatypes, standardizing units, and replacing abbreviations.
-4. **Feature Engineering** - This step involves selecting and expanding upon the dataset's features (or columns). This includes calculating additional metrics from existing columns.
-5. **Data Exploration** - This step focuses on analyzing and visualizing the dataset to uncover patterns, relationships, and general trends and is a helpful preliminary step before deeper analysis.
-6. **Creating Visualizations** - This step involves identifying the relationships between various parameters (such as height and blocked shots) and generating meaningful visualizations (such as bar charts, scatterplots, and candlestick charts).
-7. **Machine Learning** - This step focuses on selecting, training, and evaluating a machine learning model. For this project, the model will identify the combination of individual player statistics that correlates with optimal performance.
+1. Reviewing the difference between OLS and Ridge Regression
+2. Loading the engineered basketball dataset
+3. Training Ridge Regression models with scikit-learn
+4. Comparing Ridge predictions with OLS predictions
+5. Calculating regression metrics for each model
+6. Comparing model coefficients
+7. Interpreting whether regularization improves the model
 
-We'll use Python along with popular libraries like [pandas](https://pandas.pydata.org/docs/), [numpy](https://numpy.org/doc/), and [scikit-learn](https://scikit-learn.org/) to accomplish these tasks efficiently. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, identify relationships between variables, create meaningful visualizations, and train a basic machine learning model. Due to the size of this project, today we'll cover part of the seventh step: machine learning. A refresher on the [basics of machine learning](/2024-11-27-basketball-evaluate-ols-model/#basics-of-machine-learning) is also available in a previous article.
+For the full project roadmap, including the core eight-part workflow and links to every article, see the [Basketball Data Science Project hub](/projects/basketball-data-science-project/).
 
 ## Dependencies
 Since this is the ninth installment in the series, you likely already have your environment setup and can skip to the next section. If you're not already set up and you want to follow along on your own machine, it's recommended to read the [first article of the series](/2024-04-11-basketball-data-acquisition/) or at least review the [Getting Started](/2024-04-11-basketball-data-acquisition/#getting-started) section of that post before continuing. 
@@ -363,7 +366,7 @@ y_actual
 
 
 ## Set Graph Preferences
-This is an entirely optional step to configure the aesthetics of the graphs and charts. You can import a custom color scheme or set colors individually. In this case, we’ll define a list of custom colors (`graph_colors`) and configure both Matplotlib and Seaborn to use these colors for subsequent plots.
+This is an entirely optional step to configure the aesthetics of the graphs and charts. You can import a custom color scheme or set colors individually. In this case, we'll define a list of custom colors (`graph_colors`) and configure both Matplotlib and Seaborn to use these colors for subsequent plots.
 
 
 ```python
@@ -372,7 +375,7 @@ plt.rcParams['axes.prop_cycle'] = plt.cycler(color=graph_colors)
 sns.set_palette(graph_colors)
 ```
 
-We can also set the overall style for the matplotlib plots using a style sheet. You can print the list of available style sheets and view examples of these style sheets on [matplotlib’s website](https://matplotlib.org/stable/gallery/style_sheets/style_sheets_reference.html).
+We can also set the overall style for the matplotlib plots using a style sheet. You can print the list of available style sheets and view examples of these style sheets on [matplotlib's website](https://matplotlib.org/stable/gallery/style_sheets/style_sheets_reference.html).
 
 
 ```python
@@ -380,7 +383,7 @@ plt.style.use('seaborn-v0_8-white')
 ```
 
 # Select the Model
-The first part of training any machine learning model is selecting the model to use. This might sound obvious, but selecting the “best” model for your problem depends on a variety of factors. We’ll likely explore this step in more detail in future articles ([let me know](/workwithme/) if you would be interested in that), but for today let's revisit [scikit-learn’s model flowchart](https://scikit-learn.org/stable/machine_learning_map.html) to find an appropriate model.
+The first part of training any machine learning model is selecting the model to use. This might sound obvious, but selecting the “best” model for your problem depends on a variety of factors. We'll likely explore this step in more detail in future articles ([let me know](/workwithme/) if you would be interested in that), but for today let's revisit [scikit-learn's model flowchart](https://scikit-learn.org/stable/machine_learning_map.html) to find an appropriate model.
 
 ![scikit-learn's algorithm flowchat](https://scikit-learn.org/stable/_downloads/b82bf6cd7438a351f19fac60fbc0d927/ml_map.svg)
 
@@ -424,7 +427,7 @@ So there's not much point in setting \\(\lambda\\) to `0`, but how do we know wh
 Now that we conceptually understand a bit more about how this model works, let's try training a Ridge regression model on our dataset. 
 
 # Train the Models
-Now that we have our data split into training and test sets, we’re ready to train our model. We’ll use scikit-learn’s [Ridge class](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html) for this purpose. We can start by initializing the model with the default parameters:
+Now that we have our data split into training and test sets, we're ready to train our model. We'll use scikit-learn's [Ridge class](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html) for this purpose. We can start by initializing the model with the default parameters:
 
 
 ```python
@@ -2241,21 +2244,27 @@ df
 
 As a reminder, `model_few` has fewer parameters than `model_full`, because `FIELD_GOALS_MADE`, `TWO_POINTS_MADE`, and `POINTS` were removed from the feature set to create `model_few`. Certain features (`MINUTES_PLAYED`, `Height`, `FOULS`) of `model_full` are fairly close to zero but are not actually zero; this matches the expectations of Ridge regression models that we covered in the [#model-characteristics] section. `model_few` weights  
 
-# Wrap Up
-In today's guide, we covered the primary differences between Ridge and OLS regression models. The previous article was meant to be the last installment in the series, but we've already returned for a quick look at Ridge regression models. So, please [let me know](https://www.pineconedata.com/workwithme/) if you'd like to use this dataset (or another dataset) to explore another type of machine learning model in the future!
+# Wrap up
 
-As a reminder, all of the code snippets in today's guide are available in a Jupyter Notebook in the [ncaa-basketball-stats](https://github.com/pineconedata/ncaa-basketball-stats) repository on [GitHub](https://github.com/pineconedata/).
+In this bonus article, we compared Ridge Regression with the ordinary least squares linear regression models from the core Basketball Data Science Project. We trained Ridge models on the same engineered dataset, generated predictions, calculated regression metrics, compared coefficients, and reviewed how regularization affected model performance.
 
-## Articles in this Series   
+The core project used OLS regression as a baseline model for predicting fantasy points. Ridge Regression extends that work by adding regularization, which can help reduce coefficient instability and improve generalization when features are correlated or when the model is sensitive to noise.
+
+All of the code snippets in today's guide are available in a Jupyter Notebook in the [ncaa-basketball-stats](https://github.com/pineconedata/ncaa-basketball-stats) repository on [GitHub](https://github.com/pineconedata/).
+
+For the full project overview, including the project roadmap and links to every article, see the [Basketball Data Science Project](/projects/basketball-data-science-project/) page.
+
+## Articles in this Series
+
 1. [Acquiring and Combining the Datasets](/2024-04-11-basketball-data-acquisition/)
 2. [Cleaning and Preprocessing the Data](/2024-05-02-basketball-data-cleaning-preprocessing/)
 3. [Engineering New Features](/2024-05-30-basketball-feature_engineering/)
 4. [Exploratory Data Analysis](/2024-06-28-basketball-data-exploration/)
 5. [Visualizations, Charts, and Graphs](/2024-07-29-basketball-visualizations/)
 6. [Selecting a Machine Learning Model](/2024-08-12-basketball-select-ml-ols/)
-7. [Training the Machine Learning Model](/2024-09-13-basketball-train-ols/) 
+7. [Training the Machine Learning Model](/2024-09-13-basketball-train-ols/)
 8. [Evaluating the Machine Learning Model](/2024-11-27-basketball-evaluate-ols-model/)
-9. [Ridge vs OLS Linear Regression Models]() (Today's Guide)
+9. [Bonus: Ridge vs. OLS Linear Regression Models](/2025-04-04-ridge-regression-vs-ols-linear-regression-models/) (Today's Guide)
 
 <div class="email-subscription-container"></div>
 <div id="sources"></div>

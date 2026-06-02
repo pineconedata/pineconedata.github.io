@@ -1,37 +1,44 @@
 ---
 layout: post
-title: "Data Cleaning and Preprocessing"
-subtitle: "Outlier or Caitlin Clark? [Part 2]"
-tags:  [Python, data science, pandas, API]
+title: Data Cleaning and Preprocessing with pandas
+subtitle: Outlier or Caitlin Clark? [Part 2]
+description: Learn how to clean and preprocess a basketball dataset with pandas by handling missing values, correcting invalid entries, converting datatypes, standardizing units, and preparing data for analysis.
+tags: [Python, data science, pandas, data cleaning, data preprocessing]
 thumbnail-img: /assets/img/posts/2024-05-02-basketball-data-cleaning/clean.jpg
-share-title: "Data Cleaning and Preprocessing: Outlier or Caitlin Clark? [Part 2]" 
-share-description: Interested in thoroughly cleaning and preprocessing your datasets? From handling missing or incorrect values to converting datatypes and units with Python's Pandas library, you'll learn how to ensure your dataset is clean and ready for analysis! 
+share-title: "Data Cleaning and Preprocessing with pandas: Outlier or Caitlin Clark? [Part 2]"
+share-description: Learn how to clean and preprocess a dataset with pandas by handling missing values, correcting invalid entries, converting datatypes, standardizing units, and preparing data for analysis.
 share-img: /assets/img/posts/2024-05-02-basketball-data-cleaning/data-cleaning-social.png
 gh-repo: pineconedata/ncaa-basketball-stats
 gh-badge: [star, fork, follow]
+last-updated: 2026-06-02
+sitemap:
+  priority: 0.9
 ---
 
-Today we'll walk through how to clean and preprocess a dataset to ensure it is ready for analysis. This is the second part of a series that walks through the entire process of a data science project - from initial steps like data acquisition, preprocessing, and cleaning to more advanced steps like feature engineering, creating visualizations, and machine learning. 
+Today we'll clean and preprocess the basketball dataset from Part 1 so it is ready for analysis, visualization, and machine learning.
 
-<div id="toc"></div>
+This is Part 2 of the [Basketball Data Science Project](/projects/basketball-data-science-project/), an end-to-end Python series using 2023–24 NCAA basketball player statistics. The project explores whether Caitlin Clark's season was a statistical outlier and builds toward a machine learning workflow for predicting fantasy points.
 
-# Getting Started
-First, let's take a look at an overview of this data science project. If you're already familiar with it, feel free to skip to the [next section](#data-cleaning).
+In [Part 1](/2024-04-11-basketball-data-acquisition/), we acquired NCAA basketball player information and Yahoo Sports player statistics, then combined them into one dataframe. In this article, we'll clean that combined dataset by handling missing values, correcting invalid entries, converting datatypes, standardizing height values, and preparing the data for feature engineering.
 
-## Project Overview
-As a reminder, the dataset we'll be using in this project contains individual basketball player statistics (such as total points scored and blocks made) for the 2023-2024 NCAA women's basketball season. Here's a brief description of each major step that we'll go through for this project: 
+[Previous: Project Setup and Data Acquisition](/2024-04-11-basketball-data-acquisition/)  
+[Full series: Basketball Data Science Project](/projects/basketball-data-science-project/)  
+[Next: Feature Engineering](/2024-05-30-basketball-feature_engineering/)
 
-![the steps for this data science project](/assets/img/posts/2024-04-11-basketball-data-acquisition/project_steps.png "the steps for this data science project")
+## Overview
 
-1. **Data Acquisition** - This initial step involves obtaining data from two sources: (1) exporting the NCAA's online individual player statistics report and (2) making API requests to the Yahoo Sports endpoint. 
-2. **Data Cleaning** - This step focuses on identifying and correcting any errors within the dataset. This includes removing duplicates, correcting inaccuracies, and handling missing data. 
-3. **Data Preprocessing** - This step ensures the data is suitable for analysis by converting datatypes, standardizing units, and replacing abbreviations.
-4. **Feature Engineering** - This step involves selecting and expanding upon the dataset's features (or columns). This includes calculating additional metrics from existing columns.
-5. **Data Exploration** - This step focuses on analyzing and visualizing the dataset to uncover patterns, relationships, and general trends and is a helpful preliminary step before deeper analysis.
-6. **Creating Visualizations** - This step involves identifying the relationships between various parameters (such as height and blocked shots) and generating meaningful visualizations (such as bar charts, scatterplots, and candlestick charts).
-7. **Machine Learning** - This step focuses on selecting, training, and evaluating a machine learning model. For this project, the model will identify the combination of individual player statistics that correlates with optimal performance. 
+In this part of the project, we'll prepare the raw player dataset for analysis. The workflow includes:
 
-We'll use Python along with popular libraries like [pandas](https://pandas.pydata.org/docs/), [numpy](https://numpy.org/doc/), and [scikit-learn](https://scikit-learn.org/) to accomplish these tasks efficiently. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, identify relationships between variables, create meaningful visualizations, and train a basic machine learning model. Due to the size of this project, today we'll cover the second and third steps: data cleaning and data preprocessing.
+1. Identifying missing values in the dataset
+2. Deciding how to handle missing three-point percentages
+3. Manually correcting missing player positions
+4. Fixing invalid height and class values
+5. Converting numeric columns from objects to numeric datatypes
+6. Converting player heights into inches
+7. Standardizing team, class, and position values
+8. Saving the cleaned dataset for feature engineering
+
+For the full project roadmap, including the overview diagram and links to every article, see the [Basketball Data Science Project hub](/projects/basketball-data-science-project/).
 
 ## Dependencies
 Since this is the second installment in the series, you might already have your environment setup and can skip to the next section. If you're not already set up and you want to follow along on your own machine, it's recommended to read the [previous post](/2024-04-11-basketball-data-acquisition/) or at least review the [Getting Started](/2024-04-11-basketball-data-acquisition/#getting-started) section of that post before continuing. In summary, you'll want to have [Python](https://www.python.org/) installed with the following packages: 
@@ -1481,12 +1488,18 @@ If you're going to use a new Jupyter notebook / Python script for the next part 
 player_data.to_excel('player_data_clean.xlsx', index=False)
 ```
 
-# Wrap up
-In today's guide, we laid the groundwork for data analysis by cleaning and preprocessing the combined player data. In the next article, we'll expand upon this dataset by engineering new features.
+# Wrap up 
 
-Also, all of the code snippets in today's guide are available in a Jupyter Notebook in the [ncaa-basketball-stats](https://github.com/pineconedata/ncaa-basketball-stats) repository on [GitHub](https://github.com/pineconedata/).
+In this guide, we cleaned and preprocessed the combined NCAA basketball player dataset. We handled missing values, corrected invalid entries, converted numeric columns to the right datatypes, standardized player heights, and saved a cleaned dataset for the next step in the project.
+
+In the next part, we'll use this cleaned dataset to engineer new features, including two-point metrics, conference labels, per-game statistics, assist-to-turnover ratio, and fantasy points.
+
+All of the code snippets in today's guide are available in a Jupyter Notebook in the [ncaa-basketball-stats](https://github.com/pineconedata/ncaa-basketball-stats) repository on [GitHub](https://github.com/pineconedata/).
+
+For the full project overview, including the project roadmap and links to every article, see the [Basketball Data Science Project](/projects/basketball-data-science-project/) page.
 
 ## Articles in this Series   
+
 1. [Acquiring and Combining the Datasets](/2024-04-11-basketball-data-acquisition/)
 2. [Cleaning and Preprocessing the Data](/2024-05-02-basketball-data-cleaning-preprocessing/) (Today's Guide)
 3. [Engineering New Features](/2024-05-30-basketball-feature_engineering/)
@@ -1495,6 +1508,7 @@ Also, all of the code snippets in today's guide are available in a Jupyter Noteb
 6. [Selecting a Machine Learning Model](/2024-08-12-basketball-select-ml-ols/)
 7. [Training the Machine Learning Model](/2024-09-13-basketball-train-ols/)
 8. [Evaluating the Machine Learning Model](/2024-11-27-basketball-evaluate-ols-model/)
+9. [Bonus: Ridge vs. OLS Linear Regression Models](/2025-04-04-ridge-regression-vs-ols-linear-regression-models/)
 
 <div class="email-subscription-container"></div>
 <div id="sources"></div>

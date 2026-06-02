@@ -1,37 +1,41 @@
 ---
 layout: post
-title: "Project Setup and Data Acquisition"
+title: "Project Setup and Data Acquisition with Python"
 subtitle: "Outlier or Caitlin Clark? [Part 1]"
 tags:  [Python, data science, pandas, API]
 thumbnail-img: /assets/img/posts/2024-04-11-basketball-data-acquisition/basketball.jpg
-share-title: "Project Setup and Data Acquisition: Outlier or Caitlin Clark? [Part 1]" 
-share-description: Interested in starting a new data science project? Discover how to acquire multiple datasets using APIs and online sources, then seamlessly merge those dataframes into one unified dataset using Python's pandas and requests libraries.
+share-title: "Project Setup and Data Acquisition with Python: Outlier or Caitlin Clark? [Part 1]" 
+description: Learn how to start a data science project by acquiring NCAA basketball data from online sources and APIs, then combining those results into a usable pandas dataset.
+share-description: Learn how to start a data science project by acquiring NCAA basketball data from online sources and APIs, then combining those results into a usable pandas dataset.
 share-img: /assets/img/posts/2024-04-11-basketball-data-acquisition/acquisition-social.png
 gh-repo: pineconedata/ncaa-basketball-stats
 gh-badge: [star, fork, follow]
+last-updated: 2026-06-02
+sitemap:
+  priority: 0.9
 ---
 
-Today we'll go over how to start a new data science project by acquiring the data (using APIs and a CSV export). This is the first part of a series that will walk through the entire process of a data science project - from initial steps like data acquisition, preprocessing, and cleaning to more advanced steps like feature engineering, creating visualizations, and machine learning. 
+Today we'll start a new data science project by acquiring NCAA basketball data from multiple sources and combining it into one usable dataset.
 
-<div id="toc"></div>
+This is Part 1 of the [Basketball Data Science Project](/projects/basketball-data-science-project/), an end-to-end Python series using 2023–24 NCAA basketball player statistics. The project explores whether Caitlin Clark's season was a statistical outlier and builds toward a machine learning workflow for predicting fantasy points.
 
-# Getting Started
-First, let's take a look at an overview of this data science project. If you're already familiar with it, feel free to skip to the [next section](#identifying-datasets).
+In this article, we'll collect player information from the NCAA website, retrieve player statistics from a Yahoo Sports API endpoint, and merge those sources into a single pandas dataframe. By the end, we'll have the raw dataset needed for the cleaning, feature engineering, visualization, and modeling steps that follow.
 
-## Project Overview
-The dataset we'll be using in this project contains individual basketball player statistics (such as total points scored and blocks made) for the 2023-2024 NCAA women's basketball season. Here's a brief description of each major step that we'll go through for this project: 
+[Full series: Basketball Data Science Project](/projects/basketball-data-science-project/)  
+[Next: Data Cleaning and Preprocessing](/2024-05-02-basketball-data-cleaning-preprocessing/)
 
-![the steps for this data science project](/assets/img/posts/2024-04-11-basketball-data-acquisition/project_steps.png "the steps for this data science project")
+## Overview
 
-1. **Data Acquisition** - This initial step involves obtaining data from two sources: (1) exporting the NCAA's online individual player statistics report and (2) making API requests to the Yahoo Sports endpoint. 
-2. **Data Cleaning** - This step focuses on identifying and correcting any errors within the dataset. This includes removing duplicates, correcting inaccuracies, and handling missing data. 
-3. **Data Preprocessing** - This step ensures the data is suitable for analysis by converting datatypes, standardizing units, and replacing abbreviations.
-4. **Feature Engineering** - This step involves selecting and expanding upon the dataset's features (or columns). This includes calculating additional metrics from existing columns.
-5. **Data Exploration** - This step focuses on analyzing and visualizing the dataset to uncover patterns, relationships, and general trends and is a helpful preliminary step before deeper analysis.
-6. **Creating Visualizations** - This step involves identifying the relationships between various parameters (such as height and blocked shots) and generating meaningful visualizations (such as bar charts, scatterplots, and candlestick charts).
-7. **Machine Learning** - This step focuses on selecting, training, and evaluating a machine learning model. For this project, the model will identify the combination of individual player statistics that correlates with optimal performance. 
+In this first part, we'll create the starting dataset for the project. The workflow includes:
 
-We'll use Python along with popular libraries like [pandas](https://pandas.pydata.org/docs/), [numpy](https://numpy.org/doc/), and [scikit-learn](https://scikit-learn.org/) to accomplish these tasks efficiently. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, identify relationships between variables, create meaningful visualizations, and train a basic machine learning model. Due to the size of this project, we'll start today with just the first step: data acqusition. 
+1. Exporting player information from the NCAA statistics website
+2. Requesting player statistics from the Yahoo Sports API
+3. Loading both datasets into pandas
+4. Inspecting the available columns
+5. Merging the data into one dataframe
+6. Saving the combined dataset for the next step in the project
+
+For the full project roadmap, including the overview diagram and links to every article, see the [Basketball Data Science Project hub](/projects/basketball-data-science-project/).
 
 ## Requirements
 Next, let's cover what you'll need if you want to follow along with this guide. If you already have a Python environment up and running and are familiar with how to install packages, then feel free to skip to the next section. 
@@ -82,7 +86,7 @@ import requests
 Now that we've ensured the necessary dependencies are installed, it's time to acquire the data. 
 
 # Identifying Datasets
-Before diving into the process of gathering basketball player statistics for the 2023-2024 NCAA women's basketball season, let's briefly look at the two data sets we'll be acquiring and a rough overview of the process to get each one:
+Before diving into the process of gathering basketball player statistics for the 2023-2024 NCAA basketball season, let's briefly look at the two data sets we'll be acquiring and a rough overview of the process to get each one:
 
 1. Player Information Dataset
    - This dataset will include player information such as name, height, position, team name, and class. 
@@ -987,11 +991,14 @@ player_data.to_excel('player_data_raw.xlsx', index=False)
 ```
 
 # Wrap up 
-In this guide, we built a new dataset by acquiring and then combining the NCAA women's basketball player information dataset with the Yahoo Sports player statistics dataset. In the next part, we'll lay the groundwork for data analysis by cleaning and preprocessing the combined player data.
+In this guide, we built a new dataset by acquiring and then combining the NCAA basketball player information dataset with the Yahoo Sports player statistics dataset. In the next part, we'll lay the groundwork for data analysis by cleaning and preprocessing the combined player data.
 
-Also, all of the code snippets in today's guide are available in a Jupyter Notebook in the [ncaa-basketball-stats](https://github.com/pineconedata/ncaa-basketball-stats) repository on [GitHub](https://github.com/pineconedata/).
+All of the code snippets in today's guide are available in a Jupyter Notebook in the [ncaa-basketball-stats](https://github.com/pineconedata/ncaa-basketball-stats) repository on [GitHub](https://github.com/pineconedata/).
 
-## Articles in this Series   
+For the full project overview, including the project roadmap and links to every article, see the [Basketball Data Science Project](/projects/basketball-data-science-project/) page.
+
+## Articles in this Series
+
 1. [Acquiring and Combining the Datasets](/2024-04-11-basketball-data-acquisition/) (Today's Guide)
 2. [Cleaning and Preprocessing the Data](/2024-05-02-basketball-data-cleaning-preprocessing/)
 3. [Engineering New Features](/2024-05-30-basketball-feature_engineering/)
@@ -1000,6 +1007,7 @@ Also, all of the code snippets in today's guide are available in a Jupyter Noteb
 6. [Selecting a Machine Learning Model](/2024-08-12-basketball-select-ml-ols/)
 7. [Training the Machine Learning Model](/2024-09-13-basketball-train-ols/)
 8. [Evaluating the Machine Learning Model](/2024-11-27-basketball-evaluate-ols-model/)
+9. [Bonus: Ridge vs. OLS Linear Regression Models](/2025-04-04-ridge-regression-vs-ols-linear-regression-models/)
 
 <div class="email-subscription-container"></div>
 <div id="sources"></div>

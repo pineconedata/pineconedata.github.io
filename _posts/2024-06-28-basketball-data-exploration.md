@@ -1,38 +1,42 @@
 ---
 layout: post
-title: "Data Exploration"
-subtitle: "Outlier or Caitlin Clark? [Part 4]"
-tags:  [Python, data science, pandas, machine learning, scikit-learn, data visualization]
-thumbnail-img: /assets/img/posts/2024-06-28-basketball-data-exploration/compass.jpg
-share-title: "Data Exploration: Outlier or Caitlin Clark? [Part 4]" 
-share-description: Are you curious about selecting appropriate features for your data? Learn how to determine the relationship between metrics, explore correlation matrices, and select meaningful features in the latest installment of this data science series designed for beginner data scientists and Python enthusiasts.
-share-img: /assets/img/posts/2024-06-28-basketball-data-exploration/social.png
+title: Exploratory Data Analysis with pandas and seaborn
+subtitle: Outlier or Caitlin Clark? [Part 4]
+description: Learn how to explore a basketball dataset with pandas and seaborn by reviewing summary statistics, selecting features, analyzing correlations, and creating exploratory plots.
+tags: [Python, data science, pandas, seaborn, exploratory data analysis]
+thumbnail-img: /assets/img/posts/2024-06-28-basketball-data-exploration/data-exploration.jpg
+share-title: "Exploratory Data Analysis with pandas and seaborn: Outlier or Caitlin Clark? [Part 4]"
+share-description: Learn how to explore a basketball dataset with pandas and seaborn by reviewing summary statistics, selecting features, analyzing correlations, and creating exploratory plots.
 gh-repo: pineconedata/ncaa-basketball-stats
 gh-badge: [star, fork, follow]
+last-updated: 2026-06-02
+sitemap:
+  priority: 0.9
 ---
 
-Today we'll demonstrate how to determine the relationship between metrics and select features. This is the fourth part of a series that walks through the entire process of a data science project - from initial steps like data acquisition, preprocessing, and cleaning to more advanced steps like feature engineering, creating visualizations, and machine learning. 
+Today we'll explore the engineered basketball dataset so we can better understand the relationships between player statistics before creating final visualizations and training machine learning models.
 
-<div id="toc"></div>
+This is Part 4 of the [Basketball Data Science Project](/projects/basketball-data-science-project/), an end-to-end Python series using 2023–24 NCAA basketball player statistics. The project explores whether Caitlin Clark's season was a statistical outlier and builds toward a machine learning workflow for predicting fantasy points.
 
-# Getting Started
-First, let's take a look at an overview of this data science project. If you're already familiar with it, feel free to skip to the [next section](#identify-relationships-between-variables).
+In [Part 3](/2024-05-30-basketball-feature_engineering/), we created new features from the cleaned dataset, including two-point field goal metrics, conference labels, per-game statistics, assist-to-turnover ratio, and fantasy points. In this article, we'll use exploratory data analysis to inspect distributions, compare variables, identify relationships, and decide which features are most useful for visualization and modeling.
 
-## Project Overview
+[Previous: Feature Engineering](/2024-05-30-basketball-feature_engineering/)  
+[Full series: Basketball Data Science Project](/projects/basketball-data-science-project/)  
+[Next: Data Visualizations](/2024-07-29-basketball-visualizations/)
 
-As a reminder, the dataset we'll be using in this project contains individual basketball player statistics (such as total points scored and blocks made) for the 2023-2024 NCAA women's basketball season. Here's a brief description of each major step that we'll go through for this project: 
+## Overview
 
-![the steps for this data science project](/assets/img/posts/2024-04-11-basketball-data-acquisition/project_steps.png "the steps for this data science project")
+In this part of the project, we'll explore the engineered player dataset. The workflow includes:
 
-1. **Data Acquisition** - This initial step involves obtaining data from two sources: (1) exporting the NCAA's online individual player statistics report and (2) making API requests to the Yahoo Sports endpoint. 
-2. **Data Cleaning** - This step focuses on identifying and correcting any errors within the dataset. This includes removing duplicates, correcting inaccuracies, and handling missing data. 
-3. **Data Preprocessing** - This step ensures the data is suitable for analysis by converting datatypes, standardizing units, and replacing abbreviations.
-4. **Feature Engineering** - This step involves selecting and expanding upon the dataset's features (or columns). This includes calculating additional metrics from existing columns.
-5. **Data Exploration** - This step focuses on analyzing and visualizing the dataset to uncover patterns, relationships, and general trends and is a helpful preliminary step before deeper analysis.
-6. **Creating Visualizations** - This step involves identifying the relationships between various parameters (such as height and blocked shots) and generating meaningful visualizations (such as bar charts, scatterplots, and candlestick charts).
-7. **Machine Learning** - This step focuses on selecting, training, and evaluating a machine learning model. For this project, the model will identify the combination of individual player statistics that correlates with optimal performance. 
+1. Loading the engineered dataset from Part 3
+2. Reviewing summary statistics for numerical features
+3. Selecting columns for exploratory analysis
+4. Comparing player statistics across the dataset
+5. Creating correlation matrices and heatmaps
+6. Identifying relationships between fantasy points and other features
+7. Using the exploratory results to guide later visualizations and model selection
 
-We'll use Python along with popular libraries like [pandas](https://pandas.pydata.org/docs/), [numpy](https://numpy.org/doc/), and [scikit-learn](https://scikit-learn.org/) to accomplish these tasks efficiently. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, identify relationships between variables, create meaningful visualizations, and train a basic machine learning model. Due to the size of this project, today we'll cover the fifth step: exploratory data analysis.
+For the full project roadmap, including the overview diagram and links to every article, see the [Basketball Data Science Project hub](/projects/basketball-data-science-project/).
 
 ## Dependencies
 Since this is the fourth installment in the series, you likely already have your environment setup and can skip to the next section. If you're not already set up and you want to follow along on your own machine, it's recommended to read the [first article of the series](/2024-04-11-basketball-data-acquisition/) or at least review the [Getting Started](/2024-04-11-basketball-data-acquisition/#getting-started) section of that post before continuing. 
@@ -516,11 +520,11 @@ player_data.describe()
 This gives an understanding of the distribution of data and characteristics of each column. This helps us identify any outliers or missing data, as well as assess how spread out the data is. It's often recommended to take a few minutes to scan through the statistics for each column to get a better understanding of each one and to quickly check for any issues. For example, you might notice that the `count` for the `THREE_POINT_PERCENTAGE` column is lower than the other columns. If you've read [Part 2](https://www.pineconedata.com/2024-05-02-basketball-data-cleaning-preprocessing/#handle-missing-three-point-percentages) of this series, you might remember that some rows are missing a three point percentage in cases where a player had zero three point goals attempted, so it makes sense that the `count` of non-null `THREE_POINT_PERCENTAGE` rows is `841` instead of `900`. 
 
 ## Feature Selection
-Next, it’d be helpful to generate a few charts to explore the relationships between the various player statistics. However, including too many metrics can slow down the plot generation process, so let's limit the number of numerical columns. (To be clear, this step is entirely optional and it is possible to generate a plot with all of these columns.)
+Next, it'd be helpful to generate a few charts to explore the relationships between the various player statistics. However, including too many metrics can slow down the plot generation process, so let's limit the number of numerical columns. (To be clear, this step is entirely optional and it is possible to generate a plot with all of these columns.)
 
-But how do we choose the right columns? This is often an entire step of a data science project and is referred to as [feature selection](https://en.wikipedia.org/wiki/Feature_selection). There are plenty of feature selection methods, but identifying which features are best often depends on your specific use case. For example,  if you’re developing a machine learning model that optimizes for defensive players, you might want to include features such as steals, blocks, and rebounds. However, if you’re optimizing for offensive players, then you might focus on features like points and assists. Other features, such as turnovers and fouls, might be included in both cases. 
+But how do we choose the right columns? This is often an entire step of a data science project and is referred to as [feature selection](https://en.wikipedia.org/wiki/Feature_selection). There are plenty of feature selection methods, but identifying which features are best often depends on your specific use case. For example,  if you're developing a machine learning model that optimizes for defensive players, you might want to include features such as steals, blocks, and rebounds. However, if you're optimizing for offensive players, then you might focus on features like points and assists. Other features, such as turnovers and fouls, might be included in both cases. 
 
-For today’s purpose, we don’t have a specific use-case in mind and are instead more focused on exploring the dataset and creating interesting visualizations. So, let’s make an educated guess on some features that might be similar enough to choose a few of them. For example, for each points metric (two-point goals, three-point goals, total field goals, and free throws) there are three columns (goals made, goals attempted, and goal percentage). 
+For today's purpose, we don't have a specific use-case in mind and are instead more focused on exploring the dataset and creating interesting visualizations. So, let's make an educated guess on some features that might be similar enough to choose a few of them. For example, for each points metric (two-point goals, three-point goals, total field goals, and free throws) there are three columns (goals made, goals attempted, and goal percentage). 
 
 
 ```python
@@ -596,7 +600,7 @@ player_data[['PLAYER_NAME', 'TWO_POINTS_MADE', 'TWO_POINT_ATTEMPTS', 'TWO_POINT_
 
 
 
-These columns are distinct and we already suspect that they are interrelated. The goal percentage is directly calculated by dividing goals made by goals attempted, so we likely don’t need to include that for each metric. The number of goals made is likely related to the number of goals attempted (you cannot score a goal without attempting it), so we could use just one of those two columns as a proxy in today’s visualizations. You can use either, but since goals made is directly used in the calculation for fantasy points, let’s go with that one. 
+These columns are distinct and we already suspect that they are interrelated. The goal percentage is directly calculated by dividing goals made by goals attempted, so we likely don't need to include that for each metric. The number of goals made is likely related to the number of goals attempted (you cannot score a goal without attempting it), so we could use just one of those two columns as a proxy in today's visualizations. You can use either, but since goals made is directly used in the calculation for fantasy points, let's go with that one. 
 
 In summary, we can collapse the goals made, goals attempted, and goal percentage columns down into just the goals made columns. Using similar logic, we can include total rebounds (excluding offensive and defensive rebounds), minutes played (instead of games played), and remove certain calculated columns (like the per-game metrics and assist-to-turnover ratio). This dramatically reduces the number of numerical columns for these initial exploratory plots while still preserving critical features.
 
@@ -704,12 +708,18 @@ plt.show()
 
 Looking at this chart, you can see why we reduced the number of numerical columns. Scatterplot matrices can get quite large with too many variables, so it can be helpful to focus on a few variables at first and individually analyze additional variables later. For example, the scatterplot matrix shows a dense linear relationship between `POINTS` and `FIELD_GOALS_MADE` and this matches the `0.97` correlation coefficient from the previous chart. Just like the correlation matrix, we can refer to back to this scatterplot matrix to quickly check the relationship between variables. 
 
-# Wrap Up
-In today's guide, we took a closer look at the underlying data in each column and created visualizations to identify the relationship between various parameters. Data exploration depends greatly on your individual project, so it's likely to look a bit different for each dataset. This step is generally best as an informal, free-form exploration of your data without being too focused on the finer details like axis titles or color scheme. In the next article, we'll cover generating meaningful visualizations, including a variety of charts and graphs.
+# Wrap up
 
-Also, all of the code snippets in today's guide are available in a Jupyter Notebook in the [ncaa-basketball-stats](https://github.com/pineconedata/ncaa-basketball-stats) repository on [GitHub](https://github.com/pineconedata/).
+In this guide, we explored the engineered NCAA basketball dataset using summary statistics, feature selection, correlations, and exploratory plots. This helped us better understand how player statistics relate to each other and which features may be useful for visualization and modeling.
 
-## Articles in this Series   
+In the next part, we'll build on this exploratory analysis by creating final visualizations to compare player performance, highlight outliers, and better understand how Caitlin Clark's season compares with the rest of the dataset.
+
+All of the code snippets in today's guide are available in a Jupyter Notebook in the [ncaa-basketball-stats](https://github.com/pineconedata/ncaa-basketball-stats) repository on [GitHub](https://github.com/pineconedata/).
+
+For the full project overview, including the project roadmap and links to every article, see the [Basketball Data Science Project](/projects/basketball-data-science-project/) page.
+
+## Articles in this Series
+
 1. [Acquiring and Combining the Datasets](/2024-04-11-basketball-data-acquisition/)
 2. [Cleaning and Preprocessing the Data](/2024-05-02-basketball-data-cleaning-preprocessing/)
 3. [Engineering New Features](/2024-05-30-basketball-feature_engineering/)
@@ -718,6 +728,7 @@ Also, all of the code snippets in today's guide are available in a Jupyter Noteb
 6. [Selecting a Machine Learning Model](/2024-08-12-basketball-select-ml-ols/)
 7. [Training the Machine Learning Model](/2024-09-13-basketball-train-ols/)
 8. [Evaluating the Machine Learning Model](/2024-11-27-basketball-evaluate-ols-model/)
+9. [Bonus: Ridge vs. OLS Linear Regression Models](/2025-04-04-ridge-regression-vs-ols-linear-regression-models/)
 
 <div class="email-subscription-container"></div>
 <div id="sources"></div>

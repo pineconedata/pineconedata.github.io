@@ -1,38 +1,41 @@
 ---
 layout: post
-title: "Selecting a Machine Learning Model"
-subtitle: "Outlier or Caitlin Clark? [Part 6]"
-tags:  [Python, data science, pandas, machine learning, scikit-learn, linear regression]
-share-title: "Selecting a Machine Learning Model: Outlier or Caitlin Clark? [Part 6]" 
-share-description: "In our latest post, learn how to choose the perfect machine learning model for your project. Discover the key steps: identifying objectives and target variables, suitable candidates, and ensuring assumptions are met with Python & Scikit-learn! "
-thumbnail-img: /assets/img/posts/2024-08-12-basketball-select-ml-ols/scikit-learn_ml_map.svg
-share-img: /assets/img/posts/2024-08-12-basketball-select-ml-ols/social.png
+title: Selecting a Linear Regression Model for Basketball Stats
+subtitle: Outlier or Caitlin Clark? [Part 6]
+description: Learn how to set up a basketball machine learning problem by choosing fantasy points as the target variable, selecting model features, and using ordinary least squares linear regression as a baseline model.
+tags: [Python, data science, machine learning, linear regression, scikit-learn, statsmodels]
+thumbnail-img: /assets/img/posts/2024-08-12-basketball-select-ml-ols/machine-learning.jpg
+share-title: "Selecting a Linear Regression Model for Basketball Stats: Outlier or Caitlin Clark? [Part 6]"
+share-description: Learn how to set up a basketball machine learning problem by choosing fantasy points as the target variable, selecting model features, and using ordinary least squares linear regression as a baseline model.
 gh-repo: pineconedata/ncaa-basketball-stats
 gh-badge: [star, fork, follow]
+last-updated: 2026-06-02
+sitemap:
+  priority: 0.9
 ---
 
-Today we'll cover the basics of machine learning and examine how to select an appropriate machine learning model. This is the sixth part of a series that walks through the entire process of a data science project - from initial steps like data acquisition, preprocessing, and cleaning to more advanced steps like feature engineering, creating visualizations, and machine learning. 
+Today we'll move from exploratory analysis and visualization into machine learning by defining a prediction problem and selecting a baseline model.
 
-<div id="toc"></div>
+This is Part 6 of the [Basketball Data Science Project](/projects/basketball-data-science-project/), an end-to-end Python series using 2023–24 NCAA basketball player statistics. The project explores whether Caitlin Clark's season was a statistical outlier and builds toward a machine learning workflow for predicting fantasy points.
 
-# Getting Started
-First, let's take a look at an overview of this data science project. If you're already familiar with it, feel free to skip to the [next section](#basics-of-machine-learning).
+In [Part 5](/2024-07-29-basketball-visualizations/), we created visualizations to compare player performance, explore relationships between statistics, and highlight potential outliers. In this article, we'll define fantasy points as the prediction target, select input features from the engineered dataset, and explain why ordinary least squares linear regression is a reasonable baseline model.
 
-## Project Overview
+[Previous: Data Visualizations](/2024-07-29-basketball-visualizations/)  
+[Full series: Basketball Data Science Project](/projects/basketball-data-science-project/)  
+[Next: Training a Linear Regression Model](/2024-09-13-basketball-train-ols/)
 
-As a reminder, the dataset we'll be using in this project contains individual basketball player statistics (such as total points scored and blocks made) for the 2023-2024 NCAA women's basketball season. Here's a brief description of each major step of this project: 
+## Overview
 
-![the steps for this data science project](/assets/img/posts/2024-04-11-basketball-data-acquisition/project_steps.png "the steps for this data science project")
+In this part of the project, we'll set up the machine learning problem. The workflow includes:
 
-1. **Data Acquisition** - This initial step involves obtaining data from two sources: (1) exporting the NCAA's online individual player statistics report and (2) making API requests to the Yahoo Sports endpoint. 
-2. **Data Cleaning** - This step focuses on identifying and correcting any errors within the dataset. This includes removing duplicates, correcting inaccuracies, and handling missing data. 
-3. **Data Preprocessing** - This step ensures the data is suitable for analysis by converting datatypes, standardizing units, and replacing abbreviations.
-4. **Feature Engineering** - This step involves selecting and expanding upon the dataset's features (or columns). This includes calculating additional metrics from existing columns.
-5. **Data Exploration** - This step focuses on analyzing and visualizing the dataset to uncover patterns, relationships, and general trends and is a helpful preliminary step before deeper analysis.
-6. **Creating Visualizations** - This step involves identifying the relationships between various parameters (such as height and blocked shots) and generating meaningful visualizations (such as bar charts, scatterplots, and candlestick charts).
-7. **Machine Learning** - This step focuses on selecting, training, and evaluating a machine learning model. For this project, the model will identify the combination of individual player statistics that correlates with optimal performance. 
+1. Framing the modeling task as a supervised regression problem
+2. Choosing fantasy points as the target variable
+3. Selecting candidate input features from the engineered dataset
+4. Reviewing why ordinary least squares linear regression is a good baseline model
+5. Identifying assumptions and limitations of OLS regression
+6. Preparing for model training in the next article
 
-We'll use Python along with popular libraries like [pandas](https://pandas.pydata.org/docs/), [numpy](https://numpy.org/doc/), and [scikit-learn](https://scikit-learn.org/) to accomplish these tasks efficiently. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, identify relationships between variables, create meaningful visualizations, and train a basic machine learning model. Due to the size of this project, today we'll cover part of the seventh step: selecting a machine learning model.
+For the full project roadmap, including the overview diagram and links to every article, see the [Basketball Data Science Project hub](/projects/basketball-data-science-project/).
 
 ## Dependencies
 Since this is the sixth installment in the series, you likely already have your environment setup and can skip to the next section. If you're not already set up and you want to follow along on your own machine, it's recommended to read the [first article of the series](/2024-04-11-basketball-data-acquisition/) or at least review the [Getting Started](/2024-04-11-basketball-data-acquisition/#getting-started) section of that post before continuing. 
@@ -241,7 +244,7 @@ player_data.head()
 
 
 # Basics of Machine Learning
-Before we get into selecting a machine learning model, let’s briefly cover a few basics of machine learning. [Machine learning](https://en.wikipedia.org/wiki/Machine_learning) is a branch of artificial intelligence that focuses on creating algorithms and statistical models that allow computer systems to "learn" how to improve their performance on a specific task through experience. In the context of our basketball statistics project, machine learning can be particularly useful for predicting player performance, classifying player position, and identifying similar players.
+Before we get into selecting a machine learning model, let's briefly cover a few basics of machine learning. [Machine learning](https://en.wikipedia.org/wiki/Machine_learning) is a branch of artificial intelligence that focuses on creating algorithms and statistical models that allow computer systems to "learn" how to improve their performance on a specific task through experience. In the context of our basketball statistics project, machine learning can be particularly useful for predicting player performance, classifying player position, and identifying similar players.
 
 Key concepts in machine learning that we'll encounter include:
 
@@ -252,19 +255,19 @@ Key concepts in machine learning that we'll encounter include:
 5. **Target Variable** - The variable we're trying to predict or optimize, such as points scored or fantasy points. This is sometimes referred to as the dependent variable(s), as it depends on the independent variable(s). 
 6. **Parameters** - The values that the model learns during training, such as coefficients in linear regression. These parameters define how the model transforms input features into predictions.
 7. **Hyperparameters** - The configuration settings for the model that are set before training begins. These are not learned from the data but are specified by the data scientist. Examples include learning rate, number of iterations, or regularization strength. Hyperparameters can significantly affect model performance and are often tuned to optimize the model. 
-    - *Note*: The model we’ll be using in this project is straightforward and doesn’t typically have hyperparameters in the traditional sense. However, it’s still important to know the difference between parameters and hyperparameters since many models will have hyperparameters. 
+    - *Note*: The model we'll be using in this project is straightforward and doesn't typically have hyperparameters in the traditional sense. However, it's still important to know the difference between parameters and hyperparameters since many models will have hyperparameters. 
 8. **Residuals** - The differences between the observed values and the predicted values from the model. Residuals help assess how well the model fits the data and can reveal patterns or issues in the model's predictions.
 9. **Model Evaluation** - Metrics used to assess how well our model is performing. For a Linear Regression model, this will include metrics like Mean Squared Error (MSE) and the R-squared value.
 
-We’ll use primarily the first six terms throughout this article, so it’s best to familiarize yourself with them now. The other concepts will be explored in more detail in future articles (please [let me know](/workwithme/) if that is something you are interested in!). 
+We'll use primarily the first six terms throughout this article, so it's best to familiarize yourself with them now. The other concepts will be explored in more detail in future articles (please [let me know](/workwithme/) if that is something you are interested in!). 
 
-It's important to note that our focus in this article is on classic machine learning models designed for tabular data. We won't be covering models built specifically for natural language processing, image recognition, or video analysis. However, it's worth mentioning that many problems in these domains often get transformed into tabular data problems, so some of the principles we discuss here may still apply in those contexts. With all of that out of the way, let’s move on to defining the problem and selecting an appropriate machine learning model.
+It's important to note that our focus in this article is on classic machine learning models designed for tabular data. We won't be covering models built specifically for natural language processing, image recognition, or video analysis. However, it's worth mentioning that many problems in these domains often get transformed into tabular data problems, so some of the principles we discuss here may still apply in those contexts. With all of that out of the way, let's move on to defining the problem and selecting an appropriate machine learning model.
 
 # Model Selection
 Before we choose a model, it's a good idea to clearly define our objective to help us ensure we're using an appropriate model for our task. This step sets the foundation for our entire machine learning process and helps guide our decision-making throughout the project.
 
 ## Define the Objective
-The goal of a machine learning project in commercial settings will often be determined by a desired business outcome. However, for a hobby project like this, we have the freedom to pick the objective. So, for today’s machine learning model, we’ll focus on training the model to predict a target variable based on one or more input features (such as field goals, blocks, assists, etc.). Let's choose the target variable and set of features as well. 
+The goal of a machine learning project in commercial settings will often be determined by a desired business outcome. However, for a hobby project like this, we have the freedom to pick the objective. So, for today's machine learning model, we'll focus on training the model to predict a target variable based on one or more input features (such as field goals, blocks, assists, etc.). Let's choose the target variable and set of features as well. 
 
 ### Define the Target Variable
 The target variable has a massive impact on the machine learning model, including what type (regression, classification, clustering, etc.) of machine learning model is appropriate. For today, let's choose one of the numerical columns from [Part 4](/2024-07-29-basketball-visualizations/): 
@@ -517,12 +520,18 @@ It's worth noting that dropping this assumption would require significantly more
 
 There is no direct statistical test for weak exogeneity, so we'll treat this as more of a logical check than a mathematical one. For our basketball player statistics model, weak exogeneity would mean that the statistics we're using as predictors (such as minutes played, field goals attempted, etc.) are not themselves influenced by unmeasured factors that also affect fantasy points. Based on our understanding of the domain, this makes rough logical sense and we'll consider this assumption satisfied. 
 
-# Wrap Up
-In today's article, we covered the basics of machine learning and learned how to select an appropriate machine learning model. In the next post, we'll cover how to actually train the model. 
+# Wrap up
 
-Also, all of the code snippets in today's guide are available in a Jupyter Notebook in the [ncaa-basketball-stats](https://github.com/pineconedata/ncaa-basketball-stats) repository on [GitHub](https://github.com/pineconedata/).
+In this guide, we moved from exploratory analysis and visualization into machine learning. We framed the project as a supervised regression problem, chose fantasy points as the target variable, selected candidate input features, and explained why ordinary least squares linear regression is a reasonable baseline model.
 
-## Articles in this Series   
+In the next part, we'll train ordinary least squares linear regression models using the engineered basketball dataset. We'll create train/test splits, fit the models, compare feature sets, and save the trained models for evaluation.
+
+All of the code snippets in today's guide are available in a Jupyter Notebook in the [ncaa-basketball-stats](https://github.com/pineconedata/ncaa-basketball-stats) repository on [GitHub](https://github.com/pineconedata/).
+
+For the full project overview, including the project roadmap and links to every article, see the [Basketball Data Science Project](/projects/basketball-data-science-project/) page.
+
+## Articles in this Series
+
 1. [Acquiring and Combining the Datasets](/2024-04-11-basketball-data-acquisition/)
 2. [Cleaning and Preprocessing the Data](/2024-05-02-basketball-data-cleaning-preprocessing/)
 3. [Engineering New Features](/2024-05-30-basketball-feature_engineering/)
@@ -531,6 +540,7 @@ Also, all of the code snippets in today's guide are available in a Jupyter Noteb
 6. [Selecting a Machine Learning Model](/2024-08-12-basketball-select-ml-ols/) (Today's Guide)
 7. [Training the Machine Learning Model](/2024-09-13-basketball-train-ols/)
 8. [Evaluating the Machine Learning Model](/2024-11-27-basketball-evaluate-ols-model/)
+9. [Bonus: Ridge vs. OLS Linear Regression Models](/2025-04-04-ridge-regression-vs-ols-linear-regression-models/)
 
 <div class="email-subscription-container"></div>
 <div id="sources"></div>

@@ -1,38 +1,42 @@
 ---
 layout: post
-title: "Data Visualizations"
-subtitle: "Outlier or Caitlin Clark? [Part 5]"
-tags:  [Python, data science, pandas, machine learning, scikit-learn, data visualization]
-thumbnail-img: /assets/img/posts/2024-07-29-basketball-visualizations/histogram.png
-share-title: "Data Visualizations: Outlier or Caitlin Clark? [Part 5]" 
-share-description: How do you create meaningful visualizations for your dataset with Python? Learn how to use the Matplotlib, Seaborn, and Pyplot libraries to craft stunning scatterplots, bar charts, violin plots, and more in our latest article!
-share-img: /assets/img/posts/2024-07-29-basketball-visualizations/social.png
+title: Basketball Data Visualizations with Python
+subtitle: Outlier or Caitlin Clark? [Part 5]
+description: Learn how to create basketball data visualizations with Python using matplotlib, seaborn, and Plotly to compare player statistics, explore relationships, and highlight outliers.
+tags: [Python, data science, data visualization, matplotlib, seaborn, plotly]
+thumbnail-img: /assets/img/posts/2024-07-29-basketball-visualizations/data-visualization.jpg
+share-title: "Basketball Data Visualizations with Python: Outlier or Caitlin Clark? [Part 5]"
+share-description: Learn how to create basketball data visualizations with Python using matplotlib, seaborn, and Plotly to compare player statistics, explore relationships, and highlight outliers.
 gh-repo: pineconedata/ncaa-basketball-stats
 gh-badge: [star, fork, follow]
+last-updated: 2026-06-02
+sitemap:
+  priority: 0.9
 ---
 
-Today we'll demonstrate how to generate meaningful visualizations. This is the fifth part of a series that walks through the entire process of a data science project - from initial steps like data acquisition, preprocessing, and cleaning to more advanced steps like feature engineering, creating visualizations, and machine learning. 
+Today we'll create visualizations from the engineered basketball dataset so we can compare player performance, explore relationships between statistics, and highlight potential outliers.
 
-<div id="toc"></div>
+This is Part 5 of the [Basketball Data Science Project](/projects/basketball-data-science-project/), an end-to-end Python series using 2023–24 NCAA basketball player statistics. The project explores whether Caitlin Clark's season was a statistical outlier and builds toward a machine learning workflow for predicting fantasy points.
 
-# Getting Started
+In [Part 4](/2024-06-28-basketball-data-exploration/), we explored the engineered dataset using summary statistics, feature selection, correlations, and exploratory plots. In this article, we'll turn those findings into clearer visualizations using Python libraries like matplotlib, seaborn, and Plotly.
 
-First, let's take a look at an overview of this data science project. If you're already familiar with it, feel free to skip to the [next section](#generate-visualizations).
+[Previous: Exploratory Data Analysis](/2024-06-28-basketball-data-exploration/)  
+[Full series: Basketball Data Science Project](/projects/basketball-data-science-project/)  
+[Next: Selecting a Machine Learning Model](/2024-08-12-basketball-select-ml-ols/)
 
-## Project Overview
-As a reminder, the dataset we'll be using in this project contains individual basketball player statistics (such as total points scored and blocks made) for the 2023-2024 NCAA women's basketball season. Here's a brief description of each major step that we'll go through for this project: 
+## Overview
 
-![the steps for this data science project](/assets/img/posts/2024-04-11-basketball-data-acquisition/project_steps.png "the steps for this data science project")
+In this part of the project, we'll create visualizations to better understand player performance. The workflow includes:
 
-1. **Data Acquisition** - This initial step involves obtaining data from two sources: (1) exporting the NCAA's online individual player statistics report and (2) making API requests to the Yahoo Sports endpoint. 
-2. **Data Cleaning** - This step focuses on identifying and correcting any errors within the dataset. This includes removing duplicates, correcting inaccuracies, and handling missing data. 
-3. **Data Preprocessing** - This step ensures the data is suitable for analysis by converting datatypes, standardizing units, and replacing abbreviations.
-4. **Feature Engineering** - This step involves selecting and expanding upon the dataset's features (or columns). This includes calculating additional metrics from existing columns.
-5. **Data Exploration** - This step focuses on analyzing and visualizing the dataset to uncover patterns, relationships, and general trends and is a helpful preliminary step before deeper analysis.
-6. **Creating Visualizations** - This step involves identifying the relationships between various parameters (such as height and blocked shots) and generating meaningful visualizations (such as bar charts, scatterplots, and candlestick charts).
-7. **Machine Learning** - This step focuses on selecting, training, and evaluating a machine learning model. For this project, the model will identify the combination of individual player statistics that correlates with optimal performance. 
+1. Loading the engineered basketball dataset
+2. Reviewing the variables selected during exploratory analysis
+3. Creating static charts with matplotlib and seaborn
+4. Creating interactive visualizations with Plotly
+5. Comparing Caitlin Clark with the rest of the dataset
+6. Identifying outliers and notable player performance patterns
+7. Using the visual results to inform the machine learning step that follows
 
-We'll use Python along with popular libraries like [pandas](https://pandas.pydata.org/docs/), [numpy](https://numpy.org/doc/), and [scikit-learn](https://scikit-learn.org/) to accomplish these tasks efficiently. By the end of this series, you'll be equipped with the skills needed to gather raw data from online sources, structure it into a usable format, eliminate any inconsistencies and errors, identify relationships between variables, create meaningful visualizations, and train a basic machine learning model. Due to the size of this project, today we'll cover the sixth step: creating visualizations.
+For the full project roadmap, including the overview diagram and links to every article, see the [Basketball Data Science Project hub](/projects/basketball-data-science-project/).
 
 ## Dependencies
 Since this is the fifth installment in the series, you likely already have your environment setup and can skip to the next section. If you're not already set up and you want to follow along on your own machine, it's recommended to read the [first article of the series](/2024-04-11-basketball-data-acquisition/) or at least review the [Getting Started](/2024-04-11-basketball-data-acquisition/#getting-started) section of that post before continuing. 
@@ -491,7 +495,7 @@ plt.show()
 
 ## Box Plot of Height by Position
 
-Next, let’s take a look at a categorical value (position) compared to the player’s height. A box plot (a.k.a. box-and-whisker plot, candlestick chart) allows us to compare the height distribution of players across different positions in one visualization. Each box represents the [interquartile range](https://en.wikipedia.org/wiki/Interquartile_range) (the middle 50% of the height distribution for each position) with the line in the box indicating the [median](https://en.wikipedia.org/wiki/Median) height. The length of the whiskers can vary depending on the method used, with the simplest method being to extend the whiskers to the highest and lowest data points. [Seaborn’s box plot documentation](https://seaborn.pydata.org/tutorial/categorical.html#boxplots) mentions that the whiskers extend to the highest and lowest data points (height values) within 1.5 times the interquartile range of the upper and lower quartile, and any points beyond that are considered outliers.
+Next, let's take a look at a categorical value (position) compared to the player's height. A box plot (a.k.a. box-and-whisker plot, candlestick chart) allows us to compare the height distribution of players across different positions in one visualization. Each box represents the [interquartile range](https://en.wikipedia.org/wiki/Interquartile_range) (the middle 50% of the height distribution for each position) with the line in the box indicating the [median](https://en.wikipedia.org/wiki/Median) height. The length of the whiskers can vary depending on the method used, with the simplest method being to extend the whiskers to the highest and lowest data points. [Seaborn's box plot documentation](https://seaborn.pydata.org/tutorial/categorical.html#boxplots) mentions that the whiskers extend to the highest and lowest data points (height values) within 1.5 times the interquartile range of the upper and lower quartile, and any points beyond that are considered outliers.
 
 
 ```python
@@ -861,12 +865,18 @@ plt.show()
 
 From the joint plot, we can see the scatter of data points representing the relationship between turnovers and fantasy points. The regression line helps us identify any potential correlation between these two variables.
 
-# Wrap Up
-In this article, we focused on generating a variety of visualizations for our dataset. Today's visualizations were primarily an exploration of various chart types and options that can be helpful. Which charts you want to include in your report will depend on your dataset, but it's generally a good idea to try out multiple chart types and variable pairings before deciding on which ones are best. In the next article, we'll go over how to select the right machine learning model for a given problem. 
+# Wrap up
 
-Also, all of the code snippets in today's guide are available in a Jupyter Notebook in the [ncaa-basketball-stats](https://github.com/pineconedata/ncaa-basketball-stats) repository on [GitHub](https://github.com/pineconedata/).
+In this guide, we created visualizations from the engineered NCAA basketball dataset. We used Python visualization libraries to compare player statistics, explore relationships between features, and highlight potential outliers in the dataset.
 
-## Articles in this Series   
+In the next part, we'll move from exploratory analysis and visualization into machine learning. We'll define the prediction problem, choose fantasy points as the target variable, select model features, and explain why ordinary least squares linear regression is a reasonable starting point.
+
+All of the code snippets in today's guide are available in a Jupyter Notebook in the [ncaa-basketball-stats](https://github.com/pineconedata/ncaa-basketball-stats) repository on [GitHub](https://github.com/pineconedata/).
+
+For the full project overview, including the project roadmap and links to every article, see the [Basketball Data Science Project](/projects/basketball-data-science-project/) page.
+
+## Articles in this Series
+
 1. [Acquiring and Combining the Datasets](/2024-04-11-basketball-data-acquisition/)
 2. [Cleaning and Preprocessing the Data](/2024-05-02-basketball-data-cleaning-preprocessing/)
 3. [Engineering New Features](/2024-05-30-basketball-feature_engineering/)
@@ -875,6 +885,7 @@ Also, all of the code snippets in today's guide are available in a Jupyter Noteb
 6. [Selecting a Machine Learning Model](/2024-08-12-basketball-select-ml-ols/)
 7. [Training the Machine Learning Model](/2024-09-13-basketball-train-ols/)
 8. [Evaluating the Machine Learning Model](/2024-11-27-basketball-evaluate-ols-model/)
+9. [Bonus: Ridge vs. OLS Linear Regression Models](/2025-04-04-ridge-regression-vs-ols-linear-regression-models/)
 
 
 <div class="email-subscription-container"></div>
