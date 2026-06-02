@@ -470,10 +470,10 @@ player_data.nlargest(5, 'FIELD_GOALS_MADE')[['PLAYER_NAME', 'TEAM_NAME', 'Class'
 
 
 
-From this table, we can see that the player who made the most field goals in the season was Caitlin Clark. She scored 50+ additional field goals than Elizabeth Kitley, the player with the second highest number of field goals made. 
+From this table, we can see that the player who made the most field goals in the season was Caitlin Clark. She scored 50+ additional field goals than Elizabeth Kitley, the player with the second-highest number of field goals made. 
 
 ## Scatterplot of Minutes Played vs Points
-Next, let's create a scatterplot to explored the relationship between the total minutes played and the total points scored by the player. As a reminder, the minutes played measures the time on the game clock that the player was one of the five teammates on the court. This does not include time on the bench or when the game clock is stopped (such as for free throws or halftime). 
+Next, let's create a scatterplot to explore the relationship between the total minutes played and the total points scored by the player. As a reminder, the minutes played measures the time on the game clock that the player was one of the five teammates on the court. This does not include time on the bench or when the game clock is stopped (such as for free throws or halftime). 
 
 
 ```python
@@ -515,15 +515,15 @@ plt.show()
 
 From the boxes on this plot, we can see that Centers are generally the tallest and Guards are generally the shortest players in this dataset. Forwards, on the other hand, have a smaller interquartile range in between Centers and Guards, and as a result have more outliers drawn on the plot. 
 
-## Box Plot of Three Points Made by Conference
-We can create another box plot that shows the number of three point field goals each player made by `Conference`. This gives us a high level overview of the distribution of successful three-pointers for players in each `Conference`. 
+## Box Plot of Three-Points Made by Conference
+We can create another box plot that shows the number of three-point field goals each player made by `Conference`. This gives us a high-level overview of the distribution of successful three-pointers for players in each `Conference`. 
 
 
 ```python
 plt.figure(figsize=(12, 8))
 sns.boxplot(x="Conference", y="THREE_POINTS_MADE", data=player_data, order=sorted(player_data['Conference'].unique()))
 plt.xticks(rotation=90)
-plt.title('Three Points Made by Conference')
+plt.title('Three-Points Made by Conference')
 plt.show()
 ```
 
@@ -533,7 +533,7 @@ plt.show()
     
 
 
-This chart can also highlight issues with how data is distributed for each category. For example, the box-and-whiskers for the `DI Independent` conference is quite collapsed compared to the other conferences. This could indicate a lack of data for that conference, which we can verify using the panda's [groupby()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.groupby.html) and [size()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.size.html) functions.
+This chart can also highlight issues with how data is distributed for each category. For example, the box-and-whiskers for the `DI Independent` conference is quite collapsed compared to the other conferences. This could indicate a lack of data for that conference, which we can verify using the pandas [groupby()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.groupby.html) and [size()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.size.html) functions.
 
 
 ```python
@@ -583,7 +583,7 @@ player_data[player_data['THREE_POINTS_MADE'] > 0].groupby('Conference').size()
 
 We can see that the DI Independent conference only has one data point where the number of `THREE_POINTS_MADE` is greater than zero, which explains why the box in the chart above looks more like a single point. 
 
-Also we can see that the Big Ten conference has an outlier with significantly more `THREE_POINTS_MADE` compared to any other data point. We can verify who that player is with the panda's [groupby()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.groupby.html) and [max()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.max.html) functions.
+Also we can see that the Big Ten conference has an outlier with significantly more `THREE_POINTS_MADE` compared to any other data point. We can verify who that player is with the pandas [groupby()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.groupby.html) and [max()](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.max.html) functions.
 
 
 ```python

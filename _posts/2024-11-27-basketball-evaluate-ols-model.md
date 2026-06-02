@@ -1431,7 +1431,7 @@ np.mean(y_actual)
 
 
 
-In this case, the target variable and its mean are on the order of hundreds, so a RMSE of 50.8 for `model_few` seems fairly good, while the RMSE of nearly 200 for `model_base` is quite poor. 
+In this case, the target variable and its mean are on the order of hundreds, so an RMSE of 50.8 for `model_few` seems fairly good, while the RMSE of nearly 200 for `model_base` is quite poor. 
 
 ## Mean Absolute Error (MAE)
 [Mean Absolute Error (MAE)]() measures the average magnitude of errors in a set of predictions, without considering their direction. It treats errors equally, making it less sensitive to outliers than MSE or RMSE. Similar to RMSE, it uses the same units as the target variable, making it easier to interpret than MSE. 

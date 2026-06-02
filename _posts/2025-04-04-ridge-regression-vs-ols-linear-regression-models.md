@@ -385,9 +385,9 @@ The first part of training any machine learning model is selecting the model to 
 
 ![scikit-learn's algorithm flowchat](https://scikit-learn.org/stable/_downloads/b82bf6cd7438a351f19fac60fbc0d927/ml_map.svg)
 
-Just like in a [previous article](/2024-08-12-basketball-select-ml-ols/#identify-appropriate-models) where we ended up selecting a Ordinary Least Squares linear regression model, we can go through this flowchart until we get to the "few features should be important" split of the **regression** section. This time, let's explore the "No" branch of that split to see how a Ridge Regression model works.
+Just like in a [previous article](/2024-08-12-basketball-select-ml-ols/#identify-appropriate-models) where we ended up selecting an Ordinary Least Squares linear regression model, we can go through this flowchart until we get to the "few features should be important" split of the **regression** section. This time, let's explore the "No" branch of that split to see how a Ridge Regression model works.
 
-## Model Characterstics 
+## Model Characteristics 
 [Ridge Regression](https://en.wikipedia.org/wiki/Ridge_regression), also referred to as L2 Regularization is an extension of the Ordinary Least Squares (OLS) method. Both OLS and Ridge Regression aim to find the best fit line through data points to make predictions. However, the main difference is that Ridge regression is a type of [regularization](https://en.wikipedia.org/wiki/Regularization_(mathematics)). 
 
 While OLS minimizes the residual sum of squares without any constraints, Ridge regression adds a penalty term (L2 regularization) to the loss function. This penalty term is proportional to the absolute size of the coefficients and is designed to shrink large coefficient values asymptotically towards zero. One important characteristic of Ridge regression is that the coefficients never actually reach zero. This suppression of coefficients helps reduce overfitting caused by multi-collinearity, makes model parameters more interpretable, and improves generalization performance. 
@@ -420,7 +420,7 @@ $$
 y = \beta_0 + \beta_1x_1 + \beta_2x_2 + ... + \beta_nx_n
 $$
 
-So there's not much point in setting \\(\lambda\\) to `0`, but how do we know what to set \\(\lambda\\) to? The best value for \\(\lambda\\) can be determined in a few different ways that could be the topic of it's own article, so [please let me know](/workwithme/) if you would be interested in that! For today, we'll use the default value set by the [scikit-learn Ridge() class](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html), which is `1`. 
+So there's not much point in setting \\(\lambda\\) to `0`, but how do we know what to set \\(\lambda\\) to? The best value for \\(\lambda\\) can be determined in a few different ways that could be the topic of its own article, so [please let me know](/workwithme/) if you would be interested in that! For today, we'll use the default value set by the [scikit-learn Ridge() class](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html), which is `1`. 
 
 Now that we conceptually understand a bit more about how this model works, let's try training a Ridge regression model on our dataset. 
 
@@ -1281,7 +1281,7 @@ Just like with training the OLS model, we're using the training set to learn the
 # Generate Predictions
 To evaluate the model's performance, we'll compare the values that the model predicts to the actual values (sometimes referred to as the "ground truth" values). Models that predict values close to the actual values perform better, and models that predict values far from the actual values perform worse. There are various evaluation metrics we can calculate using these predictions to quantify how well a model performs, but the first step is generating the predictions for each model. 
 
-To generate predictions, we'll apply each trained model to the testing data split. We'll use the testing data split instead of the training data split to ensure that the model is evaluated on data that it hasn't seen during training. (For a refresher on *why* we split the dataset into training and testing subsets, see a [previous article](/2024-09-13-basketbal-train-ols/#create-training-and-testing-splits)) in this series.
+To generate predictions, we'll apply each trained model to the testing data split. We'll use the testing data split instead of the training data split to ensure that the model is evaluated on data that it hasn't seen during training. (For a refresher on *why* we split the dataset into training and testing subsets, see a [previous article](/2024-09-13-basketball-train-ols/#create-training-and-testing-splits)) in this series.
 
 In a [previous article](/2024-11-27-basketball-evaluate-ols-model/#generate-predictions), we generated predictions in three ways: 
 
@@ -1588,7 +1588,7 @@ r2_base
 
 ### Evaluation
 Now that we have our results for each model, let's take a look at how each model performs. As mentioned earlier, a higher \\(R^2\\) generally indicates a better fit for the model, with `1` being a perfect fit and `0` being a poor fit that performs no better than predicting the mean. 
-In this case, `model_full` has a \\(R^2\\) value of almost, but not quite, `1.0`, so it's predictions are quite close to the ideal. On the other end, it makes sense that `model_base` has a \\(R^2\\) of `0`, since this model is predicting the mean for each observation. `model_few` has a \\(R^2\\) of `0.92...`, which is relatively close to `1`, so this model also predicted values close to the actual values, but did not perform quite as well as `model_full`.
+In this case, `model_full` has a \\(R^2\\) value of almost, but not quite, `1.0`, so its predictions are quite close to the ideal. On the other end, it makes sense that `model_base` has a \\(R^2\\) of `0`, since this model is predicting the mean for each observation. `model_few` has a \\(R^2\\) of `0.92...`, which is relatively close to `1`, so this model also predicted values close to the actual values, but did not perform quite as well as `model_full`.
 
 ## Adjusted \\(R^2\\)
 [Adjusted \\(R^2\\)](https://en.wikipedia.org/wiki/Coefficient_of_determination#Adjusted_R2) is a modification to the standard \\(R^2\\) that we just calculated that adjusts for the number of predictors (Height, Points, Steals, etc.) in the model. Standard \\(R^2\\) will always increase as you add more predictors (even if they aren't improving the model), which can make the results a bit misleading for models with many predictors. Adjusted  \\(R^2\\) penalizes the addition of unnecessary predictors, so it provides a more accurate measure of the model's performance when there are multiple predictors. This also makes it quite useful for comparing models with different numbers of predictors.
@@ -1699,7 +1699,7 @@ Evaluating Adjusted \\(R^2\\) follows the same logic as the standard \\(R^2\\). 
 
 [Mean Squared Error (MSE)](https://en.wikipedia.org/wiki/Mean_squared_error) is another common metric for evaluating regression models. It calculates the average of the squared differences between predicted values (\\(\hat{y}\\)) and actual values (\\(y\\)). Since MSE squares the errors, it can be more sensitive to outliers and less interpretable than other metrics, so it's particularly useful when you want to heavily penalize large prediction errors. 
 
-- `0` indicates a the model makes perfect predictions
+- `0` indicates the model makes perfect predictions
 - Values close to `0` indicate a better fit
 - Larger values indicate a worse fit, but there is no upper bound
 
@@ -1859,7 +1859,7 @@ np.mean(y_actual)
 
 
 
-In this case, the target variable and its mean are on the order of hundreds, so a RMSE of 50.8 for `model_few` seems fairly good, while the RMSE of 180 for `model_base` is quite poor. 
+In this case, the target variable and its mean are on the order of hundreds, so an RMSE of 50.8 for `model_few` seems fairly good, while the RMSE of 180 for `model_base` is quite poor. 
 
 ## Mean Absolute Error (MAE)
 [Mean Absolute Error (MAE)]() measures the average magnitude of errors in a set of predictions, without considering their direction. It treats errors equally, making it less sensitive to outliers than MSE or RMSE. Similar to RMSE, it uses the same units as the target variable, making it easier to interpret than MSE. 
