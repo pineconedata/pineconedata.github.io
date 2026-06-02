@@ -39,32 +39,31 @@ In this part of the project, we'll evaluate the trained linear regression models
 For the full project roadmap, including the overview diagram and links to every article, see the [Basketball Data Science Project hub](/projects/basketball-data-science-project/).
 
 ## Dependencies
-Since this is the eighth installment in the series, you likely already have your environment setup and can skip to the next section. If you're not already set up and you want to follow along on your own machine, it's recommended to read the [first article of the series](/2024-04-11-basketball-data-acquisition/) or at least review the [Getting Started](/2024-04-11-basketball-data-acquisition/#getting-started) section of that post before continuing. 
 
-## Import Packages
-You'll want to have the latest version of [Python](https://www.python.org/) installed with the following packages: 
-  - [pandas](https://pandas.pydata.org/docs/)
-  - [requests](https://requests.readthedocs.io/en/latest/)
-  - [json](https://docs.python.org/3/library/json.html)
-  - [os](https://docs.python.org/3/library/os.html)
-  - [numpy](https://numpy.org/doc/)
-  - [matplotlib](https://matplotlib.org/)
-  - [seaborn](https://seaborn.pydata.org/)
-  - [plotly](https://plotly.com/)
-  - [scikit-learn](https://scikit-learn.org/stable/index.html)
-  - [joblib](https://joblib.readthedocs.io/en/stable/)
-  - [statsmodels](https://www.statsmodels.org/stable/index.html)
-  
-For today's machine learning segment specifically, we'll want to import a few of these libraries: 
+This article uses the trained models and test-set outputs from [Part 7](/2024-09-13-basketball-train-ols/).
 
+For this article, we'll use:
+
+- [joblib](https://joblib.readthedocs.io/en/stable/) - loading trained models
+- [pandas](https://pandas.pydata.org/docs/) - loading saved test datasets and prediction outputs
+- [NumPy](https://numpy.org/doc/) - numerical calculations
+- [scikit-learn](https://scikit-learn.org/stable/) - regression metrics
+- [matplotlib](https://matplotlib.org/) - diagnostic plots
+- [seaborn](https://seaborn.pydata.org/) - residual plots and visual comparisons
 
 ```python
 import joblib
 import pandas as pd
 import numpy as np
-from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error, root_mean_squared_error
-import seaborn as sns
 import matplotlib.pyplot as plt
+import seaborn as sns
+
+from sklearn.metrics import (
+    mean_absolute_error,
+    mean_squared_error,
+    root_mean_squared_error,
+    r2_score
+)
 ```
 
 ## Import Data

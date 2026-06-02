@@ -48,7 +48,7 @@ Before starting, you should have:
 - Basic programming knowledge is a plus. If you've never used Python before, then going through the [beginner's guide](https://wiki.python.org/moin/BeginnersGuide) first might be helpful.
 
 ## Dependencies
-This project depends on having Python, a package manager (such as `pip`), and the relevant packages (listed below) installed before moving forward.
+To follow along, you'll need [Python](https://www.python.org/) and a package manager such as [`pip`](https://pip.pypa.io/en/stable/). This project uses [JupyterLab](https://jupyter.org/) for notebook-based analysis, but the code can also run in another Python environment.
 
 ### Python
 This project depends on [Python](https://www.python.org), which is probably already installed on your computer if you're using a common OS. You can verify if Python is installed and which version is currently being used by running:
@@ -72,7 +72,6 @@ You should install the following required packages:
 - [*requests*](https://requests.readthedocs.io/en/latest/) - a library used for making HTTP requests, which will be useful for fetching data from online sources.
 - [*json*](https://docs.python.org/3/library/json.html) - a module for encoding and decoding JSON data, facilitating the interchange of data between a Python program and external systems or files.
 - [*os*](https://docs.python.org/3/library/os.html) - a module providing a portable way of interacting with the operating system, enabling functionalities such as file management, directory manipulation, and environment variables handling.
-- [*numpy*](https://numpy.org/doc/) - a fundamental package for scientific computing in Python, providing support for large, multi-dimensional arrays and matrices, along with a collection of mathematical functions to operate on these arrays efficiently. 
 - [*openpyxl*](https://openpyxl.readthedocs.io/en/stable/) - a useful library for reading from, writing to, and modifying Excel files. This library is optional for today's project - you can write the dataframes to `.csv` files  (using [`.to_csv()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_csv.html)) instead of `.xlsx`  (using [`.to_excel()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_excel.html)) files to skip this requirement. 
 
 Once those required packages have been installed, we can start writing the program by importing the packages. 

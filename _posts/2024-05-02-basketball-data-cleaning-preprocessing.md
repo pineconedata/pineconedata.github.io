@@ -41,15 +41,15 @@ In this part of the project, we'll prepare the raw player dataset for analysis. 
 For the full project roadmap, including the overview diagram and links to every article, see the [Basketball Data Science Project hub](/projects/basketball-data-science-project/).
 
 ## Dependencies
-Since this is the second installment in the series, you might already have your environment setup and can skip to the next section. If you're not already set up and you want to follow along on your own machine, it's recommended to read the [previous post](/2024-04-11-basketball-data-acquisition/) or at least review the [Getting Started](/2024-04-11-basketball-data-acquisition/#getting-started) section of that post before continuing. In summary, you'll want to have [Python](https://www.python.org/) installed with the following packages: 
-  - [pandas](https://pandas.pydata.org/docs/)
-  - [requests](https://requests.readthedocs.io/en/latest/)
-  - [json](https://docs.python.org/3/library/json.html)
-  - [os](https://docs.python.org/3/library/os.html)
-  - [numpy](https://numpy.org/doc/)
-  - [openpyxl](https://openpyxl.readthedocs.io/en/stable/)
-  
-For today's guide specifically, we'll want to import the following packages: 
+
+This article assumes you already have the project environment from [Part 1](/2024-04-11-basketball-data-acquisition/) set up.
+
+For this article, we'll use:
+
+- [pandas](https://pandas.pydata.org/docs/) - loading the raw dataset, inspecting missing values, correcting values, and exporting the cleaned dataset
+- [NumPy](https://numpy.org/doc/) - working with missing values and numeric operations
+- [openpyxl](https://openpyxl.readthedocs.io/en/stable/) - needed only if reading or writing `.xlsx` files with pandas
+
 ```python
 import pandas as pd
 import numpy as np

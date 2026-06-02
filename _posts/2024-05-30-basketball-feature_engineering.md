@@ -39,14 +39,15 @@ In this part of the project, we'll create new features from the cleaned player d
 For the full project roadmap, including the overview diagram and links to every article, see the [Basketball Data Science Project hub](/projects/basketball-data-science-project/).
 
 ## Dependencies
-Since this is the third installment in the series, you likely already have your environment setup and can skip to the next section. If you're not already set up and you want to follow along on your own machine, it's recommended to read the [first post in this series](/2024-04-11-basketball-data-acquisition/) or at least review the [Getting Started](/2024-04-11-basketball-data-acquisition/#getting-started) section of that post before continuing. In summary, you'll want to have [Python](https://www.python.org/) installed with the following packages: 
-  - [pandas](https://pandas.pydata.org/docs/)
-  - [requests](https://requests.readthedocs.io/en/latest/)
-  - [json](https://docs.python.org/3/library/json.html)
-  - [os](https://docs.python.org/3/library/os.html)
-  - [numpy](https://numpy.org/doc/)
-  
-For today's guide specifically, we'll want to import the following packages: 
+
+This article builds on the cleaned dataset from [Part 2](/2024-05-02-basketball-data-cleaning-preprocessing/).
+
+For this article, we'll use:
+
+- [pandas](https://pandas.pydata.org/docs/) - creating new columns, transforming values, and exporting the engineered dataset
+- [NumPy](https://numpy.org/doc/) - supporting numerical calculations
+- [openpyxl](https://openpyxl.readthedocs.io/en/stable/) - needed only if reading or writing `.xlsx` files with pandas
+
 ```python
 import pandas as pd
 import numpy as np
