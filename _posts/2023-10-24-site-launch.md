@@ -4,7 +4,7 @@ title: Website Launch
 gh-repo: pineconedata/pineconedata.github.io
 gh-badge: [star, fork, follow]
 thumbnail-img: https://jekyllrb.com/img/logo-2x.png
-sitemap: 
+sitemap:
     exclude: "yes"
 noindex: true
 ---

@@ -4,6 +4,8 @@ title: Privacy Policy
 subtitle: for Pinecone Data, LLC
 description: Read the full Privacy Policy for the Pinecone Data, LLC website, including what information we collect and how to contact us.
 type: info
+sitemap:
+    exclude: "yes"
 ---
 
 # Privacy Policy
