@@ -4,7 +4,7 @@ title: Nice to meet you!
 subtitle: How can I help?
 ---
 
-Hi! I am a data scientist and physicist with 8+ years of experience in the field. Pinecone Data is my company for independent contracts and freelance work. If you're interested in working with me, please [get in touch](/workwithme/)!
+Hi! I am a data scientist and physicist with 9+ years of experience in the field. Pinecone Data is my company for independent contracts and freelance work. If you're interested in working with me, please [get in touch](/workwithme/)!
 
 <div class="button-link-container">
     <a target="_blank" href="/about/">About Me</a>
