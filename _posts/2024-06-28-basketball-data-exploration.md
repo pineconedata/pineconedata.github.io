@@ -4,7 +4,7 @@ title: Exploratory Data Analysis with pandas and seaborn
 subtitle: Outlier or Caitlin Clark? [Part 4]
 description: Learn how to explore a basketball dataset with pandas and seaborn by reviewing summary statistics, selecting features, analyzing correlations, and creating exploratory plots.
 tags: [Python, data science, pandas, seaborn, exploratory data analysis]
-thumbnail-img: /assets/img/posts/2024-06-28-basketball-data-exploration/data-exploration.jpg
+thumbnail-img: /assets/img/posts/2024-06-28-basketball-data-exploration/compass.jpg
 share-title: "Exploratory Data Analysis with pandas and seaborn: Outlier or Caitlin Clark? [Part 4]"
 share-description: Learn how to explore a basketball dataset with pandas and seaborn by reviewing summary statistics, selecting features, analyzing correlations, and creating exploratory plots.
 gh-repo: pineconedata/ncaa-basketball-stats

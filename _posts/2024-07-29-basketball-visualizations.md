@@ -4,7 +4,7 @@ title: Basketball Data Visualizations with Python
 subtitle: Outlier or Caitlin Clark? [Part 5]
 description: Learn how to create basketball data visualizations with Python using matplotlib, seaborn, and Plotly to compare player statistics, explore relationships, and highlight outliers.
 tags: [Python, data science, data visualization, matplotlib, seaborn, plotly]
-thumbnail-img: /assets/img/posts/2024-07-29-basketball-visualizations/data-visualization.jpg
+thumbnail-img: /assets/img/posts/2024-07-29-basketball-visualizations/histogram.png
 share-title: "Basketball Data Visualizations with Python: Outlier or Caitlin Clark? [Part 5]"
 share-description: Learn how to create basketball data visualizations with Python using matplotlib, seaborn, and Plotly to compare player statistics, explore relationships, and highlight outliers.
 gh-repo: pineconedata/ncaa-basketball-stats

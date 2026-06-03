@@ -4,7 +4,7 @@ title: Ridge Regression vs. OLS Linear Regression
 subtitle: Outlier or Caitlin Clark? [Bonus Article]
 description: Compare Ridge Regression and ordinary least squares linear regression using a basketball dataset, including regularization, model training, prediction errors, regression metrics, and feature coefficient differences.
 tags: [Python, data science, machine learning, linear regression, ridge regression, scikit-learn]
-thumbnail-img: /assets/img/posts/2025-04-04-ridge-regression-vs-ols-linear-regression-models/ridge-regression.jpg
+thumbnail-img: /assets/img/posts/2025-04-04-ridge-regression-vs-ols-linear-regression-models/thumbnail.png
 share-title: "Ridge Regression vs. OLS Linear Regression: Outlier or Caitlin Clark? [Bonus Article]"
 share-description: Compare Ridge Regression and ordinary least squares linear regression using a basketball dataset, including regularization, model training, prediction errors, regression metrics, and feature coefficient differences.
 gh-repo: pineconedata/ncaa-basketball-stats

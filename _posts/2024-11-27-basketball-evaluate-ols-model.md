@@ -4,7 +4,7 @@ title: Evaluating Linear Regression Models with Python
 subtitle: Outlier or Caitlin Clark? [Part 8]
 description: Learn how to evaluate ordinary least squares linear regression models with Python using prediction errors, regression metrics, residual analysis, and diagnostic plots.
 tags: [Python, data science, machine learning, linear regression, model evaluation, scikit-learn, statsmodels]
-thumbnail-img: /assets/img/posts/2024-11-27-basketball-evaluate-ols-model/model-evaluation.jpg
+thumbnail-img: /assets/img/posts/2024-11-27-basketball-evaluate-ols-model/thumbnail.png
 share-title: "Evaluating Linear Regression Models with Python: Outlier or Caitlin Clark? [Part 8]"
 share-description: Learn how to evaluate ordinary least squares linear regression models with Python using prediction errors, regression metrics, residual analysis, and diagnostic plots.
 gh-repo: pineconedata/ncaa-basketball-stats

@@ -4,7 +4,7 @@ title: Feature Engineering with pandas
 subtitle: Outlier or Caitlin Clark? [Part 3]
 description: Learn how to engineer new features from a basketball dataset with pandas, including two-point metrics, conference labels, per-game statistics, assist-to-turnover ratio, and fantasy points.
 tags: [Python, data science, pandas, feature engineering]
-thumbnail-img: /assets/img/posts/2024-05-30-basketball-feature-engineering/feature-engineering.jpg
+thumbnail-img: /assets/img/posts/2024-05-30-basketball-feature-engineering/engineer.jpg
 share-title: "Feature Engineering with pandas: Outlier or Caitlin Clark? [Part 3]"
 share-description: Learn how to engineer new features from a basketball dataset with pandas, including two-point metrics, conference labels, per-game statistics, assist-to-turnover ratio, and fantasy points.
 gh-repo: pineconedata/ncaa-basketball-stats

@@ -4,7 +4,7 @@ title: Training Linear Regression Models with scikit-learn
 subtitle: Outlier or Caitlin Clark? [Part 7]
 description: Learn how to train ordinary least squares linear regression models with scikit-learn using a basketball dataset, including train/test splits, feature selection, model fitting, predictions, and saving trained models.
 tags: [Python, data science, machine learning, linear regression, scikit-learn]
-thumbnail-img: /assets/img/posts/2024-09-13-basketball-train-ols/linear-regression.jpg
+thumbnail-img: /assets/img/posts/2024-09-13-basketball-train-ols/thumbnail.jpg
 share-title: "Training Linear Regression Models with scikit-learn: Outlier or Caitlin Clark? [Part 7]"
 share-description: Learn how to train ordinary least squares linear regression models with scikit-learn using a basketball dataset, including train/test splits, feature selection, model fitting, predictions, and saving trained models.
 gh-repo: pineconedata/ncaa-basketball-stats

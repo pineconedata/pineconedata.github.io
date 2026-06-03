@@ -4,7 +4,7 @@ title: Selecting a Linear Regression Model for Basketball Stats
 subtitle: Outlier or Caitlin Clark? [Part 6]
 description: Learn how to set up a basketball machine learning problem by choosing fantasy points as the target variable, selecting model features, and using ordinary least squares linear regression as a baseline model.
 tags: [Python, data science, machine learning, linear regression, scikit-learn, statsmodels]
-thumbnail-img: /assets/img/posts/2024-08-12-basketball-select-ml-ols/machine-learning.jpg
+thumbnail-img: /assets/img/posts/2024-08-12-basketball-select-ml-ols/scikit-learn_ml_map.svg
 share-title: "Selecting a Linear Regression Model for Basketball Stats: Outlier or Caitlin Clark? [Part 6]"
 share-description: Learn how to set up a basketball machine learning problem by choosing fantasy points as the target variable, selecting model features, and using ordinary least squares linear regression as a baseline model.
 gh-repo: pineconedata/ncaa-basketball-stats
