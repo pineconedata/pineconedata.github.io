@@ -1,6 +1,6 @@
 # Pinecone Data, LLC
 
-> *© 2022 [Pinecone Data, LLC](https://www.pineconedata.com)*
+> *© 2022-2026 [Pinecone Data, LLC](https://www.pineconedata.com)*
 
 Welcome to the website files for Pinecone Data, LLC. [Check out the live site here.](https://pineconedata.github.io) This site was built using GitHub pages with the wonderful [Beautiful Jekyll theme.](https://deanattali.com/beautiful-jekyll)
 
