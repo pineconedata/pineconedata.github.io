@@ -413,7 +413,9 @@ pre code {
 }
 
 p code,
-li code {
+li code,
+th code,
+td code {
     color: var(--pinecone-purple-dark);
     background-color: #f4f3ff;
     padding: 0.1rem 0.25rem;
