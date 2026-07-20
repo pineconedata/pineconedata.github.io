@@ -257,6 +257,8 @@ entry 0x403ce000
 
 Once you see the `waiting for download` response, you're ready to move on to the next step. Ensure you exit the tool with `CTRL+]` first.
 
+<div class="email-subscription-container"></div>
+
 # Confirm esptool Communication
 
 With the board in bootloader mode, run:
@@ -520,3 +522,6 @@ Once connected, Home Assistant should show the device's status, sensors, and con
 At this point, the firmware on the pet feeder has been replaced. It started as a perfectly usable WiFi feeder, but required Petlibro's app, account system, and cloud services to operate. Flashing ESPHome lets you use the device entirely locally and use the native Home Assistant integration.
 
 Now, all that's left is configuration: deciding how to use the feeder's sensors and controls, naming entities clearly, and building safe Home Assistant automations around the hardware. This guide was focused on the flashing process itself, but I'm planning to publish a future article around the Home Assistant configuration. 
+
+<div class="email-subscription-container"></div>
+<div id="sources"></div>

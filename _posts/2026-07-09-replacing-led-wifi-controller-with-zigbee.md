@@ -179,6 +179,8 @@ For other analog strip types, the process is the same: identify the shared power
     <strong>Note:</strong> You cannot rely on wire color alone. The markings on the strip, old controller, or connector are more reliable than the insulation color. For example, you might assume the red wire was the power input or the red color channel, but in this case it controls the blue color channel. 
 </div>
 
+<div class="email-subscription-container"></div>
+
 ## Disconnect the Controller
 
 Now that we've identified the wires, we can disconnect the old controller from the LED strip. If there's a convenient adapter to unplug, I'd recommend you do that. 
@@ -299,3 +301,6 @@ Replacing the controller ended up being a much smaller project than replacing th
 As with most small electronics projects, the actual wiring is straightforward once the labels are clear. The main thing is to avoid relying on wire color alone: identify `V+`, map the color channels, double-check the voltage, and only then power everything back on.
 
 In my case, the existing strip was already mounted inside a closet and worked perfectly well. Swapping the WiFi controller for a Zigbee controller let me keep the installation in place while moving the light into my preferred smart home setup. After pairing it with Home Assistant, the strip behaves like any other Zigbee light. It no longer depends on the original WiFi controller or requires a third-party account.
+
+<div class="email-subscription-container"></div>
+<div id="sources"></div>
