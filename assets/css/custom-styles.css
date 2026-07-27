@@ -472,23 +472,23 @@ Homepage: how it works
 }
 
 /* ==============================
-Homepage featured project cards
+Homepage featured projects
 ============================== */
 
 .home-project-list {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
     margin-top: 1.25rem;
 }
 
 .home-project-card {
     display: flex;
     flex-direction: column;
-    gap: 0.9rem;
+    gap: 0.8rem;
+    padding: 1.25rem;
     border: 1px solid var(--pinecone-border);
     border-radius: 10px;
-    padding: 1.35rem 1.5rem;
     background: #fff;
     box-shadow: var(--pinecone-card-shadow);
 }
@@ -499,25 +499,43 @@ Homepage featured project cards
 }
 
 .home-project-card h3 {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     line-height: 1.3;
 }
 
 .home-project-card p {
     font-size: 0.95rem;
-    line-height: 1.5;
+    line-height: 1.55;
     color: #555;
 }
 
-.home-project-stack {
-    font-size: 0.85rem;
-    line-height: 1.4;
-    color: var(--pinecone-muted);
+.home-project-service {
+    color: var(--pinecone-purple) !important;
+    font-size: 0.75rem !important;
+    line-height: 1.3 !important;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.home-project-problem {
+    color: var(--pinecone-text) !important;
+    font-weight: 600;
+}
+
+.home-project-capabilities {
+    margin-top: auto !important;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--pinecone-border);
+    color: var(--pinecone-muted) !important;
+    font-size: 0.85rem !important;
+    line-height: 1.45 !important;
     font-weight: 500;
 }
 
 .home-project-link {
-    margin-top: auto;
+    margin-top: 0 !important;
+    padding-top: 0.15rem;
 }
 
 .home-card-link {
@@ -529,6 +547,18 @@ Homepage featured project cards
 .home-card-link:focus {
     color: var(--pinecone-purple-dark);
     text-decoration: none;
+}
+
+@media (max-width: 990px) {
+    .home-project-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .home-project-list {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* ==============================
@@ -957,12 +987,6 @@ Work with me page
 /* ==============================
 Responsive styles
 ============================== */
-
-@media (min-width: 992px) {
-    .home-project-list {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-}
 
 @media (max-width: 768px) {
     .home-card-grid,
