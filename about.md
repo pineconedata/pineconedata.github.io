@@ -1,16 +1,101 @@
 ---
 layout: page
 title: About
+permalink: /about/
+share-title: About | Pinecone Data
+share-description: About Pinecone Data and my experience in data workflows, reporting automation, analysis, and technical implementation.
 ---
 
-Hi! I am a data scientist and physicist with 9+ years of experience in the field. Pinecone Data is my company for freelancing and contract-based work. If you're interested in working with me, please [get in touch](/workwithme/)!
+<section class="about-intro">
+    <p class="about-lead">
+        I am a data professional with a background in physics and more than
+        a decade of experience working with technical systems, data
+        workflows, reporting, and client implementations.
+    </p>
+    <p>
+        Through Pinecone Data, I help improve repetitive data and reporting
+        processes by making them clearer, more reliable, and easier to
+        maintain.
+    </p>
+</section>
 
-## Career Highlights
+<section>
+    <h2>Experience</h2>
+    <p>
+        My professional experience spans data science, software implementation,
+        workflow automation, and scientific research.
+    </p>
+    <p>
+        As a Senior Data Scientist at a web performance company, I worked with
+        Python, SQL, browser automation, web scraping, and unstructured data.
+        My responsibilities included developing test cases, customizing data
+        collection, automating scheduled reports, preparing datasets for
+        analysis, and creating visualizations that made technical information
+        more accessible.
+    </p>
+    <p>
+        As an Implementation Manager at an equity management company, I led
+        client migrations onto a new software platform. That work involved ETL
+        processes, database queries, data validation, project documentation,
+        technical support, and client training.
+    </p>
+    <p>
+        Earlier in my career, I worked in the Accelerator Mass Spectrometry
+        Laboratory at the University of Arizona, where I contributed to
+        improvements in radioisotope dating equipment. I also developed and
+        hosted a particle physics masterclass for local high school students.
+    </p>
+</section>
 
-During my time as a Senior Data Scientist at a web performance company, I honed my skills in [Python](https://www.python.org/) programming, [SQL queries](https://en.wikipedia.org/wiki/SQL), data manipulation, web scraping, and crafting insightful visualizations from unstructured data. I specialized in test case development with [Selenium](https://www.selenium.dev/) and customizing data collection through lightweight [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) code compatible with modern browsers. I was responsible for [automating](https://man7.org/linux/man-pages/man5/crontab.5.html) scheduled reports, [optimizing data sets](https://pypi.org/project/pandas/) for analysis, as well as making data both accessible and actionable.
+<section>
+    <h2>How I Approach Projects</h2>
 
-In my role as an Implementation Manager at an equity management company, I managed end-to-end projects involving the migration of clients onto a new software platform via [ETL processes](https://www.ibm.com/topics/etl). This position demanded proficiency in developing and maintaining [SQL queries](https://en.wikipedia.org/wiki/SQL) for individual databases, simultaneously managing multiple client projects, meticulous [data analysis]((https://pypi.org/project/pandas/)), comprehensive project documentation, as well as the provision of technical support and training to clients.
+    <p>
+        I tend to work best on projects where the underlying process is useful
+        but unnecessarily manual, difficult to reproduce, or hard to explain.
+        I focus on understanding the current workflow, identifying where
+        complexity or repetition can be reduced, and building a solution that
+        remains understandable after the initial implementation.
+    </p>
+    <p>
+        My physics background influences this approach: define the problem,
+        examine the available evidence, test assumptions, and document the
+        result clearly.
+    </p>
+</section>
 
-Before venturing into the private sector, I worked in the [Accelerator Mass Spectrometry Laboratory](https://ams.arizona.edu/) at the University of Arizona, where I played a crucial role in improving [radioisotope](https://en.wikipedia.org/wiki/Radionuclide) dating equipment. I also had the privilege of developing and hosting a [particle physics masterclass](https://home.cern/news/news/physics/find-higgs-boson-lhc-public-data) for local high school students. My educational background includes a B.S. in [Physics](https://w3.physics.arizona.edu/), providing a solid foundation for my data-driven career.
+<section>
+    <h2>Areas of Focus</h2>
+    <div class="about-focus-grid">
+        <p>Reporting and workflow automation</p>
+        <p>Data collection and preparation</p>
+        <p>Python and SQL-based processes</p>
+        <p>Data analysis and visualization</p>
+        <p>ETL and implementation support</p>
+        <p>Technical documentation and training</p>
+    </div>
+</section>
 
-Want to know more? Feel free to [contact me directly](/workwithme.html) or [connect with me on Linkedin](https://linkedin.com/in/emilyrcreager)! 
+<section class="about-cta">
+    <div>
+        <h2>Learn More</h2>
+        <p>
+            Review selected projects to see examples of this work, or get in
+            touch to discuss a workflow, reporting, or data project.
+        </p>
+    </div>
+    <div class="about-cta-links">
+        <a
+            href="{{ '/projects/' | relative_url }}"
+            class="btn btn-outline"
+        >
+            View Projects
+        </a>
+        <a
+            href="{{ '/workwithme/' | relative_url }}"
+            class="btn btn-primary"
+        >
+            Work With Me
+        </a>
+    </div>
+</section>
