@@ -1,0 +1,150 @@
+---
+layout: project
+title: Automated Feed Generator
+permalink: /projects/automated-feed-generator/
+service: Reporting Automation · Workflow Improvement
+summary: A configurable Python workflow for collecting website updates and publishing them as scheduled RSS feeds.
+tools: Python, Selenium, feedgen, JSON configuration, cron
+article_url: /2023-11-07-automated-feed-generator/
+share-title: Automated Feed Generator Project | Pinecone Data
+share-description: A configurable Python workflow for scheduled website monitoring, browser automation, and RSS feed generation.
+---
+
+<section>
+    <h2>The Problem</h2>
+
+    <p>
+        RSS feeds provide a convenient way to follow website updates, but not
+        every website publishes one. Without a feed or another structured
+        notification method, keeping up with new content can require repeatedly
+        visiting and checking the same pages.
+    </p>
+
+    <p>
+        A useful alternative is a repeatable process that collects the latest
+        website content and converts it into a standardized feed that can be
+        read by an RSS reader.
+    </p>
+</section>
+
+<section>
+    <h2>The Approach</h2>
+
+    <p>
+        I designed the project as a configurable workflow rather than a script
+        tied to one specific website. Website details and scraping rules are
+        stored in separate JSON configuration files, while the main Python
+        script handles browser automation, content extraction, and feed
+        generation.
+    </p>
+
+    <p>
+        Each configuration file can define information such as the website URL,
+        feed title, description, output filename, and the CSS selectors used to
+        locate article titles, links, descriptions, images, and dates.
+    </p>
+
+    <div class="project-callout">
+        <p>
+            <strong>Why configuration matters:</strong>
+            Separating website-specific settings from the application logic
+            makes the workflow easier to reuse and update without modifying the
+            core Python code for every source.
+        </p>
+    </div>
+</section>
+
+<section>
+    <h2>The Solution</h2>
+
+    <p>
+        The finished workflow uses Selenium with a headless Firefox browser to
+        load a configured website and locate its latest content. It extracts the
+        relevant fields from each item and uses the Python
+        <code>feedgen</code> library to create a valid RSS feed.
+    </p>
+
+    <p>
+        The generated feed is saved as an XML file that can be hosted and added
+        to an RSS reader. The same Python script can process different websites
+        by receiving the appropriate configuration filename as a command-line
+        argument.
+    </p>
+
+    <p>
+        The workflow can also be scheduled with cron so the feeds are regenerated
+        automatically. A shell script can process every JSON configuration file
+        in the project directory during a single scheduled run.
+    </p>
+</section>
+
+<section class="project-results">
+    <h2>Project Outcomes</h2>
+
+    <ul>
+        <li>Automating a recurring content-collection process</li>
+        <li>Using browser automation to collect structured website data</li>
+        <li>Separating configuration from application logic</li>
+        <li>Generating standardized, reusable output files</li>
+        <li>Scheduling a Python workflow to run without manual intervention</li>
+        <li>Designing one process to support multiple data sources</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Project Structure</h2>
+
+    <p>
+        The project separates the main script, website configurations, and
+        generated feeds into distinct locations:
+    </p>
+
+    <pre><code>automated-feed-generator/
+├── automated_feed_generator.py
+├── config/
+│   └── example-site.json
+└── feeds/
+    └── example-site.xml</code></pre>
+
+    <p>
+        This structure keeps source-specific settings organized and prevents
+        generated output from being mixed with the application code.
+    </p>
+</section>
+
+<section>
+    <h2>Tools Used</h2>
+
+    <ul>
+        <li>
+            <strong>Python</strong> for the primary workflow and file handling
+        </li>
+        <li>
+            <strong>Selenium</strong> for loading pages and extracting content
+        </li>
+        <li>
+            <strong>Firefox WebDriver</strong> for headless browser automation
+        </li>
+        <li>
+            <strong>feedgen</strong> for creating RSS XML output
+        </li>
+        <li>
+            <strong>JSON</strong> for reusable website configuration
+        </li>
+        <li>
+            <strong>cron</strong> for scheduled execution
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h2>Possible Extensions</h2>
+
+    <p>
+        A production version of this workflow could be adapted for different
+        content sources, validation requirements, hosting environments, or
+        delivery methods. Depending on the use case, additional features might
+        include logging, failure notifications, duplicate detection, automated
+        deployment, or a lightweight interface for managing configurations.
+    </p>
+</section>
