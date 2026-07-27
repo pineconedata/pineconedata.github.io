@@ -1021,6 +1021,83 @@ Work with me page
 }
 
 /* ==============================
+About page
+============================== */
+
+.about-intro {
+    margin-bottom: 2.75rem;
+    padding: 1.5rem 1.75rem;
+    border: 1px solid var(--pinecone-purple-border);
+    border-radius: 10px;
+    background: var(--pinecone-purple-light);
+}
+
+.about-intro p:first-child {
+    margin-top: 0;
+}
+
+.about-intro p:last-child {
+    margin-bottom: 0;
+}
+
+.about-lead {
+    font-size: 1.15rem;
+    line-height: 1.65;
+    color: var(--pinecone-text);
+}
+
+.about-focus-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem 1rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.about-focus-grid p {
+    margin: 0;
+    padding: 0.45rem 0;
+    border: 0;
+    border-bottom: 1px solid var(--pinecone-border);
+    border-radius: 0;
+    background: transparent;
+    color: #505050;
+    line-height: 1.45;
+}
+
+.about-cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-top: 2.5rem;
+    padding-top: 0;
+    border-top: 0;
+}
+
+.about-cta h2 {
+    margin: 0 0 0.6rem;
+}
+
+.about-cta p {
+    max-width: 620px;
+    margin: 0;
+    color: #505050;
+    line-height: 1.6;
+}
+
+.about-cta-links {
+    display: flex;
+    flex-shrink: 0;
+    gap: 0.75rem;
+}
+
+.about-cta .btn {
+    white-space: nowrap;
+    border-radius: 6px;
+}
+
+/* ==============================
 Responsive styles
 ============================== */
 
@@ -1035,6 +1112,21 @@ Responsive styles
         width: 100%;
         margin-bottom: 0.75rem;
     }
+
+    .about-cta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.25rem;
+    }
+
+    .about-cta-links {
+        width: 100%;
+    }
+
+    .about-cta .btn {
+        flex: 1;
+        text-align: center;
+    }
 }
 
 @media (max-width: 600px) {
@@ -1045,5 +1137,19 @@ Responsive styles
     .home-writing-image {
         width: 100%;
         height: 140px;
+    }
+
+    .about-focus-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 500px) {
+    .about-cta-links {
+        flex-direction: column;
+    }
+
+    .about-cta .btn {
+        width: 100%;
     }
 }
