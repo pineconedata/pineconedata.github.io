@@ -1,0 +1,213 @@
+---
+layout: project
+title: Basketball Analysis & Visualizations
+permalink: /projects/basketball-analysis-visualizations/
+service: Reporting Automation
+summary: An exploratory analysis and visualization workflow for comparing NCAA basketball player performance, identifying relationships, and highlighting statistical outliers.
+tools: Python, JupyterLab, pandas, NumPy, matplotlib, seaborn, Plotly, SciPy
+article_url: /projects/basketball-data-science-project/
+share-title: Basketball Analysis and Visualizations | Pinecone Data
+share-description: An exploratory analysis and visualization workflow for comparing NCAA basketball player performance and identifying statistical outliers.
+---
+
+<section>
+    <h2>The Problem</h2>
+
+    <p>
+        A prepared dataset is useful only when its contents can be interpreted.
+        With hundreds of individual player records and numerous performance
+        metrics, reviewing rows and summary tables alone makes it difficult to
+        recognize meaningful relationships, unusual observations, and broader
+        patterns.
+    </p>
+
+    <p>
+        The analysis needed to answer a central question: how did individual
+        player performances compare across the 2023–24 NCAA women’s basketball
+        season, and which statistics made exceptional seasons stand out?
+    </p>
+</section>
+
+<section>
+    <h2>The Approach</h2>
+
+    <p>
+        I began with the cleaned and feature-engineered dataset produced by the
+        earlier pipeline stages. The analysis used descriptive statistics,
+        correlations, distributions, and exploratory plots to understand the
+        available variables and identify useful comparisons.
+    </p>
+
+    <p>
+        Those findings were then translated into a combination of static and
+        interactive visualizations. Each chart was selected to answer a
+        particular question, such as how two statistics relate, how player
+        performance is distributed, or whether an observation appears unusual
+        compared with the rest of the dataset.
+    </p>
+
+    <div class="project-callout">
+        <p>
+            <strong>Analysis before presentation:</strong>
+            exploratory analysis helped determine which variables and chart
+            types were meaningful before producing the final visualizations.
+        </p>
+    </div>
+</section>
+
+<section>
+    <h2>The Solution</h2>
+
+    <p>
+        The resulting workflow combines numerical summaries with visual
+        analysis. pandas and NumPy are used to inspect distributions, select
+        variables, filter player records, and calculate supporting values.
+    </p>
+
+    <p>
+        Correlation matrices, heatmaps, and pairwise comparisons help reveal
+        relationships between player statistics. Additional charts compare
+        performance across players, conferences, and statistical categories
+        while making potential outliers easier to recognize.
+    </p>
+
+    <p>
+        Static visualizations created with matplotlib and seaborn support
+        detailed analysis and reproducible reporting. Interactive Plotly charts
+        provide another way to explore individual observations and compare
+        players within the larger dataset.
+    </p>
+</section>
+
+<section class="project-results">
+    <h2>Project Outcomes</h2>
+
+    <ul>
+        <li>Summarized a multi-variable player dataset using descriptive statistics</li>
+        <li>Identified relationships between performance metrics using correlations</li>
+        <li>Compared individual players with broader dataset distributions</li>
+        <li>Created static charts for reproducible analysis and reporting</li>
+        <li>Created interactive visualizations for more detailed exploration</li>
+        <li>Highlighted unusual observations and potential statistical outliers</li>
+        <li>Used analytical findings to guide later modeling decisions</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Analysis and Visualizations</h2>
+
+    <p>
+        The exploratory analysis included statistical summaries, feature
+        comparisons, correlation matrices, heatmaps, and pairwise plots. These
+        steps helped identify variables with useful relationships and provided
+        context for interpreting individual player performance.
+    </p>
+
+    <p>
+        The final visualization workflow included several chart types suited
+        to different analytical questions:
+    </p>
+
+    <ul>
+        <li>
+            <strong>Scatterplots</strong> for examining relationships between
+            numerical statistics
+        </li>
+        <li>
+            <strong>Lines of best fit</strong> for showing broader trends
+            within scatterplots
+        </li>
+        <li>
+            <strong>Heatmaps</strong> for presenting correlations between
+            multiple variables
+        </li>
+        <li>
+            <strong>Histograms and violin plots</strong> for reviewing
+            distributions and unusual observations
+        </li>
+        <li>
+            <strong>Bar charts</strong> for comparing players or grouped
+            categories
+        </li>
+        <li>
+            <strong>Interactive Plotly charts</strong> for inspecting
+            individual data points in greater detail
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h2>Project Structure</h2>
+
+    <p>
+        This page focuses on the exploratory analysis and visualization
+        notebooks within the larger basketball data science repository.
+    </p>
+
+    <pre><code>ncaa-basketball-stats/
+├── data/
+│   └── player_data_engineered.xlsx
+├── notebooks/
+│   ├── 4_data_exploration.ipynb
+│   ├── 5_data_visualization.ipynb
+│   └── iframe_figures/
+├── README.md
+├── LICENSE
+└── .gitignore</code></pre>
+
+    <p>
+        Both notebooks use the feature-engineered dataset produced by the
+        pipeline. The exploration notebook investigates the variables and
+        their relationships, while the visualization notebook turns those
+        findings into focused static and interactive charts.
+    </p>
+</section>
+
+<section>
+    <h2>Tools Used</h2>
+
+    <ul>
+        <li>
+            <strong>Python</strong> for analysis and visualization logic
+        </li>
+        <li>
+            <strong>JupyterLab</strong> for developing and documenting the workflow
+        </li>
+        <li>
+            <strong>pandas</strong> for loading, filtering, summarizing, and comparing data
+        </li>
+        <li>
+            <strong>NumPy</strong> for numerical calculations
+        </li>
+        <li>
+            <strong>matplotlib</strong> for foundational static charts
+        </li>
+        <li>
+            <strong>seaborn</strong> for statistical plots and heatmaps
+        </li>
+        <li>
+            <strong>Plotly</strong> for interactive visualizations
+        </li>
+        <li>
+            <strong>SciPy</strong> for supporting statistical calculations such as lines of best fit
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h2>Where the Analysis Leads</h2>
+
+    <p>
+        The analysis provides a clearer understanding of the dataset before
+        more advanced modeling begins. The identified relationships and
+        selected variables can inform feature selection, model design, and
+        later evaluation.
+    </p>
+
+    <p>
+        The same workflow can be adapted to business reporting projects that
+        require exploratory analysis, recurring performance comparisons,
+        interactive dashboards, or visual summaries for nontechnical
+        stakeholders.
+    </p>
+</section>
