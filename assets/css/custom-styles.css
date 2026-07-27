@@ -259,6 +259,19 @@ Homepage service cards
     font-size: 0.9rem;
 }
 
+.home-services-cta {
+    margin: 1.5rem 0 0;
+}
+
+.home-services-cta-button {
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0.85rem 1rem;
+    border-radius: 6px;
+}
+
 /* Two columns on medium-width screens */
 @media (max-width: 991px) {
     .home-services-grid {
@@ -342,6 +355,109 @@ Homepage: Why Pinecone Data
     .home-why-points {
         grid-template-columns: 1fr;
         gap: 1.25rem;
+    }
+}
+
+/* ==============================
+Homepage: how it works
+============================== */
+
+.home-process-header {
+    max-width: 680px;
+    margin-bottom: 1.75rem;
+}
+
+.home-process-header h2 {
+    margin-top: 0;
+    margin-bottom: 0.6rem;
+}
+
+.home-process-header p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--pinecone-muted);
+}
+
+.home-process-list {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.home-process-step {
+    position: relative;
+    padding-top: 3.5rem;
+}
+
+.home-process-number {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: var(--pinecone-purple);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.home-process-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 1.2rem;
+    left: 3rem;
+    width: calc(100% - 1.5rem);
+    height: 1px;
+    background: var(--pinecone-purple-border);
+}
+
+.home-process-content h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.05rem;
+    line-height: 1.3;
+}
+
+.home-process-content p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: #555;
+}
+
+@media (max-width: 991px) {
+    .home-process-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        row-gap: 2rem;
+    }
+
+    .home-process-step::after {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .home-process-list {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .home-process-step {
+        display: grid;
+        grid-template-columns: 2.5rem 1fr;
+        gap: 1rem;
+        padding-top: 0;
+    }
+
+    .home-process-number {
+        position: static;
     }
 }
 
