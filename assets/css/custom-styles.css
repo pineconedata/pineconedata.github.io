@@ -221,6 +221,29 @@ Homepage cards
 }
 
 /* ==============================
+Homepage CTA buttons
+============================== */
+
+.home-section-cta {
+    margin: 1.5rem 0 0;
+}
+
+.home-section-cta-button {
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0.85rem 1rem;
+    border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+    .home-section-cta-button {
+        width: 100%;
+    }
+}
+
+/* ==============================
 Homepage service cards
 ============================== */
 
@@ -257,19 +280,6 @@ Homepage service cards
     border-top: 1px solid var(--pinecone-border);
     color: var(--pinecone-muted);
     font-size: 0.9rem;
-}
-
-.home-services-cta {
-    margin: 1.5rem 0 0;
-}
-
-.home-services-cta-button {
-    display: block;
-    width: 50%;
-    margin: 0 auto;
-    text-align: center;
-    padding: 0.85rem 1rem;
-    border-radius: 6px;
 }
 
 /* Two columns on medium-width screens */
@@ -521,19 +531,6 @@ Homepage featured project cards
     text-decoration: none;
 }
 
-.home-project-cta {
-    margin-top: 1.25rem;
-    margin-bottom: 0;
-}
-
-.home-project-cta-button {
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding: 0.85rem 1rem;
-    border-radius: 6px;
-}
-
 /* ==============================
 Homepage technical writing cards
 ============================== */
@@ -619,6 +616,7 @@ Homepage final CTA
     border-radius: 10px;
     background: #f7f7f7;
     border: 1px solid var(--pinecone-border);
+    max-width: 680px;
 }
 
 .home-final-cta h2 {
