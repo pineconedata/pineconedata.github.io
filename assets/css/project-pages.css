@@ -1,0 +1,289 @@
+/* ==============================
+Project pages
+============================== */
+
+.project-page {
+    max-width: 880px;
+    margin: 0 auto;
+}
+
+/* ==============================
+Project header
+============================== */
+
+.project-header {
+    max-width: 780px;
+    margin-bottom: 2.25rem;
+}
+
+.project-header-card {
+    padding: 1.35rem 1.5rem;
+    border: 1px solid var(--pinecone-purple-border);
+    border-radius: 10px;
+    background: var(--pinecone-purple-light);
+}
+
+.project-service {
+    margin: 0 0 0.65rem;
+    color: var(--pinecone-purple);
+    font-size: 0.8rem;
+    line-height: 1.3;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.project-summary {
+    margin: 0 0 1rem;
+    font-size: 1.2rem;
+    line-height: 1.55;
+    color: var(--pinecone-text);
+}
+
+.project-tools {
+    margin: 0;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--pinecone-purple-border);
+    color: var(--pinecone-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.project-tools strong {
+    color: var(--pinecone-text);
+    font-weight: 600;
+}
+
+/* ==============================
+Project content
+============================== */
+
+.project-content {
+    max-width: 780px;
+}
+
+.project-content section {
+    margin: 2.75rem 0;
+}
+
+.project-content section:first-child {
+    margin-top: 0;
+}
+
+.project-content h2 {
+    margin: 0 0 0.85rem;
+    font-size: 1.6rem;
+    line-height: 1.25;
+}
+
+.project-content h3 {
+    margin: 1.75rem 0 0.65rem;
+    font-size: 1.2rem;
+    line-height: 1.3;
+}
+
+.project-content p {
+    margin: 0 0 1rem;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #505050;
+}
+
+.project-content ul,
+.project-content ol {
+    margin: 1rem 0 1.25rem;
+    padding-left: 1.4rem;
+}
+
+.project-content li {
+    margin-bottom: 0.55rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #505050;
+}
+
+.project-content img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 1.5rem auto;
+    border: 1px solid var(--pinecone-border);
+    border-radius: 8px;
+    box-shadow: var(--pinecone-card-shadow);
+}
+
+.project-content figure {
+    margin: 1.75rem 0;
+}
+
+.project-content figcaption {
+    margin-top: 0.55rem;
+    color: var(--pinecone-muted);
+    font-size: 0.88rem;
+    line-height: 1.45;
+    text-align: center;
+}
+
+.project-content section:last-child {
+    margin-bottom: 1.5rem;
+}
+
+/* ==============================
+Project callouts
+============================== */
+
+.project-callout {
+    margin: 1.75rem 0;
+    padding: 1.25rem 1.4rem;
+    border-left: 3px solid var(--pinecone-purple);
+    border-radius: 0 8px 8px 0;
+    background: #f8f7ff;
+}
+
+.project-callout p:last-child {
+    margin-bottom: 0;
+}
+
+.project-results {
+    padding: 1.5rem;
+    border: 1px solid var(--pinecone-purple-border);
+    border-radius: 10px;
+    background: var(--pinecone-purple-light);
+}
+
+.project-results h2 {
+    margin-top: 0;
+}
+
+/* ==============================
+Project article and external links
+============================== */
+
+.project-article-link {
+    margin: 0;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--pinecone-border);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.project-article-link a {
+    color: var(--pinecone-purple);
+}
+
+.project-article-link a:hover,
+.project-article-link a:focus {
+    color: var(--pinecone-purple-dark);
+    text-decoration: none;
+}
+
+.project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.project-links .btn {
+    border-radius: 6px;
+}
+
+/* ==============================
+Project final CTA
+============================== */
+
+.project-cta {
+    margin-top: 3.5rem;
+    padding: 2rem 2.25rem;
+    border: 1px solid var(--pinecone-purple-border);
+    border-radius: 10px;
+    background: var(--pinecone-purple-light);
+}
+
+.project-cta-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.project-cta h2 {
+    margin: 0 0 0.6rem;
+    font-size: 1.55rem;
+    line-height: 1.25;
+}
+
+.project-cta p {
+    max-width: 580px;
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.55;
+    color: #555;
+}
+
+.project-cta .btn {
+    flex-shrink: 0;
+    white-space: nowrap;
+    border-radius: 6px;
+}
+
+/* ==============================
+Responsive project styles
+============================== */
+
+@media (max-width: 768px) {
+    .project-header {
+        margin-bottom: 2.25rem;
+    }
+
+    .project-header-card {
+        padding: 1.25rem;
+    }
+
+    .project-summary {
+        font-size: 1.1rem;
+    }
+
+    .project-content section {
+        margin: 2.25rem 0;
+    }
+
+    .project-cta {
+        padding: 1.5rem;
+    }
+
+    .project-cta-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.25rem;
+    }
+
+    .project-cta .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 500px) {
+    .project-service {
+        font-size: 0.75rem;
+    }
+
+    .project-summary {
+        font-size: 1.05rem;
+    }
+
+    .project-callout,
+    .project-results {
+        padding: 1.15rem;
+    }
+
+    .project-links {
+        flex-direction: column;
+    }
+
+    .project-links .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
