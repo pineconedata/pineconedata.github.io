@@ -221,6 +221,59 @@ Homepage cards
 }
 
 /* ==============================
+Homepage service cards
+============================== */
+
+.home-services-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.home-services-grid .home-card {
+    padding: 1.4rem;
+    gap: 0.9rem;
+    border-top: 3px solid var(--pinecone-purple);
+}
+
+.home-services-grid .home-card h3 {
+    font-size: 1.2rem;
+    line-height: 1.25;
+    color: var(--pinecone-text);
+}
+
+.home-services-grid .home-card p {
+    font-size: 0.95rem;
+    line-height: 1.55;
+}
+
+.home-services-grid .home-card p:first-of-type {
+    color: var(--pinecone-text);
+    font-weight: 600;
+}
+
+.home-services-grid .home-card p:last-of-type {
+    margin-top: auto;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--pinecone-border);
+    color: var(--pinecone-muted);
+    font-size: 0.9rem;
+}
+
+/* Two columns on medium-width screens */
+@media (max-width: 991px) {
+    .home-services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* One column on small screens */
+@media (max-width: 768px) {
+    .home-services-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==============================
 Homepage featured project cards
 ============================== */
 
