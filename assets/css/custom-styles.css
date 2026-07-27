@@ -942,11 +942,6 @@ Work with me page
     color: #555;
 }
 
-.work-contact-next {
-    padding-top: 1rem;
-    border-top: 1px solid var(--pinecone-border);
-}
-
 .work-contact-form {
     padding: 1.5rem;
     border: 1px solid var(--pinecone-border);
