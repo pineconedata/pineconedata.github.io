@@ -1,0 +1,179 @@
+---
+layout: project
+title: Basketball Data Pipeline
+permalink: /projects/basketball-data-pipeline/
+service: Workflow Improvement
+summary: A repeatable Python workflow for collecting, cleaning, combining, and preparing basketball statistics for analysis.
+tools: Python, JupyterLab, pandas, requests, JSON, openpyxl, GitHub
+article_url: /projects/basketball-data-science-project/
+share-title: Basketball Data Pipeline | Pinecone Data
+share-description: A repeatable Python workflow for collecting, cleaning, combining, and preparing basketball statistics for analysis.
+---
+
+<section>
+    <h2>The Problem</h2>
+
+    <p>
+        Data analysis often begins with information spread across multiple
+        files or sources. Before useful analysis can happen, the data must be
+        collected, organized, cleaned, and converted into a consistent
+        structure.
+    </p>
+
+    <p>
+        Without a repeatable process, these preparation steps can become
+        difficult to reproduce, easy to break, and time-consuming to update
+        when new data becomes available.
+    </p>
+</section>
+
+<section>
+    <h2>The Approach</h2>
+
+    <p>
+        I organized the work as a sequence of clearly defined stages:
+        acquisition, cleaning, preprocessing, and feature engineering. Each
+        stage produces a structured output that can be inspected and reused
+        by the next part of the workflow.
+    </p>
+
+    <p>
+        The project combines player information from the NCAA website with
+        performance statistics retrieved from the Yahoo Sports API. The raw
+        data is preserved separately from cleaned and processed outputs so
+        that each transformation can be reproduced.
+    </p>
+
+    <div class="project-callout">
+        <p>
+            <strong>Why workflow structure matters:</strong>
+            Separating source data, transformation logic, and finished outputs
+            makes the process easier to understand, rerun, validate, and
+            maintain.
+        </p>
+    </div>
+</section>
+
+<section>
+    <h2>The Solution</h2>
+
+    <p>
+        The resulting workflow collects player information and performance
+        statistics, stores the original source files, and combines the data
+        into a consistent dataset using Python and pandas.
+    </p>
+
+    <p>
+        The preparation stages identify missing, inconsistent, or invalid
+        values; convert datatypes; standardize measurements; and create
+        derived fields such as per-game statistics, conference labels,
+        assist-to-turnover ratio, and fantasy points.
+    </p>
+
+    <p>
+        The final processed dataset is structured for reuse in exploratory
+        analysis, visualization, and modeling without requiring the original
+        preparation work to be repeated manually.
+    </p>
+</section>
+
+<section class="project-results">
+    <h2>Project Outcomes</h2>
+
+    <ul>
+        <li>Collecting data from a website and an API</li>
+        <li>Combining information from multiple sources</li>
+        <li>Preserving raw inputs separately from processed outputs</li>
+        <li>Cleaning and standardizing inconsistent data</li>
+        <li>Creating derived metrics for downstream analysis</li>
+        <li>Organizing a repeatable, multi-stage Python workflow</li>
+        <li>Producing an analysis-ready dataset</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Project Structure</h2>
+
+    <p>
+        The repository organizes the workflow into numbered Jupyter notebooks,
+        saved datasets, and model outputs. The first three notebooks cover the
+        pipeline stages highlighted on this page: acquisition, cleaning and
+        preprocessing, and feature engineering.
+    </p>
+
+    <pre><code>ncaa-basketball-stats/
+├── data/
+│   ├── 2024-04-07 NCAA WBB-Div1 Player Info.csv
+│   ├── player_info.xlsx
+│   ├── player_stats.xlsx
+│   ├── player_data_raw.xlsx
+│   ├── player_data_clean.xlsx
+│   ├── player_data_engineered.xlsx
+│   └── additional model input and output files
+├── models/
+│   └── saved model files
+├── notebooks/
+│   ├── 1_data_acquisition.ipynb
+│   ├── 2_data_cleaning_preprocessing.ipynb
+│   ├── 3_feature_engineering.ipynb
+│   ├── 4_data_exploration.ipynb
+│   ├── 5_data_visualization.ipynb
+│   ├── 6_model_selection.ipynb
+│   ├── 7_model_training.ipynb
+│   ├── 8_model_evaluation.ipynb
+│   └── iframe_figures/
+├── README.md
+├── LICENSE
+└── .gitignore</code></pre>
+
+    <p>
+        The numbered prefixes on each notebook indicate the order of the workflow. The
+        intermediate datasets also show how the data changes from raw inputs
+        to cleaned and feature-engineered outputs before it is used in later
+        analysis and modeling stages.
+    </p>
+</section>
+
+<section>
+    <h2>Tools Used</h2>
+
+    <ul>
+        <li>
+            <strong>Python</strong> for acquisition, transformation, and workflow logic
+        </li>
+        <li>
+            <strong>JupyterLab</strong> for developing and documenting the workflow
+        </li>
+        <li>
+            <strong>pandas</strong> for cleaning, joining, transforming, and exporting data
+        </li>
+        <li>
+            <strong>requests</strong> for retrieving statistics from an API
+        </li>
+        <li>
+            <strong>JSON</strong> for working with API responses
+        </li>
+        <li>
+            <strong>openpyxl</strong> for reading and writing Excel files
+        </li>
+        <li>
+            <strong>Git and GitHub</strong> for version control and project organization
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h2>Where the Workflow Leads</h2>
+
+    <p>
+        This pipeline provides the structured foundation for the later stages
+        of the larger project, including exploratory analysis, visualization,
+        linear regression, and model evaluation.
+    </p>
+
+    <p>
+        The same approach can be adapted to recurring business workflows that
+        combine spreadsheet exports, API responses, database extracts, or data
+        received from multiple teams.
+    </p>
+</section>
