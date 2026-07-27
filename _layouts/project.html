@@ -1,0 +1,89 @@
+---
+layout: page
+---
+
+<link
+    rel="stylesheet"
+    href="{{ '/assets/css/project-pages.css' | relative_url }}"
+>
+
+<article class="project-page">
+    <header class="project-header">
+        {% if page.service or page.summary or page.tools %}
+            <div class="project-header-card">
+                {% if page.service %}
+                    <p class="project-service">
+                        {{ page.service }}
+                    </p>
+                {% endif %}
+
+                {% if page.summary %}
+                    <p class="project-summary">
+                        {{ page.summary }}
+                    </p>
+                {% endif %}
+
+                {% if page.tools %}
+                    <p class="project-tools">
+                        <strong>Tools:</strong> {{ page.tools }}
+                    </p>
+                {% endif %}
+            </div>
+        {% endif %}
+    </header>
+
+    <div class="project-content">
+        {{ content }}
+    </div>
+
+    {% if page.article_url %}
+        <p class="project-article-link">
+            <a href="{{ page.article_url | relative_url }}">
+                Read the full technical article →
+            </a>
+        </p>
+    {% endif %}
+
+    {% if page.github_url or page.demo_url %}
+        <div class="project-links">
+            {% if page.demo_url %}
+                <a
+                    href="{{ page.demo_url }}"
+                    class="btn btn-primary"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    View Demo
+                </a>
+            {% endif %}
+
+            {% if page.github_url %}
+                <a
+                    href="{{ page.github_url }}"
+                    class="btn btn-outline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    View Source Code
+                </a>
+            {% endif %}
+        </div>
+    {% endif %}
+
+    <section class="project-cta">
+        <div class="project-cta-content">
+            <div>
+                <h2>Have a similar workflow you want to improve?</h2>
+
+                <p>
+                    Tell me about the current process, the data involved,
+                    and what you would like the finished solution to produce.
+                </p>
+            </div>
+
+            <a href="/workwithme/" class="btn btn-primary">
+                Discuss a Project
+            </a>
+        </div>
+    </section>
+</article>
