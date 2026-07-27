@@ -3,7 +3,7 @@ layout: page
 title: About
 ---
 
-Hi! I am a data scientist and physicist with 9+ years of experience in the field. Pinecone Data is my company for freelancing and contract-based work. If you're interested in working with me, please [get in touch](/workwithme)!
+Hi! I am a data scientist and physicist with 9+ years of experience in the field. Pinecone Data is my company for freelancing and contract-based work. If you're interested in working with me, please [get in touch](/workwithme/)!
 
 ## Career Highlights
 
@@ -13,4 +13,4 @@ In my role as an Implementation Manager at an equity management company, I manag
 
 Before venturing into the private sector, I worked in the [Accelerator Mass Spectrometry Laboratory](https://ams.arizona.edu/) at the University of Arizona, where I played a crucial role in improving [radioisotope](https://en.wikipedia.org/wiki/Radionuclide) dating equipment. I also had the privilege of developing and hosting a [particle physics masterclass](https://home.cern/news/news/physics/find-higgs-boson-lhc-public-data) for local high school students. My educational background includes a B.S. in [Physics](https://w3.physics.arizona.edu/), providing a solid foundation for my data-driven career.
 
-Want to know more? Feel free to [contact me directly](/workwithme) or [connect with me on Linkedin](https://linkedin.com/in/emilyrcreager)! 
+Want to know more? Feel free to [contact me directly](/workwithme.html) or [connect with me on Linkedin](https://linkedin.com/in/emilyrcreager)! 
