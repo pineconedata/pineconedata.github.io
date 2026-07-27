@@ -22,9 +22,9 @@ author: Pinecone Data, LLC
 navbar-links:
   Home: "/"
   About: "about/"
-  Topics: "tags/"
+  Projects: "projects/"
   Writing: "writing/"
-  Work with Me: "workwithme/"
+  Work With Me: "workwithme/"
 
 ################
 # --- Logo --- #
