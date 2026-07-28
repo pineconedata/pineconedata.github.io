@@ -917,6 +917,15 @@ Work with me page
     font-weight: 700;
 }
 
+.work-location {
+    margin: 0 0 1.25rem;
+    padding: 0 0 0.85rem;
+    border-bottom: 1px solid var(--pinecone-border);
+    color: var(--pinecone-muted);
+    font-size: 0.9rem;
+    line-height: 1.45;
+}
+
 .work-contact {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
