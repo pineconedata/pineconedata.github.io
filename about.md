@@ -4,6 +4,8 @@ title: About
 permalink: /about/
 share-title: About | Pinecone Data
 share-description: About Pinecone Data and my experience in data workflows, reporting automation, analysis, and technical implementation.
+ext-css:
+  - "/assets/css/about.css"
 ---
 
 <section class="about-intro">
