@@ -939,9 +939,9 @@ Work with me page
 }
 
 .work-contact-intro h2 {
-    margin-top: 0;
-    margin-bottom: 0.75rem;
-    max-width: 340px;
+    margin: 0 0 0.75rem;
+    font-size: 1.75rem;
+    line-height: 1.2;
 }
 
 .work-contact-intro p {
@@ -1155,5 +1155,10 @@ Responsive styles
 
     .about-cta .btn {
         width: 100%;
+    }
+
+    .work-contact-intro h2 {
+        font-size: 1.6rem;
+        line-height: 1.25;
     }
 }
