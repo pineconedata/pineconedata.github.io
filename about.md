@@ -8,7 +8,7 @@ share-description: About Pinecone Data and my experience in data workflows, repo
 
 <section class="about-intro">
     <p class="about-lead">
-        I am a data professional with a background in physics and more than
+        I am a data professional based in Richmond, VA with a background in physics and more than
         a decade of experience working with technical systems, data
         workflows, reporting, and client implementations.
     </p>
