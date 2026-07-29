@@ -8,6 +8,8 @@ share-title: Work with Me | Pinecone Data
 share-description: Get help with reporting automation, data workflow improvement, and lightweight internal tools for small teams.
 ext-css:
   - "/assets/css/work-with-me.css"
+ext-js:
+  - "/assets/js/contact-form.js"
 ---
 
 <section class="work-intro">
@@ -85,21 +87,11 @@ ext-css:
 
     <ul class="work-fit-list">
         <li>A report is assembled manually every week or month.</li>
-        <li>
-            Data needs to be combined from multiple sources automatically.
-        </li>
-        <li>
-            An existing script works inconsistently or is difficult to maintain.
-        </li>
-        <li>
-            A spreadsheet has become complicated or error-prone.
-        </li>
-        <li>
-            Your team needs a lightweight dashboard or operational tool.
-        </li>
-        <li>
-            You need a focused project with clearly defined deliverables.
-        </li>
+        <li>Data needs to be combined from multiple sources automatically.</li>
+        <li>An existing script works inconsistently or is difficult to maintain.</li>
+        <li>A spreadsheet has become complicated or error-prone.</li>
+        <li>Your team needs a lightweight dashboard or operational tool.</li>
+        <li>You need a focused project with clearly defined deliverables.</li>
     </ul>
 </section>
 
@@ -119,11 +111,20 @@ ext-css:
         method="POST"
         class="form work-contact-form"
         id="contact-form"
-        target="_blank"
     >
         <p class="work-location">
             Based in Richmond, Virginia · Eastern Time · Remote Projects Welcome
         </p>
+
+        <div
+            id="contact-form-status"
+            class="work-form-status"
+            role="status"
+            aria-live="polite"
+            tabindex="-1"
+            hidden
+        ></div>
+
         <div class="work-form-row">
             <div class="work-form-field">
                 <label for="contact-name">Name</label>
@@ -189,15 +190,15 @@ ext-css:
             class="work-form-honeypot"
             tabindex="-1"
             autocomplete="off"
+            aria-hidden="true"
         >
 
-        <input
-            type="hidden"
-            name="_next"
-            value="?message=Your message was sent successfully - thank you! I will get back to you as soon as possible!"
+        <button
+            type="submit"
+            class="btn btn-lg btn-primary"
+            data-default-text="Send Project Inquiry"
+            data-submitting-text="Sending..."
         >
-
-        <button type="submit" class="btn btn-lg btn-primary">
             Send Project Inquiry
         </button>
     </form>
