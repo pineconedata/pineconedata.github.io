@@ -298,3 +298,42 @@ Contact form fields
         gap: 0;
     }
 }
+
+/* ==============================
+Contact form status
+============================== */
+
+.work-form-status {
+    margin-bottom: 1.25rem;
+    padding: 0.85rem 1rem;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.work-form-status:focus {
+    outline: 2px solid var(--pinecone-purple);
+    outline-offset: 2px;
+}
+
+.work-form-status--success {
+    border-color: #b8d8c0;
+    background-color: #eef8f0;
+    color: #285c35;
+}
+
+.work-form-status--error {
+    border-color: #e3b8b8;
+    background-color: #fff1f1;
+    color: #842929;
+}
+
+#contact-form[aria-busy="true"] {
+    opacity: 0.8;
+}
+
+#contact-form button:disabled {
+    cursor: wait;
+    opacity: 0.75;
+}
