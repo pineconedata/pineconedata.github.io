@@ -67,6 +67,19 @@ a {
     background-color: var(--pinecone-surface);
 }
 
+/* Blog post alert callouts */
+.blog-post .alert {
+    margin: 1.5rem 0;
+    padding: 1rem 1.15rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    line-height: 1.55;
+}
+
+.blog-post .alert strong:first-child {
+    font-weight: 700;
+}
+
 /* ==============================
 Brand buttons
 ============================== */
