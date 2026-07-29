@@ -161,7 +161,9 @@ Now, we're ready to connect the pet feeder board to the computer using the USB-t
 | White female-to-male | RXD                    | TX               |
 | Brown male-to-male   | None                   | unlabelled pads  |
 
-Note: The serial TX/RX lines are crossed: the adapter's `TXD` pin goes to `RX` on the board, and the adapter `RXD` pin connects to `TX` on the board.
+<div class="alert alert-info" role="note">
+    <strong>Note:</strong> The serial TX/RX lines are crossed: the adapter's `TXD` pin goes to `RX` on the board, and the adapter `RXD` pin connects to `TX` on the board.
+</div>
 
 ![IMG_20260616_232338_094.jpg](/assets/img/posts/2026-06-19-flashing-esphome-on-wifi-pet-feeder/IMG_20260616_232338_094.jpg)
 
@@ -294,7 +296,9 @@ I continually got the above `No serial data received` message and eventually tra
 
 Unfortunately, that did not work for me. For some reason, while powering the board from the wall adapter, the chip was at 3.8V instead of at 3.3V. I tried a few fixes, but ultimately the only thing that worked was powering the feeder board directly from external 3.3V power supply while the feeder's internal 8-pin cable, wall adapter, and battery were disconnected.
 
-Note: When I flash the other pet feeder, I will check if the adapter can supply enough power if the feeder's `VCC` pad is wired to the adapter's 3.3V pin. If that works, it would eliminate the need for an external power supply. 
+<div class="alert alert-info" role="note">
+    <strong>Note:</strong> When I flash the other pet feeder, I will check if the adapter can supply enough power if the feeder's `VCC` pad is wired to the adapter's 3.3V pin. If that works, it would eliminate the need for an external power supply.
+</div>
 
 The wiring with an external power supply looked like this: 
 
@@ -349,7 +353,9 @@ Staying in bootloader.
 
 Verify the backup file actually exists on your disk and is around 4 MB. 
 
-Note: Keep this file private. Do not upload it to GitHub, issue trackers, forums, or public chats.
+<div class="alert alert-warning" role="note">
+    <strong>Note:</strong> Keep this file private. Do not upload it to GitHub, issue trackers, forums, or public chats.
+</div>
 
 # Create the ESPHome Configuration
 
