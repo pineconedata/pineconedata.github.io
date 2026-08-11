@@ -234,6 +234,20 @@ Hello page
     color: var(--pinecone-purple);
 }
 
+.hello-action-contact {
+    background-color: #fff;
+    border: 1px solid var(--pinecone-purple-border);
+    color: var(--pinecone-purple);
+    font-weight: 500;
+}
+
+.hello-action-contact:hover,
+.hello-action-contact:focus {
+    background-color: var(--pinecone-purple-light);
+    border-color: var(--pinecone-purple);
+    color: var(--pinecone-purple);
+}
+
 .hello-action-secondary {
     background-color: transparent;
     color: var(--pinecone-purple);
@@ -293,6 +307,14 @@ Hello page
 @media (min-width: 601px) {
     .hello-actions {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .hello-action-contact {
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: 240px;
+        min-height: 44px;
+        padding: 0.6rem 1rem;
     }
 
     .hello-link-grid {
