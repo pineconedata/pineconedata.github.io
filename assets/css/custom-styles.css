@@ -80,6 +80,18 @@ a {
     font-weight: 700;
 }
 
+/* Keep footer at the bottom of short pages */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+body > .container-md,
+body > .container-fluid {
+    flex-grow: 1;
+}
+
 /* ==============================
 Brand buttons
 ============================== */
@@ -180,9 +192,6 @@ Hello page
     margin-bottom: 0;
 }
 
-
-/* Primary actions */
-
 .hello-actions {
     display: grid;
     grid-template-columns: 1fr;
@@ -235,9 +244,6 @@ Hello page
     background-color: var(--pinecone-purple);
     color: var(--pinecone-white);
 }
-
-
-/* Secondary links */
 
 .hello-more {
     padding-top: 2rem;
