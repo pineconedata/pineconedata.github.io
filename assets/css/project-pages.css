@@ -200,6 +200,30 @@ Project article and external links
     border-radius: 6px;
 }
 
+.projects-related-link {
+    margin-top: 1.75rem;
+    color: var(--pinecone-muted);
+    font-size: 0.96rem;
+    line-height: 1.5;
+}
+
+.projects-related-link span {
+    margin-right: 0.35rem;
+}
+
+.projects-related-link a {
+    color: var(--pinecone-purple);
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.projects-related-link a:hover,
+.projects-related-link a:focus {
+    color: var(--pinecone-purple-dark);
+    text-decoration: none;
+}
+
 /* ==============================
 Project final CTA
 ============================== */
