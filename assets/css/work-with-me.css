@@ -3,8 +3,8 @@ Work with me page introduction
 ============================== */
 
 .work-intro {
-    max-width: 760px;
-    margin-bottom: 2.5rem;
+    max-width: 920px;
+    margin: 0 auto 2.5rem;
 }
 
 .work-intro-lead {
@@ -79,6 +79,12 @@ Services
 }
 
 @media (max-width: 990px) {
+    .work-services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
     .work-services-grid {
         grid-template-columns: 1fr;
     }

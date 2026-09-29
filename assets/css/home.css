@@ -89,6 +89,7 @@ Homepage CTA buttons
 .home-section-cta-button {
     display: block;
     width: 50%;
+    max-width: 420px;
     margin: 0 auto;
     padding: 0.85rem 1rem;
     border-radius: 6px;
@@ -229,7 +230,6 @@ Homepage: How it works
 ============================== */
 
 .home-process-header {
-    max-width: 680px;
     margin-bottom: 1.75rem;
 }
 
@@ -425,6 +425,7 @@ Homepage technical writing cards
     display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
+    max-width: 920px;
     margin-top: 1.25rem;
 }
 

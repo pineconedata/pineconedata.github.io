@@ -92,6 +92,21 @@ body > .container-fluid {
     flex-grow: 1;
 }
 
+/* Desktop with for custom pages */
+@media (min-width: 992px) {
+    body > .container-md > .row > [class*="col-"]:has(.home-section),
+    body > .container-md > .row > [class*="col-"]:has(.work-section),
+    body > .container-md > .row > [class*="col-"]:has(.about-intro),
+    body > .container-md > .row > [class*="col-"]:has(.projects-grid),
+    body > .container-md > .row > [class*="col-"]:has(.project-page) {
+        flex: 0 0 auto;
+        width: min(1040px, calc(100% - 3rem));
+        max-width: 1040px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
 /* ==============================
 Brand buttons
 ============================== */
