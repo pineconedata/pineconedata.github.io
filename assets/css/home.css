@@ -328,17 +328,17 @@ Homepage: How it works
 }
 
 /* ==============================
-Homepage featured projects
+Homepage case studies
 ============================== */
 
-.home-project-list {
+.home-case-study-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1.25rem;
     margin-top: 1.25rem;
 }
 
-.home-project-card {
+.home-case-study-card {
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
@@ -349,23 +349,23 @@ Homepage featured projects
     box-shadow: var(--pinecone-card-shadow);
 }
 
-.home-project-card h3,
-.home-project-card p {
+.home-case-study-card h3,
+.home-case-study-card p {
     margin: 0;
 }
 
-.home-project-card h3 {
+.home-case-study-card h3 {
     font-size: 1.2rem;
     line-height: 1.3;
 }
 
-.home-project-card p {
+.home-case-study-card p {
     color: #555;
     font-size: 0.95rem;
     line-height: 1.55;
 }
 
-.home-project-service {
+.home-case-study-service {
     color: var(--pinecone-purple) !important;
     font-size: 0.75rem !important;
     line-height: 1.3 !important;
@@ -374,12 +374,12 @@ Homepage featured projects
     text-transform: uppercase;
 }
 
-.home-project-problem {
+.home-case-study-problem {
     color: var(--pinecone-text) !important;
     font-weight: 600;
 }
 
-.home-project-capabilities {
+.home-case-study-result {
     margin-top: auto !important;
     padding-top: 0.85rem;
     border-top: 1px solid var(--pinecone-border);
@@ -389,31 +389,120 @@ Homepage featured projects
     font-weight: 500;
 }
 
-.home-project-link {
+.home-case-study-link {
     margin-top: 0 !important;
     padding-top: 0.15rem;
 }
 
-.home-card-link {
-    color: var(--pinecone-purple);
-    font-weight: 700;
-}
-
-.home-card-link:hover,
-.home-card-link:focus {
-    color: var(--pinecone-purple-dark);
-    text-decoration: none;
-}
-
 @media (max-width: 990px) {
-    .home-project-list {
+    .home-case-study-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
 @media (max-width: 768px) {
-    .home-project-list {
+    .home-case-study-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* ==============================
+Homepage technical projects
+============================== */
+
+.home-technical-project-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 920px;
+    margin-top: 1.25rem;
+}
+
+.home-technical-project-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.45rem 1.5rem;
+    align-items: start;
+    padding: 1.15rem 1.35rem;
+    border: 1px solid var(--pinecone-border);
+    border-radius: 10px;
+    background-color: var(--pinecone-white);
+    box-shadow: var(--pinecone-card-shadow);
+}
+
+.home-technical-project-service {
+    grid-column: 1;
+    margin: 0;
+    color: var(--pinecone-purple);
+    font-size: 0.74rem;
+    line-height: 1.4;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.home-technical-project-card h3 {
+    grid-column: 1;
+    margin: 0;
+    font-size: 1.15rem;
+    line-height: 1.3;
+}
+
+.home-technical-project-card h3 a {
+    color: var(--pinecone-text);
+    text-decoration: none;
+}
+
+.home-technical-project-card h3 a:hover,
+.home-technical-project-card h3 a:focus {
+    color: var(--pinecone-purple);
+}
+
+.home-technical-project-card > p:not(.home-technical-project-service) {
+    grid-column: 1;
+    max-width: 680px;
+    margin: 0;
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.55;
+}
+
+.home-technical-project-link {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    align-self: center;
+    margin: 0;
+    color: var(--pinecone-purple);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.home-technical-project-link:hover,
+.home-technical-project-link:focus {
+    color: var(--pinecone-purple-dark);
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .home-technical-project-card {
+        grid-template-columns: 1fr;
+        gap: 0.65rem;
+        padding: 1.15rem;
+    }
+
+    .home-technical-project-service,
+    .home-technical-project-card h3,
+    .home-technical-project-card > p:not(.home-technical-project-service),
+    .home-technical-project-link {
+        grid-column: 1;
+    }
+
+    .home-technical-project-link {
+        grid-row: auto;
+        justify-self: start;
+        margin-top: 0.25rem;
     }
 }
 
