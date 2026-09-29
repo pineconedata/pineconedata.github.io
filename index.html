@@ -151,109 +151,187 @@ ext-css:
     </ol>
 </section>
 
-<section class="home-section" id="projects">
-    <h2>Featured Projects</h2>
+<section class="home-section">
 
-    <div class="home-project-list">
-        <article class="home-project-card">
-            <p class="home-project-service">
+  <h2>Case Studies</h2>
+
+  <div class="home-process-header">
+    <p>
+      See how I approach real reporting, workflow, and data problems from initial requirements through implementation and handoff.
+    </p>
+  </div>
+
+  <div class="home-case-study-grid">
+
+    <article class="home-case-study-card">
+      <p class="home-case-study-service">
+        Reporting Automation
+      </p>
+
+      <h3>
+        Automating Executive Reporting Across Multiple Data Sources
+      </h3>
+
+      <p class="home-case-study-problem">
+        A recurring executive reporting process required dozens of hours of manual work each month.
+      </p>
+
+      <p class="home-case-study-result">
+        Result: Report generation reduced from days to about 20 minutes.
+      </p>
+
+      <p class="home-case-study-link">
+        <a class="home-card-link" href="/case-studies/automating-executive-reporting/">
+          View Case Study →
+        </a>
+      </p>
+    </article>
+
+
+    <article class="home-case-study-card">
+      <p class="home-case-study-service">
+        Data Workflow Improvement
+      </p>
+
+      <h3>
+        Building a Reliable Data Migration and Validation Workflow
+      </h3>
+
+      <p class="home-case-study-problem">
+        Decades of complex financial and transactional history needed to move into a new production system.
+      </p>
+
+      <p class="home-case-study-result">
+        Result: Historical records were migrated while preserving financial and transactional integrity.
+      </p>
+
+      <p class="home-case-study-link">
+        <a class="home-card-link" href="/case-studies/reliable-data-migration-validation/">
+          View Case Study →
+        </a>
+      </p>
+    </article>
+
+
+    <article class="home-case-study-card">
+      <p class="home-case-study-service">
+        Custom Data Solutions
+      </p>
+
+      <h3>
+        Translating Executive Reporting Goals into a Practical Data Solution
+      </h3>
+
+      <p class="home-case-study-problem">
+        Executive stakeholders proposed dozens of new reporting fields with different priorities and levels of technical feasibility.
+      </p>
+
+      <p class="home-case-study-result">
+        Result: Leadership gained a practical roadmap for immediate improvements and longer-term development.
+      </p>
+
+      <p class="home-case-study-link">
+        <a class="home-card-link" href="/case-studies/executive-reporting-data-solution/">
+          View Case Study →
+        </a>
+      </p>
+    </article>
+
+  </div>
+
+  <div class="home-section-cta">
+    <a class="btn btn-outline home-section-cta-button" href="/case-studies/">
+      View All Case Studies
+    </a>
+  </div>
+
+</section>
+
+<section class="home-section" id="projects">
+    <h2>Technical Projects</h2>
+
+    <div class="home-technical-project-list">
+
+        <article class="home-technical-project-card">
+            <p class="home-technical-project-service">
                 Reporting Automation
             </p>
 
-            <h3>Automated Feed Generator</h3>
-
-            <p class="home-project-problem">
-                A recurring content-monitoring process needed a reliable way to collect website updates without manual checking.
-            </p>
+            <h3>
+                <a href="{{ '/projects/automated-feed-generator/' | relative_url }}">
+                    Automated Feed Generator
+                </a>
+            </h3>
 
             <p>
-                I built a configurable Python workflow that scrapes updates, generates RSS feeds, and runs automatically on a schedule.
+                A configurable Python workflow for collecting website updates
+                and publishing them as scheduled RSS feeds.
             </p>
 
-            <p class="home-project-capabilities">
-                Scheduled collection · browser automation · configurable workflows
-            </p>
-
-            <p class="home-project-link">
-                <a
-                    href="/projects/automated-feed-generator/"
-                    class="home-card-link"
-                >
-                    View Project →
-                </a>
-            </p>
+            <a
+                class="home-technical-project-link"
+                href="{{ '/projects/automated-feed-generator/' | relative_url }}"
+            >
+                View Project →
+            </a>
         </article>
 
-        <article class="home-project-card">
-            <p class="home-project-service">
+
+        <article class="home-technical-project-card">
+            <p class="home-technical-project-service">
                 Data Workflow Improvement
             </p>
 
-            <h3>Basketball Data Pipeline</h3>
-
-            <p class="home-project-problem">
-                Statistics from multiple sources needed to be collected and organized into a consistent structure for later analysis.
-            </p>
+            <h3>
+                <a href="{{ '/projects/basketball-data-pipeline/' | relative_url }}">
+                    Basketball Data Pipeline
+                </a>
+            </h3>
 
             <p>
-                I created a repeatable Python workflow for acquiring the data, organizing the project, and preparing raw inputs for cleaning and analysis.
+                A repeatable Python workflow for collecting, cleaning,
+                combining, and preparing basketball statistics for analysis.
             </p>
 
-            <p class="home-project-capabilities">
-                Data acquisition · project structure · repeatable processing
-            </p>
-
-            <p class="home-project-link">
-                <a
-                    href="/projects/basketball-data-pipeline/"
-                    class="home-card-link"
-                >
-                    View Project →
-                </a>
-            </p>
+            <a
+                class="home-technical-project-link"
+                href="{{ '/projects/basketball-data-pipeline/' | relative_url }}"
+            >
+                View Project →
+            </a>
         </article>
 
-        <article class="home-project-card">
-            <p class="home-project-service">
+
+        <article class="home-technical-project-card">
+            <p class="home-technical-project-service">
                 Reporting Automation
             </p>
 
-            <h3>Basketball Analysis and Visualizations</h3>
-
-            <p class="home-project-problem">
-                Prepared basketball data needed to be turned into clear comparisons and visual summaries.
-            </p>
+            <h3>
+                <a href="{{ '/projects/basketball-analysis-visualizations/' | relative_url }}">
+                    Basketball Analysis and Visualizations
+                </a>
+            </h3>
 
             <p>
-                I developed an analysis workflow that transforms structured data into charts and comparisons that are easier to interpret.
+                An exploratory analysis and visualization workflow for
+                comparing NCAA basketball player performance, identifying
+                relationships, and highlighting statistical outliers.
             </p>
 
-            <p class="home-project-capabilities">
-                Data analysis · visualization · comparative reporting
-            </p>
-
-            <p class="home-project-link">
-                <a
-                    href="/projects/basketball-analysis-visualizations/"
-                    class="home-card-link"
-                >
-                    View Project →
-                </a>
-            </p>
+            <a class="home-technical-project-link" href="{{ '/projects/basketball-analysis-visualizations/' | relative_url }}">
+                View Project →
+            </a>
         </article>
+
     </div>
 
-    <p class="home-section-cta">
-        <a
-            href="/workwithme/"
-            class="btn btn-outline home-section-cta-button"
-        >
-            Discuss a Project
+      <div class="home-section-cta">
+        <a class="btn btn-outline home-section-cta-button" href="/projects/">
+          View More Projects
         </a>
-    </p>
+      </div>
 </section>
-
-
 
 <section class="home-section">
     <h2>Technical Writing</h2>
@@ -296,7 +374,7 @@ ext-css:
     </div>
 
     <p class="home-section-cta">
-        <a href="/writing/" class="btn btn-outline home-section-cta-button">View more writing →</a>
+        <a href="/writing/" class="btn btn-outline home-section-cta-button">View More Writing →</a>
     </p>
 </section>
 
