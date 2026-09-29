@@ -1,0 +1,171 @@
+---
+layout: page
+title: Translating Executive Reporting Goals into a Practical Data Solution
+permalink: /case-studies/executive-reporting-data-solution/
+share-description: How executive reporting requests were translated into a practical inventory of available data, feasibility, effort, and future development needs.
+ext-css:
+  - "/assets/css/project-pages.css"
+---
+
+<div class="project-page case-study-page">
+
+  <header class="project-header">
+    <div class="project-header-card">
+      <p class="project-service">Custom Data Solutions</p>
+
+      <p class="project-summary">
+        An executive reporting initiative involving dozens of proposed metrics was translated into a practical roadmap of available data, derived metrics, technical effort, and future development needs.
+      </p>
+
+      <p class="project-tools">
+        <strong>Technologies:</strong>
+        Azure, SQL, Python, Power BI
+      </p>
+    </div>
+  </header>
+
+
+  <div class="project-content">
+
+    <section>
+      <h2>Problem</h2>
+
+      <p>
+        A long-established enterprise organization was investing in its data and technology infrastructure as part of a five-year modernization plan.
+      </p>
+
+      <p>
+        Leadership wanted to expand strategic and operational reporting with new data points, but before anything could be added, the organization needed to understand what was already being tracked, what could be derived from existing systems, and what would require new database development or changes to upstream processes.
+      </p>
+
+      <p>
+        The goal was not just to build more reports. The organization needed a practical way to decide what was possible, what would take more work, and how to prioritize requests across several business units.
+      </p>
+    </section>
+
+
+    <section>
+      <h2>Challenge</h2>
+
+      <p>
+        Several dozen new fields had been proposed by executives across different parts of the organization, and each group had its own priorities.
+      </p>
+
+      <p>
+        Some of the requested information already existed and could be added to reporting fairly easily. Other fields were only partially captured, were not reliable enough to use, or required more complex logic to reconstruct from historical data. Some did not exist at all and would require changes to source systems or new data collection.
+      </p>
+
+      <p>Before the reporting team could move forward, we needed to determine:</p>
+
+      <ul>
+        <li>which fields already existed and were reliable</li>
+        <li>which could be derived from existing data</li>
+        <li>which would require new database fields or collection processes</li>
+        <li>the relative level of effort for each request</li>
+        <li>how to balance technical effort against competing business priorities</li>
+      </ul>
+
+      <p>
+        The investigation involved multiple databases and tables, historical records, temporal tables, and relationships that were not always obvious from the existing reporting layer.
+      </p>
+    </section>
+
+
+    <section>
+      <h2>Approach</h2>
+
+      <p>
+        I handled the discovery, technical investigation, and requirements work, acting as the link between executive stakeholders, the senior database architect, and the data team responsible for future Power BI reporting.
+      </p>
+
+      <p>
+        I worked with leadership to clarify what they wanted to see in future reporting, then consolidated the proposed fields into a structured inventory that could be evaluated one by one.
+      </p>
+
+      <p>
+        Using SQL, I investigated the organization's Azure-based databases to determine where each field could come from and whether the existing data was reliable enough to support it. The work included joins across multiple databases and tables, historical and temporal queries, window functions, and business logic needed to reconstruct or interpret older records.
+      </p>
+
+      <p>
+        For a few transformation scenarios where SQL became cumbersome, I also explored Python as a more efficient way to process the data.
+      </p>
+
+      <p>For each requested field, I documented whether it:</p>
+
+      <ul>
+        <li>already existed and could be used directly</li>
+        <li>could be derived from existing data</li>
+        <li>existed but was not being captured reliably enough for reporting</li>
+        <li>required additional database development or changes to upstream data collection</li>
+      </ul>
+
+      <p>
+        I also worked with the database architect and relevant stakeholders to estimate the level of effort for each item.
+      </p>
+
+      <p>
+        The final deliverables included a detailed requirements document, an inventory of proposed fields with feasibility and effort estimates, and SQL logic showing how available metrics could be produced from the existing systems.
+      </p>
+    </section>
+
+
+    <section>
+      <h2>Technical Decisions</h2>
+
+      <p>
+        One of the most important parts of the project was keeping business priority separate from technical feasibility.
+      </p>
+
+      <p>
+        Not every high-priority request was easy to support, and not every technically simple field was equally valuable. I evaluated what the current data environment could support reliably and what additional work would be required before a field could be trusted in reporting.
+      </p>
+
+      <p>
+        That was especially important for fields that stakeholders expected to exist but that were not actually being captured consistently.
+      </p>
+
+      <p>
+        The feasibility inventory gave the organization a practical way to separate quick wins from more involved work. Some fields could be added with relatively little effort, while others required more transformation, modeling, or changes to source systems before they were ready for reporting.
+      </p>
+    </section>
+
+
+    <section class="project-results">
+      <h2>Outcome</h2>
+
+      <p>
+        The investigation gave leadership a clearer picture of what the organization's existing data could support and what would require additional investment.
+      </p>
+
+      <p>
+        Lower-effort fields were added to ongoing monthly reporting, while more complex requests were scoped and handed off to the appropriate teams for future development.
+      </p>
+
+      <p>
+        Several of the recommended fields and data sources were incorporated into the organization's broader development plan, and the work helped inform priorities within its five-year technology strategy.
+      </p>
+
+      <p>
+        The project also gave executive leadership, database architecture, and the reporting team a shared understanding of what was available today, what was missing, and what needed to happen next.
+      </p>
+    </section>
+
+  </div>
+
+
+  <div class="project-cta">
+    <div class="project-cta-content">
+      <div>
+        <h2>Have a data problem that does not fit a standard solution?</h2>
+        <p>
+          I can help turn ambiguous reporting or data requirements into a practical technical approach and clear next steps.
+        </p>
+      </div>
+
+      <a class="btn btn-primary" href="/workwithme/">
+        Discuss a Project
+      </a>
+    </div>
+  </div>
+
+</div>

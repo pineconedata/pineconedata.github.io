@@ -1,0 +1,159 @@
+---
+layout: page
+title: Building a Reliable Data Migration and Validation Workflow
+permalink: /case-studies/reliable-data-migration-validation/
+share-description: How a validation-first SQL workflow helped migrate decades of complex financial and transactional data into a new production system.
+ext-css:
+  - "/assets/css/project-pages.css"
+---
+
+<div class="project-page case-study-page">
+
+  <header class="project-header">
+    <div class="project-header-card">
+      <p class="project-service">Data Workflow Improvement</p>
+
+      <p class="project-summary">
+        A validation-first migration workflow helped move decades of complex equity-plan history into a new production system while preserving the integrity of financial and transactional records.
+      </p>
+
+      <p class="project-tools">
+        <strong>Technologies:</strong>
+        Microsoft SQL Server, T-SQL
+      </p>
+    </div>
+  </header>
+
+
+  <div class="project-content">
+
+    <section>
+      <h2>Problem</h2>
+
+      <p>
+        A large enterprise client needed to move decades of equity-plan history from an end-of-life proprietary platform into a new equity administration system.
+      </p>
+
+      <p>
+        The legacy database was the system of record for tax and financial reporting. It contained multiple equity plans, annual grants to employees and executives, different vesting schedules, transaction histories, pricing data, and employee status changes.
+      </p>
+
+      <p>
+        Because the new platform would become the client's production system of record, the goal was not simply to move the data. We needed to make sure the full historical record still made sense financially and logically after the migration.
+      </p>
+    </section>
+
+
+    <section>
+      <h2>Challenge</h2>
+
+      <p>
+        Equity-plan data has a lot of dependencies across time. A transaction can look valid on its own but still conflict with an earlier grant, vesting schedule, employee status, or previous transaction.
+      </p>
+
+      <p>
+        That meant validating decades of activity before anything was moved into production. Checks included:
+      </p>
+
+      <ul>
+        <li>grant and transaction dates</li>
+        <li>share counts and award balances</li>
+        <li>vesting schedules</li>
+        <li>award and employee statuses</li>
+        <li>transaction sequencing</li>
+        <li>historical stock prices and pricing rules</li>
+        <li>relationships between grants, vesting events, exercises, and sales</li>
+        <li>financial totals and balances</li>
+      </ul>
+
+      <p>
+        The hardest part was reconciling long-running historical data that was not always perfectly consistent while still making sure the final numbers matched down to the cent.
+      </p>
+
+      <p>
+        Any unresolved issue could affect employee or executive compensation and create downstream tax, accounting, compliance, or reporting problems.
+      </p>
+    </section>
+
+
+    <section>
+      <h2>Approach</h2>
+
+      <p>
+        I owned the migration process from initial validation through production release.
+      </p>
+
+      <p>
+        I wrote and ran T-SQL validation scripts against the exported legacy database to identify inconsistencies before transformation. When a validation failed, I investigated the underlying records, documented the issue, and worked directly with the client's equity-plan administrators and financial team to determine whether it was a legitimate historical exception or something that needed to be corrected.
+      </p>
+
+      <p>
+        Once the source data passed validation, I transformed it into the structure expected by the new platform and performed test migrations so the converted data could be reviewed before the final migration.
+      </p>
+
+      <p>
+        The production migration included another full reconciliation to confirm that share quantities, transactions, balances, and financial totals still matched after transformation.
+      </p>
+
+      <p>
+        At the end of the process, I provided formal sign-off that was countersigned by the client once reconciliation was complete.
+      </p>
+    </section>
+
+
+    <section>
+      <h2>Technical Decisions</h2>
+
+      <p>
+        One of the most important parts of the process was keeping validation separate from transformation.
+      </p>
+
+      <p>
+        Just because a legacy record could be mapped into the new database did not mean the underlying data was valid. I validated the historical record against the business rules first so we could tell the difference between an existing data-quality problem and an issue introduced during migration.
+      </p>
+
+      <p>
+        The validation scripts also surfaced exceptions instead of silently correcting or dropping them. That gave the client a chance to review historical anomalies and apply the right business context before the data moved into production.
+      </p>
+
+      <p>
+        That distinction mattered because even a small error could affect years of grants, vesting activity, transactions, and financial reporting.
+      </p>
+    </section>
+
+
+    <section class="project-results">
+      <h2>Outcome</h2>
+
+      <p>
+        The migration successfully moved the client's historical equity-plan data into the new production system while preserving the integrity of the financial and transactional record.
+      </p>
+
+      <p>
+        During my time at the company, I managed dozens of enterprise migrations using the same overall validation and reconciliation approach, adapting the SQL and business rules for each client's data.
+      </p>
+
+      <p>
+        The result was a repeatable way to catch historical issues before migration, reconcile complex financial records, and reduce the risk of carrying bad data into a new system.
+      </p>
+    </section>
+
+  </div>
+
+
+  <div class="project-cta">
+    <div class="project-cta-content">
+      <div>
+        <h2>Planning a migration or data cleanup?</h2>
+        <p>
+          I help teams validate, reconcile, and improve complex data workflows before they become production problems.
+        </p>
+      </div>
+
+      <a class="btn btn-primary" href="/workwithme/">
+        Discuss a Project
+      </a>
+    </div>
+  </div>
+
+</div>

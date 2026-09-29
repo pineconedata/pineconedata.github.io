@@ -1,0 +1,153 @@
+---
+layout: page
+title: Automating Executive Reporting Across Multiple Data Sources
+permalink: /case-studies/automating-executive-reporting/
+share-description: How a recurring executive reporting process was automated across APIs, CSV files, Excel, PowerPoint, and website data.
+ext-css:
+  - "/assets/css/project-pages.css"
+---
+
+<div class="project-page case-study-page">
+
+  <header class="project-header">
+    <div class="project-header-card">
+      <p class="project-service">Reporting Automation</p>
+
+      <p class="project-summary">
+        A recurring executive reporting process that required dozens of hours of manual work each month was reduced to about 20 minutes of automated generation time.
+      </p>
+
+      <p class="project-tools">
+        <strong>Technologies:</strong>
+        Python, pandas, NumPy, REST APIs, CSV, Selenium, Excel, PowerPoint, SendGrid, cron
+      </p>
+    </div>
+  </header>
+
+
+  <div class="project-content">
+
+    <section>
+      <h2>Problem</h2>
+
+      <p>
+        A hospitality organization used a recurring report to track web and digital performance across multiple data sources. The analytics team reviewed the results internally and used them as part of quarterly reporting to the CTO.
+      </p>
+
+      <p>
+        Producing the report manually took dozens of hours each month. Data had to be collected from several sources, cleaned and combined, turned into custom charts and indicators, and assembled into Excel and PowerPoint deliverables.
+      </p>
+
+      <p>
+        The amount of manual work also limited how detailed the reporting could reasonably become.
+      </p>
+    </section>
+
+
+    <section>
+      <h2>Challenge</h2>
+
+      <p>
+        The report combined data from external APIs and CSV files with screenshots captured directly from the organization's website. The finished output needed to include the underlying data, custom charts, month-over-month performance indicators, website visuals, and a presentation suitable for executive review.
+      </p>
+
+      <p>
+        The data preparation itself was fairly straightforward. The harder part was making the entire process repeatable while still producing polished deliverables.
+      </p>
+
+      <p>
+        Website screenshots had to be captured automatically and then sized and positioned consistently within the PowerPoint presentation. The workflow also needed to handle missing data or an unavailable source without causing the rest of the report to fail.
+      </p>
+
+      <p>
+        Because the report was used over several years, it also needed to be flexible enough to accommodate changing stakeholder preferences without requiring the entire process to be rebuilt.
+      </p>
+    </section>
+
+
+    <section>
+      <h2>Approach</h2>
+
+      <p>
+        I built a Python workflow that handled the process from data collection through final delivery.
+      </p>
+
+      <p>
+        The workflow retrieved data from external APIs and CSV sources, then used pandas and NumPy to clean, combine, and prepare the information for reporting. A separate Selenium process captured current screenshots from the organization's website for use in the presentation.
+      </p>
+
+      <p>
+        From the prepared data, the workflow automatically generated two main deliverables:
+      </p>
+
+      <ul>
+        <li>an Excel workbook containing the supporting data, custom charts, and color-coded indicators for positive and negative month-over-month changes</li>
+        <li>a PowerPoint presentation containing stakeholder-defined charts, performance summaries, and automatically captured website screenshots</li>
+      </ul>
+
+      <p>
+        The finished files were distributed automatically with SendGrid. The analytics team could then review the results, add commentary where needed, and focus on interpreting the report rather than building it.
+      </p>
+
+      <p>
+        The process ran on a recurring schedule using cron and required very little manual work once report generation started.
+      </p>
+    </section>
+
+
+    <section>
+      <h2>Technical Decisions</h2>
+
+      <p>
+        One goal was to automate the repetitive parts of reporting without changing how the client actually wanted to work.
+      </p>
+
+      <p>
+        Excel and PowerPoint were already familiar parts of their review process, so I kept those as the final deliverables rather than introducing a new reporting platform. The automation handled the time-consuming work of collecting data, applying the reporting logic, creating visuals, and assembling the files while leaving the analytics team in control of the final review and commentary.
+      </p>
+
+      <p>
+        I also designed the workflow so that problems with one source did not necessarily stop the entire report. Missing values could be handled within the report, and an unavailable external source could be excluded from a run rather than causing the full process to fail.
+      </p>
+
+      <p>
+        The data-processing and presentation logic were kept separate enough that charts, indicators, and presentation layouts could be updated as stakeholder preferences changed.
+      </p>
+    </section>
+
+
+    <section class="project-results">
+      <h2>Outcome</h2>
+
+      <p>
+        The automated workflow reduced a process that had taken dozens of hours of manual work each month to about 20 minutes of generation time.
+      </p>
+
+      <p>
+        It also made more detailed executive reporting practical. Instead of spending most of the reporting cycle collecting data and assembling files, the analytics team could review a completed Excel workbook and PowerPoint presentation, add context where needed, and prepare the results for executive review.
+      </p>
+
+      <p>
+        The workflow remained in production for several years and continued to evolve based on stakeholder feedback. When I left the project, I handed the workflow off to another individual for continued use and maintenance.
+      </p>
+    </section>
+
+  </div>
+
+
+  <div class="project-cta">
+    <div class="project-cta-content">
+      <div>
+        <h2>Have a similar reporting process?</h2>
+        <p>
+          I help teams automate recurring reporting workflows while keeping the outputs and review process that already work for them.
+        </p>
+      </div>
+
+      <a class="btn btn-primary" href="/workwithme/">
+        Discuss a Project
+      </a>
+    </div>
+  </div>
+
+</div>
