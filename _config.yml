@@ -22,7 +22,8 @@ author: Pinecone Data, LLC
 navbar-links:
   Home: "/"
   About: "about/"
-  Projects: "projects/"
+  Case Studies: "case-studies/"
+  Technical Projects: "projects/"
   Writing: "writing/"
   Work With Me: "workwithme/"
 
