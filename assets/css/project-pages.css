@@ -12,7 +12,7 @@ Project header
 ============================== */
 
 .project-header {
-    max-width: 780px;
+    max-width: 880px;
     margin-bottom: 2.25rem;
 }
 
@@ -66,13 +66,20 @@ body:has(.case-study-page) .intro-header .page-heading h1 {
     line-height: 1.08;
 }
 
+/* Case study outcome section */
+.case-study-outcome {
+  margin-top: 2.5rem;
+  padding: 0.25rem 0 0.25rem 1.25rem;
+  border-left: 3px solid var(--pinecone-purple-border);
+}
+
+.case-study-outcome h2 {
+  margin-top: 0;
+}
+
 /* ==============================
 Project content
 ============================== */
-
-.project-content {
-    max-width: 780px;
-}
 
 .project-content section {
     margin: 2.75rem 0;
@@ -250,7 +257,6 @@ Project final CTA
 }
 
 .project-cta p {
-    max-width: 580px;
     margin: 0;
     font-size: 1rem;
     line-height: 1.55;
