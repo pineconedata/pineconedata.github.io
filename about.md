@@ -3,7 +3,7 @@ layout: page
 title: About
 permalink: /about/
 share-title: About | Pinecone Data
-share-description: About Pinecone Data and my experience in data science, reporting automation, technical implementation, and client-focused data work.
+share-description: Learn about Pinecone Data, an independent consultancy specializing in reporting automation, data workflows, and custom technical solutions.
 ext-css:
   - "/assets/css/about.css"
 ---
@@ -14,6 +14,9 @@ ext-css:
     </p>
     <p>
         Through Pinecone Data, I work as an independent data consultant, helping clients improve repetitive data and reporting processes by making them clearer, more reliable, and easier to maintain.
+    </p>
+    <p>
+        Pinecone Data is certified through Virginia's Small, Women-owned, and Minority-owned Business (SWaM) program.
     </p>
 </section>
 
