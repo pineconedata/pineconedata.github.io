@@ -1,5 +1,4 @@
 User-agent: *
-Disallow: /assets/
 Disallow: /404.html
 Disallow: /feed.xml
 
